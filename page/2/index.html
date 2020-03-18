@@ -929,6 +929,117 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2013/07/Big%20Data%20System/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2013/07/Big%20Data%20System/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/" class="post-title-link" itemprop="url">INTRODUCTION, HISTORY, AND DEFINITIONS</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2013-07-13 20:46:25" itemprop="dateCreated datePublished" datetime="2013-07-13T20:46:25+01:00">2013-07-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-17 02:09:14" itemprop="dateModified" datetime="2020-03-17T02:09:14+00:00">2020-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="L1-INTRODUCTION-HISTORY-AND-DEFINITIONS"><a href="#L1-INTRODUCTION-HISTORY-AND-DEFINITIONS" class="headerlink" title="L1 INTRODUCTION, HISTORY, AND DEFINITIONS"></a>L1 INTRODUCTION, HISTORY, AND DEFINITIONS</h2><h4 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h4><p>指环境中的人、动物、或物体具有唯一标识符，能够通过网络传输数据，而不需要人与人或人与电脑的交互</p>
+<h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><p>复杂和巨大的数据集，使得传统的数据库软件工具无法获取、储存、管理和分析</p>
+<h4 id="大数据的3个特征-——-Volume-Velocity-Variety"><a href="#大数据的3个特征-——-Volume-Velocity-Variety" class="headerlink" title="大数据的3个特征 —— Volume Velocity Variety"></a>大数据的3个特征 —— Volume Velocity Variety</h4><p>Volume：就存储和访问而言，数据的尺寸觉得庞大</p>
+<p>Velocity：数据传入的速度以及处理时间</p>
+<p>Variety：文件的种类，数据的格式和来源</p>
+<h4 id="Volume增长的因素"><a href="#Volume增长的因素" class="headerlink" title="Volume增长的因素"></a>Volume增长的因素</h4><p>基于交易的数据的不断积累</p>
+<p>来自社交媒体的 Unstructured data streaming 非结构化数据流，结合关系数据（评论、讨论、支持投票等）</p>
+<p>其他例子：</p>
+<p>Facebook and Youtube have billions of users, Twitter and Instagram have hundreds of millions users. Every day, these users contribute to billions of images, posts, videos, tweets etc.</p>
+<p>Most of the companies in the US have at least 100 Terabytes of data stored.</p>
+<p>It’s estimated that 2.5 quintillion bytes of data are created each day.</p>
+<h4 id="Velocity"><a href="#Velocity" class="headerlink" title="Velocity"></a>Velocity</h4><p>数据速度，既是数据流入(stream in)的速度，也是处理数据的速度以保证数据的时效性(timeliness)</p>
+<p>比如：</p>
+<p>实时处理和储存国家天气信息、即时响应高频率的股票交易和快速分析、</p>
+<p>Tmall’s total turnover exceeded 10 billion CNY in the first 96 seconds at 11/11 last year</p>
+<p>Modern cars have close to 100 sensors that monitor items such as fuel level and tire pressure</p>
+<h4 id="Variety"><a href="#Variety" class="headerlink" title="Variety"></a>Variety</h4><p>Variety is all about the ability to classify the incoming data into various categories.多样性是指将传入数据分类为各种类别的能力。</p>
+<p>数据有各种各样的格式，但可以被分为2种：<strong>structured 结构化</strong> 和 <strong>unstructured 非结构化</strong></p>
+<p><strong>结构化数据</strong>：是传统数据库中的数字数据，从业务线(line-of-business)和预格式化(pre-formatted)数据中创建，随时间推移收集</p>
+<p><strong>非结构化数据</strong>：是相关的或看似无关的数据，来自非结构化来源（社交媒体，文本文档，电子邮件，视频，音频等）</p>
+<p>比如：</p>
+<p>data in healthcare、data from wearable, wireless health monitors、pieces of content from Facebook and Twitter</p>
+<h4 id="Veracity-和-Value-——-用于描述大数据的特征，而不是定义特征"><a href="#Veracity-和-Value-——-用于描述大数据的特征，而不是定义特征" class="headerlink" title="Veracity 和 Value —— 用于描述大数据的特征，而不是定义特征"></a>Veracity 和 Value —— 用于描述大数据的特征，而不是定义特征</h4><p>Veracity：数据的准确性和意义的多少</p>
+<p>Value：从数据中可获得的价值的多少</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2013/07/Big%20Data%20System/02%20EXAMPLES%20AND%20TECHNOLOGY%20LANDSCAPE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1034,117 +1145,6 @@
 <li>Value：比如Hydration Sensor测量并分析用户的hydration level，可以提醒用户什么时候喝水，该喝多少水</li>
 </ul>
 <p>其他场景：智能商场，设备状况监控，汽车联网和自动驾驶，智能运输 Intelligent Transport，智能网格 Smart Grid，推荐系统，金融</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2013/07/Big%20Data%20System/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2013/07/Big%20Data%20System/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/" class="post-title-link" itemprop="url">INTRODUCTION, HISTORY, AND DEFINITIONS</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2013-07-13 20:46:25" itemprop="dateCreated datePublished" datetime="2013-07-13T20:46:25+01:00">2013-07-13</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-17 02:09:14" itemprop="dateModified" datetime="2020-03-17T02:09:14+00:00">2020-03-17</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Diary/" itemprop="url" rel="index"><span itemprop="name">Diary</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="L1-INTRODUCTION-HISTORY-AND-DEFINITIONS"><a href="#L1-INTRODUCTION-HISTORY-AND-DEFINITIONS" class="headerlink" title="L1 INTRODUCTION, HISTORY, AND DEFINITIONS"></a>L1 INTRODUCTION, HISTORY, AND DEFINITIONS</h2><h4 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h4><p>指环境中的人、动物、或物体具有唯一标识符，能够通过网络传输数据，而不需要人与人或人与电脑的交互</p>
-<h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><p>复杂和巨大的数据集，使得传统的数据库软件工具无法获取、储存、管理和分析</p>
-<h4 id="大数据的3个特征-——-Volume-Velocity-Variety"><a href="#大数据的3个特征-——-Volume-Velocity-Variety" class="headerlink" title="大数据的3个特征 —— Volume Velocity Variety"></a>大数据的3个特征 —— Volume Velocity Variety</h4><p>Volume：就存储和访问而言，数据的尺寸觉得庞大</p>
-<p>Velocity：数据传入的速度以及处理时间</p>
-<p>Variety：文件的种类，数据的格式和来源</p>
-<h4 id="Volume增长的因素"><a href="#Volume增长的因素" class="headerlink" title="Volume增长的因素"></a>Volume增长的因素</h4><p>基于交易的数据的不断积累</p>
-<p>来自社交媒体的 Unstructured data streaming 非结构化数据流，结合关系数据（评论、讨论、支持投票等）</p>
-<p>其他例子：</p>
-<p>Facebook and Youtube have billions of users, Twitter and Instagram have hundreds of millions users. Every day, these users contribute to billions of images, posts, videos, tweets etc.</p>
-<p>Most of the companies in the US have at least 100 Terabytes of data stored.</p>
-<p>It’s estimated that 2.5 quintillion bytes of data are created each day.</p>
-<h4 id="Velocity"><a href="#Velocity" class="headerlink" title="Velocity"></a>Velocity</h4><p>数据速度，既是数据流入(stream in)的速度，也是处理数据的速度以保证数据的时效性(timeliness)</p>
-<p>比如：</p>
-<p>实时处理和储存国家天气信息、即时响应高频率的股票交易和快速分析、</p>
-<p>Tmall’s total turnover exceeded 10 billion CNY in the first 96 seconds at 11/11 last year</p>
-<p>Modern cars have close to 100 sensors that monitor items such as fuel level and tire pressure</p>
-<h4 id="Variety"><a href="#Variety" class="headerlink" title="Variety"></a>Variety</h4><p>Variety is all about the ability to classify the incoming data into various categories.多样性是指将传入数据分类为各种类别的能力。</p>
-<p>数据有各种各样的格式，但可以被分为2种：<strong>structured 结构化</strong> 和 <strong>unstructured 非结构化</strong></p>
-<p><strong>结构化数据</strong>：是传统数据库中的数字数据，从业务线(line-of-business)和预格式化(pre-formatted)数据中创建，随时间推移收集</p>
-<p><strong>非结构化数据</strong>：是相关的或看似无关的数据，来自非结构化来源（社交媒体，文本文档，电子邮件，视频，音频等）</p>
-<p>比如：</p>
-<p>data in healthcare、data from wearable, wireless health monitors、pieces of content from Facebook and Twitter</p>
-<h4 id="Veracity-和-Value-——-用于描述大数据的特征，而不是定义特征"><a href="#Veracity-和-Value-——-用于描述大数据的特征，而不是定义特征" class="headerlink" title="Veracity 和 Value —— 用于描述大数据的特征，而不是定义特征"></a>Veracity 和 Value —— 用于描述大数据的特征，而不是定义特征</h4><p>Veracity：数据的准确性和意义的多少</p>
-<p>Value：从数据中可获得的价值的多少</p>
 
       
     </div>

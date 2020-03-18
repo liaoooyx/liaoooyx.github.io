@@ -376,6 +376,34 @@
   </entry>
   
   <entry>
+    <title>INTRODUCTION, HISTORY, AND DEFINITIONS</title>
+    <link href="https://liaoooyx.com/2013/07/Big%20Data%20System/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/"/>
+    <id>https://liaoooyx.com/2013/07/Big%20Data%20System/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/</id>
+    <published>2013-07-13T19:46:25.000Z</published>
+    <updated>2020-03-17T02:09:14.631Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="L1-INTRODUCTION-HISTORY-AND-DEFINITIONS"><a href="#L1-INTRODUCTION-HISTORY-AND-DEFINITIONS" class="headerlink" title="L1 INTRODUCTION, HISTORY, AND DEFINITIONS"></a>L1 INTRODUCTION, HISTORY, AND DEFINITIONS</h2><h4 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h4><p>指环境中的人、动物、或物体具有唯一标识符，能够通过网络传输数据，而不需要人与人或人与电脑的交互</p><h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><p>复杂和巨大的数据集，使得传统的数据库软件工具无法获取、储存、管理和分析</p><h4 id="大数据的3个特征-——-Volume-Velocity-Variety"><a href="#大数据的3个特征-——-Volume-Velocity-Variety" class="headerlink" title="大数据的3个特征 —— Volume Velocity Variety"></a>大数据的3个特征 —— Volume Velocity Variety</h4><p>Volume：就存储和访问而言，数据的尺寸觉得庞大</p><p>Velocity：数据传入的速度以及处理时间</p><p>Variety：文件的种类，数据的格式和来源</p><h4 id="Volume增长的因素"><a href="#Volume增长的因素" class="headerlink" title="Volume增长的因素"></a>Volume增长的因素</h4><p>基于交易的数据的不断积累</p><p>来自社交媒体的 Unstructured data streaming 非结构化数据流，结合关系数据（评论、讨论、支持投票等）</p><p>其他例子：</p><p>Facebook and Youtube have billions of users, Twitter and Instagram have hundreds of millions users. Every day, these users contribute to billions of images, posts, videos, tweets etc.</p><p>Most of the companies in the US have at least 100 Terabytes of data stored.</p><p>It’s estimated that 2.5 quintillion bytes of data are created each day.</p><h4 id="Velocity"><a href="#Velocity" class="headerlink" title="Velocity"></a>Velocity</h4><p>数据速度，既是数据流入(stream in)的速度，也是处理数据的速度以保证数据的时效性(timeliness)</p><p>比如：</p><p>实时处理和储存国家天气信息、即时响应高频率的股票交易和快速分析、</p><p>Tmall’s total turnover exceeded 10 billion CNY in the first 96 seconds at 11/11 last year</p><p>Modern cars have close to 100 sensors that monitor items such as fuel level and tire pressure</p><h4 id="Variety"><a href="#Variety" class="headerlink" title="Variety"></a>Variety</h4><p>Variety is all about the ability to classify the incoming data into various categories.多样性是指将传入数据分类为各种类别的能力。</p><p>数据有各种各样的格式，但可以被分为2种：<strong>structured 结构化</strong> 和 <strong>unstructured 非结构化</strong></p><p><strong>结构化数据</strong>：是传统数据库中的数字数据，从业务线(line-of-business)和预格式化(pre-formatted)数据中创建，随时间推移收集</p><p><strong>非结构化数据</strong>：是相关的或看似无关的数据，来自非结构化来源（社交媒体，文本文档，电子邮件，视频，音频等）</p><p>比如：</p><p>data in healthcare、data from wearable, wireless health monitors、pieces of content from Facebook and Twitter</p><h4 id="Veracity-和-Value-——-用于描述大数据的特征，而不是定义特征"><a href="#Veracity-和-Value-——-用于描述大数据的特征，而不是定义特征" class="headerlink" title="Veracity 和 Value —— 用于描述大数据的特征，而不是定义特征"></a>Veracity 和 Value —— 用于描述大数据的特征，而不是定义特征</h4><p>Veracity：数据的准确性和意义的多少</p><p>Value：从数据中可获得的价值的多少</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;L1-INTRODUCTION-HISTORY-AND-DEFINITIONS&quot;&gt;&lt;a href=&quot;#L1-INTRODUCTION-HISTORY-AND-DEFINITIONS&quot; class=&quot;headerlink&quot; title=&quot;L1 INTRODUCTIO
+      
+    
+    </summary>
+    
+    
+      <category term="Diary" scheme="https://liaoooyx.com/categories/Diary/"/>
+    
+    
+      <category term="PS3" scheme="https://liaoooyx.com/tags/PS3/"/>
+    
+      <category term="Games" scheme="https://liaoooyx.com/tags/Games/"/>
+    
+  </entry>
+  
+  <entry>
     <title>EXAMPLES AND TECHNOLOGY LANDSCAPE</title>
     <link href="https://liaoooyx.com/2013/07/Big%20Data%20System/02%20EXAMPLES%20AND%20TECHNOLOGY%20LANDSCAPE/"/>
     <id>https://liaoooyx.com/2013/07/Big%20Data%20System/02%20EXAMPLES%20AND%20TECHNOLOGY%20LANDSCAPE/</id>
@@ -402,34 +430,6 @@
       <category term="b" scheme="https://liaoooyx.com/tags/b/"/>
     
       <category term="c" scheme="https://liaoooyx.com/tags/c/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>INTRODUCTION, HISTORY, AND DEFINITIONS</title>
-    <link href="https://liaoooyx.com/2013/07/Big%20Data%20System/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/"/>
-    <id>https://liaoooyx.com/2013/07/Big%20Data%20System/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/</id>
-    <published>2013-07-13T19:46:25.000Z</published>
-    <updated>2020-03-17T02:09:14.631Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="L1-INTRODUCTION-HISTORY-AND-DEFINITIONS"><a href="#L1-INTRODUCTION-HISTORY-AND-DEFINITIONS" class="headerlink" title="L1 INTRODUCTION, HISTORY, AND DEFINITIONS"></a>L1 INTRODUCTION, HISTORY, AND DEFINITIONS</h2><h4 id="IoT"><a href="#IoT" class="headerlink" title="IoT"></a>IoT</h4><p>指环境中的人、动物、或物体具有唯一标识符，能够通过网络传输数据，而不需要人与人或人与电脑的交互</p><h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><p>复杂和巨大的数据集，使得传统的数据库软件工具无法获取、储存、管理和分析</p><h4 id="大数据的3个特征-——-Volume-Velocity-Variety"><a href="#大数据的3个特征-——-Volume-Velocity-Variety" class="headerlink" title="大数据的3个特征 —— Volume Velocity Variety"></a>大数据的3个特征 —— Volume Velocity Variety</h4><p>Volume：就存储和访问而言，数据的尺寸觉得庞大</p><p>Velocity：数据传入的速度以及处理时间</p><p>Variety：文件的种类，数据的格式和来源</p><h4 id="Volume增长的因素"><a href="#Volume增长的因素" class="headerlink" title="Volume增长的因素"></a>Volume增长的因素</h4><p>基于交易的数据的不断积累</p><p>来自社交媒体的 Unstructured data streaming 非结构化数据流，结合关系数据（评论、讨论、支持投票等）</p><p>其他例子：</p><p>Facebook and Youtube have billions of users, Twitter and Instagram have hundreds of millions users. Every day, these users contribute to billions of images, posts, videos, tweets etc.</p><p>Most of the companies in the US have at least 100 Terabytes of data stored.</p><p>It’s estimated that 2.5 quintillion bytes of data are created each day.</p><h4 id="Velocity"><a href="#Velocity" class="headerlink" title="Velocity"></a>Velocity</h4><p>数据速度，既是数据流入(stream in)的速度，也是处理数据的速度以保证数据的时效性(timeliness)</p><p>比如：</p><p>实时处理和储存国家天气信息、即时响应高频率的股票交易和快速分析、</p><p>Tmall’s total turnover exceeded 10 billion CNY in the first 96 seconds at 11/11 last year</p><p>Modern cars have close to 100 sensors that monitor items such as fuel level and tire pressure</p><h4 id="Variety"><a href="#Variety" class="headerlink" title="Variety"></a>Variety</h4><p>Variety is all about the ability to classify the incoming data into various categories.多样性是指将传入数据分类为各种类别的能力。</p><p>数据有各种各样的格式，但可以被分为2种：<strong>structured 结构化</strong> 和 <strong>unstructured 非结构化</strong></p><p><strong>结构化数据</strong>：是传统数据库中的数字数据，从业务线(line-of-business)和预格式化(pre-formatted)数据中创建，随时间推移收集</p><p><strong>非结构化数据</strong>：是相关的或看似无关的数据，来自非结构化来源（社交媒体，文本文档，电子邮件，视频，音频等）</p><p>比如：</p><p>data in healthcare、data from wearable, wireless health monitors、pieces of content from Facebook and Twitter</p><h4 id="Veracity-和-Value-——-用于描述大数据的特征，而不是定义特征"><a href="#Veracity-和-Value-——-用于描述大数据的特征，而不是定义特征" class="headerlink" title="Veracity 和 Value —— 用于描述大数据的特征，而不是定义特征"></a>Veracity 和 Value —— 用于描述大数据的特征，而不是定义特征</h4><p>Veracity：数据的准确性和意义的多少</p><p>Value：从数据中可获得的价值的多少</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;L1-INTRODUCTION-HISTORY-AND-DEFINITIONS&quot;&gt;&lt;a href=&quot;#L1-INTRODUCTION-HISTORY-AND-DEFINITIONS&quot; class=&quot;headerlink&quot; title=&quot;L1 INTRODUCTIO
-      
-    
-    </summary>
-    
-    
-      <category term="Diary" scheme="https://liaoooyx.com/categories/Diary/"/>
-    
-    
-      <category term="PS3" scheme="https://liaoooyx.com/tags/PS3/"/>
-    
-      <category term="Games" scheme="https://liaoooyx.com/tags/Games/"/>
     
   </entry>
   
