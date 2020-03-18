@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="16 APACHE SPARKMapReduce的限制 MapReduce编程对许多人来说都是有难度的 性能通常会遇到瓶颈（因为批处理不适合所需的用例）  这导致MapReduce不适用于大型应用程序。因此出现了多种专业系统的发展。 因此Spark面世——将所有的专业系统整合到一起 Apache Spark是一个通用目的数据处理引擎，为不同的需求设计，  更快的批处理 应用需要交互式查询处理 处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="https://liaoooyx.com/2020/03/Big%20Data%20System/16%20APACHE%20SPARK/index.html">
+<meta property="og:site_name" content="米达">
+<meta property="og:description" content="16 APACHE SPARKMapReduce的限制 MapReduce编程对许多人来说都是有难度的 性能通常会遇到瓶颈（因为批处理不适合所需的用例）  这导致MapReduce不适用于大型应用程序。因此出现了多种专业系统的发展。 因此Spark面世——将所有的专业系统整合到一起 Apache Spark是一个通用目的数据处理引擎，为不同的需求设计，  更快的批处理 应用需要交互式查询处理 处理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcwbap19kxj30o80e4wii.jpg">
+<meta property="article:published_time" content="2020-03-16T09:07:49.855Z">
+<meta property="article:modified_time" content="2020-03-17T02:44:54.667Z">
+<meta property="article:author" content="liaoooyx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gcwbap19kxj30o80e4wii.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/03/Big%20Data%20System/16%20APACHE%20SPARK/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>Hello World | 米达</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">18</span></a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/Big%20Data%20System/16%20APACHE%20SPARK/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hello World
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-16 09:07:49" itemprop="dateCreated datePublished" datetime="2020-03-16T09:07:49+00:00">2020-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-17 02:44:54" itemprop="dateModified" datetime="2020-03-17T02:44:54+00:00">2020-03-17</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/1/" itemprop="url" rel="index"><span itemprop="name">1</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="16-APACHE-SPARK"><a href="#16-APACHE-SPARK" class="headerlink" title="16 APACHE SPARK"></a>16 APACHE SPARK</h2><h4 id="MapReduce的限制"><a href="#MapReduce的限制" class="headerlink" title="MapReduce的限制"></a>MapReduce的限制</h4><ol>
+<li>MapReduce编程对许多人来说都是有难度的</li>
+<li>性能通常会遇到瓶颈（因为批处理不适合所需的用例）</li>
+</ol>
+<p>这导致MapReduce不适用于大型应用程序。因此出现了多种专业系统的发展。</p>
+<p>因此Spark面世——将所有的专业系统整合到一起</p>
+<h2 id="Apache-Spark"><a href="#Apache-Spark" class="headerlink" title="Apache Spark"></a>Apache Spark</h2><p>是一个通用目的数据处理引擎，为不同的需求设计，</p>
+<ul>
+<li>更快的批处理</li>
+<li>应用需要交互式查询处理</li>
+<li>处理流数据</li>
+<li>系统需要迭代算法</li>
+</ul>
+<p>特征：</p>
+<ul>
+<li>是in-memory的计算引擎（充分利用内存）</li>
+<li>用磁盘时比Hadoop快10倍，用内存时比Hadoop快100倍</li>
+</ul>
+<h4 id="Spark-结构"><a href="#Spark-结构" class="headerlink" title="Spark 结构"></a>Spark 结构</h4><p>Spark不提供任何类似HDFS的存储或者资源管理能力，它是一个以几乎实时的方式，处理大量数据的，统一的框架</p>
+<p>三个主要的分层：</p>
+<ol>
+<li>生态层：基于核心层执行操作的库<ul>
+<li>Spark SQL， Spark Streaming， BlinkDB， Spark ML， GraphX， Tachyon</li>
+</ul>
+</li>
+<li>核心层：框架的通用层，它定义了所有的基础功能，其他功能和扩展都是基于这一层创建的<ul>
+<li>Spark Core，Spark DataFrame API</li>
+</ul>
+</li>
+<li>资源管理层：Spark以独立模式（单节点群集设置）管理自己的资源。 但是对于分布式集群模式，它可以与YARN之类的资源管理模块集成在一起。<ul>
+<li>Standalone，YARN，Mesos</li>
+</ul>
+</li>
+</ol>
+<p>结构：</p>
+<ul>
+<li>Spark应用程序在集群上作为独立的进程集运行，由SparkContext对象（也称为驱动程序）协调。<ul>
+<li>每个应用程序都有其自己的执行程序进程，这些进程在整个应用程序期间保持不变，并在多个线程中运行任务。</li>
+<li>这具有将应用程序彼此<strong>隔离</strong>的好处——每个驱动程序调度自己的任务，并且来自不同应用程序的任务在不同的JVM中运行。</li>
+<li>但是，这也意味着，如果不将数据写入外部存储系统，则无法在不同的Spark应用程序（SparkContext实例）之间共享数据。</li>
+</ul>
+</li>
+<li>SparkContext负责将应用程序代码（JAR或Python文件）和任务发送给执行程序。</li>
+<li>每个驱动程序都有一个Web UI，通常在端口4040上，该Web UI显示有关正在运行的任务，执行程序和存储使用情况的信息。</li>
+</ul>
+<h4 id="语言支持"><a href="#语言支持" class="headerlink" title="语言支持"></a>语言支持</h4><p>提供了Java、Scala、Python的high-level APIs</p>
+<p>提供了优化引擎支持：产生执行图，结构化数据处理的高级工具</p>
+<h3 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h3><p>处理：</p>
+<ul>
+<li><p>内存管理和容错</p>
+</li>
+<li><p>对集群上的任务jobs进行调度，分配，监控</p>
+</li>
+<li><p>与存储系统进行交互</p>
+</li>
+</ul>
+<p>它也实现了弹性分布式数据库（RDDs）的关键概念。</p>
+<ul>
+<li>RDD是对象的不可变容错分布式集合，可以并行操作。</li>
+<li>RDD可以包含任何类型的对象，并且可以通过加载外部数据集或从驱动程序分配集合来创建</li>
+<li>RDD是分布在整个集群中的数据集的表示。</li>
+</ul>
+<h4 id="弹性分布式数据库-RESILIENT-DISTRIBUTED-DATABASES（RDDs）"><a href="#弹性分布式数据库-RESILIENT-DISTRIBUTED-DATABASES（RDDs）" class="headerlink" title="弹性分布式数据库 RESILIENT DISTRIBUTED DATABASES（RDDs）"></a>弹性分布式数据库 RESILIENT DISTRIBUTED DATABASES（RDDs）</h4><ul>
+<li>RDDs可以被存储在内存或磁盘中，主要的性能来自于将数据存在内存中<ul>
+<li>诸如MapReduce之类的当前框架提供了许多用于<u>访问集群的计算资源的抽象</u>，但是缺乏<u>利用分布式内存的抽象。</u></li>
+</ul>
+</li>
+<li>Spark的优势：<ul>
+<li>数据重用在许多迭代ML算法中很常见，例如K-means聚类。另一个示例是当用户对同一数据子集运行多个临时查询时。</li>
+</ul>
+</li>
+<li>在Hadoop（和其他框架）中，在不同作业之间<u>重用数据的唯一方法</u>是将其写入外部存储系统（例如HDFS）。使用内存中的RDD，可以更快地处理数据。可以存储在分布式内存中的数据大小仅受群集大小限制。</li>
+</ul>
+<h4 id="RDD操作"><a href="#RDD操作" class="headerlink" title="RDD操作"></a>RDD操作</h4><ul>
+<li>Transformations 转换：在RDD上执行并产生包含结果的新RDD的操作（例如，映射，过滤器，联接，联合等）</li>
+<li>Actions 行动：在RDD上运行计算后返回值的操作（例如reduce，count，first等）。</li>
+</ul>
+<p>Spark上的转换操作是lazy的，并不会立即执行。只有当行动被调用时，转换才会执行。执行的结果将返回给驱动程序。该设计能提高Spark的运行效率</p>
+<h4 id="Lazy-（Transformations）评估"><a href="#Lazy-（Transformations）评估" class="headerlink" title="Lazy （Transformations）评估"></a>Lazy （Transformations）评估</h4><p>转换是对数据的操纵。 它们从一个RDD转换到下一个。</p>
+<p>比如：一个Action查询数据集中有多少数据，Spark在收到查询后，才会进行Transformations，再将结果返回给Action</p>
+<h4 id="RDD用例"><a href="#RDD用例" class="headerlink" title="RDD用例"></a>RDD用例</h4><p>假设我们必须在大量的Web服务器访问日志中查找错误代码。</p>
+<p>我们可以使用MapReduce，Storm或我们喜欢的任何框架来读取文件集，查找特定的错误代码，并将带有该代码的所有行放入存储设备（例如HDFS）</p>
+<p>然后，当我们分析这些结果数据时，我们可能希望将错误与其他用户活动进行交叉引用cross-reference。 这将要求我们再次获取文件，处理并提供结果等。</p>
+<p>对于传统方式需要重复对磁盘进行查询，而RDD是将数据存储在内存中，并提供了重新查询所用子集的功能。 </p>
+<p>内存中数据存储非常适合许多迭代和交互式算法</p>
+<h4 id="RDD容错"><a href="#RDD容错" class="headerlink" title="RDD容错"></a>RDD容错</h4><p>设计RDD的主要挑战是定义一个可提供有效容错能力的编程接口。</p>
+<ul>
+<li>故障是系统中的缺陷defect。</li>
+<li>错误error是系统边界内观察到的行为与系统的指定行为之间的<strong>差异</strong></li>
+<li>故障failure是系统当时<u>显示的行为</u>与<u>规范相反</u>的<strong>实例</strong></li>
+</ul>
+<p>现有解决方案提供基于细粒度更新的容错接口。</p>
+<ul>
+<li><p>使用这样的系统，获得容错的唯一方法，是跨计算机复制数据或跨计算机记录更新。</p>
+</li>
+<li><p>这些方法是数据密集型的——高带宽用于在群集网络上移动数据。</p>
+</li>
+</ul>
+<p>RDD提供了基于粗粒度转换的接口（例如，映射，过滤器，联接）。 这些转换将相同的操作应用于许多数据项。</p>
+<ul>
+<li><p>这允许通过记录用于构建数据库的转换而不是实际数据本身来有效地应用容错。</p>
+</li>
+<li><p>如果RDD的分区丢失，则RDD具有有关如何从其他RDDS派生出来的足够信息，以便仅重新计算该分区。</p>
+</li>
+</ul>
+<h4 id="RDD的限制"><a href="#RDD的限制" class="headerlink" title="RDD的限制"></a>RDD的限制</h4><p>不适合非迭代应用程序，因为Spark的主要性能提升是内存数据的迭代。</p>
+<p>RDD也不太适合对共享状态进行异步细粒度更新的应用程序，例如Web应用程序的存储系统或增量Web爬虫。批量转换对于小的更新是浪费的。</p>
+<h4 id="传统的流处理管道"><a href="#传统的流处理管道" class="headerlink" title="传统的流处理管道"></a>传统的流处理管道</h4><ol>
+<li>从数据源接收流数据</li>
+<li>在集群上并行处理流数据</li>
+<li>将数据输出到下游的系统</li>
+</ol>
+<p>大多数传统的流处理器使用连续操作器（continuous operator）模型进行数据处理</p>
+<ul>
+<li>一组工作节点，每个工作节点运行一个或多个连续操作器</li>
+<li>每个连续的操作器一次处理流数据一个记录，然后将记录转发给管道中的其他操作器。</li>
+<li>有源操作器用于从采集系统接收数据，而下沉操作器则输出到下游系统。</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcwbap19kxj30o80e4wii.jpg" alt="截屏2020-03-16下午6.05.24"></p>
+<p>比如Apache Storm；这是一个非常优雅的解决方案，但是随着系统变得越来越大以及大数据分析的复杂性增加，使用此模型面临着越来越多的挑战。</p>
+<h4 id="传统流数据处理系统的问题"><a href="#传统流数据处理系统的问题" class="headerlink" title="传统流数据处理系统的问题"></a>传统流数据处理系统的问题</h4><p><strong>故障和任务被卡主（straggling）：</strong></p>
+<ul>
+<li><p>随着规模扩大，集群节点故障或者无法预测的变慢（比如stragglers，掉队者）的可能性会增加</p>
+</li>
+<li><p>系统需要能自动从故障和卡住的任务（stragglers）中恢复，以实时提供结果</p>
+</li>
+<li><p>将<u>连续操作器</u>静态分配给工作节点，会使传统系统很难从故障和卡住的任务（stragglers）中快速恢复。</p>
+</li>
+</ul>
+<p><strong>负载平衡：</strong></p>
+<ul>
+<li>Workers之间的处理负载分配不均，会导致连续操作器系统出现瓶颈。</li>
+<li>这在大型集群和动态变化的工作负载中更可能发生。</li>
+<li>系统需要能够根据工作负载动态调整资源分配。</li>
+</ul>
+<p><strong>流、批处理、交互式工作负载的统一：</strong></p>
+<ul>
+<li>在许多使用案例中，以交互方式查询流数据或将其与静态数据集（例如，预先计算的模型）结合起来很有吸引力。</li>
+<li>在连续的操作器系统中，这很难做到，因为它们并非旨在动态地为临时查询引入新的运算器</li>
+<li>这需要一个可以结合批处理，流式处理和交互式查询的引擎。</li>
+</ul>
+<p><strong>高级分析：</strong></p>
+<ul>
+<li><p>复杂的工作负载需要连续的学习和更新数据模型，甚至是用sql查询最新的流数据视图</p>
+</li>
+<li><p>使这些分析任务具有通用抽象（API），能让开发人员的工作更加轻松</p>
+</li>
+</ul>
+<h4 id="离散流-Discretized-Streams-——-解决方案"><a href="#离散流-Discretized-Streams-——-解决方案" class="headerlink" title="离散流 Discretized Streams —— 解决方案"></a>离散流 Discretized Streams —— 解决方案</h4><p>为了解决这些问题，Spark Streaming组件使用称为离散化流的新架构，该架构直接利用了Spark引擎的库和容错能力。</p>
+<ul>
+<li>Spark Streaming接收器不会一次读取单个数据记录，而是将数据流离散化为亚秒级的微小批量（RDDs）。（即接收者并行接受数据并将其缓冲在Spark worker节点的内存中）。然后，Spark引擎运行简短的任务（数十毫秒）以处理批处理并将结果输出到其他系统。</li>
+</ul>
+<p>与连续操作器模型不同，Spark任务根据数据的位置和可用资源动态分配给工作人员。这是为了实现更好的负载平衡和更快的故障恢复。</p>
+<ul>
+<li>每个数据的batches都是一个RDD。这允许使用任何Spark代码或库来处理流数据。</li>
+</ul>
+<h4 id="DSP好处：动态负载平衡"><a href="#DSP好处：动态负载平衡" class="headerlink" title="DSP好处：动态负载平衡"></a>DSP好处：动态负载平衡</h4><p>将数据划分为多个微批，可以将计算能力以细粒度的方式分配给资源。</p>
+<p>以字数统计为例：分区不均衡的流会导致某个节点过载，达到瓶颈；而将数据离散Discretized 后，可以根据节点的负载对任务进行分配和调度。</p>
+<h4 id="DSP好处：从故障和卡住的任务中快速恢复"><a href="#DSP好处：从故障和卡住的任务中快速恢复" class="headerlink" title="DSP好处：从故障和卡住的任务中快速恢复"></a>DSP好处：从故障和卡住的任务中快速恢复</h4><p>传统流：</p>
+<ul>
+<li>万一发生节点故障，传统系统必须在另一个节点上重新启动发生故障的连续运算器，并重播数据流的某些部分以重新计算丢失的信息。（请注意，在重播后新节点赶上之前，管道无法继续进行。）</li>
+</ul>
+<p>Spark流（离散流）</p>
+<ul>
+<li><p>可以在集群中的所有其他节点上并行重新启动失败的任务，从而将所有重新计算均匀地分布在多个节点上，从而从故障中恢复。</p>
+<p><u>计算已经离散化为可以在任何地方运行而不会影响正确性的任务。</u></p>
+</li>
+</ul>
+<h4 id="DSP好处：流、批处理、交互的统一"><a href="#DSP好处：流、批处理、交互的统一" class="headerlink" title="DSP好处：流、批处理、交互的统一"></a>DSP好处：流、批处理、交互的统一</h4><p>Spark Streaming中的关键编程接口是DStream或分布式流。 每一批流数据都由RDD表示，因此DStream只是一系列RDD。</p>
+<p>因此，我们可以使用任何Spark函数处理DStream。例如，我们可以将DStream与预先计算的静态数据集（已加载到另一个RDD中）结合在一起</p>
+<p>数据批存储在workers的内存中，因此可以按需交互查询。<br>批处理，流和交互式工作负载的这种统一在Spark中非常简单，但是在没有<u>工作负载的通用接口</u>的系统中很难实现</p>
+<h4 id="DSP好处：高级分析"><a href="#DSP好处：高级分析" class="headerlink" title="DSP好处：高级分析"></a>DSP好处：高级分析</h4><p>DStreams生成的RDD可以转换为DataFrames并使用SQL查询</p>
+<p>例如，使用Spark的JDBC驱动程序，可以公开流的状态，并支持SQL语句进行查询。</p>
+<p>然后，通过JDBC服务器，就能够以交互方式（比如SQL命令、GUI）查询持续更新的表。</p>
+<h4 id="Spark流：性能"><a href="#Spark流：性能" class="headerlink" title="Spark流：性能"></a>Spark流：性能</h4><p>实际上，Spark Streaming具有批处理数据和利用Spark引擎的能力，可以使吞吐量与其他流系统相当或更高。</p>
+<ul>
+<li>Spark Streaming可以实现低至几百毫秒的延迟。</li>
+</ul>
+<p>开发人员有时会问微批处理是否会固有地增加过多的延迟。</p>
+<ul>
+<li>实际上，批处理延迟仅是端到端管道延迟的一小部分。</li>
+</ul>
+<ul>
+<li>例如，许多应用程序在滑动窗口上计算结果，甚至在COS中，该窗口也仅定期更新（例如，每2秒滑动20秒的窗口）。</li>
+</ul>
+<ul>
+<li>许多管道等待很短的时间来处理延迟或乱序的数据。</li>
+</ul>
+<ul>
+<li>最后，任何自动触发算法都倾向于等待一段时间才能触发。</li>
+</ul>
+<p>同样，DStreams带来的吞吐量提高通常意味着您需要更少的计算机来处理相同的工作负载。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/Big%20Data%20System/13_%20CAP%E5%AE%9A%E7%90%86/" rel="prev" title="Big Data System/13_ CAP定理">
+      <i class="fa fa-chevron-left"></i> Big Data System/13_ CAP定理
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/hello-world/" rel="next" title="Hello World">
+      Hello World <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#16-APACHE-SPARK"><span class="nav-number">1.</span> <span class="nav-text">16 APACHE SPARK</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MapReduce的限制"><span class="nav-number">1.0.1.</span> <span class="nav-text">MapReduce的限制</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apache-Spark"><span class="nav-number">2.</span> <span class="nav-text">Apache Spark</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark-结构"><span class="nav-number">2.0.1.</span> <span class="nav-text">Spark 结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语言支持"><span class="nav-number">2.0.2.</span> <span class="nav-text">语言支持</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spark-Core"><span class="nav-number">2.1.</span> <span class="nav-text">Spark Core</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#弹性分布式数据库-RESILIENT-DISTRIBUTED-DATABASES（RDDs）"><span class="nav-number">2.1.1.</span> <span class="nav-text">弹性分布式数据库 RESILIENT DISTRIBUTED DATABASES（RDDs）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD操作"><span class="nav-number">2.1.2.</span> <span class="nav-text">RDD操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Lazy-（Transformations）评估"><span class="nav-number">2.1.3.</span> <span class="nav-text">Lazy （Transformations）评估</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD用例"><span class="nav-number">2.1.4.</span> <span class="nav-text">RDD用例</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD容错"><span class="nav-number">2.1.5.</span> <span class="nav-text">RDD容错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RDD的限制"><span class="nav-number">2.1.6.</span> <span class="nav-text">RDD的限制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传统的流处理管道"><span class="nav-number">2.1.7.</span> <span class="nav-text">传统的流处理管道</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传统流数据处理系统的问题"><span class="nav-number">2.1.8.</span> <span class="nav-text">传统流数据处理系统的问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#离散流-Discretized-Streams-——-解决方案"><span class="nav-number">2.1.9.</span> <span class="nav-text">离散流 Discretized Streams —— 解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DSP好处：动态负载平衡"><span class="nav-number">2.1.10.</span> <span class="nav-text">DSP好处：动态负载平衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DSP好处：从故障和卡住的任务中快速恢复"><span class="nav-number">2.1.11.</span> <span class="nav-text">DSP好处：从故障和卡住的任务中快速恢复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DSP好处：流、批处理、交互的统一"><span class="nav-number">2.1.12.</span> <span class="nav-text">DSP好处：流、批处理、交互的统一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DSP好处：高级分析"><span class="nav-number">2.1.13.</span> <span class="nav-text">DSP好处：高级分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark流：性能"><span class="nav-number">2.1.14.</span> <span class="nav-text">Spark流：性能</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1278693007&web_id=1278693007" type="text/javascript"></script>
+   </span>
+  
+</div>
+  <div class="powered-by">支持 - <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a>  v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
+  </div>
+
+        
+
+
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278693007&web_id=1278693007"></script>
+  </div>
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script async src="/js/cursor/text.js"></script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+  <div style="display: none;">
+    <script src="//s95.cnzz.com/z_stat.php?id=1278693007&web_id=1278693007"></script>
+  </div>
+
+
+</body>
+</html>
