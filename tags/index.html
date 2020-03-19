@@ -445,27 +445,8 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
       $(document).ready(function () {
         
           $('.header').wobbleWindow({
-            // radius: 50,
-		    depth: 1,//depth for zIndex
-		    offsetX: 0,//+ or - value the size of the div
-		    offsetY: 0,//+ or - value the size of the div
-		    moveTypeIn: 'move',//method points follow the mouse
-		    moveTypeOut: 'wobble',//method points go back to init position
-		    wobbleFactor: 0.9,//control the wobble effect
-		    wobbleSpeed: 0.1,//control the wobble speed
-		    moveSpeed: 3,//control the move speed
-		    lineWidth: 1,//lineWidth
-		    lineColor: '',//no value = no line. Use hex/rgba values
-		    bodyColor: '#FFF',//no value = no body color. Use hex/rgba values
-		    numberOfXPoints: 7,//quantity of points horizontal. must be an odd int
-		    numberOfYPoints: 5,//quantity of points vertical. must be an odd int
-		    movementLeft: true,//enable/disable movement directions
-		    movementRight: true,//enable/disable movement directions
-		    movementTop: true,//enable/disable movement directions
-		    movementBottom: true,//enable/disable movement directions
-		    autoResize: true,//if true size will be automatically adjusted
-		    autoResize: true,//enable/disable automatic size adjustement
-		    debug: false//enable/disable debug mode
+          	wobbleFactor: 0.9,//control the wobble effect
+   			wobbleSpeed: 0.1,//control the wobble speed
           });
         
 
