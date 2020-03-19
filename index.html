@@ -19,7 +19,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Gemini","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="坐标英国利兹">
@@ -115,11 +115,6 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
         <li class="menu-item menu-item-about">
 
     <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
@@ -127,17 +122,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">5</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类<span class="badge">4</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -194,6 +189,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%20Image%20segmentation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%20Image%20segmentation/" class="post-title-link" itemprop="url">图像分割 Image segmentation</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-18 12:35:43" itemprop="dateCreated datePublished" datetime="2020-03-18T12:35:43+00:00">2020-03-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-19 12:45:57" itemprop="dateModified" datetime="2020-03-19T12:45:57+00:00">2020-03-19</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>颜色colour分割、行动motion分割、语义semantic分割</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/03/%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2%20Image%20segmentation/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -225,7 +306,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-17 02:13:52" itemprop="dateModified" datetime="2020-03-17T02:13:52+00:00">2020-03-17</time>
+                <time title="修改时间：2020-03-19 13:55:07" itemprop="dateModified" datetime="2020-03-19T13:55:07+00:00">2020-03-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -264,18 +345,15 @@
       
           <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
 <h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
 <h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+<div class="pdfobject-container" data-target="https://curve.carleton.ca/system/files/etd/8156865c-4c77-4dbb-9a45-c3ccc42af3c1/etd_pdf/21bf1800ee5857b9170ae6d843e35c03/afriyie-anempiricalstudyinvestigatingthepredictors.pdf" data-height="500px"></div>
+<div class="pdfobject-container" data-target="./gameplaying(slides).pdf" data-height="500px"></div>
       
     </div>
 
@@ -294,7 +372,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/Big%20Data%20System/16%20APACHE%20SPARK/">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -308,7 +386,7 @@
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/Big%20Data%20System/16%20APACHE%20SPARK/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2020/03/test/" class="post-title-link" itemprop="url">111</a>
         </h1>
 
         <div class="post-meta">
@@ -318,14 +396,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-03-16 09:07:49" itemprop="dateCreated datePublished" datetime="2020-03-16T09:07:49+00:00">2020-03-16</time>
+              <time title="创建时间：2020-03-16 19:55:46" itemprop="dateCreated datePublished" datetime="2020-03-16T19:55:46+00:00">2020-03-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-17 02:44:54" itemprop="dateModified" datetime="2020-03-17T02:44:54+00:00">2020-03-17</time>
+                <time title="修改时间：2020-03-19 13:49:58" itemprop="dateModified" datetime="2020-03-19T13:49:58+00:00">2020-03-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -333,7 +411,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/1/" itemprop="url" rel="index"><span itemprop="name">1</span></a>
+                  <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
                 </span>
             </span>
 
@@ -343,270 +421,7 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="16-APACHE-SPARK"><a href="#16-APACHE-SPARK" class="headerlink" title="16 APACHE SPARK"></a>16 APACHE SPARK</h2><h4 id="MapReduce的限制"><a href="#MapReduce的限制" class="headerlink" title="MapReduce的限制"></a>MapReduce的限制</h4><ol>
-<li>MapReduce编程对许多人来说都是有难度的</li>
-<li>性能通常会遇到瓶颈（因为批处理不适合所需的用例）</li>
-</ol>
-<p>这导致MapReduce不适用于大型应用程序。因此出现了多种专业系统的发展。</p>
-<p>因此Spark面世——将所有的专业系统整合到一起</p>
-<h2 id="Apache-Spark"><a href="#Apache-Spark" class="headerlink" title="Apache Spark"></a>Apache Spark</h2><p>是一个通用目的数据处理引擎，为不同的需求设计，</p>
-<ul>
-<li>更快的批处理</li>
-<li>应用需要交互式查询处理</li>
-<li>处理流数据</li>
-<li>系统需要迭代算法</li>
-</ul>
-<p>特征：</p>
-<ul>
-<li>是in-memory的计算引擎（充分利用内存）</li>
-<li>用磁盘时比Hadoop快10倍，用内存时比Hadoop快100倍</li>
-</ul>
-<h4 id="Spark-结构"><a href="#Spark-结构" class="headerlink" title="Spark 结构"></a>Spark 结构</h4><p>Spark不提供任何类似HDFS的存储或者资源管理能力，它是一个以几乎实时的方式，处理大量数据的，统一的框架</p>
-<p>三个主要的分层：</p>
-<ol>
-<li>生态层：基于核心层执行操作的库<ul>
-<li>Spark SQL， Spark Streaming， BlinkDB， Spark ML， GraphX， Tachyon</li>
-</ul>
-</li>
-<li>核心层：框架的通用层，它定义了所有的基础功能，其他功能和扩展都是基于这一层创建的<ul>
-<li>Spark Core，Spark DataFrame API</li>
-</ul>
-</li>
-<li>资源管理层：Spark以独立模式（单节点群集设置）管理自己的资源。 但是对于分布式集群模式，它可以与YARN之类的资源管理模块集成在一起。<ul>
-<li>Standalone，YARN，Mesos</li>
-</ul>
-</li>
-</ol>
-<p>结构：</p>
-<ul>
-<li>Spark应用程序在集群上作为独立的进程集运行，由SparkContext对象（也称为驱动程序）协调。<ul>
-<li>每个应用程序都有其自己的执行程序进程，这些进程在整个应用程序期间保持不变，并在多个线程中运行任务。</li>
-<li>这具有将应用程序彼此<strong>隔离</strong>的好处——每个驱动程序调度自己的任务，并且来自不同应用程序的任务在不同的JVM中运行。</li>
-<li>但是，这也意味着，如果不将数据写入外部存储系统，则无法在不同的Spark应用程序（SparkContext实例）之间共享数据。</li>
-</ul>
-</li>
-<li>SparkContext负责将应用程序代码（JAR或Python文件）和任务发送给执行程序。</li>
-<li>每个驱动程序都有一个Web UI，通常在端口4040上，该Web UI显示有关正在运行的任务，执行程序和存储使用情况的信息。</li>
-</ul>
-<h4 id="语言支持"><a href="#语言支持" class="headerlink" title="语言支持"></a>语言支持</h4><p>提供了Java、Scala、Python的high-level APIs</p>
-<p>提供了优化引擎支持：产生执行图，结构化数据处理的高级工具</p>
-<h3 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h3><p>处理：</p>
-<ul>
-<li><p>内存管理和容错</p>
-</li>
-<li><p>对集群上的任务jobs进行调度，分配，监控</p>
-</li>
-<li><p>与存储系统进行交互</p>
-</li>
-</ul>
-<p>它也实现了弹性分布式数据库（RDDs）的关键概念。</p>
-<ul>
-<li>RDD是对象的不可变容错分布式集合，可以并行操作。</li>
-<li>RDD可以包含任何类型的对象，并且可以通过加载外部数据集或从驱动程序分配集合来创建</li>
-<li>RDD是分布在整个集群中的数据集的表示。</li>
-</ul>
-<h4 id="弹性分布式数据库-RESILIENT-DISTRIBUTED-DATABASES（RDDs）"><a href="#弹性分布式数据库-RESILIENT-DISTRIBUTED-DATABASES（RDDs）" class="headerlink" title="弹性分布式数据库 RESILIENT DISTRIBUTED DATABASES（RDDs）"></a>弹性分布式数据库 RESILIENT DISTRIBUTED DATABASES（RDDs）</h4><ul>
-<li>RDDs可以被存储在内存或磁盘中，主要的性能来自于将数据存在内存中<ul>
-<li>诸如MapReduce之类的当前框架提供了许多用于<u>访问集群的计算资源的抽象</u>，但是缺乏<u>利用分布式内存的抽象。</u></li>
-</ul>
-</li>
-<li>Spark的优势：<ul>
-<li>数据重用在许多迭代ML算法中很常见，例如K-means聚类。另一个示例是当用户对同一数据子集运行多个临时查询时。</li>
-</ul>
-</li>
-<li>在Hadoop（和其他框架）中，在不同作业之间<u>重用数据的唯一方法</u>是将其写入外部存储系统（例如HDFS）。使用内存中的RDD，可以更快地处理数据。可以存储在分布式内存中的数据大小仅受群集大小限制。</li>
-</ul>
-<h4 id="RDD操作"><a href="#RDD操作" class="headerlink" title="RDD操作"></a>RDD操作</h4><ul>
-<li>Transformations 转换：在RDD上执行并产生包含结果的新RDD的操作（例如，映射，过滤器，联接，联合等）</li>
-<li>Actions 行动：在RDD上运行计算后返回值的操作（例如reduce，count，first等）。</li>
-</ul>
-<p>Spark上的转换操作是lazy的，并不会立即执行。只有当行动被调用时，转换才会执行。执行的结果将返回给驱动程序。该设计能提高Spark的运行效率</p>
-<h4 id="Lazy-（Transformations）评估"><a href="#Lazy-（Transformations）评估" class="headerlink" title="Lazy （Transformations）评估"></a>Lazy （Transformations）评估</h4><p>转换是对数据的操纵。 它们从一个RDD转换到下一个。</p>
-<p>比如：一个Action查询数据集中有多少数据，Spark在收到查询后，才会进行Transformations，再将结果返回给Action</p>
-<h4 id="RDD用例"><a href="#RDD用例" class="headerlink" title="RDD用例"></a>RDD用例</h4><p>假设我们必须在大量的Web服务器访问日志中查找错误代码。</p>
-<p>我们可以使用MapReduce，Storm或我们喜欢的任何框架来读取文件集，查找特定的错误代码，并将带有该代码的所有行放入存储设备（例如HDFS）</p>
-<p>然后，当我们分析这些结果数据时，我们可能希望将错误与其他用户活动进行交叉引用cross-reference。 这将要求我们再次获取文件，处理并提供结果等。</p>
-<p>对于传统方式需要重复对磁盘进行查询，而RDD是将数据存储在内存中，并提供了重新查询所用子集的功能。 </p>
-<p>内存中数据存储非常适合许多迭代和交互式算法</p>
-<h4 id="RDD容错"><a href="#RDD容错" class="headerlink" title="RDD容错"></a>RDD容错</h4><p>设计RDD的主要挑战是定义一个可提供有效容错能力的编程接口。</p>
-<ul>
-<li>故障是系统中的缺陷defect。</li>
-<li>错误error是系统边界内观察到的行为与系统的指定行为之间的<strong>差异</strong></li>
-<li>故障failure是系统当时<u>显示的行为</u>与<u>规范相反</u>的<strong>实例</strong></li>
-</ul>
-<p>现有解决方案提供基于细粒度更新的容错接口。</p>
-<ul>
-<li><p>使用这样的系统，获得容错的唯一方法，是跨计算机复制数据或跨计算机记录更新。</p>
-</li>
-<li><p>这些方法是数据密集型的——高带宽用于在群集网络上移动数据。</p>
-</li>
-</ul>
-<p>RDD提供了基于粗粒度转换的接口（例如，映射，过滤器，联接）。 这些转换将相同的操作应用于许多数据项。</p>
-<ul>
-<li><p>这允许通过记录用于构建数据库的转换而不是实际数据本身来有效地应用容错。</p>
-</li>
-<li><p>如果RDD的分区丢失，则RDD具有有关如何从其他RDDS派生出来的足够信息，以便仅重新计算该分区。</p>
-</li>
-</ul>
-<h4 id="RDD的限制"><a href="#RDD的限制" class="headerlink" title="RDD的限制"></a>RDD的限制</h4><p>不适合非迭代应用程序，因为Spark的主要性能提升是内存数据的迭代。</p>
-<p>RDD也不太适合对共享状态进行异步细粒度更新的应用程序，例如Web应用程序的存储系统或增量Web爬虫。批量转换对于小的更新是浪费的。</p>
-<h4 id="传统的流处理管道"><a href="#传统的流处理管道" class="headerlink" title="传统的流处理管道"></a>传统的流处理管道</h4><ol>
-<li>从数据源接收流数据</li>
-<li>在集群上并行处理流数据</li>
-<li>将数据输出到下游的系统</li>
-</ol>
-<p>大多数传统的流处理器使用连续操作器（continuous operator）模型进行数据处理</p>
-<ul>
-<li>一组工作节点，每个工作节点运行一个或多个连续操作器</li>
-<li>每个连续的操作器一次处理流数据一个记录，然后将记录转发给管道中的其他操作器。</li>
-<li>有源操作器用于从采集系统接收数据，而下沉操作器则输出到下游系统。</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcwbap19kxj30o80e4wii.jpg" alt="截屏2020-03-16下午6.05.24"></p>
-<p>比如Apache Storm；这是一个非常优雅的解决方案，但是随着系统变得越来越大以及大数据分析的复杂性增加，使用此模型面临着越来越多的挑战。</p>
-<h4 id="传统流数据处理系统的问题"><a href="#传统流数据处理系统的问题" class="headerlink" title="传统流数据处理系统的问题"></a>传统流数据处理系统的问题</h4><p><strong>故障和任务被卡主（straggling）：</strong></p>
-<ul>
-<li><p>随着规模扩大，集群节点故障或者无法预测的变慢（比如stragglers，掉队者）的可能性会增加</p>
-</li>
-<li><p>系统需要能自动从故障和卡住的任务（stragglers）中恢复，以实时提供结果</p>
-</li>
-<li><p>将<u>连续操作器</u>静态分配给工作节点，会使传统系统很难从故障和卡住的任务（stragglers）中快速恢复。</p>
-</li>
-</ul>
-<p><strong>负载平衡：</strong></p>
-<ul>
-<li>Workers之间的处理负载分配不均，会导致连续操作器系统出现瓶颈。</li>
-<li>这在大型集群和动态变化的工作负载中更可能发生。</li>
-<li>系统需要能够根据工作负载动态调整资源分配。</li>
-</ul>
-<p><strong>流、批处理、交互式工作负载的统一：</strong></p>
-<ul>
-<li>在许多使用案例中，以交互方式查询流数据或将其与静态数据集（例如，预先计算的模型）结合起来很有吸引力。</li>
-<li>在连续的操作器系统中，这很难做到，因为它们并非旨在动态地为临时查询引入新的运算器</li>
-<li>这需要一个可以结合批处理，流式处理和交互式查询的引擎。</li>
-</ul>
-<p><strong>高级分析：</strong></p>
-<ul>
-<li><p>复杂的工作负载需要连续的学习和更新数据模型，甚至是用sql查询最新的流数据视图</p>
-</li>
-<li><p>使这些分析任务具有通用抽象（API），能让开发人员的工作更加轻松</p>
-</li>
-</ul>
-<h4 id="离散流-Discretized-Streams-——-解决方案"><a href="#离散流-Discretized-Streams-——-解决方案" class="headerlink" title="离散流 Discretized Streams —— 解决方案"></a>离散流 Discretized Streams —— 解决方案</h4><p>为了解决这些问题，Spark Streaming组件使用称为离散化流的新架构，该架构直接利用了Spark引擎的库和容错能力。</p>
-<ul>
-<li>Spark Streaming接收器不会一次读取单个数据记录，而是将数据流离散化为亚秒级的微小批量（RDDs）。（即接收者并行接受数据并将其缓冲在Spark worker节点的内存中）。然后，Spark引擎运行简短的任务（数十毫秒）以处理批处理并将结果输出到其他系统。</li>
-</ul>
-<p>与连续操作器模型不同，Spark任务根据数据的位置和可用资源动态分配给工作人员。这是为了实现更好的负载平衡和更快的故障恢复。</p>
-<ul>
-<li>每个数据的batches都是一个RDD。这允许使用任何Spark代码或库来处理流数据。</li>
-</ul>
-<h4 id="DSP好处：动态负载平衡"><a href="#DSP好处：动态负载平衡" class="headerlink" title="DSP好处：动态负载平衡"></a>DSP好处：动态负载平衡</h4><p>将数据划分为多个微批，可以将计算能力以细粒度的方式分配给资源。</p>
-<p>以字数统计为例：分区不均衡的流会导致某个节点过载，达到瓶颈；而将数据离散Discretized 后，可以根据节点的负载对任务进行分配和调度。</p>
-<h4 id="DSP好处：从故障和卡住的任务中快速恢复"><a href="#DSP好处：从故障和卡住的任务中快速恢复" class="headerlink" title="DSP好处：从故障和卡住的任务中快速恢复"></a>DSP好处：从故障和卡住的任务中快速恢复</h4><p>传统流：</p>
-<ul>
-<li>万一发生节点故障，传统系统必须在另一个节点上重新启动发生故障的连续运算器，并重播数据流的某些部分以重新计算丢失的信息。（请注意，在重播后新节点赶上之前，管道无法继续进行。）</li>
-</ul>
-<p>Spark流（离散流）</p>
-<ul>
-<li><p>可以在集群中的所有其他节点上并行重新启动失败的任务，从而将所有重新计算均匀地分布在多个节点上，从而从故障中恢复。</p>
-<p><u>计算已经离散化为可以在任何地方运行而不会影响正确性的任务。</u></p>
-</li>
-</ul>
-<h4 id="DSP好处：流、批处理、交互的统一"><a href="#DSP好处：流、批处理、交互的统一" class="headerlink" title="DSP好处：流、批处理、交互的统一"></a>DSP好处：流、批处理、交互的统一</h4><p>Spark Streaming中的关键编程接口是DStream或分布式流。 每一批流数据都由RDD表示，因此DStream只是一系列RDD。</p>
-<p>因此，我们可以使用任何Spark函数处理DStream。例如，我们可以将DStream与预先计算的静态数据集（已加载到另一个RDD中）结合在一起</p>
-<p>数据批存储在workers的内存中，因此可以按需交互查询。<br>批处理，流和交互式工作负载的这种统一在Spark中非常简单，但是在没有<u>工作负载的通用接口</u>的系统中很难实现</p>
-<h4 id="DSP好处：高级分析"><a href="#DSP好处：高级分析" class="headerlink" title="DSP好处：高级分析"></a>DSP好处：高级分析</h4><p>DStreams生成的RDD可以转换为DataFrames并使用SQL查询</p>
-<p>例如，使用Spark的JDBC驱动程序，可以公开流的状态，并支持SQL语句进行查询。</p>
-<p>然后，通过JDBC服务器，就能够以交互方式（比如SQL命令、GUI）查询持续更新的表。</p>
-<h4 id="Spark流：性能"><a href="#Spark流：性能" class="headerlink" title="Spark流：性能"></a>Spark流：性能</h4><p>实际上，Spark Streaming具有批处理数据和利用Spark引擎的能力，可以使吞吐量与其他流系统相当或更高。</p>
-<ul>
-<li>Spark Streaming可以实现低至几百毫秒的延迟。</li>
-</ul>
-<p>开发人员有时会问微批处理是否会固有地增加过多的延迟。</p>
-<ul>
-<li>实际上，批处理延迟仅是端到端管道延迟的一小部分。</li>
-</ul>
-<ul>
-<li>例如，许多应用程序在滑动窗口上计算结果，甚至在COS中，该窗口也仅定期更新（例如，每2秒滑动20秒的窗口）。</li>
-</ul>
-<ul>
-<li>许多管道等待很短的时间来处理延迟或乱序的数据。</li>
-</ul>
-<ul>
-<li>最后，任何自动触发算法都倾向于等待一段时间才能触发。</li>
-</ul>
-<p>同样，DStreams带来的吞吐量提高通常意味着您需要更少的计算机来处理相同的工作负载。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/Big%20Data%20System/13_%20CAP%E5%AE%9A%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/Big%20Data%20System/13_%20CAP%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">Big Data System/13_ CAP定理</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-15 17:03:27" itemprop="dateCreated datePublished" datetime="2020-03-15T17:03:27+00:00">2020-03-15</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>857</span>
+              <span>208</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -625,832 +440,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="CAP定理"><a href="#CAP定理" class="headerlink" title="CAP定理"></a>CAP定理</h2><blockquote>
-<p>在<a href="https://zh.wikipedia.org/wiki/理論計算機科學" target="_blank" rel="noopener">理論計算機科學</a>中，<strong>CAP定理</strong>（CAP theorem），又被稱作<strong>布魯爾定理</strong>（Brewer’s theorem），它指出對於一個<a href="https://zh.wikipedia.org/wiki/分布式计算" target="_blank" rel="noopener">分布式计算系統</a>來說，不可能同時滿足以下三點：<a href="https://zh.wikipedia.org/wiki/CAP定理#cite_note-Lynch-1" target="_blank" rel="noopener">[1]</a><a href="https://zh.wikipedia.org/wiki/CAP定理#cite_note-2" target="_blank" rel="noopener">[2]</a></p>
-<ul>
-<li>一致性（<strong>C</strong>onsistency） （等同于所有节点访问同一份最新的数据副本）</li>
-<li><a href="https://zh.wikipedia.org/wiki/可用性" target="_blank" rel="noopener">可用性</a>（<strong>A</strong>vailability）（每次请求都能获取到非错的响应——但是不保证获取的数据为最新数据）</li>
-<li><a href="https://zh.wikipedia.org/w/index.php?title=网络分区&action=edit&redlink=1" target="_blank" rel="noopener">分区容错性</a>（<strong>P</strong>artition tolerance）（以实际效果而言，分区相当于对通信的时限要求。系统如果不能在时限内达成数据一致性，就意味着发生了分区的情况，必须就当前操作在C和A之间做出选择<a href="https://zh.wikipedia.org/wiki/CAP定理#cite_note-3" target="_blank" rel="noopener">[3]</a>。）</li>
-</ul>
-<p>根據定理，分佈式系統只能滿足三項中的兩項而不可能滿足全部三項<a href="https://zh.wikipedia.org/wiki/CAP定理#cite_note-4" target="_blank" rel="noopener">[4]</a>。理解CAP理论的最简单方式是想象两个节点分处分区两侧。允许至少一个节点更新状态会导致数据不一致，即丧失了C性质。如果为了保证数据一致性，将分区一侧的节点设置为不可用，那么又丧失了A性质。除非两个节点可以互相通信，才能既保证C又保证A，这又会导致丧失P性质。</p>
-</blockquote>
-<h3 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h3><p>客户端将值写入任何服务器并获得响应后，它期望从其读取的任何服务器取回该值（或更新鲜的值）</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcv3kjxahwj319q0lygnv.jpg" alt="截屏2020-03-15下午4.52.25"></p>
-<p>为了保证该特性，客户端在向其中一个服务器写入后，该服务器需要与其他服务器同步，在同步完成后，才会通知客户端已成功写入。</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcv3kxx6tij318w0lqwh7.jpg" alt="截屏2020-03-15下午4.52.58"></p>
-<h3 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h3><blockquote>
-<p>系统中非故障节点收到的每个请求都必须导致响应</p>
-<p>every request received by a non-failing node in the system must result in a response</p>
-</blockquote>
-<p>在可用的系统中，如果我们的客户端向服务器发送请求并且服务器没有崩溃，则服务器最终必须响应客户端。不允许服务器忽略客户端的请求。</p>
-<h3 id="分区容错"><a href="#分区容错" class="headerlink" title="分区容错"></a>分区容错</h3><blockquote>
-<p>网络将被允许任意丢失从一个节点发送到另一节点的许多消息</p>
-<p>the network will be allowed to lose arbitrarily many messages sent from one node to another</p>
-</blockquote>
-<p>即一个节点向另外一个节点发送的消息丢失是可接受的，下图展示当所有消息都丢失的情况：</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcv3sa21zej30yo08k752.jpg" alt="截屏2020-03-15下午4.59.59"></p>
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<p><a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">https://hexo.io/docs/one-command-deployment.html</a>)</p>
+<div class="pdfobject-container" data-target="./test.pdf" data-height="500px"></div>
+<div class="pdfobject-container" data-target="https://curve.carleton.ca/system/files/etd/8156865c-4c77-4dbb-9a45-c3ccc42af3c1/etd_pdf/21bf1800ee5857b9170ae6d843e35c03/afriyie-anempiricalstudyinvestigatingthepredictors.pdf" data-height="500px"></div>
+<div class="pdfobject-container" data-target="test.pdf" data-height="500px"></div>
 
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/Big%20Data%20System/13%20NOSQL%E6%95%B0%E6%8D%AE%E5%BA%93_GOOGLE_BIGTABLE_HBAS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/Big%20Data%20System/13%20NOSQL%E6%95%B0%E6%8D%AE%E5%BA%93_GOOGLE_BIGTABLE_HBAS/" class="post-title-link" itemprop="url">Big Data System/13 NOSQL数据库_GOOGLE_BIGTABLE_HBAS</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-15 15:26:28 / 修改时间：22:03:51" itemprop="dateCreated datePublished" datetime="2020-03-15T15:26:28+00:00">2020-03-15</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="13-NOSQL-DATABASES-GOOGLE-BIGTABLE-HBAS"><a href="#13-NOSQL-DATABASES-GOOGLE-BIGTABLE-HBAS" class="headerlink" title="13 NOSQL DATABASES: GOOGLE BIGTABLE / HBAS"></a>13 NOSQL DATABASES: GOOGLE BIGTABLE / HBAS</h2><p>大数据系统的规模对数据库空间的要求有很大挑战</p>
-<p>传统的关系数据库管理系统（Relational Database Management System：<em>RDBMS</em>）无法扩展为适应真正的massive级别数据：ACID原则不适合大规模的数据，CAP定理中描述的问题</p>
-<h4 id="CAP定理："><a href="#CAP定理：" class="headerlink" title="CAP定理："></a>CAP定理：</h4><ul>
-<li>一致性：所有客户都能看到最新的数据，不管执行过什么操作（比如更新或删除）</li>
-<li>可用性：即使某些节点发送错误，系统也需要继续客户的操作</li>
-<li>分区容错：即使网络或消息发送错误，系统也需要继续执行可续操作（比如一个节点向另一个节点发送的消息，允许发送错误并被丢弃）</li>
-</ul>
-<h4 id="ACID-和-BASE"><a href="#ACID-和-BASE" class="headerlink" title="ACID 和 BASE"></a>ACID 和 BASE</h4><p>ACID：</p>
-<ul>
-<li>Atomic 原子性：事务的所有操作都成功，不然就回滚</li>
-<li>Consistent 一致性：事务不能使数据库的最终状态出现不一致</li>
-<li>Isolated 隔离性：事务使独立的，不能影响其他事务</li>
-<li>Durable 容忍性：即使服务器重新启动等，已完成的事务也会保留。</li>
-</ul>
-<p>BASE</p>
-<ul>
-<li><strong>B</strong>asic <strong>A</strong>vailability 基础可用性：系统在CAP定理方面，保证系统的可用性</li>
-<li><strong>S</strong>oft-state 软状态：系统的状态会随时间改变，即使没有输入（因为要确保最终一致性）</li>
-<li><strong>E</strong>ventual consistency 最终一致性：只要数据库最终变得一致，在每个事务之后就不需要一致性。</li>
-</ul>
-<h4 id="NoSQL"><a href="#NoSQL" class="headerlink" title="NoSQL"></a>NoSQL</h4><p>可以被分成4类：Key-value stores、Column-oriented databases、Document databases、Graph databases</p>
-<h3 id="GOOGLE-BIGTABLE-HBASE"><a href="#GOOGLE-BIGTABLE-HBASE" class="headerlink" title="GOOGLE BIGTABLE (HBASE)"></a>GOOGLE BIGTABLE (HBASE)</h3><p>BigTable是第一个（也是影响力最大的）面向列的NoSQL数据库之一。于2006年发布。它旨在可靠地扩展到数千台计算机上的PB级数据。</p>
-<p>在60多种Google产品中使用，包括Google Earth，Google Analytics（分析）和Youtube。</p>
-<p>BigTable具有极大的影响力，它催生了一个非常受欢迎的开源克隆：HBase。</p>
-<p>设计为与MapReduce BigTable兼容并互补，可为MapReduce提供基于键的快速查找</p>
-<h4 id="关键特征"><a href="#关键特征" class="headerlink" title="关键特征"></a>关键特征</h4><ul>
-<li>BigTable是一个简单的概念 — 映射两个任意字符串值（行键和列键）以及时间戳，并将其放入关联的任意字节数组中：（行：字符串，列：字符串，时间：int64）-&gt;字符串</li>
-<li>在NoSQL分类中，BigTable是面向列的数据库。<br>它是高度分布式的，没有可用的连接，并且假定“一次写入多次读取”。</li>
-<li>数据模型是“稀疏，分布式，持久的多维排序图”<br>a sparse, distributed, persistent multi-dimensional sorted map”</li>
-<li>实际上，这意味着您可以通过提供行ID，列名和时间戳来访问BigTable中的任何单元（用于版本控制–您保留同一单元的过去版本）。<br>提供这些参数，BigTable会很快将结果返回给您。</li>
-</ul>
-<h4 id="Tablets"><a href="#Tablets" class="headerlink" title="Tablets"></a>Tablets</h4><ul>
-<li>单元的每个新版本都会增加时间戳。 这允许您设置策略，例如“仅保留最新的n个版本”或“仅保留自时间t开始存储的版本”。</li>
-<li>数据按行排序，以行的Key按字典顺序排序，并且表的行范围是动态分区的。 每行范围称为一个Tablets。</li>
-<li>Tablets是分配和负载平衡的单位——如果发生不平衡，则Tablets可以在服务器之间移动。<br>Tablets的大小大约在200MB</li>
-</ul>
-<p>例如 ：如果关键范围是{January，February，March}，并且从March开始有很多数据进入，则它将拆分为多个Tablets，并在服务器之间移动以平衡系统。</p>
-<p>因此，少量row范围的读取是高效的，并且通常仅需要与少量机器通信。</p>
-<h4 id="Tablet-管理"><a href="#Tablet-管理" class="headerlink" title="Tablet 管理"></a>Tablet 管理</h4><p>BigTable使用3层模型对tablet进行管理</p>
-<ol>
-<li>第一层包含存储在Chubby（用于访问控制的分布式锁定服务）中的文件，该文件包含根Tablet的位置。</li>
-<li>根tablet包含系统中所有tablets的位置。 它经过特殊处理，并且与其他tablet不同，它永远不会被分割——确保层次结构永远不会超过3个级别。</li>
-<li>根tablet中的每一行都在内存中使用大约1k的数据。 假设每块tablet有128MB的限制，则3级层次结构可以处理$2^{34}$（〜170亿）个tablets。</li>
-</ol>
-<h4 id="总体结构"><a href="#总体结构" class="headerlink" title="总体结构"></a>总体结构</h4><p>Head node：分配tablets到tablet服务器上</p>
-<p>Tablet server：管理对tablets的读写操作；客户端直接与tablet服务器通信；tablet服务器将太大的tablets拆分</p>
-<p>SSTable：Sorted String Tables 包含真实数据</p>
-<h4 id="读写组织"><a href="#读写组织" class="headerlink" title="读写组织"></a>读写组织</h4><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvbq1kcy8j30sg0e8dhf.jpg" alt="截屏2020-03-15下午9.34.38"></p>
-<p>内存中有一个表（memTable）用于存储发生的一系列的更新</p>
-<p>一个写操作会将记录添加到memTable中，并且同时会写入日志（为了容错）</p>
-<p>通过读取SSTable文件以及通过动态应用memTable的更新来提供读操作。 换句话说：“这里是价值所在，以及需要应用到该价值以获得真正价值的更新流”</p>
-<h4 id="次要压缩-Minor-Compactions"><a href="#次要压缩-Minor-Compactions" class="headerlink" title="次要压缩 Minor Compactions"></a>次要压缩 Minor Compactions</h4><p>随着写操作执行，memTable的大小也会增大。当memTable的大小达到阈值，该memTable会被冻结，并创建一个新的memTable。被冻结的memTable被转化为SSTable并被写成文件。</p>
-<p> 这部分操作被认为次要压缩，该压缩的两个目标：</p>
-<ol>
-<li>减少tablet服务器的内存使用量</li>
-<li>减少数据恢复时，必须从提交日志中读取的数据量。</li>
-</ol>
-<p>发生压缩时，传入的读/写操作可以继续。</p>
-<h4 id="主要压缩-Major-Compactions"><a href="#主要压缩-Major-Compactions" class="headerlink" title="主要压缩 Major Compactions"></a>主要压缩 Major Compactions</h4><p>每个次要压缩都会产生一个新的SSTable，如果该操作不断进行，读操作需要从大量的SSTables中合并更新。</p>
-<p>为了防止这种情况，我们会在后台定期执行合并压缩。这样的压缩读取了几个SSTables和memTable的内容，并写出了一个新的SSTable。 完成后，可以丢弃之前的SSTables和memTable。</p>
-<p><strong>将所有SSTables重写为一个SSTable的合并压缩称为主要压缩</strong>。 请记住，单个SSTable本身可能会拆分为多个文件。</p>
-<h4 id="关键特征-1"><a href="#关键特征-1" class="headerlink" title="关键特征"></a>关键特征</h4><p>调整压缩格式</p>
-<ul>
-<li><p>客户端可以控制是否压缩地区组的SSTable，以及如果压缩，则使用哪种压缩格式。</p>
-<p>用户指定的压缩格式将应用于每个SSTable块（大小可通过特定于位置组的调整参数来控制）。</p>
-<p>分别压缩每个块时，会损失一些空间，但是我们的好处是，可以读取SSTable的一小部分而无需解压缩整个文件。</p>
-</li>
-</ul>
-<p>布隆过滤器</p>
-<ul>
-<li><p>读取操作必须从组成tablet状态的所有SSTable中读取。 如果这些SSTable不在内存中，我们可能最终会进行许多磁盘访问。</p>
-<p>BigTable可以使用Bloom Filters减少此类访问的次数。 布隆过滤器允许我们询问SSTable是否可能包含指定行/列/对的任何数据。</p>
-<p>对于某些应用程序，将少量tablet服务器内存分配给<u>布隆过滤器</u>，能够大大减少读取操作所需的磁盘搜索次数。</p>
-</li>
-</ul>
-<p>使SSTables不可变</p>
-<ul>
-<li><p>使用BigTable改善性能的另一种方法是使SSTables不可变。</p>
-<p>这意味着SSTables不会直接写入，因为唯一可写入的数据结构是memTable，这使得并发控制相对简单。</p>
-<p>结果，由于具有不可变性，仅在发生重大压缩时才创建SSTables。</p>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/Big%20Data%20System/13%20%E5%A4%8D%E5%88%B6%E5%92%8C%E4%BB%93%E5%BA%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/Big%20Data%20System/13%20%E5%A4%8D%E5%88%B6%E5%92%8C%E4%BB%93%E5%BA%93/" class="post-title-link" itemprop="url">Big Data System/13 复制和仓库</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-14 16:59:55 / 修改时间：20:43:18" itemprop="dateCreated datePublished" datetime="2020-03-14T16:59:55+00:00">2020-03-14</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="13-DEDUPLICATION-AND-WAREHOUSING"><a href="#13-DEDUPLICATION-AND-WAREHOUSING" class="headerlink" title="13: DEDUPLICATION AND WAREHOUSING"></a>13: DEDUPLICATION AND WAREHOUSING</h2><h4 id="数据仓库-data-warehouse"><a href="#数据仓库-data-warehouse" class="headerlink" title="数据仓库 data warehouse"></a>数据仓库 data warehouse</h4><p>有许多数据库database、许多站点sites，和不同的schemas</p>
-<p>•支持决策<br>•在全公司范围内查看高质量信息的集成视图（来自不同的数据库）<br>•分离运营系统和信息系统</p>
-<p>运营系统和信息系统的比较</p>
-<p>数据仓库包括：元数据，原始数据-&gt;轻度总结数据-&gt;高度总结数据，数据库管理系统；其他还有：负载管理、查询管理、数据仓库管理</p>
-<p>数据仓库的使用者：联机分析处理OLIP工具，报告、查询、应用开发、EIS工具，数据挖掘工具，和终端用户end-user访问工具</p>
-<p>数据仓库的来源：<strong>运营数据源Operational data source</strong>，运营数据库Operational data store</p>
-<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>“数据仓库是面向主题的，集成的，随时间变化且非易失性的数据收集，以支持管理层的决策过程。”</p>
-<p><strong>Subject-oriented</strong>：</p>
-<ul>
-<li>面向重要的主题，而不是交易transactions：比如销售、市场、金融、分销distribution；</li>
-<li>简洁的视图，仅提供有用的数据以供决策</li>
-</ul>
-<p><strong>Integrated</strong>：</p>
-<ul>
-<li><p>来自于多个数据源的数据遵循一致的命名习惯Consistent naming conventions、格式、编码结构</p>
-</li>
-<li><p>对缺失数据，噪声数据，不一致数据进行清洗cleaning和预处理pre-processing</p>
-</li>
-</ul>
-<p><strong>Time-varinat</strong>：</p>
-<ul>
-<li>只读，周期性刷新</li>
-<li>提供历史historical值和可能的预测projected值</li>
-</ul>
-<p><strong>Non-volatile</strong>：</p>
-<ul>
-<li>在物理上分别存储</li>
-<li>非在线更新</li>
-<li>从不移除数据，因此没有并发问题</li>
-</ul>
-<h4 id="运营数据-Operational-data"><a href="#运营数据-Operational-data" class="headerlink" title="运营数据 Operational data"></a>运营数据 Operational data</h4><ul>
-<li>transient 短暂的（not historical）</li>
-<li>not normalised非标准化的（指的是数据库的范式）（可能为了性能而去规范化）</li>
-<li>约束在一定范围内（非全面的 not comprehensive）</li>
-<li>有时候质量不佳（出现不一致和错误）</li>
-</ul>
-<p><strong>经过提取/转换/加载 E(xtract)T(ransform)L(oad)后：</strong></p>
-<ul>
-<li>详细的Detailed（但还没被总结summarized）</li>
-<li>历史的（周期性的periodic）</li>
-<li>标准化（第三范式3rd  normal form或更高）</li>
-</ul>
-<h4 id="删除重复数据-Data-Deduplication"><a href="#删除重复数据-Data-Deduplication" class="headerlink" title="删除重复数据 Data Deduplication"></a>删除重复数据 Data Deduplication</h4><p>数据复制是一个逐渐流行起来的方法</p>
-<p>重复数据删除有许多用途，但其主要用途是减少系统所需存储空间的潜力。</p>
-<p>去重可以是文件file级别，块block级别，字节byte级别</p>
-<h4 id="文件级别去重"><a href="#文件级别去重" class="headerlink" title="文件级别去重"></a>文件级别去重</h4><p>对单文件去重，常被认为“单实例存储”，它的主要思想就是：不管有多少文件实例被使用，只保留一个文件备份</p>
-<p>该技术被用于Amazon S3，并报告出能够减少存储和带宽的成本为1/10</p>
-<h4 id="块级别去重"><a href="#块级别去重" class="headerlink" title="块级别去重"></a>块级别去重</h4><p>将文件拆分成块blocks（或chunks）：核心思想是，经过两个文件不同，但他们可能包括相同的元素（比如两个不同的ppt可能包含同一张图片）</p>
-<h4 id="字节级别去重"><a href="#字节级别去重" class="headerlink" title="字节级别去重"></a>字节级别去重</h4><p>在许多方面，字节级去重是块级去重的一种特殊情况。它比较数据流中的每个单独字节，而不是块。</p>
-<p>字节级别去重是通常是“内容感知”的——比如，卖方对数据流的组成有一定的了解，因此知道要处理的数据流的特定部分。</p>
-<p>该方法通常是“后处理”的，即先存储所有的流，再进行处理</p>
-<h4 id="去重处理"><a href="#去重处理" class="headerlink" title="去重处理"></a>去重处理</h4><p>我们需要一种方法来检查数据是否已经被存储在我们的系统中：对文件、块、字节进行哈希计算，然后在我们的去重数据库DDB中查询该哈希值。如果该值存在，则该数据存在，如果值不存在，则存储该数据和对应的哈希值。</p>
-<h4 id="Source-based-和-Target-based"><a href="#Source-based-和-Target-based" class="headerlink" title="Source-based 和 Target-based"></a>Source-based 和 Target-based</h4><p><strong>Source-based</strong>：</p>
-<ul>
-<li>之间在文件系统（或靠近数据的地方）中进行去重</li>
-<li>对用户和应用透明</li>
-<li>可以由文件系统本身或主机的操作系统执行</li>
-<li>通常一个文件系统会扫描新文件并和现存的文件比较哈希值</li>
-<li>通常需要中心化的管理</li>
-</ul>
-<p>Target-based</p>
-<ul>
-<li><p>重复数据从创建数据的位置删除</p>
-</li>
-<li><p>通常发生在第二/归档archive数据库</p>
-</li>
-<li><p>不需要减少传输数据到归档地archival store的带宽</p>
-</li>
-<li><p>有可能从源头分担处理要求。</p>
-</li>
-<li><p>不需要中心化的管理</p>
-</li>
-</ul>
-<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><h4 id="去重的权衡"><a href="#去重的权衡" class="headerlink" title="去重的权衡"></a>去重的权衡</h4><p><strong>Granularity 粒度</strong>：影响存储的效率和性能（存储空间和处理效率的权衡）</p>
-<p>将文件拆分得越小（比如chunck-block-byte），就能找到更多的重复数据，但同样的，去重的处理速度也就越慢</p>
-<p>另一个考虑是是容错：只留一个去重数据的副本copy是否足够</p>
-<p>多个副本的优缺点？容错；数据分散靠近用户的cluster中，有利于提高响应时间；占用存储空间，增加成本</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/Big%20Data%20System/12%20%E5%BC%82%E6%9E%84%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/Big%20Data%20System/12%20%E5%BC%82%E6%9E%84%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/" class="post-title-link" itemprop="url">Big Data System/12 异构硬件中的大数据处理</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-11 15:50:28" itemprop="dateCreated datePublished" datetime="2020-03-11T15:50:28+00:00">2020-03-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-15 00:15:29" itemprop="dateModified" datetime="2020-03-15T00:15:29+00:00">2020-03-15</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="12-Big-Data-Processing-on-Heterogeneous-Hardware"><a href="#12-Big-Data-Processing-on-Heterogeneous-Hardware" class="headerlink" title="12 Big Data Processing on Heterogeneous Hardware"></a>12 Big Data Processing on Heterogeneous Hardware</h2><h4 id="云计算-大数据"><a href="#云计算-大数据" class="headerlink" title="云计算+大数据"></a>云计算+大数据</h4><p>实时流、实时处理</p>
-<p>数据可视化</p>
-<p>实时结构化数据库、交互式分析、批量处理</p>
-<p>结构化和非结构化数据</p>
-<p>云基础设施</p>
-<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Cyber-Physical Systems (CPS)，the Internet of Things (IoT)， and the Smart Anything Everywhere Initiative</p>
-<p>从长远来看，随着大规模采用，物联网转型影响预计将显着增加：千万级数量的物品互联，非常大的经济价值</p>
-<p>关键驱动因素：物联网收集的数据，复杂的应用程序开发平台，应用于事物的分析以及<strong>异构硬件体系结构 heterogeneous hardware architectures</strong>，能够促进新业务模型</p>
-<h3 id="异构硬件体系结构-Heterogeneous-hardware-architectures"><a href="#异构硬件体系结构-Heterogeneous-hardware-architectures" class="headerlink" title="异构硬件体系结构 Heterogeneous hardware architectures"></a>异构硬件体系结构 Heterogeneous hardware architectures</h3><p>是运行产品和提供服务的一种高效方法；将不同的处理器类型组合到一个系统中，以此提高绝对性能，最小化能耗和成本。</p>
-<p>引入新的平台：合并多核CPUs，多核GPUs，和许多附加设备作为一个单独解决方案。出现在从超级计算机到个人智能手机的各种环境中.</p>
-<p>因为产品的种类不断增长，因此需要设计<strong>更灵活的软件抽象software abstractions</strong>，以及改进系统结构，以探索异构平台的好处</p>
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>数据巨大且复杂，传统处理方法效率不足：</p>
-<ul>
-<li>Too large to fit reasonably in fast RAM 数据太大无法合理的放入fast RAM中</li>
-<li>Random access intensive, making prefetching and caching ineffective 随机访问密集，使预取和缓存无效</li>
-</ul>
-<p>数据经常被存在多机集群中的二号存储节点中</p>
-<ul>
-<li>存储系统和网络性能成为 first-order concerns</li>
-</ul>
-<h4 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h4><p>大数据系统带来新的需求：新的编程模型和工具</p>
-<p>大数据系统需要实现：高性能和高效率</p>
-<h4 id="关于异质性方面"><a href="#关于异质性方面" class="headerlink" title="关于异质性方面"></a>关于异质性方面</h4><p>异质性是并行结构中最深奥和最有挑战的特征</p>
-<p>宏观方面：分布式计算机（云）的网络，由不同的节点结构（单核，多核）组成，通过可能的异质网络进行内部交互；即网络的异质性和，网络上的机器的异质性</p>
-<p>微观方面：深层次的内存结构（main、cache、disk storage、tertiary storage）和不同的accelerator结构（固定的、可编程的，比如GPUs；可配置的：FPGAs）</p>
-<h3 id="电脑结构"><a href="#电脑结构" class="headerlink" title="电脑结构"></a>电脑结构</h3><p>需要进行分类：根据目的进行分类</p>
-<h4 id="通用处理器-General-Purpose-Processors（GPP）"><a href="#通用处理器-General-Purpose-Processors（GPP）" class="headerlink" title="通用处理器 General Purpose Processors（GPP）"></a>通用处理器 <strong>General Purpose Processors</strong>（GPP）</h4><ul>
-<li>通用微处理器（通用电脑）：比如PCs，workstations，Laptops，notepads，用于执行多种应用和任务</li>
-<li>微控制器：嵌入式系统<ul>
-<li>专门为嵌入式系统中指定任务而设计</li>
-<li>有面向控制的外围设备</li>
-<li>具有片上CPU，固定数量的RAM，ROM，I / O端口</li>
-<li>低成本、低能耗、低性能、比微处理器更小</li>
-<li>适合对成本、空间、能耗要求严格的应用</li>
-</ul>
-</li>
-</ul>
-<h4 id="应用专用处理器"><a href="#应用专用处理器" class="headerlink" title="应用专用处理器"></a>应用专用处理器</h4><p>通用处理器对不同的软件都能表现出较好的性能，但专用处理器在特定任务上的表现更好</p>
-<p>应用专用处理器出现的目的：更高的性能，更低的消耗，更低的成本</p>
-<p>比如：TVs、mobile phone（不是智能手机）、GPSs</p>
-<p>被分为：</p>
-<ol>
-<li>Digital Signal Processor (DSPs) 数字信号处理器</li>
-<li>Application Specific Instruction Set Processors (ASIPs) 应用专用命令集处理器</li>
-<li>Application Specific Integrated Circuit (ASICs) 应用专用集成电路<ul>
-<li>指定市场、更少编程、难以构建</li>
-</ul>
-</li>
-</ol>
-<h4 id="Accelerators-Coprocessors-加速器-协处理器"><a href="#Accelerators-Coprocessors-加速器-协处理器" class="headerlink" title="Accelerators - Coprocessors 加速器-协处理器"></a><strong>Accelerators - Coprocessors</strong> 加速器-协处理器</h4><p>加速器-协处理器对某些功能的处理性能比CPU更高效more efficiently ：更快、更低能耗，但更难编程，比如：</p>
-<ol>
-<li>Graphics Processing Unit (GPU)<ul>
-<li>Single Instruction Multiple Thread (SIMT) model 单指令多线程模型 – CUDA code</li>
-<li>高效：数据并行应用；吞吐量密集型应用——算法需要处理大量数据元素</li>
-</ul>
-</li>
-<li>FPGA (Field Programmable Gate Array) 现场可编程门阵列<ul>
-<li>是逻辑门阵列，可以进行硬件编程以完成用户指定的任务</li>
-<li>软件的一部分可以直接由硬件实现</li>
-<li>比软件更有效率，但比ASIC更贵</li>
-</ul>
-</li>
-</ol>
-<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>Intel CPU -&gt; DSP -&gt; MultiCore -&gt; ManyCore -&gt; GPU -&gt; FPGA -&gt; ASIC</p>
-<p>灵活性、可编程、 —-&gt; 性能、特定领域、能源使用率高 power efficiency</p>
-<h4 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h4><p>Host memory 主存：CPU的内存</p>
-<p>Device memory 显存：GPU的内存</p>
-<p><strong>处理流程：</strong></p>
-<ol>
-<li>从CPU中将输入数据拷贝到GPU中</li>
-<li>加载GPU程序并执行，将数据缓存到芯片chip上提高性能</li>
-<li>将执行结果从GPU内存中拷贝回CPU内存</li>
-</ol>
-<h4 id="GPU——数据处理"><a href="#GPU——数据处理" class="headerlink" title="GPU——数据处理"></a>GPU——数据处理</h4><p>擅长处理并行 data-parallel processing</p>
-<ul>
-<li>在多个数据元素上并行执行相同的计算——低控制流开销和高SP浮点运算强度 high SP floating point arithmetic intensity</li>
-<li>每个内存访问有许多计算</li>
-</ul>
-<p>高浮点运算强度和许多数据元素意味着可以通过计算而不是大数据缓存来隐藏内存访问延迟</p>
-<ul>
-<li>需要避免带宽饱和</li>
-</ul>
-<h4 id="FPGA-现场可编程门阵列"><a href="#FPGA-现场可编程门阵列" class="headerlink" title="FPGA 现场可编程门阵列"></a>FPGA 现场可编程门阵列</h4><p>可配置逻辑块，内部通信网络，I/O信号</p>
-<h4 id="FPGA——数据处理"><a href="#FPGA——数据处理" class="headerlink" title="FPGA——数据处理"></a>FPGA——数据处理</h4><ul>
-<li>用于数据采集和原始数据预处理以进行事件过滤</li>
-<li>需要掌握基于FPGA的硬件描述语言（HDL）的编程模型。<ul>
-<li>– VHDL和Verilog是设计FPGA系统的传统方法</li>
-<li>–描述执行计算的基础设计的基础硬件</li>
-<li>–这与诸如C和C ++的编程语言形成对比，后者描述了在固定不变体系结构上执行的指令</li>
-<li>–这使得FPGA既可以在其上实现的方面极为灵活，又在不充分了解其编程模型的情况下也很难设计。</li>
-</ul>
-</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/Big%20Data%20System/Bloom%20filters%20%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/Big%20Data%20System/Bloom%20filters%20%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" class="post-title-link" itemprop="url">Big Data System/Bloom filters 布隆过滤器</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-02 09:09:25 / 修改时间：09:36:59" itemprop="dateCreated datePublished" datetime="2020-03-02T09:09:25+00:00">2020-03-02</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Bloom filters 布隆过滤器</p>
-<p>will trigger: false positive — possibly in the set</p>
-<p>will no trigger: false negative — definitely not in the set</p>
-<h4 id="demo-amp-介绍"><a href="#demo-amp-介绍" class="headerlink" title="demo &amp; 介绍"></a>demo &amp; 介绍</h4><p><a href="https://llimllib.github.io/bloomfilter-tutorial/" target="_blank" rel="noopener">https://llimllib.github.io/bloomfilter-tutorial/</a></p>
-<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p><strong>布隆过滤器</strong>（英語：Bloom Filter）是1970年由布隆提出的。它实际上是一个很长的<a href="https://zh.wikipedia.org/wiki/二进制" target="_blank" rel="noopener">二进制</a>向量和一系列随机<a href="https://zh.wikipedia.org/wiki/映射" target="_blank" rel="noopener">映射函数</a>。布隆过滤器可以用于检索一个元素是否在一个集合中。它的优点是空间效率和查询时间都远远超过一般的算法，缺点是有一定的误识别率和删除困难。</p>
-<p>如果想判断一个元素是不是在一个集合里，一般想到的是将集合中所有元素保存起来，然后通过比较确定。<a href="https://zh.wikipedia.org/wiki/链表" target="_blank" rel="noopener">链表</a>、<a href="https://zh.wikipedia.org/wiki/树_(数据结构)" target="_blank" rel="noopener">树</a>、<a href="https://zh.wikipedia.org/wiki/散列表" target="_blank" rel="noopener">散列表</a>（又叫哈希表，Hash table）等等数据结构都是这种思路。但是随着集合中元素的增加，我们需要的存储空间越来越大。同时检索速度也越来越慢，上述三种结构的检索时间复杂度分别为{\displaystyle O(n),O(\log n),O(1)}<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/db50673c67c6e72b7342ca1383def18cdead21b6" alt="{\displaystyle O(https://wikimedia.org/api/rest_v1/media/math/render/svg/db50673c67c6e72b7342ca1383def18cdead21b6),O(\log n),O(1)}">。</p>
-<p>布隆过滤器的原理是，当一个元素被加入集合时，通过K个<a href="https://zh.wikipedia.org/wiki/散列函数" target="_blank" rel="noopener">散列函数</a>将这个元素映射成一个位<a href="https://zh.wikipedia.org/wiki/数组" target="_blank" rel="noopener">数组</a>中的K个点，把它们置为1。检索时，我们只要看看这些点是不是都是1就（大约）知道集合中有没有它了：如果这些点有任何一个0，则被检元素一定不在；如果都是1，则被检元素很可能在。这就是布隆过滤器的基本思想。</p>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>相比于其它的数据结构，布隆过滤器在空间和时间方面都有巨大的优势。布隆过滤器存储空间和插入/查询时间都是常数（{\displaystyle O(k)}<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f5ec39041121b14e8c2b1a986c9b04547b223e3c" alt="O(https://wikimedia.org/api/rest_v1/media/math/render/svg/f5ec39041121b14e8c2b1a986c9b04547b223e3c)">）。另外，散列函数相互之间没有关系，方便由硬件并行实现。布隆过滤器不需要存储元素本身，在某些对保密要求非常严格的场合有优势。</p>
-<p>布隆过滤器可以表示全集，其它任何数据结构都不能；</p>
-<p>{\displaystyle k}<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/c3c9a2c7b599b37105512c5d570edc034056dd40" alt="k">和{\displaystyle m}<img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/0a07d98bb302f3856cbabc47b2b9016692e3f7bc" alt="m">)相同，使用同一组散列函数的两个布隆过滤器的交并<a href="https://zh.wikipedia.org/wiki/Wikipedia:列明来源" target="_blank" rel="noopener">[來源請求]</a>运算可以使用位操作进行。</p>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><p>但是布隆过滤器的缺点和优点一样明显。误算率是其中之一。随着存入的元素数量增加，误算率false positive随之增加。但是如果元素数量太少，则使用散列表足矣。</p>
-<p>另外，一般情况下不能从布隆过滤器中删除元素。我们很容易想到把位数组变成整数数组，每插入一个元素相应的计数器加1, 这样删除元素时将计数器减掉就可以了。然而要保证安全地删除元素并非如此简单。首先我们必须保证删除的元素的确在布隆过滤器里面。这一点单凭这个过滤器是无法保证的。另外计数器回绕也会造成问题。</p>
-<p>在降低误算率方面，有不少工作，使得出现了很多布隆过滤器的变种。</p>
-<p>optimal number of hash functions $k=\frac{m}{n}ln2,k=-\frac{lnp}{ln2}$</p>
-<p>估计要添加的元素数量</p>
-<p>bollm过滤器的大小</p>
-<p>计算最佳的哈希函数数量</p>
-<p>计算false positive的可能性</p>
-<p>trade-off</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/Big%20Data%20System/10%20DATABASES%20AND%20STORAGE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/Big%20Data%20System/10%20DATABASES%20AND%20STORAGE/" class="post-title-link" itemprop="url">Big Data System/10 DATABASES AND STORAGE</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-02-24 09:19:08 / 修改时间：13:06:09" itemprop="dateCreated datePublished" datetime="2020-02-24T09:19:08+00:00">2020-02-24</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>217</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="10-DATABASES-AND-STORAGE"><a href="#10-DATABASES-AND-STORAGE" class="headerlink" title="10: DATABASES AND STORAGE"></a>10: DATABASES AND STORAGE</h2><h4 id="数据库的结构"><a href="#数据库的结构" class="headerlink" title="数据库的结构"></a>数据库的结构</h4><p>关系型数据库，非关系型数据库</p>
-<h4 id="关键特征"><a href="#关键特征" class="headerlink" title="关键特征"></a>关键特征</h4><p>原子的、一致的、隔离的、容错的</p>
-<p>用表对数据结构化，支持ACID事务一致性，使用SQL进行查询，使用SQL和关系进行joins连接，关系由主键和次键管理</p>
-<h4 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h4><p>一致性：</p>
-<p>可用性：</p>
-<p>分区容错性：</p>
-<h4 id="ACID和BASE"><a href="#ACID和BASE" class="headerlink" title="ACID和BASE"></a>ACID和BASE</h4><h4 id="COLUMN-ORIENTED-DATABASES"><a href="#COLUMN-ORIENTED-DATABASES" class="headerlink" title="COLUMN-ORIENTED DATABASES"></a>COLUMN-ORIENTED DATABASES</h4><h4 id="DOCUMENT-ORIENTED-DATABASES"><a href="#DOCUMENT-ORIENTED-DATABASES" class="headerlink" title="DOCUMENT-ORIENTED DATABASES"></a>DOCUMENT-ORIENTED DATABASES</h4><h4 id="GRAPH-TREE-DATABASES"><a href="#GRAPH-TREE-DATABASES" class="headerlink" title="GRAPH/TREE DATABASES"></a>GRAPH/TREE DATABASES</h4>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/Big%20Data%20System/09%20CLOUD%20PART%202/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/Big%20Data%20System/09%20CLOUD%20PART%202/" class="post-title-link" itemprop="url">Big Data System/09 CLOUD PART 2</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-19 09:06:04" itemprop="dateCreated datePublished" datetime="2020-02-19T09:06:04+00:00">2020-02-19</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>13</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="09-CLOUD-PART-2"><a href="#09-CLOUD-PART-2" class="headerlink" title="09: CLOUD PART 2"></a>09: CLOUD PART 2</h2>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/Big%20Data%20System/08%20CLOUD%20%E2%80%93%20PART%201/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/Big%20Data%20System/08%20CLOUD%20%E2%80%93%20PART%201/" class="post-title-link" itemprop="url">Big Data System/08 CLOUD – PART 1</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-02-18 18:08:36 / 修改时间：18:08:41" itemprop="dateCreated datePublished" datetime="2020-02-18T18:08:36+00:00">2020-02-18</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>319</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="08-CLOUD-–-PART-1"><a href="#08-CLOUD-–-PART-1" class="headerlink" title="08 CLOUD – PART 1"></a>08 CLOUD – PART 1</h2><h4 id="大数据与云计算的关联"><a href="#大数据与云计算的关联" class="headerlink" title="大数据与云计算的关联"></a>大数据与云计算的关联</h4><ol>
-<li>数据可视化</li>
-<li>实时的结构化数据库、交互式分析、批量处理</li>
-<li>结构化和非结构化数据（HDFS、S3）</li>
-<li>云基础设施</li>
-<li>存储、网络、计算资源</li>
-</ol>
-<h4 id="例子：百事可乐和阿里巴巴"><a href="#例子：百事可乐和阿里巴巴" class="headerlink" title="例子：百事可乐和阿里巴巴"></a>例子：百事可乐和阿里巴巴</h4><h4 id="实用计算-Utility-Computing"><a href="#实用计算-Utility-Computing" class="headerlink" title="实用计算 Utility Computing"></a>实用计算 Utility Computing</h4><h4 id="云计算的定义"><a href="#云计算的定义" class="headerlink" title="云计算的定义"></a>云计算的定义</h4><h4 id="好处"><a href="#好处" class="headerlink" title="好处"></a>好处</h4><ul>
-<li>成本和管理</li>
-<li>减少部署时间</li>
-<li>可扩展性</li>
-<li>可靠性</li>
-<li>可持续性</li>
-</ul>
-<h4 id="虚拟的基础设施"><a href="#虚拟的基础设施" class="headerlink" title="虚拟的基础设施"></a>虚拟的基础设施</h4><p>虚拟的服务平台：整合服务器系统、降低成本、降低复杂性、简化管理、pay-per-usage</p>
-<h4 id="three-“service-models”-software-platform-and-infrastructure"><a href="#three-“service-models”-software-platform-and-infrastructure" class="headerlink" title="three “service models” (software, platform and infrastructure)"></a>three “service models” (software, platform and infrastructure)</h4><h4 id="four-“deployment-models”-private-community-public-and-hybrid-strategies"><a href="#four-“deployment-models”-private-community-public-and-hybrid-strategies" class="headerlink" title="four “deployment models” (private, community, public and hybrid) strategies"></a>four “deployment models” (private, community, public and hybrid) strategies</h4>
       
     </div>
 
@@ -1468,9 +463,6 @@
   </div>
 
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -1537,21 +529,15 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">1</span>
         <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -1603,11 +589,6 @@
   <span class="author" itemprop="copyrightHolder">liaoooyx</span>
   
 </div>
-  <div class="powered-by">支持 - <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a>  v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.2
-  </div>
 
         
 
@@ -1632,7 +613,7 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/pisces.js"></script>
+<script src="/js/schemes/muse.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
@@ -1656,6 +637,26 @@
 
 
 
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
 
 
 
@@ -1663,8 +664,73 @@
 
   
 
+
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
   <script async src="/js/cursor/text.js"></script>
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      console.log(111)
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+            // radius: 50,
+		    depth: 1,//depth for zIndex
+		    offsetX: 0,//+ or - value the size of the div
+		    offsetY: 0,//+ or - value the size of the div
+		    moveTypeIn: 'move',//method points follow the mouse
+		    moveTypeOut: 'wobble',//method points go back to init position
+		    wobbleFactor: 0.9,//control the wobble effect
+		    wobbleSpeed: 0.1,//control the wobble speed
+		    moveSpeed: 3,//control the move speed
+		    lineWidth: 1,//lineWidth
+		    lineColor: '',//no value = no line. Use hex/rgba values
+		    bodyColor: '#FFF',//no value = no body color. Use hex/rgba values
+		    numberOfXPoints: 7,//quantity of points horizontal. must be an odd int
+		    numberOfYPoints: 5,//quantity of points vertical. must be an odd int
+		    movementLeft: true,//enable/disable movement directions
+		    movementRight: true,//enable/disable movement directions
+		    movementTop: true,//enable/disable movement directions
+		    movementBottom: true,//enable/disable movement directions
+		    autoResize: true,//if true size will be automatically adjusted
+		    autoResize: true,//enable/disable automatic size adjustement
+		    debug: false//enable/disable debug mode
+          });
+        
+
+        
+          $('.sidebar').wobbleWindow({
+            radius: 50,
+            movementLeft: false,
+            movementTop: false,
+            movementBottom: false,
+            position: 'fixed',
+            debug: false,
+          });
+        
+
+        
+          $('.footer').wobbleWindow({
+            radius: 50,
+            movementBottom: false,
+            movementLeft: false,
+            movementRight: false,
+            position: 'absolute',
+            debug: false,
+          });
+        
+      });
+    }
+  </script>
+
+
+
+
 
   
 
