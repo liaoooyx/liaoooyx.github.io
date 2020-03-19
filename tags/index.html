@@ -118,9 +118,9 @@
 <nav class="site-nav">
   
   <ul id="menu" class="menu">
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-home">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -136,6 +136,11 @@
         <li class="menu-item menu-item-archives">
 
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -295,7 +300,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -428,11 +433,12 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
 
 
 
-  
-
-
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
   <script async src="/js/cursor/text.js"></script>
+
 
 
 
@@ -441,43 +447,30 @@ document.querySelectorAll('.pdfobject-container').forEach(element => {
   <script>
     //只在桌面版网页启用特效
     if( window.innerWidth > 768  ){
-      console.log(111)
       $(document).ready(function () {
         
           $('.header').wobbleWindow({
-          	wobbleFactor: 0.9,//control the wobble effect
-   			wobbleSpeed: 0.1,//control the wobble speed
-          });
-        
-
-        
-          $('.sidebar').wobbleWindow({
-            radius: 50,
-            movementLeft: false,
-            movementTop: false,
-            movementBottom: false,
-            position: 'fixed',
-            debug: false,
-          });
-        
-
-        
-          $('.footer').wobbleWindow({
-            radius: 50,
-            movementBottom: false,
+          	movementTop: false,
             movementLeft: false,
             movementRight: false,
-            position: 'absolute',
-            debug: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
           });
         
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
       });
     }
   </script>
-
-
-
-
 
   
 

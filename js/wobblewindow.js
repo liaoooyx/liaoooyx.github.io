@@ -1,1 +1,471 @@
-!function(){window.WobbleWindow=function(e,t){function o(){m.width=m.elementWidth+2*f.offsetX,m.height=m.elementHeight+2*f.offsetY,f.radius>0&&(f.pointCountX=Math.round(m.width/f.radius),f.pointCountY=Math.round(m.height/f.radius)),f.pointCountX%2==0&&(f.pointCountX=f.pointCountX+1),f.pointCountY%2==0&&(f.pointCountY=f.pointCountY+1),c.spaceX=Math.min(m.elementWidth,m.width/(f.pointCountX-1)),c.spaceY=Math.min(m.elementHeight,m.height/(f.pointCountY+1)),c.radius=Math.ceil(Math.max(c.spaceX,c.spaceY)),m.left=0,m.top=0,f.canvasWidth=m.elementWidth,f.movementLeft?(s.style.left=-c.radius+"px",f.canvasWidth+=c.radius,m.left=c.radius-f.offsetX):s.style.left=-f.offsetX+"px",f.movementRight&&(f.canvasWidth+=c.radius),f.canvasHeight=m.elementHeight,f.movementTop?(s.style.top=-c.radius+"px",f.canvasHeight+=c.radius,m.top=c.radius-f.offsetY):s.style.top=-f.offsetY+"px",f.movementBottom&&(f.canvasHeight+=c.radius),s.width=f.canvasWidth,s.height=f.canvasHeight}function n(){c.pointHolder=[];var e,t,o,n;for(t=!0,o=0,n=f.pointCountX;o<n;o++)f.movementTop?(t?(e=i(m.left+o*c.spaceX,m.top,0,0,0,!0,c.spaceX,"P",f.debug),t=!1):(e=i(m.left+o*c.spaceX,m.top,0,0,0,!0,c.spaceX,"C",f.debug),t=!0),0!==o&&o!==n-1||(e.color="#00FF00",e.movement=!1),c.pointHolder.push(e)):(0!==o&&o!==n-1||(e=i(m.left+o*c.spaceX,m.top,0,0,0,!1,0,"P",f.debug)),c.pointHolder.push(e));for(t=!1,o=1,n=f.pointCountY+1;o<n;o++)f.movementRight?(t?(e=i(m.left+m.width,m.top+o*c.spaceY,0,0,0,!0,c.spaceY,"P",f.debug),t=!1):(e=i(m.left+m.width,m.top+o*c.spaceY,0,0,0,!0,c.spaceY,"C",f.debug),t=!0),c.pointHolder.push(e)):(1===o?e=i(m.left+m.width,m.top+(o-1)*c.spaceY,0,0,0,!1,0,"P",f.debug):o===f.pointCountY&&(e=i(m.left+m.width,m.top+(o+1)*c.spaceY,0,0,0,!1,0,"P",f.debug)),c.pointHolder.push(e));for(t=!0,o=f.pointCountX-1,n=-1;o>n;o--)f.movementBottom?(t?(e=i(m.left+o*c.spaceX,m.top+m.height,0,0,0,!0,c.spaceX,"P",f.debug),t=!1):(e=i(m.left+o*c.spaceX,m.top+m.height,0,0,0,!0,c.spaceX,"C",f.debug),t=!0),0!==o&&o!==f.pointCountX-1||(e.color="#00FF00",e.movement=!1),c.pointHolder.push(e)):(0!==o&&o!==f.pointCountX-1||(e=i(m.left+o*c.spaceX,m.top+m.height,0,0,0,!1,0,"P",f.debug)),c.pointHolder.push(e));for(t=!1,o=f.pointCountY,n=-1;o>n;o--)f.movementLeft?(t?(e=i(m.left,m.top+o*c.spaceY,0,0,0,!0,c.spaceY,"P",f.debug),t=!1):(e=i(m.left,m.top+o*c.spaceY,0,0,0,!0,c.spaceY,"C",f.debug),t=!0),c.pointHolder.push(e)):(0===o?e=i(m.left,m.top+o*c.spaceY,0,0,0,!1,0,"P",f.debug):o===f.pointCountY&&(e=i(m.left,m.top+(o+1)*c.spaceY,0,0,0,!1,0,"P",f.debug)),c.pointHolder.push(e))}function i(e,t,o,n,i,l,r,a,s){var p={};return p.x=e,p.y=t,p.xp=e,p.yp=t,p.sx=0,p.sy=0,p.distance=i,p.movement=l,p.radius=r,p.type=a,p.visible=s,p}function l(){requestAnimFrame(l),function(){p.clearRect(0,0,f.canvasWidth,f.canvasHeight);var e,t,o=c.pointHolder;for(p.beginPath(),p.moveTo(o[0].x,o[0].y),e=1,t=o.length;e<t;e+=2){var n=o[e],i=d.x-n.xp,l=d.y-n.yp;n.distance=Math.sqrt(i*i+l*l),n.distance<n.radius?"wobble"===f.moveTypeIn?(n.sx=n.sx*f.wobbleFactor+(d.x-n.x)*f.wobbleSpeed,n.sy=n.sy*f.wobbleFactor+(d.y-n.y)*f.wobbleSpeed,n.x=n.x+n.sx,n.y=n.y+n.sy):"move"===f.moveTypeIn&&(n.x-=(n.x-d.x)/f.moveSpeed,n.y-=(n.y-d.y)/f.moveSpeed):"wobble"===f.moveTypeOut?(n.sx=n.sx*f.wobbleFactor+(n.xp-n.x)*f.wobbleSpeed,n.sy=n.sy*f.wobbleFactor+(n.yp-n.y)*f.wobbleSpeed,n.x=n.x+n.sx,n.y=n.y+n.sy):"move"===f.moveTypeOut&&(n.x-=(n.x-n.xp)/f.moveSpeed,n.y-=(n.y-n.yp)/f.moveSpeed);var r=o[e-1],s=o[e+1];e>2&&e<o.length-2&&(r.movement&&(r.x=(o[e-2].x+n.x)/2,r.y=(o[e-2].y+n.y)/2),s.movement&&(s.x=(o[e+2].x+n.x)/2,s.y=(o[e+2].y+n.y)/2)),p.quadraticCurveTo(n.x,n.y,s.x,s.y)}if(f.lineColor.length>0&&(p.lineWidth=f.lineWidth,p.strokeStyle=f.lineColor,p.stroke()),f.bodyColor.length>0&&(p.fillStyle=f.bodyColor,p.fill()),f.debug){for(e=0,t=o.length;e<t;e++)(n=o[e]).visible&&("P"===n.type?a(n.x,n.y,3,"#FF0000"):a(n.x,n.y,6,"#FF00FF"),n.color&&a(n.x,n.y,12,n.color));p.strokeStyle="#000000",p.strokeRect(0,0,f.canvasWidth,f.canvasHeight)}}(),f.autoResize&&(u||m.elementWidth===e.offsetWidth&&m.elementHeight===e.offsetHeight||(u=!0,m.elementWidth=e.offsetWidth,m.elementHeight=e.offsetHeight,h=window.setTimeout(r,10)))}function r(){o(),n(),u=!1}function a(e,t,o,n){p.beginPath(),p.arc(e,t,o,0,2*Math.PI),p.strokeStyle=n,p.stroke()}var s,p,d={x:0,y:0},u=!1,h=0,m={},c={},f={};if(f.name="wobblew",f.position="relative",f.depth=-1,f.overflowX="visible",f.overflowY="visible",f.offsetX=0,f.offsetY=0,f.moveTypeIn="move",f.moveTypeOut="wobble",f.wobbleFactor=.95,f.wobbleSpeed=.1,f.moveSpeed=6,f.lineWidth=1,f.transplantLineColor=!1,f.lineColor="",f.transplantBodyColor=!0,f.bodyColor="",f.radius=50,f.pointCountX=7,f.pointCountY=5,f.movementLeft=!0,f.movementRight=!0,f.movementTop=!0,f.movementBottom=!0,f.autoResize=!0,f.debug=!1,void 0!==t)for(var y in t)t.hasOwnProperty(y)&&f.hasOwnProperty(y)&&(f[y]=t[y]);if(!e)throw Error("\nNo div element found");if(f.pointCountX%2==0)throw Error("\nParam pointCountX must be an odd integer");if(f.pointCountY%2==0)throw Error("\nParam pointCountY must be an odd integer");HTMLElement.prototype.__defineGetter__("currentStyle",function(){return this.ownerDocument.defaultView.getComputedStyle(this,null)}),window.requestAnimFrame=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||function(e){window.setTimeout(e,1e3/60)},(s=document.createElement("canvas")).id=f.name,s.style.position="absolute",s.style.zIndex=f.depth.toString(),s.addEventListener("mousemove",function(e){d=function(e,t){var o=s.getBoundingClientRect();return{x:t.clientX-o.left,y:t.clientY-o.top}}(0,e)}),s.addEventListener("mouseleave",function(e){d.x=-1e4,d.y=-1e4}),p=s.getContext("2d"),e.appendChild(s),e.style.position=f.position,e.style.zIndex=(f.depth+1).toString(),f.overflowX.length>0&&(e.parentElement.style.overflowX=f.overflowX),f.overflowY.length>0&&(e.parentElement.style.overflowY=f.overflowY),f.transplantBodyColor&&e.currentStyle.backgroundColor.length>0&&(f.bodyColor=e.currentStyle.backgroundColor),f.transplantLineColor&&e.currentStyle.borderColor.length>0&&(f.lineColor=e.currentStyle.borderColor),m.elementWidth=e.offsetWidth,m.elementHeight=e.offsetHeight,o(),n(),l(),f.transplantBodyColor&&e.currentStyle.backgroundColor.length>0&&(e.className.length>0?e.className+=" wobbleTransparentBK":e.className=" wobbleTransparentBK"),f.transplantLineColor&&e.currentStyle.borderColor.length>0&&(e.className.length>0?e.className+=" wobbleTransparentLine":e.className=" wobbleTransparentLine")}}(),"undefined"!=typeof jQuery&&function(e){e.fn.wobbleWindow=function(t){var o=arguments;return this.each(function(){if(e.data(this,"plugin_WobbleWindow")){var n=e.data(this,"plugin_WobbleWindow");n[t]?n[t].apply(this,Array.prototype.slice.call(o,1)):e.error("Method "+t+" does not exist on jQuery.wobbleWindow")}else e.data(this,"plugin_WobbleWindow",new WobbleWindow(this,t))})}}(jQuery);
+(function() {
+  function WobbleWindow(object, params) {
+    var canvas,
+      ctx;
+    var mousePos = {
+      x: 0,
+      y: 0
+    };
+    var isResizing = false;
+    var delayId = 0;
+    var canvasContent = {};
+    var points = {};
+
+    var settings = {};
+    settings.name = 'wobblew'; //name
+    settings.position = 'relative'; //relative or absolute
+    settings.depth = -1; //depth for zIndex
+    settings.overflowX = 'visible';
+    settings.overflowY = 'visible';
+    settings.offsetX = 0; //+ or - value the size of the div
+    settings.offsetY = 0; //+ or - value the size of the div
+    settings.moveTypeIn = 'move'; //method points follow the mouse
+    settings.moveTypeOut = 'wobble'; //method points go back to init position
+    settings.wobbleFactor = 0.95; //震荡持续时间
+    settings.wobbleSpeed = 0.03; //震荡速度
+    settings.moveSpeed = 3; //control the move speed
+    settings.lineWidth = 1; //lineWidth
+
+    settings.transplantLineColor = false; //true Use Object border-color
+    settings.lineColor = ''; //no value = no line. Use hex/rgba values
+    settings.transplantBodyColor = true; //true Use Object background Color
+    settings.bodyColor = ''; //no value = no body color. Use hex/rgba values
+    settings.radius = 70; //
+    settings.pointCountX = 7; //quantity of points horizontal. must be an odd int
+    settings.pointCountY = 5; //quantity of points vertical. must be an odd int
+    settings.movementLeft = true; //enable/disable movement directions
+    settings.movementRight = true; //enable/disable movement directions
+    settings.movementTop = true; //enable/disable movement directions
+    settings.movementBottom = true; //enable/disable movement directions
+    settings.autoResize = true; //if true size will be automatically adjusted
+    settings.debug = false; //enable/disable debug mode
+
+    // ---
+    if (params !== undefined) {
+      for (var prop in params) {
+        if (params.hasOwnProperty(prop) && settings.hasOwnProperty(prop)) {
+          settings[prop] = params[prop];
+        }
+      }
+    }
+
+    // ---
+    if (!object) {
+      throw Error('\n' + 'No div element found');
+    }
+    if ((settings.pointCountX % 2) === 0) {
+      throw Error('\n' + 'Param pointCountX must be an odd integer');
+    }
+    if ((settings.pointCountY % 2) === 0) {
+      throw Error('\n' + 'Param pointCountY must be an odd integer');
+    }
+
+    // ---
+    HTMLElement.prototype.__defineGetter__("currentStyle", function() {
+      return this.ownerDocument.defaultView.getComputedStyle(this, null);
+    });
+    // ---
+    function init() {
+      canvas = document.createElement('canvas');
+      canvas.id = settings.name;
+      canvas.style.position = 'absolute';
+      canvas.style.zIndex = settings.depth.toString();
+      canvas.addEventListener('mousemove', mouseMoveHandler);
+      canvas.addEventListener('mouseleave', mouseLeaveHandler);
+      ctx = canvas.getContext('2d');
+
+      // element.insertBefore(canvas, element.firstChild);
+      object.appendChild(canvas);
+      object.style.position = settings.position;
+      object.style.zIndex = (settings.depth + 1).toString();
+      if (settings.overflowX.length > 0) {
+        object.parentElement.style.overflowX = settings.overflowX;
+      };
+      if (settings.overflowY.length > 0) {
+        object.parentElement.style.overflowY = settings.overflowY;
+      };
+      if (settings.transplantBodyColor) {
+        if (object.currentStyle.backgroundColor.length > 0) {
+          settings.bodyColor = object.currentStyle.backgroundColor;
+        }
+      };
+      if (settings.transplantLineColor) {
+        if (object.currentStyle.borderColor.length > 0) {
+          settings.lineColor = object.currentStyle.borderColor;
+        }
+      };
+      canvasContent.elementWidth = object.offsetWidth;
+      canvasContent.elementHeight = object.offsetHeight;
+      // ---
+      resizeCanvas();
+      addWindow();
+      animloop();
+      // -----------
+      if (settings.transplantBodyColor) {
+        if (object.currentStyle.backgroundColor.length > 0) {
+          if (object.className.length > 0) {
+            object.className += ' wobbleTransparentBK';
+          } else {
+            object.className = ' wobbleTransparentBK';
+          };
+        }
+      };
+      if (settings.transplantLineColor) {
+        if (object.currentStyle.borderColor.length > 0) {
+          if (object.className.length > 0) {
+            object.className += ' wobbleTransparentLine';
+          } else {
+            object.className = ' wobbleTransparentLine';
+          };
+        }
+      };
+    };
+
+    // ---
+    function resizeCanvas() {
+      canvasContent.width = canvasContent.elementWidth + settings.offsetX * 2;
+      canvasContent.height = canvasContent.elementHeight + settings.offsetY * 2;
+
+      if (settings.radius > 0) { //round,  ceil
+        settings.pointCountX = Math.round(canvasContent.width / settings.radius);
+        settings.pointCountY = Math.round(canvasContent.height / settings.radius);
+      };
+      if (settings.pointCountX % 2 == 0) {
+        settings.pointCountX = settings.pointCountX + 1;
+      };
+      if (settings.pointCountY % 2 == 0) {
+        settings.pointCountY = settings.pointCountY + 1;
+      };
+
+      points.spaceX = Math.min(canvasContent.elementWidth, canvasContent.width / (settings.pointCountX - 1));
+      points.spaceY = Math.min(canvasContent.elementHeight, canvasContent.height / (settings.pointCountY + 1));
+      points.radius = Math.ceil(Math.max(points.spaceX, points.spaceY));
+
+      ///--------------new1------------------
+      canvasContent.left = 0;
+      canvasContent.top = 0;
+      settings.canvasWidth = canvasContent.elementWidth;
+      if (settings.movementLeft) {
+        canvas.style.left = -points.radius + 'px';
+        settings.canvasWidth += points.radius;
+        canvasContent.left = points.radius - settings.offsetX;
+      } else {
+        canvas.style.left = -settings.offsetX + 'px';
+      };
+      if (settings.movementRight)
+        settings.canvasWidth += points.radius;
+
+      settings.canvasHeight = canvasContent.elementHeight;
+      if (settings.movementTop) {
+        canvas.style.top = -points.radius + 'px';
+        settings.canvasHeight += points.radius;
+        canvasContent.top = points.radius - settings.offsetY;
+      } else {
+        canvas.style.top = -settings.offsetY + 'px';
+      };
+      if (settings.movementBottom)
+        settings.canvasHeight += points.radius;
+
+      canvas.width = settings.canvasWidth;
+      canvas.height = settings.canvasHeight;
+    };
+
+    // ---
+    function addWindow() {
+      points.pointHolder = [];
+      // ---
+      var point;
+      var flag;
+      var i,
+        l;
+      // ---
+      //top
+      flag = true;
+      for (i = 0, l = settings.pointCountX; i < l; i++) {
+        if (settings.movementTop) {
+          if (flag) {
+            point = addPoint(canvasContent.left + i * points.spaceX, canvasContent.top, 0, 0, 0, true, points.spaceX, 'P', settings.debug);
+            flag = false;
+          } else {
+            point = addPoint(canvasContent.left + i * points.spaceX, canvasContent.top, 0, 0, 0, true, points.spaceX, 'C', settings.debug);
+            flag = true;
+          }
+          if (i === 0 || i === l - 1) {
+            point.color = '#00FF00';
+            point.movement = false;
+          }
+          points.pointHolder.push(point);
+        } else {
+          if (i === 0 || i === l - 1) {
+            point = addPoint(canvasContent.left + i * points.spaceX, canvasContent.top, 0, 0, 0, false, 0, 'P', settings.debug);
+          }
+          points.pointHolder.push(point);
+        }
+      }
+
+      // ---
+      //right
+      flag = false;
+      for (i = 1, l = settings.pointCountY + 1; i < l; i++) {
+        if (settings.movementRight) {
+          if (flag) {
+            point = addPoint(canvasContent.left + canvasContent.width, canvasContent.top + i * points.spaceY, 0, 0, 0, true, points.spaceY, 'P', settings.debug);
+            flag = false;
+          } else {
+            point = addPoint(canvasContent.left + canvasContent.width, canvasContent.top + i * points.spaceY, 0, 0, 0, true, points.spaceY, 'C', settings.debug);
+            flag = true;
+          }
+          points.pointHolder.push(point);
+        } else {
+          if (i === 1) {
+            point = addPoint(canvasContent.left + canvasContent.width, canvasContent.top + (i - 1) * points.spaceY, 0, 0, 0, false, 0, 'P', settings.debug);
+          } else if (i === settings.pointCountY) {
+            point = addPoint(canvasContent.left + canvasContent.width, canvasContent.top + (i + 1) * points.spaceY, 0, 0, 0, false, 0, 'P', settings.debug);
+          }
+          points.pointHolder.push(point);
+        }
+      }
+
+      // ---
+      //bottom
+      flag = true;
+      for (i = settings.pointCountX - 1, l = -1; i > l; i--) {
+        if (settings.movementBottom) {
+          if (flag) {
+            point = addPoint(canvasContent.left + i * points.spaceX, canvasContent.top + canvasContent.height, 0, 0, 0, true, points.spaceX, 'P', settings.debug);
+            flag = false;
+          } else {
+            point = addPoint(canvasContent.left + i * points.spaceX, canvasContent.top + canvasContent.height, 0, 0, 0, true, points.spaceX, 'C', settings.debug);
+            flag = true;
+          }
+          if (i === 0 || i === settings.pointCountX - 1) {
+            point.color = '#00FF00';
+            point.movement = false;
+          }
+          points.pointHolder.push(point);
+        } else {
+          if (i === 0 || i === settings.pointCountX - 1) {
+            point = addPoint(canvasContent.left + i * points.spaceX, canvasContent.top + canvasContent.height, 0, 0, 0, false, 0, 'P', settings.debug);
+          }
+          points.pointHolder.push(point);
+        }
+      }
+
+      // ---
+      //left
+      flag = false;
+      for (i = settings.pointCountY, l = -1; i > l; i--) {
+        if (settings.movementLeft) {
+          if (flag) {
+            point = addPoint(canvasContent.left, canvasContent.top + i * points.spaceY, 0, 0, 0, true, points.spaceY, 'P', settings.debug);
+            flag = false;
+          } else {
+            point = addPoint(canvasContent.left, canvasContent.top + i * points.spaceY, 0, 0, 0, true, points.spaceY, 'C', settings.debug);
+            flag = true;
+          }
+          points.pointHolder.push(point);
+        } else {
+          if (i === 0) {
+            point = addPoint(canvasContent.left, canvasContent.top + i * points.spaceY, 0, 0, 0, false, 0, 'P', settings.debug);
+          } else if (i === settings.pointCountY) {
+            point = addPoint(canvasContent.left, canvasContent.top + (i + 1) * points.spaceY, 0, 0, 0, false, 0, 'P', settings.debug);
+          }
+          points.pointHolder.push(point);
+        }
+      }
+    }
+
+    // ---
+    function addPoint(x, y, xp, yp, distance, movement, radius, type, visible) {
+      var point = {};
+      point.x = x;
+      point.y = y;
+      point.xp = x;
+      point.yp = y;
+      point.sx = 0;
+      point.sy = 0;
+      point.distance = distance;
+      point.movement = movement;
+      point.radius = radius;
+      point.type = type;
+      point.visible = visible;
+      return point;
+    };
+
+    // ---
+    window.requestAnimFrame = (function() {
+      return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
+        window.setTimeout(callback, 1000 / 60);
+      };
+    })();
+
+    function animloop() {
+      requestAnimFrame(animloop);
+      render();
+      if (settings.autoResize) {
+        resize();
+      }
+    };
+
+    // ---
+    function render() {
+      ctx.clearRect(0, 0, settings.canvasWidth, settings.canvasHeight);
+
+      // ---
+      var windowPoints = points.pointHolder;
+      var i,
+        l;
+
+      // ---
+      ctx.beginPath();
+      ctx.moveTo(windowPoints[0].x, windowPoints[0].y);
+      for (i = 1, l = windowPoints.length; i < l; i += 2) {
+        var point = windowPoints[i];
+
+        // ---
+        var dx = mousePos.x - point.xp;
+        var dy = mousePos.y - point.yp;
+        point.distance = Math.sqrt(dx * dx + dy * dy);
+        if (point.distance < point.radius) {
+          if (settings.moveTypeIn === 'wobble') {
+            point.sx = point.sx * settings.wobbleFactor + (mousePos.x - point.x) * settings.wobbleSpeed;
+            point.sy = point.sy * settings.wobbleFactor + (mousePos.y - point.y) * settings.wobbleSpeed;
+            point.x = point.x + point.sx;
+            point.y = point.y + point.sy;
+          } else if (settings.moveTypeIn === 'move') {
+            point.x -= (point.x - mousePos.x) / settings.moveSpeed;
+            point.y -= (point.y - mousePos.y) / settings.moveSpeed;
+          }
+        } else {
+          if (settings.moveTypeOut === 'wobble') {
+            point.sx = point.sx * settings.wobbleFactor + (point.xp - point.x) * settings.wobbleSpeed;
+            point.sy = point.sy * settings.wobbleFactor + (point.yp - point.y) * settings.wobbleSpeed;
+            point.x = point.x + point.sx;
+            point.y = point.y + point.sy;
+          } else if (settings.moveTypeOut === 'move') {
+            point.x -= (point.x - point.xp) / settings.moveSpeed;
+            point.y -= (point.y - point.yp) / settings.moveSpeed;
+          }
+        }
+
+        // ---
+        var pointBefor = windowPoints[i - 1];
+        var pointAfter = windowPoints[i + 1];
+        if (i > 2 && i < windowPoints.length - 2) {
+          if (pointBefor.movement) {
+            pointBefor.x = (windowPoints[i - 2].x + point.x) / 2;
+            pointBefor.y = (windowPoints[i - 2].y + point.y) / 2;
+          }
+          if (pointAfter.movement) {
+            pointAfter.x = (windowPoints[i + 2].x + point.x) / 2;
+            pointAfter.y = (windowPoints[i + 2].y + point.y) / 2;
+          }
+        }
+        ctx.quadraticCurveTo(point.x, point.y, pointAfter.x, pointAfter.y);
+      }
+
+      // ---
+      if (settings.lineColor.length > 0) {
+        ctx.lineWidth = settings.lineWidth;
+        ctx.strokeStyle = settings.lineColor;
+        ctx.stroke();
+      }
+      if (settings.bodyColor.length > 0) {
+        ctx.fillStyle = settings.bodyColor;
+        ctx.fill();
+      }
+      // ctx.globalCompositeOperation = 'source-out';
+      // ctx.fillStyle = "rgba(0, 0, 0, 1)";
+      // ctx.fill();
+
+      // ---
+      if (settings.debug) {
+        for (i = 0, l = windowPoints.length; i < l; i++) {
+          var point = windowPoints[i];
+          if (point.visible) {
+            if (point.type === 'P') {
+              drawCircle(point.x, point.y, 3, '#FF0000');
+            } else {
+              drawCircle(point.x, point.y, 6, '#FF00FF');
+            }
+            if (point.color) {
+              drawCircle(point.x, point.y, 12, point.color);
+            }
+          }
+        }
+        ctx.strokeStyle = '#000000';
+        ctx.strokeRect(0, 0, settings.canvasWidth, settings.canvasHeight);
+      }
+    };
+
+    // ---
+    function delayFlag() {
+      resizeCanvas();
+      addWindow();
+      isResizing = false;
+    };
+
+    function resize() {
+      if (!isResizing) {
+        if (canvasContent.elementWidth !== object.offsetWidth || canvasContent.elementHeight !== object.offsetHeight) {
+          // -----------
+          isResizing = true;
+          canvasContent.elementWidth = object.offsetWidth;
+          canvasContent.elementHeight = object.offsetHeight;
+          // 防止闪白
+          delayId = window.setTimeout(delayFlag, 10);
+        }
+      }
+    };
+
+    // ---
+    function drawCircle(x, y, radius, color) {
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, 2 * Math.PI);
+      ctx.strokeStyle = color;
+      ctx.stroke();
+    };
+
+    // ---
+    function mouseMoveHandler(event) {
+      mousePos = getMousePos(canvas, event);
+    };
+
+    function mouseLeaveHandler(event) {
+      mousePos.x = -10000;
+      mousePos.y = -10000;
+    };
+
+    // ---
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      return {
+        x: event.clientX - rect.left,
+        y: event.clientY - rect.top
+      };
+    };
+
+    // ---
+    init();
+  };
+  window.WobbleWindow = WobbleWindow;
+}());
+if (typeof jQuery !== 'undefined') {
+  (function($) {
+    $.fn.wobbleWindow = function(params) {
+      var args = arguments;
+      return this.each(function() {
+        if (!$.data(this, 'plugin_WobbleWindow')) {
+          $.data(this, 'plugin_WobbleWindow', new WobbleWindow(this, params));
+        } else {
+          var plugin = $.data(this, 'plugin_WobbleWindow');
+          if (plugin[params]) {
+            plugin[params].apply(this, Array.prototype.slice.call(args, 1));
+          } else {
+            $.error('Method ' + params + ' does not exist on jQuery.wobbleWindow');
+          }
+        }
+      });
+    };
+  }(jQuery));
+}
