@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="大数据系统需要存储大量的数据，并且需要花费大量的金钱对存储的数据进行获取和维护。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据库和存储">
+<meta property="og:url" content="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/10%20DATABASES%20AND%20STORAGE/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="大数据系统需要存储大量的数据，并且需要花费大量的金钱对存储的数据进行获取和维护。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3phyt1uoj30tw0hgaf0.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3pmrg1u5j30r20fwn8e.jpg">
+<meta property="og:image" content="https://liaoooyx.com/2020/Library/Application%20Support/typora-user-images/%E6%88%AA%E5%B1%8F2020-03-23%E4%B8%8A%E5%8D%883.42.55.png">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3pu209rij30xc0owjyl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3qpwtjf1j310m0l2tsl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3qxs5kfej30r20fwgnj.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3r8esu5ej310k0hy0zc.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3sg7kp29j30ku0gymzg.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3sqmtdb2j30ku0f40ze.jpg">
+<meta property="article:published_time" content="2020-02-24T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-26T03:40:26.247Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="非关系型数据库">
+<meta property="article:tag" content="NoSQL">
+<meta property="article:tag" content="ACID">
+<meta property="article:tag" content="BASE">
+<meta property="article:tag" content="CAP定理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd3phyt1uoj30tw0hgaf0.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/10%20DATABASES%20AND%20STORAGE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>数据库和存储 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/10%20DATABASES%20AND%20STORAGE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据库和存储
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-24T00:00:00+00:00">2020-02-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 03:40:26" itemprop="dateModified" datetime="2020-03-26T03:40:26+00:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>大数据系统需要存储大量的数据，并且需要花费大量的金钱对存储的数据进行获取和维护。</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3phyt1uoj30tw0hgaf0.jpg" alt="截屏2020-03-23上午3.35.43"  /></p>
+<a id="more"></a>
+<h3 id="数据库的结构"><a href="#数据库的结构" class="headerlink" title="数据库的结构"></a>数据库的结构</h3><p>以下类型的数据可以被归类为：关系型数据库，或非关系型数据库（后4种）</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3pmrg1u5j30r20fwn8e.jpg" alt="截屏2020-03-23上午3.40.17"></p>
+<p><img src="../../../Library/Application Support/typora-user-images/截屏2020-03-23上午3.42.55.png" alt="截屏2020-03-23上午3.42.55"></p>
+<h4 id="关系型数据库"><a href="#关系型数据库" class="headerlink" title="关系型数据库"></a>关系型数据库</h4><p>关键特征：</p>
+<ul>
+<li><p>Edgar Codd’s 12 rules <a href="https://baike.baidu.com/item/%E7%A7%91%E5%BE%B7%E5%8D%81%E4%BA%8C%E5%AE%9A%E5%BE%8B/10138377?fr=aladdin" target="_blank" rel="noopener">科德十二定律</a></p>
+</li>
+<li><p>使用<u>表</u>储存<u>结构化数据</u></p>
+</li>
+<li><p>支持ACID事务的一致性</p>
+<blockquote>
+<p>Atomic 原子性：事务中的所有操作全部成功或者全部回滚</p>
+<p>Consistent 一致性：事务不能让数据库处于不一致的状态</p>
+<p>Isolated 隔离性：事务之间不能相互影响</p>
+<p>Durable 耐用性：对完成的事务进行持久化，即使服务器重启</p>
+</blockquote>
+</li>
+<li><p>通常使用SQL进行查询</p>
+</li>
+<li><p>通过主键和外键管理关系</p>
+</li>
+<li><p>使用SQL和关系来执行<u>关联joins</u></p>
+<blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3pu209rij30xc0owjyl.jpg" alt="截屏2020-03-23上午3.47.23" style="zoom:50%;" /></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="大数据系统中数据库的挑战"><a href="#大数据系统中数据库的挑战" class="headerlink" title="大数据系统中数据库的挑战"></a>大数据系统中数据库的挑战</h3><ul>
+<li>大数据的规模，对数据库空间的要求是很大的挑战</li>
+<li>传统的RDBMS无法扩展到真正”大数据“的级别</li>
+<li>ACID原则不一定适用于大规模</li>
+<li>CAP定理提出了一个问题</li>
+</ul>
+<h4 id="CAP定理："><a href="#CAP定理：" class="headerlink" title="CAP定理："></a>CAP定理：</h4><p>是Eric Brewer在1998年提出的一个假设，由Gilbert和Lynch在2002年证明。</p>
+<p>它指出，分布式系统不可能同时确保<u>一致性</u>，<u>可用性</u>和<u>分区容错性</u>。</p>
+<ul>
+<li>一致性：所有客户都能看到最新的数据，不管执行过什么操作（比如更新或删除）</li>
+<li>可用性：即使某些节点发送错误，系统也需要继续客户的操作</li>
+<li>分区容错：即使网络或消息发送错误，系统也需要继续执行可续操作（比如一个节点向另一个节点发送的消息，允许发送错误并被丢弃）</li>
+</ul>
+<h4 id="ACID-和-BASE"><a href="#ACID-和-BASE" class="headerlink" title="ACID 和 BASE"></a>ACID 和 BASE</h4><p>ACID：</p>
+<ul>
+<li>Atomic 原子性：事务的所有操作都成功，不然就回滚</li>
+<li>Consistent 一致性：事务不能使数据库的最终状态出现不一致</li>
+<li>Isolated 隔离性：事务使独立的，不能影响其他事务</li>
+<li>Durable 耐用性：即使服务器重新启动等，已完成的事务也会保留。</li>
+</ul>
+<p>BASE</p>
+<ul>
+<li><strong>B</strong>asic <strong>A</strong>vailability 基础可用性：系统在CAP定理方面，保证系统的可用性</li>
+<li><strong>S</strong>oft-state 软状态：系统的状态会随时间改变，即使没有输入（因为要确保最终一致性）</li>
+<li><strong>E</strong>ventual consistency 最终一致性：只要数据库最终变得一致，在每个事务之后就不需要一致性。</li>
+</ul>
+<h3 id="NoSQL-——-Not-only-SQL"><a href="#NoSQL-——-Not-only-SQL" class="headerlink" title="NoSQL —— Not only SQL"></a>NoSQL —— Not only SQL</h3><p><strong>严格的一致性</strong>会在大规模的系统中带来巨大的性能和能源开销。</p>
+<p>妥协方案是<strong>最终一致性</strong>：给定足够长的时间不发送任何更改，可以期望所有更新都将通过系统进行传播，且所有副本都将最终保持一致。</p>
+<p>NoSQL数据库比传统的数据库采用<u>更宽松的一致性模型</u>，它是非关系的数据库，没有固定的schema，也没有joins。NoSQL描述为克服RDBMS的可扩展性限制而开发的许多非关系数据库。</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3qpwtjf1j310m0l2tsl.jpg" alt="截屏2020-03-23上午4.18.00" style="zoom:33%;" /></p>
+<h4 id="NoSQL的好处"><a href="#NoSQL的好处" class="headerlink" title="NoSQL的好处"></a>NoSQL的好处</h4><ul>
+<li>适合处理大量的数据</li>
+<li>NoSQL数据库针对<u>检索</u>和<u>添加</u>操作进行了高度优化，并且通常除了记录存储之外几乎没有其他功能（尽管有时它们确实可以有）</li>
+<li>当实时性能比一致性更重要时，可以采用NoSQL</li>
+<li>例子：对大量文档进行索引、在高流量网站上提供页面、传递流媒体</li>
+</ul>
+<h4 id="NoSQL的种类"><a href="#NoSQL的种类" class="headerlink" title="NoSQL的种类"></a>NoSQL的种类</h4><p>键值对存储、面向列的数据库、文档型数据库、图数据库</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3qxs5kfej30r20fwgnj.jpg" alt="截屏2020-03-23上午3.40.17"></p>
+<h4 id="类型1：键值对存储"><a href="#类型1：键值对存储" class="headerlink" title="类型1：键值对存储"></a>类型1：键值对存储</h4><ul>
+<li>是最简单的NoSQL类型，且易于实现，比如MapReduce。</li>
+<li>它允许数据以<u>无shcema</u>和<u>无固定数据模型</u>的方式存储。</li>
+<li>Key可以用简单的值表示。</li>
+<li>当它仅用于查询或对部分数据进行更新时，效率很低</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>例子</th>
+<th>Tokyo Cabinet/Tyrant, Redis, Voldemort, Oracle BDB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经典的应用</td>
+<td>内容缓存（专注于向大量的数据进行扩展，为处理大量负载而设计），日志等</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>一系列的键值对</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>快速查询</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>存储的数据没有schema</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>存储会话session信息、用户资料、偏好、购物车信息</td>
+</tr>
+<tr>
+<td>不适合</td>
+<td>查询信息、存储的数据之间有关系、同时操作多个Key</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3r8esu5ej310k0hy0zc.jpg" alt="截屏2020-03-23上午4.35.48" style="zoom:33%;" /></p>
+<h4 id="面向列的数据库"><a href="#面向列的数据库" class="headerlink" title="面向列的数据库"></a>面向列的数据库</h4><p>数据库的常用查询需要对数据集进行聚合处理，以面向列的方式存储数据，能使需要对大规模数据进行聚合的查询更高效</p>
+<p>面向列的数据库还可以处理非常大的数据，因为数据是按列组织的，并且可以轻松分区（称为分片）。在这种情况下，列会按列族（也称为组）进行组织，以将相关列保持在一起（如用于客户地址的列组等）</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>例子</th>
+<th>Cassandra, HBase, Riak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经典的应用</td>
+<td>分布式文件系统</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>列 -&gt; 族</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>快速查询、分布式的数据存储</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>低级别的接口</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>内容管理系统、博客平台、大量写入（日志聚合）、maintaining counters、expiring usage</td>
+</tr>
+<tr>
+<td>不适合</td>
+<td>早期开发、变化的查询模式</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="面向文档的数据库"><a href="#面向文档的数据库" class="headerlink" title="面向文档的数据库"></a>面向文档的数据库</h4><ul>
+<li>面向文档的数据库类似于键值存储，不同之处在于，值指向标准格式/编码的文档（入XML，JSON等）</li>
+<li>文档数据库将这些文档理解为字段的集合，除了通过键进行检索之外，还可以直接进行查询和更新。</li>
+<li>文档数据库实质上是键值存储的下一个级别，允许与每个键与嵌套的值关联。 它们支持更有效的查询。</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3sg7kp29j30ku0gymzg.jpg" alt="截屏2020-03-23上午5.17.51" style="zoom:25%;" /></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>例子</th>
+<th>CouchDB, MongoDb</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经典的应用</td>
+<td>网络应用</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>列 -&gt; 族</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>快速查询、分布式的数据存储</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>查询性能、没有标准的查询语法</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>内容管理系统、博客平台、网络分析、实时分析、电商应用</td>
+</tr>
+<tr>
+<td>不适合</td>
+<td>跨多个业务的复杂事务、针对不同聚合结构的查询</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="图-树结构数据库"><a href="#图-树结构数据库" class="headerlink" title="图/树结构数据库"></a>图/树结构数据库</h4><p>图数据库使用灵活的图模型，代替行列式表和硬性结构（如SQL），它可以跨多台计算机进行扩展。目标是性能和灵活性。</p>
+<p>图包括<u>节点</u>和<u>关系</u>两个元素，每个<u>节点</u>代表一个 实体（如人、地点等），每个<u>关系</u>代表两个节点之间的联系。Twitter是图数据库的例子之一</p>
+<ul>
+<li>图的存储：有些图数据库使用，专门为存储和管理图而设计的，自带存储方式，；其他的则使用<u>关系数据库</u>或<u>对象数据库</u></li>
+<li>图的处理引擎：本地图处理（也称为“无索引邻接”）是处理图数据的最有效方法，因为连接的节点在数据库中彼此物理“指向”。非本机图处理使用其他方式来处理CRUD操作。</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3sqmtdb2j30ku0f40ze.jpg" alt="截屏2020-03-23上午5.27.55" style="zoom:50%;" /></p>
+<p>性能：</p>
+<ul>
+<li>数据之间的连接（关系）数量比数据量增长得更快。</li>
+<li>随着关系的数量和深度的增加，传统的数据库将变得混乱。 图数据库的性能可以更好地解决这一问题。</li>
+</ul>
+<p>灵活性：</p>
+<ul>
+<li>图的结构和方案可以随着解决方案/行业的变化而灵活变化。</li>
+<li>无需对域进行详尽的建模。 可以在现有结构上进行添加，而不必担心当前的功能。</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>例子</th>
+<th>Neo4J, InfoGrid, Infinite Graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经典的应用</td>
+<td>社交网络、推荐系统（专注于对数据结构建模 - 内部联系性）</td>
+</tr>
+<tr>
+<td>数据模型</td>
+<td>属性图 - 节点</td>
+</tr>
+<tr>
+<td>优点</td>
+<td>图算法：如最短路径、连通性、n度关系等</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>必须遍历整个图形才能获得确定的答案。不容易集群。</td>
+</tr>
+<tr>
+<td>适合</td>
+<td>关联数据的问题空间：社交网络、空间数据、货物和金钱的路由信息（物流）、推荐引擎</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="更多NoSQL的例子"><a href="#更多NoSQL的例子" class="headerlink" title="更多NoSQL的例子"></a>更多NoSQL的例子</h4><p>外部数据集成：</p>
+<ul>
+<li>许多公司需要集成来自业务合作伙伴的数据。 即使双方进行了大量的讨论和谈判，企业也几乎无法控制数据格式</li>
+</ul>
+<ul>
+<li>同样，在许多情况下，由于业务需求等的变化，这些格式会非常频繁地更改。</li>
+</ul>
+<p>前端订单处理系统：</p>
+<ul>
+<li>每当最终用户从世界任何地方进行交易时，系统都需要不被中断的接受请求。</li>
+<li>之后，协调系统通常会将其更新到后端系统，并更新最终用户的订单状态。</li>
+</ul>
+<p>企业内容管理服务：</p>
+<ul>
+<li>现在，内容管理已在公司的不同职能部门（例如HR或Sales）中使用。</li>
+<li>挑战是，将使用不同元数据结构的部门，一起合并到公共内容管理服务中</li>
+</ul>
+<h4 id="NoSQL-VS-RDBMS"><a href="#NoSQL-VS-RDBMS" class="headerlink" title="NoSQL VS RDBMS"></a>NoSQL VS RDBMS</h4><p>NoSQL：</p>
+<ul>
+<li>存储应该能够处理非常高的负载，能够在存储上执行许多写操作</li>
+<li>支持水平可扩展的存储</li>
+<li>简单，因为使用非常简单的查询语言（无联接）</li>
+</ul>
+<p>RDBMS：</p>
+<ul>
+<li>存储应该是高负载的，但主要由读取操作组成</li>
+<li>希望在复杂的数据结构中得到性能</li>
+<li>需要强大的SQL查询语言</li>
+</ul>
+<p>NewSQL</p>
+<ul>
+<li>使用SQL查询（虽然不完全支持）</li>
+<li>关系型</li>
+<li>保持ACID事务的一致性</li>
+<li>像NoSQL一样扩展</li>
+</ul>
+<h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><blockquote>
+<p>RDBMS —— Relational Database Management System —— 关系型数据库管理系统<br>column families —— 族</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag"><i class="fa fa-tag"></i> 非关系型数据库</a>
+              <a href="/tags/NoSQL/" rel="tag"><i class="fa fa-tag"></i> NoSQL</a>
+              <a href="/tags/ACID/" rel="tag"><i class="fa fa-tag"></i> ACID</a>
+              <a href="/tags/BASE/" rel="tag"><i class="fa fa-tag"></i> BASE</a>
+              <a href="/tags/CAP%E5%AE%9A%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> CAP定理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/08%20CLOUD%20%E2%80%93%20PART%201/" rel="prev" title="云(1)">
+      <i class="fa fa-chevron-left"></i> 云(1)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/12%20Bloom%20filters%20%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="next" title="Bloom filters 布隆过滤器">
+      Bloom filters 布隆过滤器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据库的结构"><span class="nav-text">数据库的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关系型数据库"><span class="nav-text">关系型数据库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#大数据系统中数据库的挑战"><span class="nav-text">大数据系统中数据库的挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CAP定理："><span class="nav-text">CAP定理：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ACID-和-BASE"><span class="nav-text">ACID 和 BASE</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NoSQL-——-Not-only-SQL"><span class="nav-text">NoSQL —— Not only SQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NoSQL的好处"><span class="nav-text">NoSQL的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NoSQL的种类"><span class="nav-text">NoSQL的种类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类型1：键值对存储"><span class="nav-text">类型1：键值对存储</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向列的数据库"><span class="nav-text">面向列的数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面向文档的数据库"><span class="nav-text">面向文档的数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图-树结构数据库"><span class="nav-text">图&#x2F;树结构数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多NoSQL的例子"><span class="nav-text">更多NoSQL的例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NoSQL-VS-RDBMS"><span class="nav-text">NoSQL VS RDBMS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关术语"><span class="nav-text">相关术语</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

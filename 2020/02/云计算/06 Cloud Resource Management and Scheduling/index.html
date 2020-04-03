@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="06 Cloud Resource Management and Scheduling资源管理和调度是任何“人造”系统的的关键功能；对系统的评估包括3个基本准则：功能性、性能、成本 计算机系统的调度：如何分配系统的资源：如CPU cycles，内存，次级存储空间，I&#x2F;O，网络带宽，用户事件和任务 资源调度的策略和机制：Policy：指导决策的原则；机制：如何实现policies 虚拟机资源管理服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云计算&#x2F;06 Cloud Resource Management and Scheduling">
+<meta property="og:url" content="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/06%20Cloud%20Resource%20Management%20and%20Scheduling/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="06 Cloud Resource Management and Scheduling资源管理和调度是任何“人造”系统的的关键功能；对系统的评估包括3个基本准则：功能性、性能、成本 计算机系统的调度：如何分配系统的资源：如CPU cycles，内存，次级存储空间，I&#x2F;O，网络带宽，用户事件和任务 资源调度的策略和机制：Policy：指导决策的原则；机制：如何实现policies 虚拟机资源管理服务">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-13T10:52:31.800Z">
+<meta property="article:modified_time" content="2020-02-22T16:34:46.569Z">
+<meta property="article:author" content="liaoooyx">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/06%20Cloud%20Resource%20Management%20and%20Scheduling/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>云计算/06 Cloud Resource Management and Scheduling | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/06%20Cloud%20Resource%20Management%20and%20Scheduling/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          云计算/06 Cloud Resource Management and Scheduling
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-13 10:52:31" itemprop="dateCreated datePublished" datetime="2020-02-13T10:52:31+00:00">2020-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-22 16:34:46" itemprop="dateModified" datetime="2020-02-22T16:34:46+00:00">2020-02-22</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="06-Cloud-Resource-Management-and-Scheduling"><a href="#06-Cloud-Resource-Management-and-Scheduling" class="headerlink" title="06 Cloud Resource Management and Scheduling"></a>06 Cloud Resource Management and Scheduling</h2><h4 id="资源管理和调度"><a href="#资源管理和调度" class="headerlink" title="资源管理和调度"></a>资源管理和调度</h4><p>是任何“人造”系统的的关键功能；对系统的评估包括3个基本准则：功能性、性能、成本</p>
+<p>计算机系统的调度：如何分配系统的资源：如CPU cycles，内存，次级存储空间，I/O，网络带宽，用户事件和任务</p>
+<p>资源调度的策略和机制：Policy：指导决策的原则；机制：如何实现policies</p>
+<h4 id="虚拟机资源管理"><a href="#虚拟机资源管理" class="headerlink" title="虚拟机资源管理"></a>虚拟机资源管理</h4><p><strong>服务级别协议(Service Level Agreement, SLA)</strong>和<strong>资源分配</strong>：</p>
+<ul>
+<li>服务请求检查<strong>Service Request Examiner</strong> 和准入控制<strong>Admission Control</strong>，包括：消费者驱动服务管理、计算风险管理、自动化资源管理</li>
+</ul>
+<blockquote>
+<p>A service-level agreement (SLA) is a commitment between a service provider and a client. Particular aspects of the service quality, availability, responsibilities are agreed between the service provider and the service user.</p>
+<p>服务级别协议（英語：service-level agreement，缩写SLA）也称服务等级协议、服务水平协议，是服务提供商与客户之间定义的正式承诺。服务提供商与受服务用户之间具体达成了承诺的服务指标——质量、可用性，责任。</p>
+<p>The most common component of an SLA is that the services should be provided to the customer as agreed upon in the contract. As an example, Internet service providers and telcos will commonly include service level agreements within the terms of their contracts with customers to define the level(s) of service being sold in plain language terms. In this case the SLA will typically have a technical definition in mean time between failures (MTBF), mean time to repair or mean time to recovery (MTTR); identifying which party is responsible for reporting faults or paying fees; responsibility for various data rates; throughput; jitter; or similar measurable details.</p>
+<p>SLA最常见的组成部分是以合同约定向客户提供的服务。例如，互联网服务供应商（ISP）和電訊公司通常在与客户的合同条款内包含简单定义的服务级别协议。在此事例下，SLA通常定义有平均故障間隔（MTBF）、平均修复时间或平均修復時間（MTTR）；哪一方负责报告错误与支付费用；吞吐量；抖动；或类似的可衡量细节。</p>
+<p>服务级别协议是一种两方或多方间协议，其中一方为客户，另一方为服务提供商。这可以是具有法律约束力的正式合同或非正式合约。协议有可能涉及单独的组织，也可以是同一个组织内的不同团队。服务提供商与其他第三方之间的合同经常被误称为SLA——由于服务级别是由出资客户要求，与第三方之间则不是“协议”，而只是“合约”。</p>
+<p>服务级别协议通常包含许多部分，从服务的定义到协议的终止。</p>
+</blockquote>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>云资源管理的问题：</p>
+<ul>
+<li><p>对于multi-objective optimization，需要复杂的策略和决策</p>
+<blockquote>
+<p>Multi-objective optimization多目标优化: 需要在权衡的情况下做出最佳决策在两个或多个相互矛盾的目标之间。比如：load balance, energe, cost, fault tolerance, security</p>
+</blockquote>
+</li>
+<li><p>挑战性：由于系统的复杂性，获取精确的全局状态信息是不可能的</p>
+</li>
+<li><p>与（系统）环境的交互是不可预测的，因此会受到影响：如系统故障、受攻击</p>
+</li>
+<li><p>云服务的提供商需要面对，巨大的负载波动，对云的弹性（可伸缩性）的影响</p>
+</li>
+</ul>
+<h4 id="资源管理策略-Policies"><a href="#资源管理策略-Policies" class="headerlink" title="资源管理策略 Policies"></a>资源管理策略 Policies</h4><ul>
+<li>准入控制 Admission control：防止系统违反高层系统策略接受工作负载</li>
+<li>容量分配 Capacity allocation：分配资源以单独激活服务</li>
+<li>负载平衡 Load balancing：在服务器之间平均分配工作负载</li>
+<li>能源优化 Energy optimization：能源消耗最小化</li>
+<li>服务质量（QoS）保证 Quality of service guarantees：能够满足服务级协议(SLA)规定的时间或其他条件。</li>
+</ul>
+<h4 id="Admission-control-准入控制"><a href="#Admission-control-准入控制" class="headerlink" title="Admission control 准入控制"></a>Admission control 准入控制</h4><blockquote>
+<p><strong>Admission control</strong> is a validation process in communication systems where a check is performed before a connection is established to see if current resources are sufficient for the proposed connection.</p>
+<p>是通信系统中的一种验证过程，在建立连接之前先进行检查，以查看当前资源是否足以用于建议的连接。</p>
+<p>For example：</p>
+<p>For some applications, dedicated resources (such as a wavelength across an optical network) may be needed in which case admission control has to verify availability of such resources before a request can be admitted.</p>
+<p>对于某些应用，可能需要专用资源（例如，整个光网络中的波长），在这种情况下，准入控制必须在可以接受请求之前验证此类资源的可用性。</p>
+<p>For more elastic applications, a total volume of resources may be needed prior to some deadline in order to satisfy a new request, in which case admission control needs to verify availability of resources at the time and perform scheduling to guarantee satisfaction of an admitted request.</p>
+<p>对于更具弹性的应用程序，在某个截止日期之前可能需要总量的资源才能满足新的请求，在这种情况下，准入控制需要验证当时的资源可用性并执行调度以保证满足所接纳的请求。</p>
+</blockquote>
+<p>比如：is about look at the resource that i have, can i fulfil the customers request, if i dont have enough resources, i will find resources for the customer from other resource providers, if i have agreement with them. if i can provide anyway, the access will be denied.</p>
+<h4 id="云的调度-Scheduling"><a href="#云的调度-Scheduling" class="headerlink" title="云的调度 Scheduling"></a>云的调度 Scheduling</h4><p>什么是调度：负责多个级别的资源共享：</p>
+<ul>
+<li>物理主机可以在多个虚拟机之间共享</li>
+<li>虚拟机可以支持多个应用程序</li>
+<li>一个应用程序可能包含多个线程</li>
+</ul>
+<blockquote>
+<p>调度在计算机中是分配工作所需资源的方法。资源可以指虚拟的计算资源，如线程、进程或数据流；也可以指硬件资源，如处理器、网络连接或扩展卡。</p>
+<p>进行调度工作的程序叫做调度器。调度器通常的实现使得所有计算资源都处于忙碌状态（在负载均衡中），允许多位用户有效地同时共享系统资源，或达到指定的服务质量。调度是计算自身的基础，同时也是编程语言计算模型固有的部分。调度器使得在单处理器上通过多任务处理，从而让执行多个进程成为可能。</p>
+</blockquote>
+<p>调度程序的目标：</p>
+<ul>
+<li>批处理系统：最大吞吐量和最小周转时间</li>
+<li>实时系统：按时完成并具有可预测性</li>
+</ul>
+<blockquote>
+<p>调度器可能会针对不同的目标设计，例如：吞吐率最大化、响应时间最小化、最低延迟[1]、或最大化公平。在实践中，这些目标通常是互相冲突的，因此，调度器会实现一个权衡利弊的折中方案，而侧重点则可能是前文提到的任何一种，这取决于用户的需求和目的。</p>
+<p>在实时环境，例如工业上用于自动控制（如机器人）的嵌入式系统，调度器必须保证进程的调度不能超过最后期限 —— 这是保持系统稳定运行的关键因素。调度也可能是通过一个管理性的后端进行，而任务是通过网络发配到若干远程设备上的。</p>
+</blockquote>
+<p>常见算法：</p>
+<ul>
+<li>Round-Robin(RR)</li>
+<li>First-Come-First Serve (FCFS)</li>
+<li>Shortest-Job-First (SJF)</li>
+<li>Priority Algorithms</li>
+</ul>
+<h4 id="OpenNebula的虚拟机调度"><a href="#OpenNebula的虚拟机调度" class="headerlink" title="OpenNebula的虚拟机调度"></a>OpenNebula的虚拟机调度</h4><ul>
+<li>调度器算法：match making，将“挂起的虚拟机 pending VM”分配给“已知的主机 known Hosts” （匹配VM的需求和硬件层正好有的资源）</li>
+<li>策略：Rank Scheduling Policy，该策略的目标是优先考虑那些更适合VM的资源。</li>
+</ul>
+<h4 id="虚拟机调度方式：例子"><a href="#虚拟机调度方式：例子" class="headerlink" title="虚拟机调度方式：例子"></a>虚拟机调度方式：例子</h4><ul>
+<li>Power-aware：重点是如何最大程度地减少物理主机消耗的能源（比如电），从而最大程度地提高云提供商的收入；比如将多个VMs迁移到同一个节点上，降低总的能耗。</li>
+<li>Performance-aware: 通过动态布局机制，重点在于保持服务级别，同时提高资源利用率（如Real-time system）</li>
+<li>Network-aware: 重点是如何最大程度地减少虚拟机实例和数据存储之间的数据传输时间的影响（如Big data system，Hadoop distributed file system）</li>
+<li>Heuristics 启发式的: 包括先到先得（FCFS），贪婪和循环机制。 例如，FCFS使用First Fit（FF）启发式方法，将VM分配给可以容纳它的第一台物理主机。</li>
+</ul>
+<h4 id="虚拟机管理：例子"><a href="#虚拟机管理：例子" class="headerlink" title="虚拟机管理：例子"></a>虚拟机管理：例子</h4><ol>
+<li>监控云的使用和负载</li>
+<li>服务器整合 server consolidation：当负载降低时，实时转移虚拟机，到负载更高的节点上；不使用的节点关闭</li>
+<li>当负载增加时：启动待机节点；对新的虚拟机和新的节点进行调度</li>
+</ol>
+<h4 id="能源感知算法"><a href="#能源感知算法" class="headerlink" title="能源感知算法"></a>能源感知算法</h4><p>主机过载检测：MAD，LR</p>
+<p>主机underload（低负载）检测算法：Migrate the VMs from the least utilised host；如Power-aware场景</p>
+<p>虚拟机选择算法：MMT，RS</p>
+<p>虚拟机放置算法：Power-Aware Best Fit</p>
+<h4 id="虚拟机转移"><a href="#虚拟机转移" class="headerlink" title="虚拟机转移"></a>虚拟机转移</h4><p>转移的发生是透明的</p>
+<h4 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h4><p>何时迁移：Host overload detection algorithms、Host underload detection algorithms，</p>
+<p>迁移哪个：VM selection algorithms</p>
+<p>迁移到哪：VM placement algorithms</p>
+<h4 id="需要考虑：内存、网络、存储"><a href="#需要考虑：内存、网络、存储" class="headerlink" title="需要考虑：内存、网络、存储"></a>需要考虑：内存、网络、存储</h4>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Virtualization/" rel="prev" title="虚拟化">
+      <i class="fa fa-chevron-left"></i> 虚拟化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/06_%20Service%20Level%20Agreement/" rel="next" title="云计算/06_ Service Level Agreement">
+      云计算/06_ Service Level Agreement <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#06-Cloud-Resource-Management-and-Scheduling"><span class="nav-text">06 Cloud Resource Management and Scheduling</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#资源管理和调度"><span class="nav-text">资源管理和调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机资源管理"><span class="nav-text">虚拟机资源管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源管理策略-Policies"><span class="nav-text">资源管理策略 Policies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Admission-control-准入控制"><span class="nav-text">Admission control 准入控制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云的调度-Scheduling"><span class="nav-text">云的调度 Scheduling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenNebula的虚拟机调度"><span class="nav-text">OpenNebula的虚拟机调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机调度方式：例子"><span class="nav-text">虚拟机调度方式：例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机管理：例子"><span class="nav-text">虚拟机管理：例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#能源感知算法"><span class="nav-text">能源感知算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机转移"><span class="nav-text">虚拟机转移</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关问题"><span class="nav-text">相关问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#需要考虑：内存、网络、存储"><span class="nav-text">需要考虑：内存、网络、存储</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

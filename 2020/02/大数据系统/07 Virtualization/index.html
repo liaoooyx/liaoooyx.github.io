@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="虚拟机监控程序：Type 1 &amp; 2虚拟化技术：全虚拟化、硬件辅助虚拟化、半虚拟化等流行的几种虚拟机技术产品">
+<meta property="og:type" content="article">
+<meta property="og:title" content="虚拟化">
+<meta property="og:url" content="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Virtualization/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="虚拟机监控程序：Type 1 &amp; 2虚拟化技术：全虚拟化、硬件辅助虚拟化、半虚拟化等流行的几种虚拟机技术产品">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd2fphsuk8j30m60gq0xe.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd2ftu1du4j30ya0d6tcl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd2g2esvvdj30l20d678f.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd2gdbcx79j30iy0h8dpv.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd2giho173j30fq0jm0z9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd2gnooutkj30zw0juki9.jpg">
+<meta property="article:published_time" content="2020-02-12T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-26T03:37:47.023Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="虚拟化">
+<meta property="article:tag" content="Hypervisor">
+<meta property="article:tag" content="全虚拟化">
+<meta property="article:tag" content="半虚拟化">
+<meta property="article:tag" content="硬件辅助虚拟化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd2fphsuk8j30m60gq0xe.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Virtualization/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>虚拟化 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Virtualization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          虚拟化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-12 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-12T00:00:00+00:00">2020-02-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 03:37:47" itemprop="dateModified" datetime="2020-03-26T03:37:47+00:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>虚拟机监控程序：Type 1 &amp; 2<br>虚拟化技术：全虚拟化、硬件辅助虚拟化、半虚拟化等<br>流行的几种虚拟机技术产品</p>
+<a id="more"></a>
+<h2 id="什么是虚拟化"><a href="#什么是虚拟化" class="headerlink" title="什么是虚拟化"></a>什么是虚拟化</h2><p>虚拟化可以广义地定义为：概念性资源或服务与提供它的物理方式的（有益）分离</p>
+<p>创建虚拟资源：硬件平台，操作系统，存储设备，计算机网络资源</p>
+<h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>虚拟机：真实机器的一种表示，使用软件模拟操作环境</p>
+<p>Guest Operating System：运行在虚拟机里的操作系统</p>
+<p>Host OS：运行虚拟机的操作系统</p>
+<p>Hypervisor/VMM 虚拟机监控程序：将资源虚拟化的中间件；位于基础资源和虚拟机之间</p>
+<h4 id="虚拟化的好处"><a href="#虚拟化的好处" class="headerlink" title="虚拟化的好处"></a>虚拟化的好处</h4><p>原因：资源利用不足；数据中心空间不足；环保；管理成本上升</p>
+<p>特点：Sharing、Aggregation，Emulation，Isolation</p>
+<p>好处：随意选择操作系统（比如测试环境）；合并服务器和基础设施；节约时间和金钱；简化管理，保护桌面环境：比如将不安全的程序隔离进虚拟机中，可以将虚拟机复制到其他机器中，相同的操作系统/软件可以快速安装。</p>
+<p>缺点：Guest OS对硬件要求更高；需要学习如何使用；不够精确；硬件问题：比如Intel IA-32</p>
+<h3 id="虚拟机监控程序-Hypervisor"><a href="#虚拟机监控程序-Hypervisor" class="headerlink" title="虚拟机监控程序 Hypervisor"></a>虚拟机监控程序 Hypervisor</h3><p>Qemu, VMware Player, Microsoft Virtual PC etc，Sometimes called Emulation, e.g. x86 Emulation</p>
+<h4 id="Hypervisor的分类"><a href="#Hypervisor的分类" class="headerlink" title="Hypervisor的分类"></a>Hypervisor的分类</h4><p><strong>裸机模式 Bare Metal: Type 1 hypervisor</strong></p>
+<p>位于裸机计算机硬件上，例如CPU，内存等；所有GuestOS都在Hypervisor之上；Hypervisor是硬件之上的第一层。如：Microsoft Hyper-V</p>
+<p><strong>托管模式 Hosted Approach：Type 2 Hypervisor</strong></p>
+<p>在主操作系统上运行；Hypervisor是硬件之上的第二层；Guest OS在hypervisor上的一层运行</p>
+<p>比如：VMWare Workstations、Microsoft Virtual PC、FreeBSD</p>
+<h4 id="Hypervisor的主要属性"><a href="#Hypervisor的主要属性" class="headerlink" title="Hypervisor的主要属性"></a>Hypervisor的主要属性</h4><p><strong>Equivalence 等价性</strong>：程序应该表现的像是直接在同样的硬件上执行</p>
+<p><strong>Resource control 资源控制</strong> ：Hypervisor对虚拟资源有完整的控制</p>
+<p><strong>Efficiency 效率</strong>：必须在无Hypervisor的干预下执行绝大部分机器指令machine instruction</p>
+<h2 id="虚拟化技术"><a href="#虚拟化技术" class="headerlink" title="虚拟化技术"></a>虚拟化技术</h2><p>全虚拟化，硬件辅助虚拟化，部分虚拟化：半虚拟化、混合、OS Level</p>
+<h3 id="全虚拟化"><a href="#全虚拟化" class="headerlink" title="全虚拟化"></a>全虚拟化</h3><p>在全虚拟化技术中，Guest OS并不知道自己处于虚拟的环境，以Guest OS的角度，它直接与硬件进行通信（实际上是虚拟的硬件）</p>
+<ul>
+<li>主机系统模拟硬件，使Guest OS无需任何修改即可运行</li>
+<li>不同的架构可以独立运行</li>
+<li>因为GuestOS与仿真硬件通信（due to the overhead associated with emulating hardware at the transistor level），导致相当大的性能损失</li>
+</ul>
+<h3 id="硬件辅助虚拟化"><a href="#硬件辅助虚拟化" class="headerlink" title="硬件辅助虚拟化"></a>硬件辅助虚拟化</h3><p>是全虚拟化的一种，其中的微处理器架构有特殊的指令，可以协助硬件的虚拟化（而不是完全靠主机操作系统模拟硬件）。这种方式以“Virtual Machine Extensions”的形式，充分利用了硬件的能力，如Intel VT和AMD V</p>
+<p><strong>促进虚拟机的性能</strong>：可以直接与主机的处理器通信，而不需要由Hypervisor进行翻译和隔离；要求GuestOS与主机使用一样的命令集</p>
+<p><strong>完整的硬件协助虚拟化</strong>（如I/O和内存管理），还没有在任何VMM中完整实现</p>
+<h3 id="部分虚拟化"><a href="#部分虚拟化" class="headerlink" title="部分虚拟化"></a>部分虚拟化</h3><p>只模拟主机的大部分硬件，而非全部；支持资源共享，但不保证GuestOS实例被隔离</p>
+<p>比如：半虚拟化、混合虚拟化、操作系统级别虚拟化</p>
+<h4 id="半虚拟化"><a href="#半虚拟化" class="headerlink" title="半虚拟化"></a>半虚拟化</h4><p>在半虚拟化中，GuestOS知道自己的身份，并且直接与HostOS通信（而不是与模拟的硬件通信）</p>
+<ul>
+<li>GuestOS需要进行修改</li>
+<li>提供定义好的“钩子“，在GuestOS和HostOS中执行特定的任务</li>
+<li>在半虚拟的平台中，虚拟机监控程序更简单，因为重要的任务都从VMM中移交给了操作系统<ul>
+<li>优点：虚拟化开销减少，因此性能提高</li>
+</ul>
+</li>
+<li>缺点：兼容性和可移植性降低（因为修改了操作系统）、维护成本增加（因为对操作系统的深度修改）</li>
+<li>例子：KVM (Kernel-based VM)</li>
+</ul>
+<h4 id="比较：半虚拟化和全虚拟化"><a href="#比较：半虚拟化和全虚拟化" class="headerlink" title="比较：半虚拟化和全虚拟化"></a>比较：半虚拟化和全虚拟化</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>全虚拟化</th>
+<th>半虚拟化</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不需要修改OS</td>
+<td>需要修改OS</td>
+</tr>
+<tr>
+<td>通过二进制翻译，由软件模拟关键的指令</td>
+<td>用Hypercall代替不可虚拟化的指令，GuestOS直接与VMM通信</td>
+</tr>
+<tr>
+<td><strong>二进制翻译会降低性能</strong></td>
+<td>减少开销</td>
+</tr>
+<tr>
+<td></td>
+<td>维护半虚拟化的GuestOS成本很高（修改、更新系统补丁）</td>
+</tr>
+<tr>
+<td>如：VMware</td>
+<td>如：Xen，VMware ESX (Elastic Sky X)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="混合虚拟化"><a href="#混合虚拟化" class="headerlink" title="混合虚拟化"></a>混合虚拟化</h4><p>组合<u>半虚拟化</u>和<u>硬件辅助虚拟化</u>，为创建新的基于云的系统奠定了良好的基础，减少了高峰需求所需的物理机数量，从而减少了硬件运行和设置成本</p>
+<p>优点：能够在GuestOS上获得接近本机的性能</p>
+<p>缺点：包含双方的缺点，如可移植性低、兼容性低、开发维护成本增加</p>
+<ul>
+<li>大多数VMM支持多种类型的虚拟化，因此可以略微减轻这些缺点</li>
+</ul>
+<h4 id="操作系统级的虚拟化"><a href="#操作系统级的虚拟化" class="headerlink" title="操作系统级的虚拟化"></a>操作系统级的虚拟化</h4><p>对多个用户空间的实例进行隔离，GuestOS需要与HostOS一致</p>
+<p>优点：GuestOS上的执行能够达到本机的性能</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd2fphsuk8j30m60gq0xe.jpg" alt="截屏2020-03-22上午1.11.29" style="zoom:33%;" /></p>
+<h2 id="案例学习"><a href="#案例学习" class="headerlink" title="案例学习"></a>案例学习</h2><h4 id="XEN-——-Type-1-Hypervisor（裸机）"><a href="#XEN-——-Type-1-Hypervisor（裸机）" class="headerlink" title="XEN —— Type-1 Hypervisor（裸机）"></a>XEN —— Type-1 Hypervisor（裸机）</h4><ul>
+<li>例子：剑桥大学、Citrix System思杰系统</li>
+<li>微核、</li>
+<li>Domain 0（特权Guest）负责控制和I/O、其他Domain负责用户的程序</li>
+<li>轻量（&lt;150k 代码行），高可扩展性，大于255个物理CPU</li>
+<li>可以分配最高128个虚拟CPU和1TB内存给虚拟机</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd2ftu1du4j30ya0d6tcl.jpg" alt="截屏2020-03-22上午1.15.39" style="zoom:50%;" /></p>
+<h4 id="VMware-ESX-Server-——-Type-1-Hypervisor（裸机）"><a href="#VMware-ESX-Server-——-Type-1-Hypervisor（裸机）" class="headerlink" title="VMware ESX Server —— Type-1 Hypervisor（裸机）"></a>VMware ESX Server —— Type-1 Hypervisor（裸机）</h4><ul>
+<li>企业数据中心的商用VMM</li>
+<li>支持<u>全虚拟化</u>和<u>混合虚拟化技术</u></li>
+<li>基于x86和x86-64结构的Linux和Widows的变体</li>
+<li>GuestOS最高支持：32个虚拟CPU和1TB内存</li>
+<li>每个主机最高支持：160个CPU，2TB内存，512个虚拟机</li>
+<li>其他商业版：VMware Workstation and Server 是 Type-2 Hypervisor（有HostOS）</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd2g2esvvdj30l20d678f.jpg" alt="截屏2020-03-22上午1.23.51" style="zoom:50%;" /></p>
+<h4 id="KVM-——-Type-2-Hypervisor（HostOS）"><a href="#KVM-——-Type-2-Hypervisor（HostOS）" class="headerlink" title="KVM —— Type 2 Hypervisor（HostOS）"></a>KVM —— Type 2 Hypervisor（HostOS）</h4><ul>
+<li>由 Red Hat 支持</li>
+<li>支持硬件辅助虚拟化、混合虚拟化</li>
+<li>主要是X86和X86-64</li>
+<li>移植到PowerPC和IA-64（Itanium）</li>
+<li>通过kernel模块，将Linux内核转化为Hypervisor</li>
+<li>通过QEMU进行设备模拟</li>
+<li>支持多种GuestOS</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd2gdbcx79j30iy0h8dpv.jpg" alt="截屏2020-03-22上午1.34.22" style="zoom:50%;" /></p>
+<h4 id="VirtualBox-——-Type-2-Hypervisor（HostOS）"><a href="#VirtualBox-——-Type-2-Hypervisor（HostOS）" class="headerlink" title="VirtualBox —— Type 2 Hypervisor（HostOS）"></a>VirtualBox —— Type 2 Hypervisor（HostOS）</h4><ul>
+<li>由Oracle支持，是一个桌面的虚拟机监控程序</li>
+<li>支持混合虚拟化</li>
+<li>开源</li>
+<li>不开源的免费版本扩展包，用于支持远程桌面协议（RDP）</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd2giho173j30fq0jm0z9.jpg" alt="截屏2020-03-22上午1.39.20" style="zoom:50%;" /></p>
+<h4 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h4><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd2gnooutkj30zw0juki9.jpg" alt="截屏2020-03-22上午1.44.18" style="zoom:50%;" /></p>
+<h2 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h2><blockquote>
+<p>Host OS —— 主机操作系统<br>Guest OS —— 虚拟机操作系统<br>Hypervisor —— Virtual Machine Monitor (VMM)—— 虚拟机监控程序<br>Para-Virtualization —— 半虚拟化<br>Hybrid Virtualization —— 混合虚拟化<br>Bare Metal —— 裸机<br>Overhead —— 开销<br>Portability —— 可移植性<br>Hypercall —— 超级调用</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 虚拟化</a>
+              <a href="/tags/Hypervisor/" rel="tag"><i class="fa fa-tag"></i> Hypervisor</a>
+              <a href="/tags/%E5%85%A8%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 全虚拟化</a>
+              <a href="/tags/%E5%8D%8A%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 半虚拟化</a>
+              <a href="/tags/%E7%A1%AC%E4%BB%B6%E8%BE%85%E5%8A%A9%E8%99%9A%E6%8B%9F%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 硬件辅助虚拟化</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/05%20Virtualization%202/" rel="prev" title="云计算/05 Virtualization 2">
+      <i class="fa fa-chevron-left"></i> 云计算/05 Virtualization 2
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/06%20Cloud%20Resource%20Management%20and%20Scheduling/" rel="next" title="云计算/06 Cloud Resource Management and Scheduling">
+      云计算/06 Cloud Resource Management and Scheduling <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是虚拟化"><span class="nav-text">什么是虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟化的好处"><span class="nav-text">虚拟化的好处</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机监控程序-Hypervisor"><span class="nav-text">虚拟机监控程序 Hypervisor</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Hypervisor的分类"><span class="nav-text">Hypervisor的分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hypervisor的主要属性"><span class="nav-text">Hypervisor的主要属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟化技术"><span class="nav-text">虚拟化技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#全虚拟化"><span class="nav-text">全虚拟化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬件辅助虚拟化"><span class="nav-text">硬件辅助虚拟化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分虚拟化"><span class="nav-text">部分虚拟化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#半虚拟化"><span class="nav-text">半虚拟化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较：半虚拟化和全虚拟化"><span class="nav-text">比较：半虚拟化和全虚拟化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合虚拟化"><span class="nav-text">混合虚拟化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作系统级的虚拟化"><span class="nav-text">操作系统级的虚拟化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#案例学习"><span class="nav-text">案例学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#XEN-——-Type-1-Hypervisor（裸机）"><span class="nav-text">XEN —— Type-1 Hypervisor（裸机）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VMware-ESX-Server-——-Type-1-Hypervisor（裸机）"><span class="nav-text">VMware ESX Server —— Type-1 Hypervisor（裸机）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#KVM-——-Type-2-Hypervisor（HostOS）"><span class="nav-text">KVM —— Type 2 Hypervisor（HostOS）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VirtualBox-——-Type-2-Hypervisor（HostOS）"><span class="nav-text">VirtualBox —— Type 2 Hypervisor（HostOS）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对比"><span class="nav-text">对比</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关术语"><span class="nav-text">相关术语</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

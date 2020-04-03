@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Cloud Brusting 云爆发The latest hybridmodel could be a cost-effective way to take advantage of the cloud Cloud bursting is a rather nebulous buzzword that sounds cool but, I’m afraid, has nothing to do w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="云计算&#x2F;03_ Cloud Bursting">
+<meta property="og:url" content="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Cloud%20Bursting/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="Cloud Brusting 云爆发The latest hybridmodel could be a cost-effective way to take advantage of the cloud Cloud bursting is a rather nebulous buzzword that sounds cool but, I’m afraid, has nothing to do w">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-04T16:00:50.054Z">
+<meta property="article:modified_time" content="2020-02-04T16:00:56.870Z">
+<meta property="article:author" content="liaoooyx">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Cloud%20Bursting/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>云计算/03_ Cloud Bursting | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Cloud%20Bursting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          云计算/03_ Cloud Bursting
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-04 16:00:50 / 修改时间：16:00:56" itemprop="dateCreated datePublished" datetime="2020-02-04T16:00:50+00:00">2020-02-04</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Cloud-Brusting-云爆发"><a href="#Cloud-Brusting-云爆发" class="headerlink" title="Cloud Brusting 云爆发"></a>Cloud Brusting 云爆发</h1><h2 id="The-latest-hybrid"><a href="#The-latest-hybrid" class="headerlink" title="The latest hybrid"></a>The latest hybrid</h2><p>model could be a cost-effective way to take advantage of the cloud</p>
+<p>Cloud bursting is a rather nebulous buzzword that sounds cool but, I’m afraid, has nothing to do with Kate Bush. Instead, it’s the term used to describe a setup where you run your business mostly on your own kit, but also have a set of cloud accounts sitting idle, ready to take on extra “bursts” of work when demand peaks.</p>
+<h2 id="Isn’t-that-already-the-idea-behind-hybrid-cloud"><a href="#Isn’t-that-already-the-idea-behind-hybrid-cloud" class="headerlink" title="Isn’t that already the idea behind hybrid cloud?"></a>Isn’t that already the idea behind hybrid cloud?</h2><p>Yes and no. Hybrid cloud is an umbrella term for dividing up your computing resources across local and off-premises servers; cloud bursting is a specific way of using those resources.</p>
+<p>In practice, a cloud burst setup might use containerised VMs and some form of load orchestration package to shift containers to locations where user sessions can reach them. It will probably require quite a lot of work at the database design level as well, so that this too can be replicated, multi-homed or remotely accessed. In short, cloud bursting isn’t an architecture or a computing philosophy, but a capability of your entire technology estate.</p>
+<h2 id="Is-it-just-an-agile-implementation-of-hybrid-cloud"><a href="#Is-it-just-an-agile-implementation-of-hybrid-cloud" class="headerlink" title="Is it just an agile implementation of hybrid cloud?"></a>Is it just an agile implementation of hybrid cloud?</h2><p>That’s a question of semantics. A cloud bursting setup should quickly respond to unforeseen changes in demand, but this isn’t quite what’s conventionally meant by “agile”. Agility is about being able to retool your code quickly to adapt to changing circumstances, whereas cloud bursting requires everything to be in place well before the high-load day comes.</p>
+<p>You need to have your cloud accounts in place and paid up, you need to be sure that your code platform will run on the cloud, and you need to make sure that it’s actually capable of meeting the demands you want to place on it. Doing this properly involves a great deal of pre-emptive development and testing. I’d be very wary of a business that went into a cloud bursting project with an “agile” mindset.</p>
+<h2 id="Is-a-cloud-bursting-setup-is-cheaper-than-regular-cloud-hosting"><a href="#Is-a-cloud-bursting-setup-is-cheaper-than-regular-cloud-hosting" class="headerlink" title="Is a cloud bursting setup is cheaper than regular cloud hosting?"></a>Is a cloud bursting setup is cheaper than regular cloud hosting?</h2><p>It might work out that way, but the two models aren’t perfectly comparable. Hybrid cloud usually tends to imply an IAAS model, whereas cloud bursting finds most interest from heavy SAAS users.</p>
+<p>Cloud bursting also relies on your orchestration software correctly working out when to spin up the offsite services and incur the associated charges - which involves an element of voodoo, as it’s exquisitely difficult to distinguish between blips and booms as they’re happening. A hybrid cloud setup with plenty of slack capacity may or may not work out cheaper, but it’s likely to be more dependable, and have a more predictable cost.</p>
+<h2 id="When-is-cloud-bursting-the-right-answer"><a href="#When-is-cloud-bursting-the-right-answer" class="headerlink" title="When is cloud bursting the right answer?"></a>When is cloud bursting the right answer?</h2><p>There are some such scenarios, but they’re mostly inside the world of IT itself. For example, if you’re an antivirus developer combatting zero-day exploits, you’ll want the ability to scale your download links out into the cloud on bad virus days. Some classes of simulation can also easily parcel up workloads and hand them off to compute nodes with no regard for where those nodes are hosted. Unfortunately, this model has become controversial, since it’s currently mostly employed by Bitcoin-mining trojans.</p>
+<h2 id="What’s-the-key-downside-of-a-cloud-bursting-approach"><a href="#What’s-the-key-downside-of-a-cloud-bursting-approach" class="headerlink" title="What’s the key downside of a cloud bursting approach?"></a>What’s the key downside of a cloud bursting approach?</h2><p>Finance directors probably aren’t going to love cloud burst projects, because (as we’ve noted) the costs are unpredictable by design. What’s more, since the whole point of cloud bursting is that you don’t use it regularly, it’s only when you really need to fire up those cloud servers that you discover that a recent update has unexpectedly broken your meticulously crafted handover routines.</p>
+<p>These inherent risks will tend to push most businesses back in the direction of a more traditional hybrid architecture.</p>
+<h2 id="Why-are-vendors-pushing-cloud-bursting-as-the-next-big-thing"><a href="#Why-are-vendors-pushing-cloud-bursting-as-the-next-big-thing" class="headerlink" title="Why are vendors pushing cloud bursting as the next big thing?"></a>Why are vendors pushing cloud bursting as the next big thing?</h2><p>I suspect that the vendors aren’t trying to get you specifically into cloud bursting. They want to make you think more generally about where your computing resources live.</p>
+<p>A little research, and my own anecdotal experience, suggests that very few companies have actually committed to a full-on cloud bursting model - which probably tells you everything you need to know.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03%20Cloud%20Platform%20Architecture%20over%20Virtualized%20Datacenters/" rel="prev" title="云计算/03 Cloud Platform Architecture over Virtualized Datacenters">
+      <i class="fa fa-chevron-left"></i> 云计算/03 Cloud Platform Architecture over Virtualized Datacenters
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Federated%20Cloud%20%E8%81%94%E5%90%88%E4%BA%91/" rel="next" title="云计算/03_ Federated Cloud 联合云">
+      云计算/03_ Federated Cloud 联合云 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Cloud-Brusting-云爆发"><span class="nav-text">Cloud Brusting 云爆发</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#The-latest-hybrid"><span class="nav-text">The latest hybrid</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Isn’t-that-already-the-idea-behind-hybrid-cloud"><span class="nav-text">Isn’t that already the idea behind hybrid cloud?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Is-it-just-an-agile-implementation-of-hybrid-cloud"><span class="nav-text">Is it just an agile implementation of hybrid cloud?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Is-a-cloud-bursting-setup-is-cheaper-than-regular-cloud-hosting"><span class="nav-text">Is a cloud bursting setup is cheaper than regular cloud hosting?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#When-is-cloud-bursting-the-right-answer"><span class="nav-text">When is cloud bursting the right answer?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-the-key-downside-of-a-cloud-bursting-approach"><span class="nav-text">What’s the key downside of a cloud bursting approach?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-are-vendors-pushing-cloud-bursting-as-the-next-big-thing"><span class="nav-text">Why are vendors pushing cloud bursting as the next big thing?</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

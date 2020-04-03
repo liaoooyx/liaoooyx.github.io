@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="NoSQL可以被分成4类：键值对存储（MapReduce）、面向列的数据库（如Google Big Table）、文档数据库（MongoDB）、图形数据库（如Neo4J） 图形数据库主要用于存储具有更多关联的数据，而传统的RDBMS对大量数据的遍历性能不佳 图形数据库适合数据元素之间的关系与数据本身同样重要的项目  由Neo4j，Inc.开发的图形数据库管理系统。它的开发人员将Neo4j描述为具有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图形数据库 Neo4J">
+<meta property="og:url" content="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="NoSQL可以被分成4类：键值对存储（MapReduce）、面向列的数据库（如Google Big Table）、文档数据库（MongoDB）、图形数据库（如Neo4J） 图形数据库主要用于存储具有更多关联的数据，而传统的RDBMS对大量数据的遍历性能不佳 图形数据库适合数据元素之间的关系与数据本身同样重要的项目  由Neo4j，Inc.开发的图形数据库管理系统。它的开发人员将Neo4j描述为具有">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd12m5xkukj30qw0bk0vr.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd12sg645oj312g0faafz.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd12xhqnq2j311i0g2djr.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd167p6tmfj30em086q6v.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd16bcna2jj30gu0cgwf3.jpg">
+<meta property="article:published_time" content="2020-03-20T20:04:14.000Z">
+<meta property="article:modified_time" content="2020-03-26T03:49:37.319Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="NoSQL">
+<meta property="article:tag" content="Neo4J">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd12m5xkukj30qw0bk0vr.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>图形数据库 Neo4J | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图形数据库 Neo4J
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-20 20:04:14" itemprop="dateCreated datePublished" datetime="2020-03-20T20:04:14+00:00">2020-03-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 03:49:37" itemprop="dateModified" datetime="2020-03-26T03:49:37+00:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>NoSQL可以被分成4类：键值对存储（MapReduce）、面向列的数据库（如Google Big Table）、文档数据库（MongoDB）、图形数据库（如Neo4J）</p>
+<p>图形数据库主要用于存储具有更多关联的数据，而传统的RDBMS对大量数据的遍历性能不佳</p>
+<p>图形数据库适合数据元素之间的关系与数据本身同样重要的项目</p>
+<blockquote>
+<p>由Neo4j，Inc.开发的图形数据库管理系统。它的开发人员将Neo4j描述为具有本机图形存储和处理的ACID兼容事务数据库，根据DB-Engines排名，Neo4j是最受欢迎的图形数据库，并且总体上是第22位最受欢迎的数据库。</p>
+</blockquote>
+<a id="more"></a>
+<h4 id="NoSQL的种类"><a href="#NoSQL的种类" class="headerlink" title="NoSQL的种类"></a>NoSQL的种类</h4><p>NoSQL可以被分成4类：键值对存储（MySQL）、面向列的数据库（如Google Big Table）、文档数据库、图形数据库（如Neo4J）</p>
+<h4 id="图-树结构的数据库"><a href="#图-树结构的数据库" class="headerlink" title="图/树结构的数据库"></a>图/树结构的数据库</h4><p>图包括2个元素：</p>
+<ul>
+<li><p>节点node：表示实体</p>
+</li>
+<li><p>关系relationship：表示2个节点之间是如何联系在一起的</p>
+</li>
+</ul>
+<blockquote>
+<p>2019年Twitter的每月活跃用户数量为3.21亿，通过图形数据库关联在一起</p>
+</blockquote>
+<h4 id="图形数据库-VS-传统的关系数据库管理系统RDBMS"><a href="#图形数据库-VS-传统的关系数据库管理系统RDBMS" class="headerlink" title="图形数据库 VS 传统的关系数据库管理系统RDBMS"></a>图形数据库 VS 传统的关系数据库管理系统RDBMS</h4><p>图形数据库主要用于存储更多连接的数据，而传统的RDBMS对大量数据的遍历(traverse)性能不佳</p>
+<p>图形数据库适合：数据元素之间的关系与数据本身同样重要的项目</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>RDBMS</th>
+<th>Graph DataBase</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>表</td>
+<td>图</td>
+</tr>
+<tr>
+<td>行</td>
+<td>节点</td>
+</tr>
+<tr>
+<td>列和数据</td>
+<td>属性和值</td>
+</tr>
+<tr>
+<td>约束</td>
+<td>关系</td>
+</tr>
+<tr>
+<td>Joins</td>
+<td>Traversal 遍历</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>属性是用来表示数据的键值对</p>
+<h3 id="Neo4J"><a href="#Neo4J" class="headerlink" title="Neo4J"></a>Neo4J</h3><p>是服从ACID的事务性数据库，提供自带的(native)图存储和处理</p>
+<p>由Java编写，其他语言可以通过Cypher Query Language (CQL) 进行访问</p>
+<blockquote>
+<p>Cypher是一种声明性图形查询语言，它允许在属性图形中进行有表现力且有效的数据查询。</p>
+</blockquote>
+<h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>以CQL作为查询语言，类似于SQL的查询语言</p>
+<p>遵循属性图数据模型 Property Graph Data Model</p>
+<p>包含可执行CQL命令的用户接口（Neo4J数据浏览器）</p>
+<p>尽管是NoSQL，但其他大多数图像界面一样，服从ACID</p>
+<p>提供REST和JavaScript接口</p>
+<h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><p>能够简单快速对<u>连接的数据</u>进行表示和获取</p>
+<p>CQL的设计是人类可读的，并且易于学习</p>
+<p>不需要复杂的Joins来获取连接的数据</p>
+<h4 id="属性图数据模型"><a href="#属性图数据模型" class="headerlink" title="属性图数据模型"></a>属性图数据模型</h4><p>Neo4J使用属性图数据模型对数据进行存储和管理，Neo4J使用自带的图处理引擎GPE，对以这个格式存储的数据进行处理。该模型简单，只有少量的基本元素：</p>
+<ul>
+<li>数据由节点、关系和属性表示</li>
+<li>节点和关系都包含属性</li>
+<li>关系连接节点</li>
+<li>属性是键值对</li>
+<li><p>每个关系都包含“起始节点”和“结束节点”</p>
+</li>
+<li><p><strong>标签</strong>：将一系列的节点或关系用一个常用的名字管理起来。一个节点或关系可以有多个标签</p>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd12m5xkukj30qw0bk0vr.jpg" alt="截屏2020-03-20下午8.52.53"></p>
+<h4 id="可视化——Neo4J-数据浏览器"><a href="#可视化——Neo4J-数据浏览器" class="headerlink" title="可视化——Neo4J 数据浏览器"></a>可视化——Neo4J 数据浏览器</h4><p>Neo4J 2.0版开始自带。能够快速简单的图形数据库进行可视化和编辑</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd12sg645oj312g0faafz.jpg" alt="截屏2020-03-20下午8.58.59"></p>
+<h4 id="Cypher查询语言"><a href="#Cypher查询语言" class="headerlink" title="Cypher查询语言"></a>Cypher查询语言</h4><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd12xhqnq2j311i0g2djr.jpg" alt="截屏2020-03-20下午9.03.50"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;创建emp节点，标签名为Employee</span><br><span class="line">CREATE (emp:Employee)</span><br><span class="line">&#x2F;&#x2F; 创建包含属性的节点</span><br><span class="line">CREATE (emp:Employee &#123;employeeNumber:10, name&#x3D;“Paul”, location&#x3D;“Leeds”&#125; ) ;</span><br><span class="line">&#x2F;&#x2F; 获取数据</span><br><span class="line">MATCH (myresults: Employee)</span><br><span class="line">RETURN myresults.name, myresults.location</span><br></pre></td></tr></table></figure>
+<h4 id="与Java整合"><a href="#与Java整合" class="headerlink" title="与Java整合"></a>与Java整合</h4><p>Neo4J有自带接口和Cypher接口与Java整合，Cypher接口能让用户通过Java接口直接执行CQL命令</p>
+<h3 id="Neo4J-VS-MySQL"><a href="#Neo4J-VS-MySQL" class="headerlink" title="Neo4J VS MySQL"></a>Neo4J VS MySQL</h3><p>对于MySQL来说，表中的每个元素都有一组提前定义好的属性（列）</p>
+<p>在Neo4J中，每个节点node等价于MySQL中的一行记录</p>
+<ul>
+<li>Label能将相似的数据归为同一组，比如用户组。相当于MySQL中的表，但同一组数据并不会真正的存储在一起，只是语义上的划分</li>
+</ul>
+<h4 id="图形数据库-VS-传统的RDBMS——以用户-餐厅为例"><a href="#图形数据库-VS-传统的RDBMS——以用户-餐厅为例" class="headerlink" title="图形数据库 VS 传统的RDBMS——以用户/餐厅为例"></a>图形数据库 VS 传统的RDBMS——以用户/餐厅为例</h4><p>传统数据库需要3张表分别表示用户、餐厅和关系：</p>
+<ul>
+<li><p>存储：<img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd167p6tmfj30em086q6v.jpg" alt="截屏2020-03-20下午10.57.26" style="zoom: 33%;" /></p>
+</li>
+<li><p>查询：</p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> user.*, restaurant.* </span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">user</span>, restaurant, joinTable </span><br><span class="line"><span class="keyword">WHERE</span> user.firstName = ‘Paul’ <span class="keyword">AND</span> user.id = joinTable.userId <span class="keyword">AND</span> restaurant.id = joinTable.restaurantId <span class="keyword">AND</span> joinTable.rating = ‘LOVED’</span><br></pre></td></tr></table></figure>
+<p>图形数据库通过<u>节点</u>表示用户和餐厅，<u>关系</u>表示节点之间的关联信息，比如当用户写的评论可以直接储存在<u>关系</u>中</p>
+<ul>
+<li><p>存储：<img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd16bcna2jj30gu0cgwf3.jpg" alt="截屏2020-03-20下午11.00.43" style="zoom:33%;" /></p>
+</li>
+<li><p>查询：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Neo4J会忽略不匹配该模式的所有值</span><br><span class="line">&#x2F;&#x2F; 通过提供的变量名，可以使用name.property与所有匹配的节点或关系进行交互</span><br><span class="line">MATCH (u:User &#123;firstName:‘Paul&#39;&#125;)-[rel:LOVED]-&gt;(res:Restaurant) RETURN res</span><br><span class="line">MATCH (u:User)-[rel]-&gt;(res:Restaurant &#123;name:&#39;French Laundry&#39;&#125;) RETURN u</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/NoSQL/" rel="tag"><i class="fa fa-tag"></i> NoSQL</a>
+              <a href="/tags/Neo4J/" rel="tag"><i class="fa fa-tag"></i> Neo4J</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/" rel="prev" title="云编程的现状">
+      <i class="fa fa-chevron-left"></i> 云编程的现状
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/18%20%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%96%B0%E6%96%B9%E5%90%91/" rel="next" title="云计算的新方向2">
+      云计算的新方向2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#NoSQL的种类"><span class="nav-text">NoSQL的种类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图-树结构的数据库"><span class="nav-text">图&#x2F;树结构的数据库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图形数据库-VS-传统的关系数据库管理系统RDBMS"><span class="nav-text">图形数据库 VS 传统的关系数据库管理系统RDBMS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neo4J"><span class="nav-text">Neo4J</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#特征"><span class="nav-text">特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优势"><span class="nav-text">优势</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#属性图数据模型"><span class="nav-text">属性图数据模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可视化——Neo4J-数据浏览器"><span class="nav-text">可视化——Neo4J 数据浏览器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cypher查询语言"><span class="nav-text">Cypher查询语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#与Java整合"><span class="nav-text">与Java整合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Neo4J-VS-MySQL"><span class="nav-text">Neo4J VS MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#图形数据库-VS-传统的RDBMS——以用户-餐厅为例"><span class="nav-text">图形数据库 VS 传统的RDBMS——以用户&#x2F;餐厅为例</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

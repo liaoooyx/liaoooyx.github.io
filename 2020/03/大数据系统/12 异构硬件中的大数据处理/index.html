@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Cyber-Physical Systems (CPS)，the Internet of Things (IoT)， and the Smart Anything Everywhere Initiative 从长远来看，随着大规模采用，物联网转型影响预计将显着增加：千万级数量的物品互联，非常大的经济价值 关键驱动因素：物联网收集的数据，复杂的应用程序开发平台，应用于事物的分析以及异构硬件体系结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="异构硬件">
+<meta property="og:url" content="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/12%20%E5%BC%82%E6%9E%84%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="Cyber-Physical Systems (CPS)，the Internet of Things (IoT)， and the Smart Anything Everywhere Initiative 从长远来看，随着大规模采用，物联网转型影响预计将显着增加：千万级数量的物品互联，非常大的经济价值 关键驱动因素：物联网收集的数据，复杂的应用程序开发平台，应用于事物的分析以及异构硬件体系结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-11T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-26T03:42:24.341Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="异构硬件">
+<meta property="article:tag" content="GPU">
+<meta property="article:tag" content="FPGA">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/12%20%E5%BC%82%E6%9E%84%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>异构硬件 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/12%20%E5%BC%82%E6%9E%84%E7%A1%AC%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          异构硬件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-11 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-11T00:00:00+00:00">2020-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 03:42:24" itemprop="dateModified" datetime="2020-03-26T03:42:24+00:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Cyber-Physical Systems (CPS)，the Internet of Things (IoT)， and the Smart Anything Everywhere Initiative</p>
+<p>从长远来看，随着大规模采用，物联网转型影响预计将显着增加：千万级数量的物品互联，非常大的经济价值</p>
+<p>关键驱动因素：物联网收集的数据，复杂的应用程序开发平台，应用于事物的分析以及<strong>异构硬件体系结构 heterogeneous hardware architectures</strong>，能够促进新业务模型</p>
+<a id="more"></a>
+<h4 id="云计算-大数据"><a href="#云计算-大数据" class="headerlink" title="云计算+大数据"></a>云计算+大数据</h4><p>实时流、实时处理</p>
+<p>数据可视化</p>
+<p>实时结构化数据库、交互式分析、批量处理</p>
+<p>结构化和非结构化数据</p>
+<p>云基础设施</p>
+<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Cyber-Physical Systems (CPS)，the Internet of Things (IoT)， and the Smart Anything Everywhere Initiative</p>
+<p>从长远来看，随着大规模采用，物联网转型影响预计将显着增加：千万级数量的物品互联，非常大的经济价值</p>
+<p>关键驱动因素：物联网收集的数据，复杂的应用程序开发平台，应用于事物的分析以及<strong>异构硬件体系结构 heterogeneous hardware architectures</strong>，能够促进新业务模型</p>
+<h3 id="异构硬件体系结构-Heterogeneous-hardware-architectures"><a href="#异构硬件体系结构-Heterogeneous-hardware-architectures" class="headerlink" title="异构硬件体系结构 Heterogeneous hardware architectures"></a>异构硬件体系结构 Heterogeneous hardware architectures</h3><p>是运行产品和提供服务的一种高效方法；将不同的处理器类型组合到一个系统中，以此提高绝对性能，最小化能耗和成本。</p>
+<p>引入新的平台：合并多核CPUs，多核GPUs，和许多附加设备作为一个单独解决方案。出现在从超级计算机到个人智能手机的各种环境中.</p>
+<p>因为产品的种类不断增长，因此需要设计<strong>更灵活的软件抽象software abstractions</strong>，以及改进系统结构，以探索异构平台的好处</p>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>数据巨大且复杂，传统处理方法效率不足：</p>
+<ul>
+<li>Too large to fit reasonably in fast RAM 数据太大无法合理的放入fast RAM中</li>
+<li>Random access intensive, making prefetching and caching ineffective 随机访问密集，使预取和缓存无效</li>
+</ul>
+<p>数据经常被存在多机集群中的二号存储节点中</p>
+<ul>
+<li>存储系统和网络性能成为 first-order concerns</li>
+</ul>
+<h4 id="问题2"><a href="#问题2" class="headerlink" title="问题2"></a>问题2</h4><p>大数据系统带来新的需求：新的编程模型和工具</p>
+<p>大数据系统需要实现：高性能和高效率</p>
+<h4 id="关于异质性方面"><a href="#关于异质性方面" class="headerlink" title="关于异质性方面"></a>关于异质性方面</h4><p>异质性是并行结构中最深奥和最有挑战的特征</p>
+<p>宏观方面：分布式计算机（云）的网络，由不同的节点结构（单核，多核）组成，通过可能的异质网络进行内部交互；即网络的异质性和，网络上的机器的异质性</p>
+<p>微观方面：底层的内存结构（main、cache、disk storage、tertiary storage）和不同的accelerator结构（固定的、可编程的，比如GPUs；可配置的：FPGAs）</p>
+<h3 id="电脑结构"><a href="#电脑结构" class="headerlink" title="电脑结构"></a>电脑结构</h3><p>需要进行分类：根据目的进行分类</p>
+<h4 id="通用处理器-General-Purpose-Processors（GPP）"><a href="#通用处理器-General-Purpose-Processors（GPP）" class="headerlink" title="通用处理器 General Purpose Processors（GPP）"></a>通用处理器 <strong>General Purpose Processors</strong>（GPP）</h4><ul>
+<li>通用微处理器（通用电脑）：比如PCs，workstations，Laptops，notepads，用于执行多种应用和任务</li>
+<li>微控制器：嵌入式系统<ul>
+<li>专门为嵌入式系统中指定任务而设计</li>
+<li>有面向控制的外围设备</li>
+<li>具有片上CPU，固定数量的RAM，ROM，I / O端口</li>
+<li>低成本、低能耗、低性能、比微处理器更小</li>
+<li>适合对成本、空间、能耗要求严格的应用</li>
+</ul>
+</li>
+</ul>
+<h4 id="应用专用处理器"><a href="#应用专用处理器" class="headerlink" title="应用专用处理器"></a>应用专用处理器</h4><p>通用处理器对不同的软件都能表现出较好的性能，但专用处理器在特定任务上的表现更好</p>
+<p>应用专用处理器出现的目的：更高的性能，更低的消耗，更低的成本</p>
+<p>比如：TVs、mobile phone（不是智能手机）、GPSs</p>
+<p>被分为：</p>
+<ol>
+<li>Digital Signal Processor (DSPs) 数字信号处理器</li>
+<li>Application Specific Instruction Set Processors (ASIPs) 应用专用命令集处理器</li>
+<li>Application Specific Integrated Circuit (ASICs) 应用专用集成电路<ul>
+<li>指定市场、更少编程、难以构建</li>
+</ul>
+</li>
+</ol>
+<h4 id="Accelerators-Coprocessors-加速器-协处理器"><a href="#Accelerators-Coprocessors-加速器-协处理器" class="headerlink" title="Accelerators - Coprocessors 加速器-协处理器"></a><strong>Accelerators - Coprocessors</strong> 加速器-协处理器</h4><p>加速器-协处理器对某些功能的处理性能比CPU更高效more efficiently ：更快、更低能耗，但更难编程，比如：</p>
+<ol>
+<li>Graphics Processing Unit (GPU)<ul>
+<li>Single Instruction Multiple Thread (SIMT) model 单指令多线程模型 – CUDA code</li>
+<li>高效：数据并行应用；吞吐量密集型应用——算法需要处理大量数据元素</li>
+</ul>
+</li>
+<li>FPGA (Field Programmable Gate Array) 现场可编程门阵列<ul>
+<li>是逻辑门阵列，可以进行硬件编程以完成用户指定的任务</li>
+<li>软件的一部分可以直接由硬件实现</li>
+<li>比软件更有效率，但比ASIC更贵</li>
+</ul>
+</li>
+</ol>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>Intel CPU -&gt; DSP -&gt; MultiCore -&gt; ManyCore -&gt; GPU -&gt; FPGA -&gt; ASIC</p>
+<p>灵活性、可编程、 ——&gt; 性能、特定领域、能源使用率高 power efficiency</p>
+<h4 id="GPU"><a href="#GPU" class="headerlink" title="GPU"></a>GPU</h4><p>Host memory 主存：CPU的内存</p>
+<p>Device memory 显存：GPU的内存</p>
+<p><strong>处理流程：</strong></p>
+<ol>
+<li>从CPU中将输入数据拷贝到GPU中</li>
+<li>加载GPU程序并执行，将数据缓存到芯片chip上提高性能</li>
+<li>将执行结果从GPU内存中拷贝回CPU内存</li>
+</ol>
+<h4 id="GPU——数据处理"><a href="#GPU——数据处理" class="headerlink" title="GPU——数据处理"></a>GPU——数据处理</h4><p>擅长处理并行 data-parallel processing</p>
+<ul>
+<li>在多个数据元素上并行执行相同的计算——低控制流开销和高SP浮点运算强度 high SP floating point arithmetic intensity</li>
+<li>每个内存访问有许多计算</li>
+</ul>
+<p>高浮点运算强度和许多数据元素意味着可以通过计算而不是大数据缓存来隐藏内存访问延迟</p>
+<ul>
+<li>需要避免带宽饱和</li>
+</ul>
+<h4 id="FPGA-现场可编程门阵列"><a href="#FPGA-现场可编程门阵列" class="headerlink" title="FPGA 现场可编程门阵列"></a>FPGA 现场可编程门阵列</h4><p>可配置逻辑块，内部通信网络，I/O信号</p>
+<h4 id="FPGA——数据处理"><a href="#FPGA——数据处理" class="headerlink" title="FPGA——数据处理"></a>FPGA——数据处理</h4><ul>
+<li>用于数据采集和原始数据预处理以进行事件过滤</li>
+<li>需要掌握基于FPGA的硬件描述语言（HDL）的编程模型。<ul>
+<li>– VHDL和Verilog是设计FPGA系统的传统方法</li>
+<li>–描述执行计算的基础设计的基础硬件</li>
+<li>–这与诸如C和C ++的编程语言形成对比，后者描述了在固定不变体系结构上执行的指令</li>
+<li>–这使得FPGA既可以在其上实现的方面极为灵活，又在不充分了解其编程模型的情况下也很难设计。</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%82%E6%9E%84%E7%A1%AC%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 异构硬件</a>
+              <a href="/tags/GPU/" rel="tag"><i class="fa fa-tag"></i> GPU</a>
+              <a href="/tags/FPGA/" rel="tag"><i class="fa fa-tag"></i> FPGA</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%8E%BB%E9%87%8D%E5%92%8C%E4%BB%93%E5%BA%93/" rel="prev" title="数据仓库、数据去重">
+      <i class="fa fa-chevron-left"></i> 数据仓库、数据去重
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/12%20NOSQL-%E8%B0%B7%E6%AD%8CBigTable/" rel="next" title="面向列的数据库">
+      面向列的数据库 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#云计算-大数据"><span class="nav-text">云计算+大数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异构硬件体系结构-Heterogeneous-hardware-architectures"><span class="nav-text">异构硬件体系结构 Heterogeneous hardware architectures</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#问题2"><span class="nav-text">问题2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于异质性方面"><span class="nav-text">关于异质性方面</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#电脑结构"><span class="nav-text">电脑结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#通用处理器-General-Purpose-Processors（GPP）"><span class="nav-text">通用处理器 General Purpose Processors（GPP）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用专用处理器"><span class="nav-text">应用专用处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accelerators-Coprocessors-加速器-协处理器"><span class="nav-text">Accelerators - Coprocessors 加速器-协处理器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较"><span class="nav-text">比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GPU"><span class="nav-text">GPU</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GPU——数据处理"><span class="nav-text">GPU——数据处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FPGA-现场可编程门阵列"><span class="nav-text">FPGA 现场可编程门阵列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FPGA——数据处理"><span class="nav-text">FPGA——数据处理</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

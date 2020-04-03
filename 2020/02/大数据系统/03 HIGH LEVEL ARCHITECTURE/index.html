@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="针对大数据的5大特征，使用分布式资源解决大数据的存储、检索、合并、分析问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大数据的分层结构">
+<meta property="og:url" content="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/03%20HIGH%20LEVEL%20ARCHITECTURE/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="针对大数据的5大特征，使用分布式资源解决大数据的存储、检索、合并、分析问题">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd4damkojgj311s0i6jx2.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd4dk6olm1j312m0cmjuy.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd4e7scrruj311q0m2tb5.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd4e8myag4j319l0u0kb9.jpg">
+<meta property="article:published_time" content="2020-02-03T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-03-26T03:34:09.609Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="大数据分层结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd4damkojgj311s0i6jx2.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/03%20HIGH%20LEVEL%20ARCHITECTURE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>大数据的分层结构 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/03%20HIGH%20LEVEL%20ARCHITECTURE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          大数据的分层结构
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-03T00:00:00+00:00">2020-02-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 03:34:09" itemprop="dateModified" datetime="2020-03-26T03:34:09+00:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>针对大数据的5大特征，使用分布式资源解决大数据的存储、检索、合并、分析问题</p>
+<a id="more"></a>
+<h4 id="挑战"><a href="#挑战" class="headerlink" title="挑战"></a>挑战</h4><p>大数据的5大特征可以总结为4个方面：存储、检索、合并、分析</p>
+<p>解决方案：使用分布式资源</p>
+<h4 id="流程：原始数据到最终执行"><a href="#流程：原始数据到最终执行" class="headerlink" title="流程：原始数据到最终执行"></a>流程：原始数据到最终执行</h4><p>流程：1.数据获取 -&gt; 3.Infrastructure -&gt; 5.数据管理 -&gt; 7.分析和自动化 -&gt; 9.可视化 -&gt; 11.最终执行 (&lt;1%)</p>
+<p>故障点：0.不可获取 -&gt; 2.不可流化或存储 -&gt; 4.不可访问 -&gt; 6.不可分析 -&gt; 8.不可通信 -&gt; 10.不可用于决策</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd4damkojgj311s0i6jx2.jpg" alt="截屏2020-03-23下午5.19.07" style="zoom:50%;" /></p>
+<h4 id="相关技术领域"><a href="#相关技术领域" class="headerlink" title="相关技术领域"></a>相关技术领域</h4><p>基础设施：Multiple nodes、CPU或GPUs、FPGAs、ASICs、Memory、Storage、Network</p>
+<p>方法：并行化任务、并行化数据（分布数据）</p>
+<p>应用：大规模并行 (Massive parallelism)、庞大的数据量存储、分布式数据、高速网络、高性能计算、任务和线程管理、数据挖掘和分析、数据检索、机器学习、数据可视化</p>
+<h4 id="分层结构-Layered-architecture"><a href="#分层结构-Layered-architecture" class="headerlink" title="分层结构 Layered architecture"></a>分层结构 Layered architecture</h4><p>Layered approach最适合组织大数据系统的结构</p>
+<p>是逻辑上的分层，而不一定要在把不同层的功能分别放在不同的机器上</p>
+<p>按商业分层：大数据资源、数据传输和存储层、分析层、消费层</p>
+<p>按技术分层：信息整合、大数据统治、系统管理、服务质量</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd4dk6olm1j312m0cmjuy.jpg" alt="截屏2020-03-23下午5.28.15"></p>
+<h4 id="大数据来源层-Big-Data-Sources-layer"><a href="#大数据来源层-Big-Data-Sources-layer" class="headerlink" title="大数据来源层 Big Data Sources layer"></a>大数据来源层 Big Data Sources layer</h4><p>指的是“来自于所有渠道的，可用于分析的，所有数据”。分析的类型和来源密切相关</p>
+<ul>
+<li><p>格式：结构化的、半结构化的、非结构化的</p>
+</li>
+<li><p>Velocity和Volume：数据传入(arrives)的速度，以及数据传递速率(rate)根据数据源而不同</p>
+</li>
+<li><p>采集点：实时或分批采集数据的来源（直接采集或者源自数据提供者）。数据可以来自主要或次要来源。</p>
+</li>
+<li><p>数据源的地点：数据源可以在企业内部或外部。 <u>需要标识限制访问的数据，因为对数据的访问会影响可用于分析的数据范围</u></p>
+</li>
+</ul>
+<h4 id="数据通信和存储层-Data-Messaging-and-Store-Layer"><a href="#数据通信和存储层-Data-Messaging-and-Store-Layer" class="headerlink" title="数据通信和存储层 Data Messaging and Store Layer"></a>数据通信和存储层 Data Messaging and Store Layer</h4><p>Storage manager管理多个数据节点（将存储拆分）</p>
+<p>负责从数据源获取数据——<strong>数据获取Acquisition</strong>：从数据源采集数据，然后对数据进行格式化或存储。</p>
+<p>如果有必要，该层还能负责对数据进行格式化用于分析——<strong>数据消化Digest</strong>：简单的转化逻辑或复杂的统计算法对数据进行格式化，最大的挑战是对<strong>非结构化</strong>数据的格式化。</p>
+<p>服从规定regulations和统治政策governance policies，为不同类型的数据提供适当的存储——<strong>分布式存储Distributed storage</strong>：负责存储数据，通常提供多种数据存储方式，比如分布式文件存储DFS、cloud、结构化数据源、NoSQL等</p>
+<h4 id="分析层-Analysis-Layer"><a href="#分析层-Analysis-Layer" class="headerlink" title="分析层 Analysis Layer"></a>分析层 Analysis Layer</h4><p>Job manager管理多个处理节点（将分析任务拆分）</p>
+<p>分析层的职责（如何设计分析层）：产生所需的分析；从数据中推断出观点insight；找到所需的实体；定位可以为实体提供数据的数据源；了解所需的算法和工具</p>
+<ul>
+<li><p>辨别实体 Entity：负责表示和填充上下文的实体；需要高效的高性能处理；定义了数据的格式；提供给分析引擎</p>
+</li>
+<li><p>分析引擎：使用其他组件进行分析和处理数据</p>
+</li>
+<li><p>模型管理：负责维护不同的统计模块，并通过不断训练确保这些模块的精确性</p>
+</li>
+</ul>
+<h4 id="消费层Consumption-Layer"><a href="#消费层Consumption-Layer" class="headerlink" title="消费层Consumption Layer"></a>消费层Consumption Layer</h4><p>使用分析层的数据；消费者是以可视化软件、人、商业过程、服务；</p>
+<p>难点在于可视化数据（可以向竞争者学习 look at what competitors in similar markets are doing）</p>
+<p>组件：</p>
+<ul>
+<li>事务拦截：实时拦大量额事务，并将之转化为合适的格式给实时分析；使用不同的适配器和接口，对不同来源的数据进行整合和处理</li>
+<li>商业过程管理进程：API，BPEL和其他流程可以使用来自分析层的Insight，从而通过自动化上下游应用程序，人员和流程的功能来推动价值。</li>
+<li>实时监测：使用分析层的输出可以生成警告Alerts，并发送给设备或用户；实时数据可以以仪表板的形式提供。</li>
+<li>报告引擎：生成类似于传统商业智能报告的报告至关重要。 用户可以基于来自分析层的洞察力Insight来创建临时报告，计划的报告或自我查询和分析。</li>
+<li>推荐引擎：根据分析结果，向用户提供个性化的实时相关建议。引擎会实时处理可用信息，并根据用户的实时活动动态响应每个用户。</li>
+<li>可视化和发现：可以在企业内部和外部的各种联合数据源之间导航数据。 数据的内容和格式可以不同，可以合并以进行可视化。</li>
+</ul>
+<h4 id="信息整合层-Information-Integration-Layer"><a href="#信息整合层-Information-Integration-Layer" class="headerlink" title="信息整合层 Information Integration Layer"></a>信息整合层 Information Integration Layer</h4><p>负责连接不同的数据源；需要优质的连接器和适配器（比如通信协议、API、网络服务），工业4.0平台的作用就是简化这部分</p>
+<h4 id="大数据统治层-Big-Data-Governance-Layer"><a href="#大数据统治层-Big-Data-Governance-Layer" class="headerlink" title="大数据统治层 Big Data Governance Layer"></a>大数据统治层 Big Data Governance Layer</h4><p>核心原则：合法、公正、透明；目的限制、数据最小化、准确性、存储限制、诚信和保密、问责制Accountability</p>
+<p>至少需要考虑：数据发现、保障措施、同意管理、数据最小化、使用情况监控、违规Breach通知</p>
+<p>通用数据保护规则：数据控制器、数据处理器</p>
+<h4 id="系统管理层-System-Management-Layer"><a href="#系统管理层-System-Management-Layer" class="headerlink" title="系统管理层 System Management Layer"></a>系统管理层 System Management Layer</h4><p>监视和管理整个大数据生态系统的健康状况。</p>
+<p>包括：云消费者、云审计者 Auditor、云提供者、云中介者 Broker、云运输者 Carrier</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd4e7scrruj311q0m2tb5.jpg" alt="截屏2020-03-23下午5.49.32" style="zoom:50%;" /></p>
+<h4 id="服务质量层-QoS-Quality-of-Service-Layer"><a href="#服务质量层-QoS-Quality-of-Service-Layer" class="headerlink" title="服务质量层 (QoS) Quality of Service Layer"></a>服务质量层 (QoS) Quality of Service Layer</h4><p>定义数据质量，有关隐私和安全性的政策，数据的频率等</p>
+<h4 id="大数据层结构总览"><a href="#大数据层结构总览" class="headerlink" title="大数据层结构总览"></a>大数据层结构总览</h4><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd4e8myag4j319l0u0kb9.jpg" alt="截屏2020-03-23下午5.51.46"></p>
+<h4 id="传统系统-VS-大数据系统"><a href="#传统系统-VS-大数据系统" class="headerlink" title="传统系统 VS 大数据系统"></a>传统系统 VS 大数据系统</h4><p>应用开发：传统系统利用高级HPC专家开发的并行性进行优化和调整的应用程序；大数据系统简化了应用程序执行模型（分布式文件系统，编程模型，分布式数据库和调度程序）。</p>
+<p>平台：传统系统使用高成本的大规模并行处理（MPP）计算机，利用高带宽网络和大规模I/O设备；大数据系统创建可扩展但具有弹性的虚拟化平台的创新方法。</p>
+<p>数据管理：传统系统限于使用标准的面向行的数据布局的基于文件或RDBMS；大数据系统使用数据管理的可替换模型（通常为NoSQL），具有根据需要管理信息的多种方法。</p>
+<p>资源：传统系统需要大量资本投资来购买要在内部安装和管理的高端硬件。大数据系统能够在虚拟平台（尤其是云）上部署系统，从而降低了进入门槛。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%88%86%E5%B1%82%E7%BB%93%E6%9E%84/" rel="tag"><i class="fa fa-tag"></i> 大数据分层结构</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/02%20Based%20on%20Intro%20to%20Data%20Mining%20CRISP-DM/" rel="prev" title="数据挖掘和文本分析/02 Based on Intro to Data Mining CRISP-DM">
+      <i class="fa fa-chevron-left"></i> 数据挖掘和文本分析/02 Based on Intro to Data Mining CRISP-DM
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/04%20Data%20Sources/" rel="next" title="大数据来源层">
+      大数据来源层 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#挑战"><span class="nav-text">挑战</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程：原始数据到最终执行"><span class="nav-text">流程：原始数据到最终执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关技术领域"><span class="nav-text">相关技术领域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分层结构-Layered-architecture"><span class="nav-text">分层结构 Layered architecture</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据来源层-Big-Data-Sources-layer"><span class="nav-text">大数据来源层 Big Data Sources layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据通信和存储层-Data-Messaging-and-Store-Layer"><span class="nav-text">数据通信和存储层 Data Messaging and Store Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析层-Analysis-Layer"><span class="nav-text">分析层 Analysis Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费层Consumption-Layer"><span class="nav-text">消费层Consumption Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息整合层-Information-Integration-Layer"><span class="nav-text">信息整合层 Information Integration Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据统治层-Big-Data-Governance-Layer"><span class="nav-text">大数据统治层 Big Data Governance Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#系统管理层-System-Management-Layer"><span class="nav-text">系统管理层 System Management Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务质量层-QoS-Quality-of-Service-Layer"><span class="nav-text">服务质量层 (QoS) Quality of Service Layer</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据层结构总览"><span class="nav-text">大数据层结构总览</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传统系统-VS-大数据系统"><span class="nav-text">传统系统 VS 大数据系统</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

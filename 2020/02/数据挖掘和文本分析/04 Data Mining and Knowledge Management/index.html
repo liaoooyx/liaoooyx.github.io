@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="04 Data Mining and Knowledge Management数据挖掘利用机器学习从数据中提取&#x2F;发现知识，用于知识管理。 什么是知识？管理&#x2F;发现知识是什么意思？信息技术有什么用？ 柯林斯英语词典中的定义一个人或一群人知道的事实、感觉、经验；知道的状态；通过经验或学习所获得的感知、意识、熟悉感；博学或知情的学习；关于某主题的特定信息 朗文当代英语词典中的定义一个人或一群人知道的事实、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据挖掘和文本分析&#x2F;04 Data Mining and Knowledge Management">
+<meta property="og:url" content="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/04%20Data%20Mining%20and%20Knowledge%20Management/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="04 Data Mining and Knowledge Management数据挖掘利用机器学习从数据中提取&#x2F;发现知识，用于知识管理。 什么是知识？管理&#x2F;发现知识是什么意思？信息技术有什么用？ 柯林斯英语词典中的定义一个人或一群人知道的事实、感觉、经验；知道的状态；通过经验或学习所获得的感知、意识、熟悉感；博学或知情的学习；关于某主题的特定信息 朗文当代英语词典中的定义一个人或一群人知道的事实、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-06T16:26:34.915Z">
+<meta property="article:modified_time" content="2020-02-06T19:49:33.176Z">
+<meta property="article:author" content="liaoooyx">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/04%20Data%20Mining%20and%20Knowledge%20Management/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>数据挖掘和文本分析/04 Data Mining and Knowledge Management | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/04%20Data%20Mining%20and%20Knowledge%20Management/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数据挖掘和文本分析/04 Data Mining and Knowledge Management
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-06 16:26:34 / 修改时间：19:49:33" itemprop="dateCreated datePublished" datetime="2020-02-06T16:26:34+00:00">2020-02-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="04-Data-Mining-and-Knowledge-Management"><a href="#04-Data-Mining-and-Knowledge-Management" class="headerlink" title="04 Data Mining and Knowledge Management"></a>04 Data Mining and Knowledge Management</h2><p>数据挖掘利用机器学习从数据中提取/发现知识，用于知识管理。</p>
+<p>什么是知识？管理/发现知识是什么意思？信息技术有什么用？</p>
+<h4 id="柯林斯英语词典中的定义"><a href="#柯林斯英语词典中的定义" class="headerlink" title="柯林斯英语词典中的定义"></a>柯林斯英语词典中的定义</h4><p>一个人或一群人知道的事实、感觉、经验；知道的状态；通过经验或学习所获得的感知、意识、熟悉感；博学或知情的学习；关于某主题的特定信息</p>
+<h4 id="朗文当代英语词典中的定义"><a href="#朗文当代英语词典中的定义" class="headerlink" title="朗文当代英语词典中的定义"></a>朗文当代英语词典中的定义</h4><p>一个人或一群人知道的事实、感觉、经验；知道某事发生过或者是真的；你所知道的关于特定的情况、事件的信息；</p>
+<h4 id="“知识管理”中的知识"><a href="#“知识管理”中的知识" class="headerlink" title="“知识管理”中的知识"></a>“知识管理”中的知识</h4><p>三种含义：</p>
+<ul>
+<li>知道或熟悉或熟悉的状态（知道是什么）</li>
+<li>行动能力（知道怎么做）</li>
+<li>整理，记录，积累事实，方法，原理，技术</li>
+</ul>
+<h4 id="“知识库”中的的知识"><a href="#“知识库”中的的知识" class="headerlink" title="“知识库”中的的知识"></a>“知识库”中的的知识</h4><p>除了示例，没有对“知识库”的定义。<br>Knowledge based：推论新事实的事实和逻辑规则，例如：如果（sun = yes）和（湿度= low）然后play = yes …而且还有信息检索，语言/语音/图像</p>
+<h4 id="Explicit-Knowledge-显性知识"><a href="#Explicit-Knowledge-显性知识" class="headerlink" title="Explicit Knowledge 显性知识"></a>Explicit Knowledge 显性知识</h4><p><strong>以文本形式记录下be articulated（清晰表达）的知识</strong>：产品规格、科学公式、电脑程序、专利、记录的最佳实践、手册。</p>
+<p>可以储存于可以存储在知识库中（如果我们可以解决数据捕获/转换的问题，…）</p>
+<h4 id="Tacit-Knowledge-隐性知识"><a href="#Tacit-Knowledge-隐性知识" class="headerlink" title="Tacit Knowledge 隐性知识"></a>Tacit Knowledge 隐性知识</h4><p><strong>无法以文本形式记录下来（无法清晰表达）的知识</strong>：如何骑单车、如何识别脸、如何理解句子、如何创造艺术</p>
+<p>AI试图将隐性知识改写为显性知识，例如处理英语句子的规则</p>
+<h4 id="Implicit-Knowledge-内含知识"><a href="#Implicit-Knowledge-内含知识" class="headerlink" title="Implicit Knowledge 内含知识"></a>Implicit Knowledge 内含知识</h4><p><strong>可以表达但尚未表达的知识</strong>：培训知识工程师和系统分析员，以识别隐性知识并帮助专家表达其知识。</p>
+<p>可以储存于可以存储在知识库中（如果我们可以解决数据捕获/转换的问题，…）</p>
+<h4 id="Cultural-Knowledge-文化知识"><a href="#Cultural-Knowledge-文化知识" class="headerlink" title="Cultural Knowledge 文化知识"></a>Cultural Knowledge 文化知识</h4><p><strong>（文化或环境带来的知识）</strong></p>
+<p>一个组织对自身及其环境的了解（“元知识”？）：共同的信念，规范和价值观；组织成员在其中构筑现实的框架；需要了解和使用事实，规则和试探法；需要以与其他人相同的方式进行归纳，以便采取一致行动</p>
+<h4 id="Terminology术语-and-Ontology本体"><a href="#Terminology术语-and-Ontology本体" class="headerlink" title="Terminology术语 and Ontology本体"></a>Terminology术语 and Ontology本体</h4><ul>
+<li>本体Ontology：学科中的“概念”，和这些概念之间的意义关系<ul>
+<li>“概念”大致等同于术语Terminology：学科中的专业单词和短语</li>
+</ul>
+</li>
+<li>术语Terminology和本体论对学科中的知识进行编码</li>
+</ul>
+<h4 id="从数据到知识"><a href="#从数据到知识" class="headerlink" title="从数据到知识"></a>从数据到知识</h4><p>信号 Signals =1.=&gt; 数据 Data =2.=&gt; 信息 Information =3.=&gt; 知识 Knowledge</p>
+<ol>
+<li>物理 Physical 构造：感知、选择</li>
+<li>认知 Cognitive 构造：意义、重要性</li>
+<li>信念 Belief 构造：信念、证明</li>
+</ol>
+<h4 id="数据的不同角度（术语解释）"><a href="#数据的不同角度（术语解释）" class="headerlink" title="数据的不同角度（术语解释）"></a>数据的不同角度（术语解释）</h4><p>数据挖掘：发现数据中的模式（知识）</p>
+<p>机器学习：算法，用于发现数据中的知识</p>
+<p>知识发现：发现（数据中的）知识</p>
+<p>数据库：存储知识</p>
+<p>信息管理：使用数据</p>
+<p>知识管理：发现并使用数据中的模式，“驯服数据”</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>数据挖掘不只是关于数据库技术</p>
+<p>数据挖掘包括：获取数据、清洗数据、从数据中提取有用的结构或知识</p>
+<p>数据不仅仅在数据库中</p>
+<p>网络中大多数的数据或信息，是非结构化的文本（HTML/XML标记多少有点帮助）</p>
+<p>所以我们需要提取、清洗、格式化数据，从“网络”的格式转化为“类似于数据库”的格式，用于数据挖掘</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Differences%20between%20ASIC,%20ASSP,%20ASIP,%20SoC,%20FPGA/" rel="prev" title="云计算/03_ Differences between ASIC, ASSP, ASIP, SoC, FPGA">
+      <i class="fa fa-chevron-left"></i> 云计算/03_ Differences between ASIC, ASSP, ASIP, SoC, FPGA
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/06%20Supervised%20ML%20to%20learn%20Classifiers%20Decision%20Trees%20and%20Classification%20Rules/" rel="next" title="数据挖掘和文本分析/06 Supervised ML to learn Classifiers Decision Trees and Classification Rules">
+      数据挖掘和文本分析/06 Supervised ML to learn Classifiers Decision Trees and Classification Rules <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#04-Data-Mining-and-Knowledge-Management"><span class="nav-text">04 Data Mining and Knowledge Management</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#柯林斯英语词典中的定义"><span class="nav-text">柯林斯英语词典中的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#朗文当代英语词典中的定义"><span class="nav-text">朗文当代英语词典中的定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“知识管理”中的知识"><span class="nav-text">“知识管理”中的知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“知识库”中的的知识"><span class="nav-text">“知识库”中的的知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Explicit-Knowledge-显性知识"><span class="nav-text">Explicit Knowledge 显性知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tacit-Knowledge-隐性知识"><span class="nav-text">Tacit Knowledge 隐性知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implicit-Knowledge-内含知识"><span class="nav-text">Implicit Knowledge 内含知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cultural-Knowledge-文化知识"><span class="nav-text">Cultural Knowledge 文化知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Terminology术语-and-Ontology本体"><span class="nav-text">Terminology术语 and Ontology本体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从数据到知识"><span class="nav-text">从数据到知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据的不同角度（术语解释）"><span class="nav-text">数据的不同角度（术语解释）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>
