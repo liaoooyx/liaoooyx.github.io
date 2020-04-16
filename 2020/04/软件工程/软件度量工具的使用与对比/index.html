@@ -22,19 +22,25 @@
     var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="软件度量是对程序本身进行数值化表示的一种方法，比如方法复杂度，代码行数，包数目等。目的是帮助开发者和管理者发现软件可能存在的缺陷、技术债务积累、代码气味等问题。">
+  <meta name="description" content="软件度量是对程序本身进行数值化表示的一种方法，比如方法复杂度，代码行数，包数目等。目的是帮助开发者和管理者发现软件可能存在的缺陷、技术债务积累、代码气味等问题。 静态代码分析工具列表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="软件度量工具的使用和比较：SonarQube、">
+<meta property="og:title" content="软件度量工具的使用和比较：SonarQube、JDEPEND、">
 <meta property="og:url" content="https://liaoooyx.com/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AF%B9%E6%AF%94/index.html">
 <meta property="og:site_name" content="米达的博客">
-<meta property="og:description" content="软件度量是对程序本身进行数值化表示的一种方法，比如方法复杂度，代码行数，包数目等。目的是帮助开发者和管理者发现软件可能存在的缺陷、技术债务积累、代码气味等问题。">
+<meta property="og:description" content="软件度量是对程序本身进行数值化表示的一种方法，比如方法复杂度，代码行数，包数目等。目的是帮助开发者和管理者发现软件可能存在的缺陷、技术债务积累、代码气味等问题。 静态代码分析工具列表">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdh8kjrwnij313t0u0qfg.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdha02b0ilj30sg0no763.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdha3u8dw5j31f20iwn8m.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdha651nybj31f20hojup.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdhb7tnianj31cv0u0qo0.jpg">
 <meta property="article:published_time" content="2020-03-31T23:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-02T22:42:29.469Z">
+<meta property="article:modified_time" content="2020-04-06T15:54:33.260Z">
 <meta property="article:author" content="liaoooyx">
 <meta property="article:tag" content="软件度量">
 <meta property="article:tag" content="SonarQube">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdh8kjrwnij313t0u0qfg.jpg">
 
 <link rel="canonical" href="https://liaoooyx.com/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AF%B9%E6%AF%94/">
 
@@ -48,7 +54,7 @@
   };
 </script>
 
-  <title>软件度量工具的使用和比较：SonarQube、 | 米达的博客</title>
+  <title>软件度量工具的使用和比较：SonarQube、JDEPEND、 | 米达的博客</title>
   
 
 
@@ -211,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          软件度量工具的使用和比较：SonarQube、
+          软件度量工具的使用和比较：SonarQube、JDEPEND、
         </h1>
 
         <div class="post-meta">
@@ -228,7 +234,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-02 23:42:29" itemprop="dateModified" datetime="2020-04-02T23:42:29+01:00">2020-04-02</time>
+                <time title="修改时间：2020-04-06 16:54:33" itemprop="dateModified" datetime="2020-04-06T16:54:33+01:00">2020-04-06</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -246,14 +252,14 @@
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>967</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -266,8 +272,10 @@
 
       
         <p>软件度量是对程序本身进行数值化表示的一种方法，比如方法复杂度，代码行数，包数目等。目的是帮助开发者和管理者发现软件可能存在的缺陷、技术债务积累、代码气味等问题。</p>
+<p><a href="https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis" target="_blank" rel="noopener">静态代码分析工具列表</a></p>
 <a id="more"></a>
 <h3 id="使用环境"><a href="#使用环境" class="headerlink" title="使用环境"></a>使用环境</h3><p>MacOS Catalina 10.15.4</p>
+<p>Win10（虚拟机）</p>
 <p>IntelliJ IDEA 2019.3</p>
 <h3 id="SonarQube-8-2"><a href="#SonarQube-8-2" class="headerlink" title="SonarQube 8.2"></a>SonarQube 8.2</h3><p>提供多种安装方式，这里安装在本机：</p>
 <p>下载压缩包并解压到对应目录后，使用命令行启动服务器，并访问<a href="http://localhost:9000/" target="_blank" rel="noopener">http://localhost:9000</a>即可</p>
@@ -304,6 +312,32 @@
 <li>无法直接回顾以前的历史记录，需要对源码进行版本控制</li>
 <li>不开源，研究人员/开发者无法使用自己的软件度量标准</li>
 </ul>
+<h3 id="JDepend"><a href="#JDepend" class="headerlink" title="JDepend"></a><a href="https://github.com/clarkware/jdepend" target="_blank" rel="noopener">JDepend</a></h3><p>说明文档在</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$JDEPEND_HOME&#x2F;doc</span><br></pre></td></tr></table></figure>
+<p>缺点：项目太老，需要修改源码重新编译，不支持可视化，没有历史记录，数据没有可视化，难以阅读，对新手来说难以理解</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdh8kjrwnij313t0u0qfg.jpg" alt="截屏2020-04-03 下午9.27.56"></p>
+<h3 id="X-Ray"><a href="#X-Ray" class="headerlink" title="X-Ray"></a><a href="http://xray.inf.usi.ch/xray.php#download" target="_blank" rel="noopener">X-Ray</a></h3><p>2008年的工具</p>
+<p>优点：多种可视化方式</p>
+<p>缺点：只作为<a href="https://marketplace.eclipse.org/content/x-ray-software-visualization" target="_blank" rel="noopener">旧版Eclapse-Ganymede插件</a>使用，部分图片的内容让人感到混乱，扩展性差</p>
+<h3 id="SourceMonitor"><a href="#SourceMonitor" class="headerlink" title="SourceMonitor"></a><a href="http://www.campwoodsw.com/sourcemonitor.html" target="_blank" rel="noopener">SourceMonitor</a></h3><p>优点：支持多语言，图形化设置，通过checkpoint可以保持和查看历史数据</p>
+<p>缺点：只支持Windows，设置不合理，无历史记录，数据没有可视化，难以阅读，排版差</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdha02b0ilj30sg0no763.jpg" alt="截屏2020-04-03 下午10.17.29"></p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdha3u8dw5j31f20iwn8m.jpg" alt="截屏2020-04-03 下午10.17.29"></p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdha651nybj31f20hojup.jpg" alt="截屏2020-04-03 下午10.17.29"></p>
+<h3 id="CodeCity"><a href="#CodeCity" class="headerlink" title="CodeCity"></a><a href="https://wettel.github.io/codecity.html" target="_blank" rel="noopener">CodeCity</a></h3><p>介绍，<a href="https://www.youtube.com/watch?v=HT3iw5l4l6U" target="_blank" rel="noopener">导入模型</a></p>
+<p>优点：好看，功能多</p>
+<p>缺点：复杂，旧，操作不易</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdhb7tnianj31cv0u0qo0.jpg" alt="截屏2020-04-03 下午10.59.19"></p>
+<h3 id="FindBugs"><a href="#FindBugs" class="headerlink" title="FindBugs"></a><a href="http://findbugs.sourceforge.net/publications.html" target="_blank" rel="noopener">FindBugs</a></h3><h3 id="PMD"><a href="#PMD" class="headerlink" title="PMD"></a><a href="https://pmd.github.io/" target="_blank" rel="noopener">PMD</a></h3><p>PMD is a source code analyzer. It finds common programming flaws like unused variables, empty catch blocks, unnecessary object creation, and so forth. It supports Java, JavaScript, Salesforce.com Apex and Visualforce, PLSQL, Apache Velocity, XML, XSL.</p>
+<p>Additionally it includes CPD, the copy-paste-detector. CPD finds duplicated code in Java, C, C++, C#, Groovy, PHP, Ruby, Fortran, JavaScript, PLSQL, Apache Velocity, Scala, Objective C, Matlab, Python, Go, Swift and Salesforce.com Apex and Visualforce.</p>
+<p>PMD的文档，它会对代码中的如下部分进行检查：<br>　　 未使用的本地变量<br>　　 空的catch块<br>　　 未使用参数<br>　　 空if语句<br>　　 重复的import语句<br>　　 未使用的私有方法<br>　　 可能是Singletons的类<br>　　 短/长变量及方法名字</p>
+<p>PMD提供了一项叫作CPD的很有用的功能，它检查代码的拷贝粘贴部分。我使用PMD找到的最频繁的错误是未使用的import语句，未使用的私有变量以及意外重复拼写。</p>
+<h3 id="CheckStyle"><a href="#CheckStyle" class="headerlink" title="CheckStyle"></a><a href="https://github.com/checkstyle/checkstyle" target="_blank" rel="noopener">CheckStyle</a></h3><p>Checkstyle is a tool for checking Java source code for adherence to a Code Standard or set of validation rules (best practices).</p>
+<p>Checkstyle检查如下部分：<br>　　 Javadoc注释<br>　　 命名约定<br>　　 标题<br>　　 Import语句<br>　　 体积大小<br>　　 空白<br>　　 修饰符<br>　　 块<br>　　 混合检查（包活一些有用的比如非必须的System.out和printstackTrace）</p>
+<p>不像PMD，Checkstyle能够检查Javadoc注释；Checkstyle可以发现更多的错误。包括漏掉的Javadoc注释，超过80个字符的行、不合约定的变量名、用tab来代替空格等等。两个工具都允许创建自定义的规则。</p>
+<h3 id="Jalopy"><a href="#Jalopy" class="headerlink" title="Jalopy"></a><a href="http://jalopy.sourceforge.net/" target="_blank" rel="noopener">Jalopy</a></h3><p>商用版 <a href="https://www.triemax.com/" target="_blank" rel="noopener">TRIEMAX</a></p>
+<p>　　Jalopy是一个易于配置的源代码格式程序，它能检测并修补Java代码中大量的习惯性缺陷。Jalopy更像一个代码整理器而不是检查器。Jalopy的插件现在已经支持大多数IDE，而且多数是无缝集成。我发现Jalopy特别强大，能够干许多很酷的事情。例如，它可以修改代码缩进、对齐括号、使行宽符合某个字符长度、插入相关的Javadoc注释以及对import语句排序。Jalopy最好的地方是超级自定义功能。一个简单的用户界面就可以让你选择Jalopy的所有功能的开关，不需要XML配置文件。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>如果想在你的组织中使用它们中的一个，Checkstyle似乎更好一些：它检查公司编码约定的大多数项目。如果增强代码质量是主要目标，那PMD是一个好的选择。但是如果你想要更多的功能并真正使用工具来修改代码，应该试试Jalopy。</p>
 
     </div>
 
@@ -324,8 +358,8 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/00%20%E4%BA%91%E8%AE%A1%E7%AE%97%E5%A4%A7%E7%BA%B2/" rel="prev" title="云计算大纲">
-      <i class="fa fa-chevron-left"></i> 云计算大纲
+    <a href="/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8C%91%E6%88%98%E5%92%8C%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/" rel="prev" title="《A Manifesto for Future Generation Cloud Computing&#59 Research Directions for the Next Decade》 —— 读书笔记">
+      <i class="fa fa-chevron-left"></i> 《A Manifesto for Future Generation Cloud Computing&#59 Research Directions for the Next Decade》 —— 读书笔记
     </a></div>
       <div class="post-nav-item">
     <a href="/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/16%20%E4%BA%91%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/" rel="next" title="云计算中的安全性">
@@ -390,7 +424,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用环境"><span class="nav-text">使用环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SonarQube-8-2"><span class="nav-text">SonarQube 8.2</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用环境"><span class="nav-text">使用环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SonarQube-8-2"><span class="nav-text">SonarQube 8.2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDepend"><span class="nav-text">JDepend</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#X-Ray"><span class="nav-text">X-Ray</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SourceMonitor"><span class="nav-text">SourceMonitor</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CodeCity"><span class="nav-text">CodeCity</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FindBugs"><span class="nav-text">FindBugs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PMD"><span class="nav-text">PMD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CheckStyle"><span class="nav-text">CheckStyle</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Jalopy"><span class="nav-text">Jalopy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -406,20 +440,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">51</span>
+          <span class="site-state-item-count">55</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">41</span>
+        <span class="site-state-item-count">50</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

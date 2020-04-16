@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="云计算和按需付费模型的出现，让用户可以随时随地获得基于订阅的服务。这带来的好处包括：更短的启动时间；创建可扩展的全球企业程序；给科学计算和高性能计算带来更好的成本价值关联；以及为无处不在的普适程序带来不同的调用&#x2F;执行模型。 另一方面，无服务计算、软件定义网络、物联网、边缘计算等新技术为云计算带来了机遇，但也同时带来了新的挑战，对新方法和研究策略的需求。对于解决可扩展性、灵活性、可靠性、安全性、可持">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《A Manifesto for Future Generation Cloud Computing&amp;#59 Research Directions for the Next Decade》 —— 读书笔记">
+<meta property="og:url" content="https://liaoooyx.com/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8C%91%E6%88%98%E5%92%8C%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="云计算和按需付费模型的出现，让用户可以随时随地获得基于订阅的服务。这带来的好处包括：更短的启动时间；创建可扩展的全球企业程序；给科学计算和高性能计算带来更好的成本价值关联；以及为无处不在的普适程序带来不同的调用&#x2F;执行模型。 另一方面，无服务计算、软件定义网络、物联网、边缘计算等新技术为云计算带来了机遇，但也同时带来了新的挑战，对新方法和研究策略的需求。对于解决可扩展性、灵活性、可靠性、安全性、可持">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdfjn0ul31j311n0u04d1.jpg">
+<meta property="article:published_time" content="2020-03-31T23:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-16T18:25:47.623Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="云计算">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdfjn0ul31j311n0u04d1.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8C%91%E6%88%98%E5%92%8C%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true
+  };
+</script>
+
+  <title>《A Manifesto for Future Generation Cloud Computing&#59 Research Directions for the Next Decade》 —— 读书笔记 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">米达的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="search-pop-overlay">
+  <div class="popup search-popup">
+      <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+  </div>
+</div>
+
+  </div>
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8C%91%E6%88%98%E5%92%8C%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《A Manifesto for Future Generation Cloud Computing&#59 Research Directions for the Next Decade》 —— 读书笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-01T00:00:00+01:00">2020-04-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-16 19:25:47" itemprop="dateModified" datetime="2020-04-16T19:25:47+01:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>13k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>35 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>云计算和按需付费模型的出现，让用户可以随时随地获得基于订阅的服务。这带来的好处包括：更短的启动时间；创建可扩展的全球企业程序；给科学计算和高性能计算带来更好的成本价值关联；以及为无处不在的普适程序带来不同的调用/执行模型。</p>
+<p>另一方面，无服务计算、软件定义网络、物联网、边缘计算等新技术为云计算带来了机遇，但也同时带来了新的挑战，对新方法和研究策略的需求。对于解决可扩展性、灵活性、可靠性、安全性、可持续性等问题的模型，也需要重新进行评估。</p>
+<p>该文献将定义云计算中的主要的开放性挑战，调查最新的解决方案和它们的局限。接着讨论新兴的趋势和影响范围，以及它们如何推动未来云计算的挑战。据此再进一步讨论云计算的未来，并指出下一个十年的研究方向。</p>
+<a id="more"></a>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>云计算模型，提供了对基于订阅的IT资源的按需访问，按需扩展，按使用付费。当前的三种主要服务模型为SaaS、PaaS、IaaS。在软件即服务SaaS中，用户通过互联网访问在数据中心上运行和管理的程序或软件，从而避免如版权、维护IT基础设施等费用；平台即服务PaaS，适合对IT资源需要更多控制的用户，但也同时为用户提供了一些框架来支持云程序的创建和部署；基础设施即服务IaaS，则允许用户访问计算资源，通常是提供虚拟机和存储空间。它不仅是前两者的基础，也是云计算的支柱。</p>
+<p>云计算中旧有的技术同样在不断发展，在虚拟化中，容器技术的出现和广泛使用，甚至导致新的服务模型出现：容器即服务CaaS。</p>
+<p>其中一些特定云服务专注于简化配置，以此满足特定的商业要求，这些旨在帮助企业创造价值的云服务，在种类和数量方面正在快速的增长：比如新兴的、易于使用的、基于云的数据分析服务和无服务结构。</p>
+<p>云计算中的分布式计算是一个更明显的发展趋势，相关概念有雾计算、边缘计算、物联网、将服务分布在地理分布的数据中心等。边缘/雾计算的核心思想是将计算能力移动到更接近数据的地方，比如移动基站、网关、交换机、路由器等，从而降低延迟；</p>
+<blockquote>
+<p>cluster computing —— 网格计算<br>grid computing —— 集群计算</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gdfjn0ul31j311n0u04d1.jpg" alt="截屏2020-04-02 上午10.19.45"></p>
+<h3 id="开放性问题"><a href="#开放性问题" class="headerlink" title="开放性问题"></a>开放性问题</h3><h4 id="可扩展性和可伸缩性（弹性）"><a href="#可扩展性和可伸缩性（弹性）" class="headerlink" title="可扩展性和可伸缩性（弹性）"></a>可扩展性和可伸缩性（弹性）</h4><ul>
+<li>通过硬件的异质性来加速计算</li>
+<li>资源虚拟化、性能、隔离、价值模型</li>
+<li>用于可扩展弹性服务的软件</li>
+<li>对性能进行监控和建模的中间件</li>
+<li>适应性的程序编程模型</li>
+</ul>
+<p>网格计算和集群计算是早期的分布式计算模型，云计算与前两者不同，它的优点是可以保证按需提供几乎无限的计算资源。好处之一是<strong>云计算中预料之外的计算资源需求激增不会违反<a href="http://blog.sina.com.cn/s/blog_c3917d180101c8r6.html" target="_blank" rel="noopener">服务级别协议SLAs</a></strong>，因为用户购买的固定计算资源无法给用户提供预期之外的服务质量QoS。但<strong>前提</strong>是云服务提供商提供可扩展的服务，即用户可<strong>以按需增加计算资源</strong>，并且新的计算资源能够直接给当前程序带来性能和服务质量的提升；其二是<strong>客户不需要提前调查、规划、购买硬件设备，而是根据当前需求购买云计算资源，并灵活变动</strong>。</p>
+<p>研究挑战在于可扩展的服务，它包括硬件级、中间件级和应用级。在硬件级中，要求云计算提供商有<strong>并行计算硬件</strong>，如多核、集群、加速器（GPUs），和非传统的架构（神经和量子），以及在<strong>IaaS服务</strong>中为用户提供<strong>异质硬件的抽象</strong>（如VMs、容器），同时提供隔离和性能保证。在<strong>中间件级别</strong>中，需要为用户提供<strong>编程模型和抽象</strong>，从而让使用PaaS服务的开发者可以专注于程序本身的功能（如Map、Reduce函数），而非功能性的问题（如可扩展性、容错）则交给中间件负责。在<strong>应用级</strong>中，需要开发新的算法，克服<strong>顺序确定性算法</strong>固有的可扩展性问题，包括非同步演化算法、近似算法、在线/增量算法（<a href="https://ieeexplore.ieee.org/document/5380857" target="_blank" rel="noopener">文献</a>）等，这些算法可能会通过<strong>牺牲精度或一致性来实现可扩展性和性能</strong>。</p>
+<p>在弹性服务方面的挑战包括：如何<strong>精确预测</strong>计算资源需求和不同资源分配下的程序性能。这些工作负载和性能模型能够帮助中间件中的资源管理器进行决策，也使程序能够扩展和收缩，包括动态创建、迁移、回收虚拟机、容器和其他计算资源等。</p>
+<p>成熟的<strong>虚拟机技术</strong>，使得CPU密集型应用中在虚拟机中的性能已经足以跟本机性能媲美，但依旧出现了<strong>容器技术</strong>，在快速启动的易于使用方面对虚拟机进行了改进。</p>
+<p><strong>编程模型</strong>则使程序能够<strong>动态重新配置</strong>，让中间件在公有云和私有云之间迁移数据和计算，甚至是将计算移动到离数据源更近的地方，如IoT中的传感器网络。</p>
+<p>云的可扩展性最终还是受各个<strong>组件</strong>（如计算、存储、相互联系）的扩展规模的限制。由Moore’s law 和 Dennard scaling可以推断，新的计算单元和用电量都将不再扩展，这直接影响了云的计算性能和成本。在这方面，需要研究CMOS（互补金属氧化物半导体）以外的新技术。类似的还有内存，DRAM（动态随机存取存储器）限制了成本和扩展，新的研究方向是非易失性技术，这些技术将在降低功耗的同时，进一步扩展负载存储操作内存。最后一个研究方向是<strong>光子互联</strong>，让所谓的硅光子通关光子连接传播到芯片中，改进性能、扩大规模、降低能耗。</p>
+<blockquote>
+<p>Service Level Agreement/SLA —— 服务协议级别<br>neuromorphic —— 神经形态<br>sequential deterministic algorithms —— 顺序确定性算法<br>asynchronous evolutionary algorithms ——非同步演化算法<br>approximation algorithms —— 近似算法<br>online/incremental algorithms —— 在线/增量算法<br>Complementary Metal-Oxide-Semiconductor —— CMOS —— 互补金属氧化物半导体<br>Dynamic Random-Access Memory —— DRAM —— 动态随机存取存储器</p>
+</blockquote>
+<h4 id="资源管理和调度"><a href="#资源管理和调度" class="headerlink" title="资源管理和调度"></a>资源管理和调度</h4><ul>
+<li>大规模服务中的自动扩展和资源控制</li>
+<li>多云操作和负载平衡</li>
+<li>专门的多重控制循环设计</li>
+<li>工作负载特征错误的敏感性</li>
+<li>安全和资源管理的相互作用</li>
+</ul>
+<p>云数据中心有多达几十万的计算和存储设备，因此需要高效的资源管理和调度策略。当前的<strong>IaaS</strong>主要依赖两种<strong>虚拟机配置策略</strong>：<strong>静态</strong>和<strong>动态</strong>。静态策略使用<strong>装箱算法</strong>将固定数量的物理资源分配给虚拟机；动态则通过虚拟机<strong>实时迁移</strong>和其他负载平衡技术来处理负载的变化。这些策略可以是<strong>提前预测分配</strong>，也可以是<strong>监测后重新分配</strong>，但不管如何，都需要知道虚拟机资源的需求，可以是用户指定，也可以是通过监控数据进行预测</p>
+<p>对于<strong>PaaS</strong>、<strong>SaaS</strong>供应商来说，资源管理方法可以帮助管理分配给分布式应用、容器、网络服务、微服务的资源的种类和数量。相关的策略有：1<strong>.自动扩展技术</strong>（基于当前和预测的负载动态扩展或收缩）2<strong>.资源节流技术</strong>（处理瞬时自动扩展中的工作负载突发、平滑和变化，和控制可抢占VM的使用）3.<strong>准入控制方法</strong>（处理高峰负载和高价值客户的负载优先级）4.<strong>服务编排和工作流调度</strong>（整理和编排工作负载，可能专门为特定领域设计，如科学领域中对成本和任务需求有限制的工作流，<a href="https://manuscript.elsevier.com/S0167739X15000059/pdf/S0167739X15000059.pdf" target="_blank" rel="noopener">参考文献</a>）5.<strong>多云的负载平衡</strong>（将应用的负载分布到多个云数据中心）。</p>
+<p>其中的一个挑战是，当前的资源管理策略<strong>不适用</strong>于<strong>不精确的资管需求预测</strong>，因此需要新的权衡方法，在工作负载信息不精确的情况下，对策略<strong>最优性</strong>和<strong>稳健性</strong>之间进行权衡。当前的需求估计和工作负载预测方法在未来可能不适用，而机器学习和人工智能能否胜任有待研究。</p>
+<p>另一个常见的问题是，资源管理策略<strong>专注于优化特定的度量指标和资源</strong>，缺少一个能在<strong>相同多重控制循环环境中共存</strong>的系统方法，使用户能公平的访问资源，以及对云堆栈各层在整体上实现最佳化（<a href="https://ieeexplore.ieee.org/abstract/document/6809354" target="_blank" rel="noopener">参考文献</a>）</p>
+<p>当前的研究功能工作还缺少安全和资源管理之间的相互作用的风险问题</p>
+<blockquote>
+<p>provisioning policies —— 配置策略<br>bin-packing algorithms —— 装箱算法<br>resource throttling methods —— 资源节流技术<br>preemptible —— 抢占式的<br>service orchestration —— 服务编排<br>multiple control loops —— 多重控制循环</p>
+</blockquote>
+<h4 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h4><ul>
+<li>导致大规模服务中断的故障关联</li>
+<li>缺少整体服务可靠性模型</li>
+<li>缺少自动的可靠性感知的服务管理机制</li>
+<li>缺少故障感知的配置策略</li>
+</ul>
+<p>云数据中心的系统是高度相互关联和相互依赖的。由于云计算系统的规模、复杂性和相互依赖性，它们需要面对可靠性相关挑战，比如硬件故障、资源缺失故障、溢出故障、网络故障、超时故障、和环境改变引发的软件缺陷。有些故障会影响系统操作，连锁故障甚至会应发大规模服务中断。企业组织通常会采用严格的可靠性保证和还原能力。需要新的云服务供应方式，来保障性能和<strong>从能各种故障中恢复的能力</strong>。另一个挑战是云系统的<strong>可靠性</strong>和<strong>能耗</strong>之间的相互影响的研究。</p>
+<p>云计算是<strong>面向服务</strong>的而不是面向资源的，所以分布式计算中保障可靠性的模型（如容错）不适和直接用于云计算系统。</p>
+<p>云计算中相互关联的特征的范围，比如巨大的规模、服务共享模型、广域网络、软/硬件组件异质性，导致难以分析云计算系统的规模和可靠性的<strong>期望值</strong>。</p>
+<p>现有许多研究对故障进行单独分析和解决，但都忽略了<strong>故障之间的相互影响</strong>。现存对的云计算环境中也缺少可靠性模型、自动的可靠性感知的服务管理机制，和故障感知配置策略</p>
+<h4 id="可持续性"><a href="#可持续性" class="headerlink" title="可持续性"></a>可持续性</h4><ul>
+<li>云数据中心的能源需求</li>
+<li>虚拟机整合以最小化服务器的能耗</li>
+<li>服务器之间数据流的最佳调度策略</li>
+<li>基于机器学习的任务分配</li>
+<li>能源与服务质量的权衡</li>
+</ul>
+<p>2017年世界上大约有850万云数据中心，它们每年的耗电量比大多数国家都多（除了美、中、俄、日）。ICT设施的耗电量接近世界总体耗电量的10%。但云和网络也有助于节能，比如智慧城市，或最大程度优化可再生和不可再生能源的混合使用。考<strong>虑能</strong>耗的同时还要考虑<strong>服务质量</strong>，比如在搜救领域就不能降低服务质量来减少能耗。</p>
+<p>当前的主要工作是整合虚拟机（涉及资源管理）以减少能耗。但其他的基础设施，比如制冷系统（接近35%能耗）、网络等也需要适合的调度算法。</p>
+<p>多核结构，新型的基于硬件的休眠启动控件、时钟速度管理技术，让服务器的能耗取决于瞬时工作负载。因此新的基于机器学习的方法能够动态<strong>分配</strong>任务到（云或雾的）多个服务器中，从而最少的违反SLA。整体技术也需要解决网络的服务质量，比如包延迟、远程访问云数据中心的网络能源效率问题。这些技术的目的都是为了提供一个能<strong>在线自动调整</strong>或自治的方法，使云系统的能耗和服务质量作为一个整体得到解决。</p>
+<p>当前的实验研究表明，<strong>深度学习和神经网络</strong>能够按照规定的执行延迟、响应时间、系统吞吐量、和能耗对任务进行分配（<a href="https://spiral.imperial.ac.uk:8443/bitstream/10044/1/59726/2/ServerstateDetection.pdf" target="_blank" rel="noopener">参考文献</a>）。另一种方式涉及<strong>均衡能源供应</strong>，云数据中心可以调节自身能耗并以服务质量作为响应，根据供应的能源动态的修改处理器的可变时钟速率（<a href="https://ieeexplore.ieee.org/document/6903096" target="_blank" rel="noopener">参考文献</a>）。也有人建议使用混合使用可再生和不可再生能源</p>
+<blockquote>
+<p>Information and Communications Technology, ICT —— 信息通信技术<br>sleep-start controls —— 休眠启动控件<br>Holistic techniques —— 整体技术<br>rationing the energy supply —— 均衡能源供应</p>
+</blockquote>
+<h4 id="异质性"><a href="#异质性" class="headerlink" title="异质性"></a>异质性</h4><ul>
+<li>虚拟机级别、供应商级别、硬件结构级别的异质性</li>
+<li>虚拟机放置、供应配置和调度‘</li>
+<li>采用供应商指定语言进行硬件加速</li>
+</ul>
+<p>因为云供应商需要不断更新硬件以满足用户需求，以及提高性能和效率，因此出现了云内在的异质性，反映在三个层面。</p>
+<p><strong>虚拟机</strong>层面，原因是能够以<strong>多种方式和配置方法</strong>对同质的资源进行组织（或者接近同质的，比如相同的处理器族），比如N核的同质硬件处理器可以被组织为有任意核的虚拟机。<strong>供应商</strong>层面，原因是可以从<strong>多个云供应商</strong>中利用资源，不同的云供应商有不同的虚拟机监控程序和软件套件（通常出现在多重云环境中）。<strong>硬件结构</strong>层面，原因是<strong>同时利用</strong>CPUs和硬件加速器（如GPUs、FPGAs）。</p>
+<p>第一重挑战是<strong>异质环境中的资源和工作负载管理</strong>。资源管理专注于以静态和动态的方式对虚拟机进行安置，综合考虑网络参数和能耗的本地调度或全局调度技术。工作负载管理则通过基准技术优化工作负载的安置的调度。基准技术的实践在虚拟机层面已经足够成熟，在供应商层面也正在发展（<a href="https://link.springer.com/article/10.1007/s10922-014-9307-7" target="_blank" rel="noopener">参考文献1</a> &amp; <a href="https://pureadmin.qub.ac.uk/ws/files/74475124/Varghese_IEEETCC.pdf" target="_blank" rel="noopener">参考文献2</a>），但在<strong>硬件结构层面对工作负载的性能预测</strong>还缺少研究。除此之外 ，当前对异质资源的资源管理和工作负载管理的研究也是分别进行的。当前还缺少对3个层面的异质性进行整合和管理的通用云平台。</p>
+<p>第二重挑战关于<strong>应用软件的开发，使之兼容异质资源</strong>。当前大部分的加速器需要不同的编程语言（比如CUDA和OpenCL需要对GPU编程），导致云程序很难采用加速器。在IaaS中，开发者只能直接面对硬件环境进行编程，而SaaS、PaaS中，可以在中间件对硬件进行抽象。但在中间件提供对加速器硬件的抽象，则会减少优化性能的可能性。因此需要对性能和易用性进行权衡。在这方面的开放性挑战是开发与底层硬件无关的软件，并且可以基于可用硬件进行适应（<a href="https://ieeexplore.ieee.org/document/7495121" target="_blank" rel="noopener">参考文献</a>）</p>
+<blockquote>
+<p>homogeneous —— 同质的，同类的<br>heterogeneous —— 异质的<br>vendor —— 供应商<br>Hypervisor —— 虚拟机监控程序<br>Software suits —— 软件套件<br>Field Programmable Gate Arrays (FPGAs) —— 现场可编程门阵列<br>benchmarking techniques —— 基准技术</p>
+</blockquote>
+<h4 id="相互关联的云"><a href="#相互关联的云" class="headerlink" title="相互关联的云"></a>相互关联的云</h4><ul>
+<li>云的相互操作性</li>
+<li>安全性和服务质量的常见规则和标准</li>
+<li>跨站点的虚拟网络</li>
+<li>服务的最小公分母背后的相互操作性</li>
+</ul>
+<p>云供应商都各自把工作局限于自己的服务。云的相互操作性是各种类型的云和系统（如公有云、私有云）彼此相互了解的一种能力，了解的信息包括：系统接口、配置、验证和授权格式、数据格式、程序的初始化和定制化。</p>
+<p>从更宽泛的角度来说，互连云有许多用于方法，用于整合不同的云供应商和数据中心的服务和功能。这些技术取决于互连云的参与者、它的目标、和提供给用户的服务整合的透明度（<a href="Interconnected Cloud Computing Environments: Challenges, Taxonomy, and Survey">参考文献</a>）</p>
+<p>现有的云供应商虽然有专门的互操作机制，但并<strong>没有统一的标准和开源</strong>，因此有很大的局限性。当前的标准化工作有：OGF的OCCI、SNIA的CDMI、DMTF的CIMI和OVF、IEEE的互连云、NIST的联合云。但<strong>现存云服务的接口并没有被标准化，且很多云服务的提供商都使用不同的接口、格式和上下文配置机制</strong>。</p>
+<p>广义上，如果各种云之间的互连是由供应商发起和管理的，这些方式可以被归为联合的云计算。<strong>联合云计算</strong>可以被看做是云计算发展的下一步，也是<strong>整合雾计算和边缘计算</strong>结构的下一步。联合云模型的好处有：资源优化、节约成本、敏捷资源交付、可扩展性、高可用性、商业连续性、地理分布</p>
+<p>共享云之间的资源有2个原因，一是公司企业希望现有的内部基础设施能够<strong>最大程度的被使用</strong>，因此公司的私有云需要与公有云无缝集成；二是公司把的大部分的程序（没有隐私要求的）转移到公有云上，以此将程序的<strong>工作负载转移</strong>到云上，或放宽资源需求的限制。</p>
+<p>最新的项目Aneka开发了中间件和库来整个不同的资源（如VM、数据库等），但也导致非最优的云程序或者只支持特定的服务模型</p>
+<p>互操作性和便携性在不同的组件上有不同的考虑，包括接口规范、可移动的数据格式和应用、国际公认的服务质量和安全标准。如何以高效、透明的方式，通过跨站虚拟网络将本地云和外部供应商资源进行互连，实现云资源的供应、管理和配置，是普及该技术的重要挑战。</p>
+<p>互连云服务的最小公分母是一个限制，如何突破这个限制，从而支持更丰富的云程序是其中的一个挑战。其他挑战还有：如何在多个供应商之间的授权、访问、账单方面进行协调；如何将互连云应用到雾计算等新兴趋势中。</p>
+<blockquote>
+<p>InterCloud —— interconnected Cloud —— 互连云<br>minimum common denominator —— 最小公分母</p>
+<ul>
+<li>Open Grid Forum’s (OGF) Open Cloud Computing Interface (OCCI)</li>
+<li>Storage Networking Industry Association’s (SNIA) Cloud Data Management Interface (CDMI)</li>
+<li>Distributed Management Task Force’s (DMTF) Cloud Infrastructure Man- agement Interface (CIMI)</li>
+<li>DMTF’s Open Virtualization Format (OVF)</li>
+<li>IEEE’s InterCloud</li>
+<li>National Institute of Standards and Technology’s (NIST) Federated Cloud</li>
+</ul>
+</blockquote>
+<h4 id="强化资源受限设备的自主权"><a href="#强化资源受限设备的自主权" class="headerlink" title="强化资源受限设备的自主权"></a>强化资源受限设备的自主权</h4><ul>
+<li>移动云绑定模型——任务委托和代码分流</li>
+<li>移动云的适应性问题</li>
+<li>云中心的物联网</li>
+<li>雾计算</li>
+</ul>
+<p>智能手机等移动设备，它们的电池、CPU、内存、存储等跟台式设备比是受限的，但可以通过外部的云资源减少这些限制。因此出现了移动云的概念。</p>
+<p>在移动云上的主要研究包括<strong>任务委托</strong>和<strong>移动代码负担转移</strong>。任务委托是指，从多个云供应商中移动调用网络服务，因此涉及互操作性问题，解决方案是中间件。代码负担转移，则对应用程序进行配置和分区，并将资源密集型的方法函数转移到云实例的代理上（如Cloudlets/swarmlets）。相关的研究挑战有：如何开发理想的负担转移方式、如何识别资源密集型方法、如何学习合理的决策机制——兼顾设备上下文（如电池级别、网络连通性）和云上下文（如云代理的当前负载）</p>
+<p>物联网演变为工业4.0和互联网4.0+，而云计算能够帮助存储和分布式处理物联网节点的数据。<strong>网络延迟</strong>是以云为中心的物联网模型的挑战之一。除此之外还有<strong>能耗</strong>问题，虽然可以通过可再生能源缓解，但却又引发了<strong>服务质量</strong>问题。</p>
+<p><strong>雾计算</strong>是一个新兴的解决方案，它的优点包括边缘设备的安全、位置识别、敏捷开发、低延迟、成本和性能上的效率，但同时也是关键的挑战。</p>
+<blockquote>
+<p>task delegation —— 任务委托<br>mobile code offloading —— 移动代码负担转移<br>Cloudlet —— 小云<br>swarmlets —— 小集群</p>
+</blockquote>
+<h4 id="安全性和隐私"><a href="#安全性和隐私" class="headerlink" title="安全性和隐私"></a>安全性和隐私</h4><ul>
+<li>基于编码的数据保护</li>
+<li>选择性的信息共享</li>
+<li>细粒度的访问</li>
+<li>查询的机密性和完整性</li>
+<li>基于安全性的云供应商原则</li>
+</ul>
+<p>涉及机密性、完整性、可用性。</p>
+<p>在机密性方面，通常是在储存前在云供应商外部对数据进行编码，但这限制了云供应商的查询评估。解决方案之一是<strong>索引</strong>，使部分查询评估不需要对数据进行解码。索引是保存了部分数据属性的元数据，对索引的定义需要在精确性和隐私性方面取得平衡，<strong>精确的索引能提高查询性能，但会暴露数据信息</strong>。某些编码技术也支持直接对数据进行操作和评估，不需要解码。比如<strong>OPE</strong>和<strong>同态加密</strong>。一些加密的数据库系统支持<strong>对加密数据进行SQL查询</strong>。</p>
+<p>一些基于云的程序（比如健康管理、社交服务等）会从多个数据源获得数据，而一些数据挖掘工具会因此挖掘到比预期更多的隐私数据，如何保护隐私性是一个挑战。对此的研究挑战是如何设计隐私保护的理论模型和实践机制。当前的研究趋势是<strong>采用机器学习分析大数据</strong>，包括威胁分析、攻击智能、病毒传播、数据关联等。</p>
+<p>常用的保护措施是，隐私数据仅对通过加密登录的用户本身开放，但有时候需要选择性的公开一些数据给其他用户，常用的方法是：<strong>选择性加密</strong>和<strong>基于属性加密ABE</strong>。但选择性共享数据还要考虑到第三方合作共享和分布式计算的场景可能出现的问题。</p>
+<p>有时候数据之间的关联比数据本身更加敏感，可以将数据拆分成不同部分并储存在不同的服务器中，但这会导致查询复杂度增加。</p>
+<p>虽然<strong>选择性访问</strong>的问题已经被解决，但却会受到利用访问频率侵犯数据和用户隐私的攻击。解决方案是<strong>私有信息检索RIP技术</strong>，它涉及隐私保护索引技术：比如Oblivious RAM、B-tree结构、二分搜索树（<a href="https://ieeexplore.ieee.org/abstract/document/7830709" target="_blank" rel="noopener">参考文献</a>）。但该领域的实践性解决方案仍然是一个挑战。</p>
+<p>关于完整性的技术有：数字签名、PDP、POR、将探测到的数据未授权修改存储在云供应商外部等。验证授权用户的数据的<strong>完整性</strong>只是其中一个方面。还有，由多用户共享数据的改变和查询引起的问题。相关的方法有确定性方法（使用认证的数据结构）和概率方法（完整性检查插入）（<a href="http://pdfs.semanticscholar.org/8cc0/0323e1907a0cf19561827fe4fa8047334e6f.pdf" target="_blank" rel="noopener">参考文献</a>），都可以代表有希望的方向，但所提供的适用性和完整性保证受到限制。</p>
+<p>关于可用性，是如何让用户能够选择到满足其安全性需求的云供应商（云供应商的行为通常在SLAs中声明）。最近的研究有关于不同云服务特征的可能依赖的探索，但这只是第一步。</p>
+<p>基于硬件的技术也可以保护云中的数据，最著名的是ARM TrustZone和 Intel SGX 技术。简单来说就是创建安全的执行环境。</p>
+<p>高级持久性威胁APTs是一类新的网络攻击，特点是面向目标，高度针对性，组织合理，资金充裕，技术先进，隐秘且持久。目前缺乏足够的防御手段，以及减少损失的措施，如技术驱动或原则驱动的解决方案。</p>
+<blockquote>
+<p>Order Preserving Encryption —— OPE<br>fully (or partial) homomorphic encryption —— 全、半同态加密<br>selective encryption —— 选择性加密<br>attribute-based encryption (ABE) ——基于属性的加密<br>Private Information Retrieval (PIR) —— 私有信息检索<br>privacy-preserving indexing techniques —— 隐私保护索引技术<br>Oblivious RAM<br>Provable Data Possession —— PDP<br>Proof Of Retrievability —— POR<br>Software Guard Extensions —— SGX<br>Advanced Persistent Threats (APTs) —— 高级持久性威胁</p>
+</blockquote>
+<h4 id="云计算的经济"><a href="#云计算的经济" class="headerlink" title="云计算的经济"></a>云计算的经济</h4><ul>
+<li>服务级别协议和策略管理</li>
+<li>将内部的基础设施迁移到公有云供应商</li>
+<li>选择合适的云供应商</li>
+<li>云的许可模型</li>
+</ul>
+<p>近年来，云经济学的研究主题集中在许多关键方面：1.云服务的定价；2.代理机制（搜索符合用户预算的资源）；3.监视以确定是否满足用户要求（涉及SLAs），比如WS-Agreement之类的规范的实现。</p>
+<p>云经济学涉及SLA，而SLA管理又与<u>计算资源、实例和服务</u>的供应和需求有关，在这方面有许多关于<u>基于原则的方法</u>和相关的<u>最优化策略</u>的研究（因为缺少资源适用场景）</p>
+<p>另一个相关的方面是如何迁移公司内部的基础设施和IT部门到云供应商。比如迁移服务需要考虑服务后续如何使用，对业务能力的影响；迁移系统需要考虑是否会影响保留在企业内部的系统功能。其中IT部门应该起到中介者的角色。</p>
+<p>上述背景引起了新技术的出现，比如基于容器的部署（无服务计算），使亚秒级计费成为可能，例如 Google “functions”，AWS Lambda。</p>
+<p>使用许可是另一个问题，包括年度许可和永久许可。独立的软件供应商正在研究更适合云的许可模式，如<u>BYOL</u>，<u>完全按需</u>等。</p>
+<p>选择合适的云供应商是另一个挑战。比较不同的云供应商十分耗时，并且难以比较。有人提出，专门平台对各个云平台进行比较，帮助用户进行选择；还有关于市场模型的研究</p>
+<blockquote>
+<p>BYOL (bring your own license)<br>marketplace models —— 市场模型</p>
+</blockquote>
+<h4 id="应用部署和交付"><a href="#应用部署和交付" class="headerlink" title="应用部署和交付"></a>应用部署和交付</h4><ul>
+<li>资源的可编程性</li>
+<li>持续传递</li>
+<li>敏捷传递带来的技术债务积累</li>
+</ul>
+<p>资源的可编程性，是开发者能够对基础设施和平台进行编程控制，带来的好处比如让程序能够自动扩展，使程序能够在运行时自动修复、优化等。关键的好处是能够加速产品更新的交付。实现的关键是敏捷交付工具和基于模型的编排语言（比如 Terraform，OASIS TOSCA）。这些工具有助于自动化生命周期管理，包括持续交付和持续集成，应用程序和平台配置以及测试。</p>
+<p>平台可编程性，开发云上的程序时，可以帮助减少软件开发的复杂度。比如用户专注于Map、Reduce任务，由中间件负责容错、任务分配的工作。当前正在研究的编程模型，关注如何处理<strong>云平台的异质性</strong>，比如将程序分布于边缘计算中的各个异质节点。当前缺乏交付框架和编程模型，将程序部署在CDC和边缘节点。因而无法在云应用中使用异构硬件，也无法使用互连云操作。</p>
+<p>另一个挑战是应用程序的发展，加速产品更新交付会影响程序的质量。当前缺少云软件工程的研究，将传统开发和敏捷开发的优点结合。比如记录云程序的所有发行版本的性能和可靠性数据，以便更好地指导产品更新，以及自动识别违反设计模式的行为，并在测试新功能期间探索假设场景</p>
+<blockquote>
+<p>CDC —— 云数据中心</p>
+</blockquote>
+<h4 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h4><ul>
+<li>服务在管理元数据上的局限性</li>
+<li>数据管理策略和规范</li>
+<li>管理对延迟敏感的数据流</li>
+<li>整合流和批量数据</li>
+</ul>
+<p>大数据平台有多种类型，如用于互联网和企业工作负载，采用批处理+NoSQL，如Apache Hadoop；用于物联网，处理分布式数据流，如Apache Storm。</p>
+<p><u>处理元数据（定位和使用数据）的服务</u>对<u>存储数据的服务</u>的支持不够。数据的隐私问题。广域网的延迟较高，从而影响物联网设备对低延迟处理的需求（出现边缘计算和雾计算）。数据中心里各个虚拟机之间的带宽和网络延迟，也会导致瓶颈和影响延迟敏感的数据流的处理。需要的解决方案包括，<strong>软件定义网络</strong>SDN，和<strong>网络功能虚拟化</strong>NFV。</p>
+<p>还需要对Lambda结构的研究，以便在休息和运行时都能处理数据。Apache Flink和Spark Streaming 提供了一些早期方案。大数据系统对在弹性云上自动扩展和收缩的支持不够。</p>
+<blockquote>
+<p>Software Defined Networking (SDN)<br>Network Functions Virtualization (NFV)</p>
+</blockquote>
+<h4 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h4><ul>
+<li>高能耗和缺少能源的对称性</li>
+<li>缺少对服务质量的保证</li>
+<li>多重租赁和可扩展性问题</li>
+</ul>
+<p>近年关于云网络的研究有：SDN和NFV，用于构建敏捷、灵活的可编程计算机网络，减少运营支出。还有关于扩展限制、平面空间地址、和服务的过度订阅等问题的研究，促进了一些网络结构的产生，比如VL2, PortLand, and BCube。</p>
+<p>关于网络的挑战之一是如何使<strong>能耗与负载成比例</strong>。大多数网络组件，比如交换机、路由器等硬件本身不支持节能的功能，比如没有通信时休眠，低流量时段的链路速率调整等。</p>
+<p>另一个挑战则关于服务质量的保证。因为没有实现<strong>性能隔离</strong>的机制，导致SLAs没有对比如带宽和延迟的保证。当前的研究有通过网络抽象层VDC<strong>对虚拟机带宽的保证</strong>（<a href="https://dl.acm.org/doi/abs/10.1145/1921168.1921188" target="_blank" rel="noopener">参考文献</a>），但没有<strong>对延迟的保证</strong>。</p>
+<p>在<strong>混合云环境中</strong>部署虚拟集群时，虽然可以通过虚拟化技术解决资源的网络连接问题，但云提供商无法像在其自己的数据中心中那样获得对核心Internet设备的特权访问。因此，云提供商在路由和流量工程方面的灵活性在很大程度上受到限制，<strong>网络性能缺少保证</strong>。</p>
+<p>此外，与专用的数据中心网络相比，诸如Internet之类的公用网络的性能更加不可预测和易变，这使得更难以提供有保证的性能要求。传统的WAN方法，例如用于此类网络中流量工程的多协议标签交换MPLS，由于缺乏网络全局视图，因此在带宽使用和处理对延迟敏感的流量方面也效率不高（<a href="https://dl.acm.org/doi/abs/10.1145/2486001.2486012" target="_blank" rel="noopener">参考文献</a>）。 </p>
+<p>由于现代云数据中心的网络规模很大，因此它也同样面临着和互联网相似的问题，比如VLAN的限制，VXLAN在多播种的限制，IPV4的限制等。</p>
+<blockquote>
+<p>Multi-Protocol Label Switching (MPLS) —— 多协议标签转换</p>
+</blockquote>
+<h4 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h4><ul>
+<li>HCI和分布式系统社区的差距</li>
+<li>基础设施和服务的封装</li>
+<li>生产力工具</li>
+</ul>
+<p>可用性是降低组织探索云服务和基础架构成本的关键因素，因为用户可以拥有更好的服务质量并提高生产力，从而减少人工支出。</p>
+<p>云的可用性被NIST的可用性框架中突出为5个方面：能力、个人、可靠、安全、价值（<a href="https://link.springer.com/chapter/10.1007/978-3-319-20376-8_59" target="_blank" rel="noopener">参考文献</a>）。能力，与满足云消费者对云服务功能的期望有关。 个人，是允许用户和组织更改用户界面的外观和风格并自定义服务功能。 可靠，安全和价值，是与使系统在状态条件下安全、受保护地执行其功能，并分别将价值（结果）返回给用户。</p>
+<p>对于可用性，当前的工作主要集中在将复杂的服务封装到API中，以方便用户使用，比如HPC云，研究者一直在创建服务来公开HPC应用程序，以简化其使用。</p>
+<p>另一个方向是DevOps，它的目标是将开发（Dev）和操作（Ops）集成在一起，从而帮助更快地交付软件。在云环境中创建和部署解决方案时，DevOps提高了开发人员和运营商的生产力。 不仅要在云中构建新的解决方案，而且要简化从内部部署环境到多租户弹性云服务的旧软件迁移。</p>
+<blockquote>
+<p>capable, personal, reliable, secure, and valuable<br>High Performance Computing (HPC) —— 高性能计算</p>
+</blockquote>
+<h3 id="新兴的趋势和影响范围"><a href="#新兴的趋势和影响范围" class="headerlink" title="新兴的趋势和影响范围"></a>新兴的趋势和影响范围</h3><h4 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h4><p>Docker的诞生引起了各界对容器技术的关注。</p>
+<p>容器依赖于现代Linux的内核设施，比如 cgroups, LXC (Linux containers) and libcontainer。Docker使用Linux核心的cgroups和命名空间来运行独立的容器。cgroups提供资源的隔离（如CPU、内存、网络、block I/O）。命名空间从程序的角度隔离操作环境（包括进程树、网络、用户ID、挂载文件系统）。libcontainer库作为<u>容器引用实现</u>。并将程序和相关依赖打包到容器镜像中。</p>
+<p>容器技术在行业中的普及，促进了对容器即服务（CaaS）的需求，比如UberCloud。</p>
+<p>容器的两大特点，一是启动速度快，甚至能低于1秒；二是容器对内存的占用量很小，消耗的资源很少。</p>
+<p>容器的缺点是由于共享内核，因此隔离和安全比VM差（这是其中一个研究热点）。解决该问题的可能方案之一是<strong>硬件支持</strong>，比如Intel SGX的受信执行支持；二是使用Unikernel，是一种库操作系统。</p>
+<p>容器技术的挑战是如何最优化容器性能，比如<strong>Slack技术</strong>对存储驱动最佳化，来加速容器启动。还有基于用户服务质量需求的容器集群管理，比如容器集群管理系统，Kubernetes，Mesos 和 Swarm。</p>
+<blockquote>
+<p>mounted file systems —— 挂载文件系统<br>container reference implementation —— 容器引用实现<br>trusted execution support of Intel SGX</p>
+</blockquote>
+<h4 id="雾计算"><a href="#雾计算" class="headerlink" title="雾计算"></a>雾计算</h4><p>雾计算是传统云计算模型的扩展。雾计算包括3个方面，一是使路由节点（如移动基站、网关、路由器等）执行通用目的计算；二是为路由节点添加计算能力，对传输数据进行处理；三是结合前2者。</p>
+<p>好处之一是<strong>减少延迟</strong>，改进流式应用和实时应用的服务质量。二是<strong>无缝支持移动性</strong>，可以启用用户设备和计算服务器之间的无线访问，并可以组织可伸缩的控制系统。这些好处都适用于IoT应用。</p>
+<p>雾计算和边缘计算的不同在于，<strong>边缘计算</strong>将计算能力提供给了IoT设备本身，而<strong>雾计算</strong>的计算节点（Dockers、VMs）则是靠近数据源。<strong>边缘计算需要IoT设备有执行代码和通信的能力，问题在于这样的接口并没有被所有的IoT设备采用</strong>。因此，雾计算似乎是迄今为止唯一可行/通用的解决方案。</p>
+<p>雾计算尽管不能完全作为CDC，但也提供完整的IaaS，PaaS和SaaS资源堆栈。它的主要好处在于能减少延迟，预计每个城市只需要少数几个雾数据中心。从商业角度，还能使用私有云或独立的雾供应商的基础设施作为雾节点。对于<strong>移动边缘计算</strong>，它基于移动蜂窝网络，而不经过传统雾计算的路由节点</p>
+<p>雾计算的优点包括，应用在不同计算层之间的<strong>垂直扩展性</strong>。它允许对<strong>传输数据进行提前处理</strong>，从而只有必要的流量会被发送到云数据中心。<strong>工作负载</strong>也可从云中分解下发到雾节点上，或者从边缘节点向上迁移到雾节点。在雾节点中可以使用更轻量的<strong>容器</strong>代替虚拟机。</p>
+<h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><h4 id="无服务计算"><a href="#无服务计算" class="headerlink" title="无服务计算"></a>无服务计算</h4><h4 id="软件定义的云计算"><a href="#软件定义的云计算" class="headerlink" title="软件定义的云计算"></a>软件定义的云计算</h4><h4 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h4><h4 id="机器学习和深度学习"><a href="#机器学习和深度学习" class="headerlink" title="机器学习和深度学习"></a>机器学习和深度学习</h4><h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><p>&gt;</p>
+<blockquote>
+<p>non-volatile technologies —— 非易失性技术<br>Ad-hoc —— 特设的<br>offloading —— 分流<br>proportionality —— 对称性</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E4%BA%91%E8%AE%A1%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 云计算</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/00%20%E4%BA%91%E8%AE%A1%E7%AE%97%E5%A4%A7%E7%BA%B2/" rel="prev" title="云计算大纲">
+      <i class="fa fa-chevron-left"></i> 云计算大纲
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AF%B9%E6%AF%94/" rel="next" title="软件度量工具的使用和比较：SonarQube、JDEPEND、">
+      软件度量工具的使用和比较：SonarQube、JDEPEND、 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放性问题"><span class="nav-text">开放性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可扩展性和可伸缩性（弹性）"><span class="nav-text">可扩展性和可伸缩性（弹性）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源管理和调度"><span class="nav-text">资源管理和调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠性"><span class="nav-text">可靠性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可持续性"><span class="nav-text">可持续性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异质性"><span class="nav-text">异质性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相互关联的云"><span class="nav-text">相互关联的云</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强化资源受限设备的自主权"><span class="nav-text">强化资源受限设备的自主权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全性和隐私"><span class="nav-text">安全性和隐私</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云计算的经济"><span class="nav-text">云计算的经济</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用部署和交付"><span class="nav-text">应用部署和交付</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据管理"><span class="nav-text">数据管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络"><span class="nav-text">网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可用性"><span class="nav-text">可用性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新兴的趋势和影响范围"><span class="nav-text">新兴的趋势和影响范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#容器"><span class="nav-text">容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#雾计算"><span class="nav-text">雾计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据"><span class="nav-text">大数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无服务计算"><span class="nav-text">无服务计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件定义的云计算"><span class="nav-text">软件定义的云计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链"><span class="nav-text">区块链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#机器学习和深度学习"><span class="nav-text">机器学习和深度学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关术语"><span class="nav-text">相关术语</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>
