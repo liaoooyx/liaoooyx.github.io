@@ -13,13 +13,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="坐标英国利兹">
@@ -40,7 +40,8 @@
   CONFIG.page = {
     sidebar: "",
     isHome : true,
-    isPost : false
+    isPost : false,
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -94,14 +95,12 @@
 
   <div class="site-meta">
 
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">米达的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">好好学习</p>
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
   </div>
 
   <div class="site-nav-right">
@@ -112,32 +111,33 @@
 </div>
 
 
+
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -145,17 +145,18 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
-    <div class="search-pop-overlay">
-  <div class="popup search-popup">
-      <div class="search-header">
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -169,10 +170,9 @@
   </div>
 </div>
 
+    </div>
   </div>
-</div>
 
-  </div>
 </div>
     </header>
 
@@ -186,15 +186,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content index posts-expand">
             
-
-  <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/00%20%E4%BA%91%E8%AE%A1%E7%AE%97%E5%A4%A7%E7%BA%B2/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/05/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E4%B8%89%E7%A7%8D%E5%85%B3%E9%94%AE%E8%AF%8D%E5%8C%B9%E9%85%8D%E6%96%B9%E6%A1%88/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -206,42 +204,42 @@
       <meta itemprop="name" content="米达的博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/00%20%E4%BA%91%E8%AE%A1%E7%AE%97%E5%A4%A7%E7%BA%B2/" class="post-title-link" itemprop="url">云计算大纲</a>
-        </h1>
+            <a href="/2020/05/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%9A%84%E4%B8%89%E7%A7%8D%E5%85%B3%E9%94%AE%E8%AF%8D%E5%8C%B9%E9%85%8D%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">搜索引擎的关键词匹配方案</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-03-27 00:00:00 / 修改时间：16:34:07" itemprop="dateCreated datePublished" datetime="2020-03-27T00:00:00+00:00">2020-03-27</time>
+              <time title="创建时间：2020-05-09 00:00:00 / 修改时间：02:55:44" itemprop="dateCreated datePublished" datetime="2020-05-09T00:00:00+01:00">2020-05-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
                 </span>
             </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
+                <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>195</span>
+              <span>158</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
@@ -256,24 +254,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <ol>
-<li>分布式系统模型和支持技术</li>
-<li>云计算–体系结构，服务，模型，用例</li>
-<li>公共云和私有云。 资源管理</li>
-<li>集群和数据中心的虚拟机和虚拟化</li>
-<li>虚拟基础架构管理：OpenNebula和Openstack</li>
-<li>云调度</li>
-<li>容器化和Kubernetes</li>
-<li>云编程和软件环境</li>
-<li>云中间件和配置管理</li>
-<li>大数据。 Mapreduce和Hadoop</li>
-<li>服务水平协议</li>
-<li>云经济</li>
-<li>能源效率</li>
-<li>安全与信任</li>
-<li>无处不在的云和物联网</li>
-<li>云支持：边缘计算，虚拟化/单核，工业4.0，无服务器架构</li>
-</ol>
+          <h4 id="搜索引擎的关键词匹配方案"><a href="#搜索引擎的关键词匹配方案" class="headerlink" title="搜索引擎的关键词匹配方案"></a>搜索引擎的关键词匹配方案</h4><p>方法一：【词嵌入技术】</p>
+<p>方法二：计算相似度</p>
+<ul>
+<li>【词袋】包含1000个基础单词</li>
+<li>任何一个单词都匹配能用一个1000维的向量表示</li>
+<li>任何一个文档，都能用每个单词所表示的向量相加</li>
+<li>文档之间（或文档和查询词之间）的相似度可以通过计算两个向量的距离。</li>
+</ul>
+<p>方法三：【倒排索引】</p>
+<ul>
+<li>具体介绍请转至，博客标题：信息检索（谷歌搜索）</li>
+</ul>
 
       
     </div>
@@ -289,10 +281,819 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F/" class="post-title-link" itemprop="url">软件度量 Metrics Used in Software Measurement</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-03T00:00:00+01:00">2020-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-05 22:09:46" itemprop="dateModified" datetime="2020-05-05T22:09:46+01:00">2020-05-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>17 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>注意，任何一种软件度量都是有缺陷的</p>
+<blockquote>
+<p>Every software metric is flawed if you blindly take it to its extreme.</p>
+</blockquote>
+<h4 id="软件度量的作用"><a href="#软件度量的作用" class="headerlink" title="软件度量的作用"></a>软件度量的作用</h4><ul>
+<li>帮助开发者管理软件开发进度，比如预估开发时间、评估软件质量是否足以交付</li>
+<li>通过定义和测量软件的属性，来更好的理解软件（软件工程）</li>
+</ul>
+<blockquote>
+<p>Software Metrics: A Rigorous &amp; Practical Approach, Second Edition. Bieman, James M.IBM Systems Journal; Armonk Vol. 36, Iss. 4,  (1997): 594-595.</p>
+</blockquote>
+<h4 id="架构度量的作用"><a href="#架构度量的作用" class="headerlink" title="架构度量的作用"></a>架构度量的作用</h4><p>软件架构能在开始具体开发工作之前，帮助我们确定软件的骨架，就好像建房子一样。而<strong>架构度量</strong>则是帮助我们量化软件架构的一些基本属性，以检查好坏（但还需要发现属性与好坏直接的关系，这需要学者研究或者开发经验）。</p>
+<blockquote>
+<p>Coulin T, Detante M, Mouchère W, et al. Software Architecture Metrics: a literature review[J]. arXiv preprint arXiv:1901.09050, 2019.</p>
+</blockquote>
+<h4 id="2个问题"><a href="#2个问题" class="headerlink" title="2个问题"></a>2个问题</h4><ul>
+<li>哪些架构度量可以帮助设计者评估软件架构</li>
+<li>这些架构度量在什么程度上表示了架构的质量</li>
+</ul>
+<h4 id="架构质量的5个方面"><a href="#架构质量的5个方面" class="headerlink" title="架构质量的5个方面"></a>架构质量的5个方面</h4><ul>
+<li>Maintainability 可维护性</li>
+<li>Performance 性能</li>
+<li>Extensibility 可扩展性</li>
+<li>Simplicity and Understandability 简单性+可理解性</li>
+<li>Re-usability 可重用性</li>
+</ul>
+<h4 id="架构度量的4个方面"><a href="#架构度量的4个方面" class="headerlink" title="架构度量的4个方面"></a>架构度量的4个方面</h4><ul>
+<li>Coupling 耦合</li>
+<li>Cohesion 内聚</li>
+<li>Complexity 复杂性</li>
+<li>Size 大小</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><p>至2011年为止，共20种度量方式：<a href="https://maisqual.squoring.com/wiki/index.php/Category:Metrics" target="_blank" rel="noopener">https://maisqual.squoring.com/wiki/index.php/Category:Metrics</a> (<a href="https://maisqual.squoring.com/wiki/index.php/Maisqual_Metrics" target="_blank" rel="noopener">Maisqual Metrics set</a>)</p>
+<p>软件架构度量（文献综述）：Coulin T, Detante M, Mouchère W, et al. Software Architecture Metrics: a literature review[J]. arXiv preprint arXiv:1901.09050, 2019.</p>
+<p>Eclipse度量插件中使用的度量方法：<a href="http://eclipse-metrics.sourceforge.net/example/index.html" target="_blank" rel="noopener">http://eclipse-metrics.sourceforge.net/example/index.html</a></p>
+<h2 id="架构度量"><a href="#架构度量" class="headerlink" title="架构度量"></a>架构度量</h2><h3 id="S-R-Chidamber-and-C-F-Kemerer-“A-metrics-suite-for-object-oriented-design-”-in-IEEE-Transactions-on-Software-Engineering-vol-20-no-6-pp-476-493-June-1994"><a href="#S-R-Chidamber-and-C-F-Kemerer-“A-metrics-suite-for-object-oriented-design-”-in-IEEE-Transactions-on-Software-Engineering-vol-20-no-6-pp-476-493-June-1994" class="headerlink" title="S. R. Chidamber and C. F. Kemerer, “A metrics suite for object oriented design,” in IEEE Transactions on Software Engineering, vol. 20, no. 6, pp. 476-493, June 1994."></a>S. R. Chidamber and C. F. Kemerer, “A metrics suite for object oriented design,” in IEEE Transactions on Software Engineering, vol. 20, no. 6, pp. 476-493, June 1994.</h3><h4 id="Weighted-Methods-Per-Class-WMC"><a href="#Weighted-Methods-Per-Class-WMC" class="headerlink" title="Weighted Methods Per Class (WMC)"></a>Weighted Methods Per Class (WMC)</h4><p>计算方式：一个类中所有方法的复杂度之和，如果所有方法的复杂度相同，则为方法数量之和</p>
+<p>Theoretical Basis: WMC relates directly to Bunge’s definition of complexity of a thing, since methods are properties of object classes and complexity is determined by the cardinality of its set of properties. The number of methods is, therefore, a measure of class definition as well as being attributes of a class, since attributes correspond to properties.</p>
+<p>Viewpoints:</p>
+<ul>
+<li>1) The number of methods and the complexity of methods involved is a predictor of how much time and effort is required to develop and maintain the class.</li>
+<li>2) The larger the number of methods in a class the greater the potential impact on children, since children will inherit all the methods defined in the class.</li>
+<li>3) Classes with large numbers of methods are likely to be more application specific, limiting the possibility of reuse.</li>
+</ul>
+<h4 id="Depth-of-Inheritance-Tree-DIT"><a href="#Depth-of-Inheritance-Tree-DIT" class="headerlink" title="Depth of Inheritance Tree (DIT)"></a>Depth of Inheritance Tree (DIT)</h4><p>计算方式：继承树中的最大长度（深度）</p>
+<p>Definition: Depth of inheritance of the class is the DIT metric for the class. In cases involving multiple inheritance, the DIT will be the maximum length from the node to the root of the tree.</p>
+<p>Theoretical Basis: DIT relates to Bunge’s notion of the scope of properties. DIT is a measure of how many ancestor classes can potentially affect this class.</p>
+<p>Viewpoints:</p>
+<ul>
+<li><p>The deeper a class is in the hierarchy, the greater the number of methods it is likely to inherit, making it more complex to predict its behavior.</p>
+</li>
+<li><p>Deeper trees constitute greater design complexity, since more methods and classes are involved.</p>
+</li>
+<li><p>The deeper a particular class is in the hierarchy, the greater the potential reuse of inherited methods.</p>
+</li>
+</ul>
+<h4 id="Number-of-Children-NOC"><a href="#Number-of-Children-NOC" class="headerlink" title="Number of Children(NOC)"></a>Number of Children(NOC)</h4><p>计算方式：一个类的直接子类的数量</p>
+<p>Definition: NOC = number of immediate subclasses subordinated to a class in the class hierarchy.</p>
+<p>Theoretical Basis: NOC relates to the notion of scope of properties. It is a measure of how many subclasses are going to inherit the methods of the parent class.</p>
+<p>Viewpoints:</p>
+<ul>
+<li>1) Greater the number of children, greater the reuse, since inheritance is a form of reuse.</li>
+<li><strong><em>2)\</em></strong> Greater the number of children, the greater the likelihood of improper abstraction of the parent class. If a class has a large number of children, it may be a case of misuse of subclassing.</li>
+<li>3) The number of children gives an idea of the potential influence a class has on the design. If a class has a large number of children, it may require more testing of the methods in that class.</li>
+</ul>
+<h4 id="Coupling-between-object-classes-CBO"><a href="#Coupling-between-object-classes-CBO" class="headerlink" title="Coupling between object classes (CBO)"></a>Coupling between object classes (CBO)</h4><p>计算方式：一个类与其他类耦合的数量。依赖和被依赖都属于耦合，但计算方式是按类计算的，即使两个类相互依赖也只是各计一次。</p>
+<p>Definition: CBO for a class is a count of the number of other classes to which it is coupled.</p>
+<p>Theoretical Basis: CBO relates to the notion that an object is coupled to another object if one of them acts on the other, i.e., methods of one use methods or instance variables of another. As stated earlier, since objects of the same class have the same properties, two classes are coupled when methods declared in one class use methods or instance variables defined by the other class.</p>
+<p>Viewpoints:</p>
+<ul>
+<li>1) Excessive coupling between object classes is detrimental to modular design and prevents reuse. The more inde- pendent a class is, the easier it is to reuse it in another application.</li>
+<li><em>2)</em> In order to improve modularity and promote encapsu- lation, inter-object class couples should be kept to a minimum. The larger the number of couples, the higherthe sensitivity to changes in other parts of the design, and therefore maintenance is more difficult.</li>
+<li>3) A measure of coupling is useful to determine how complex the testing of various parts of a design are likely to be. The higher the inter-object class coupling, the more rigorous the testing needs to be.</li>
+</ul>
+<h4 id="Response-For-a-Class-UFC"><a href="#Response-For-a-Class-UFC" class="headerlink" title="Response For a Class (UFC)"></a>Response For a Class (UFC)</h4><p>计算方法：一个类中的方法调用其他方法的数量（包括该类的其他方法和其他类的方法）</p>
+<p>Definition: RFC = |RS| where RS is the response set for the class.</p>
+<p>Theoretical Basis: The response set of a class is a set of methods that can potentially be executed in response to a message received by an object of that class. The cardinality of this set is a measure of the attributes of objects in the class. Since it specifically includes methods called from outside the class, it is also a measure of the potential communication between the class and other classes.</p>
+<p>Viewpoints:</p>
+<ul>
+<li>1) If a large number of methods can be invoked in response to a message, the testing and debugging of the class becomes more complicated since it requires a greater level of understanding required on the part of the tester.</li>
+<li>2) The larger the number of methods that can be invoked from a class, the greater the complexity of the class.</li>
+<li>3) <strong>A</strong> worst case value for possible responses will assist in appropriate allocation of testing time.</li>
+</ul>
+<h4 id="Lack-of-Cohesion-in-Methods-LCOM"><a href="#Lack-of-Cohesion-in-Methods-LCOM" class="headerlink" title="Lack of Cohesion in Methods (LCOM)"></a><a href="http://eclipse-metrics.sourceforge.net/descriptions/pages/cohesion/LackOfCohesionInMethods.html" target="_blank" rel="noopener">Lack of Cohesion in Methods (LCOM)</a></h4><p>计算方式：一个类中，没有公共字段的方法对的数量，减去，该类中至少一个公共字段的方法对的数量。如果此值为负，则度量标准值将设置为0。</p>
+<p>Theoretical Basis: The LCOM is a count of the number of method pairs whose similarity is 0 minus the count of method pairs whose similarity is not zero. The larger the number of similar methods, the more cohesive the class, which is consistent with traditional notions of cohesion that measure the inter-relatedness between portions of a program. If none of the methods of a class display any instance behavior, i.e., do not use any instance variables, they have no similarity and the LCOM value for the class will be zero. The LCOM value provides a measure of the relative disparate nature of methods in the class. A smaller number of disjoint pairs (elements of set P ) implies greater similarity of methods. LCOM is intimately tied to the instance variables and methods of a class, and therefore is a measure of the attributes of an object class.</p>
+<p>Viewpoints:</p>
+<ul>
+<li>1) Cohesiveness of methods within a class is desirable, since it promotes encapsulation.</li>
+<li>2) Lack of cohesion implies classes should probably be split into two or more subclasses.</li>
+<li><strong>3)</strong> Any measure of disparateness of methods helps identify flaws in the design of classes.</li>
+<li>4) Low cohesion increases complexity, thereby increasing the likelihood of errors during the development process.</li>
+</ul>
+<p><a href="https://stackoverflow.com/questions/6013032/why-does-lack-of-cohesion-of-methods-lcom-include-getters-and-setters" target="_blank" rel="noopener">缺陷</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E5%9F%BA%E4%BA%8E%E5%BE%AE%E6%A0%B8%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BC%9A%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E5%9F%BA%E4%BA%8E%E5%BE%AE%E6%A0%B8%E6%A8%A1%E5%BC%8F%E7%9A%84%E6%9E%B6%E6%9E%84%E8%AE%BE%E8%AE%A1%EF%BC%9A%E9%9D%99%E6%80%81%E4%BB%A3%E7%A0%81%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">微核模式的插件式架构设计：静态代码分析工具</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-03T00:00:00+01:00">2020-05-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-06 09:32:20" itemprop="dateModified" datetime="2020-05-06T09:32:20+01:00">2020-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<p>下文中，<u>基于微核模式设计的静态代码分析工具</u>将简称为<u>工具</u></p>
+<h4 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h4><ol>
+<li>用户可以实现自己的软件度量方法，并作为插件集成到工具中<ol>
+<li>以代码的方式实现</li>
+<li>以配置的方式实现</li>
+</ol>
+</li>
+<li>工具对项目代码分析完毕后，提供一个对象来获取计算软件度量所需的元数据<ol>
+<li>需要分析究竟需要提供多少元数据才能满足用户插件的需求</li>
+<li>如果工具提供的元数据不足，如何让用户生成新的元数据<ol>
+<li>代码特征的最小集</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="基本设计思想"><a href="#基本设计思想" class="headerlink" title="基本设计思想"></a>基本设计思想</h4><ul>
+<li>通过接口声明插件应该具备的功能。在本例中则是定义用户自定义的插件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Interface Plugin &#123;</span><br><span class="line">	    void doSth();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public class PrintSth implements Plugin &#123;</span><br><span class="line">    @Override</span><br><span class="line"></span><br><span class="line">	    public void doSth() &#123;</span><br><span class="line">		        PrintHelloWorld();</span><br><span class="line">	    &#125;</span><br><span class="line">	    private void PrintHelloWorld() &#123;</span><br><span class="line">		        System.out.println(&quot;HelloWorld!&quot;);</span><br><span class="line">	    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>至于检测插件是否实现了接口，可以使用isAssignableFrom()</li>
+</ul>
+<h4 id="相关技术"><a href="#相关技术" class="headerlink" title="相关技术"></a>相关技术</h4><p>OSGI（开放服务网关协议，Open Service Gateway Initiative）技术是Java动态化<a href="https://baike.baidu.com/item/模块化/3295536" target="_blank" rel="noopener">模块化</a>系统的一系列规范。应用对象：Java动态模型系统。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/28909673" target="_blank" rel="noopener">SPI</a> （Service Provider Interface）</p>
+<ul>
+<li><p>在平台中使用ServiceLoader，在运行时动态加载插件（热部署+非Classpath路径加载）</p>
+</li>
+<li><p>优点</p>
+<ul>
+<li>使用 <a href="https://zhoukaibo.com/tags/java/" target="_blank" rel="noopener">Java</a> SPI 机制的优势是实现解耦，使得接口的定义与具体业务实现分离，而不是耦合在一起。应用程序可以根据实际业务情况启用或替换具体组件。</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>不能按需加载。虽然 ServiceLoader 做了延迟载入，但是基本只能通过遍历全部获取，也就是接口的实现类得全部载入并实例化一遍。如果你并不想用某些实现类，或者某些类实例化很耗时，它也被载入并实例化了，这就造成了浪费。</li>
+<li>获取某个实现类的方式不够灵活，只能通过 Iterator 形式获取，不能根据某个参数来获取对应的实现类。</li>
+<li>多个并发多线程使用 ServiceLoader 类的实例是不安全的。</li>
+<li>加载不到实现类时抛出并不是真正原因的异常，错误很难定位。</li>
+</ul>
+</li>
+<li>鉴于 SPI 的诸多缺点，很多系统都是自己实现了一套类加载机制，例如 dubbo。用户也可以自定义classloader+反射机制来加载，实现并不复杂。此外开源的类加载解决方案有 <a href="https://github.com/pf4j/pf4j" target="_blank" rel="noopener">Plugin Framework for Java (PF4J)</a> 等。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BC%97%E5%8C%85%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E5%B8%82%E6%B0%91%E4%BA%A7%E7%94%9F-%E5%B8%82%E6%B0%91%E4%BD%BF%E7%94%A8%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BC%97%E5%8C%85%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E5%B8%82%E6%B0%91%E4%BA%A7%E7%94%9F-%E5%B8%82%E6%B0%91%E4%BD%BF%E7%94%A8%EF%BC%89/" class="post-title-link" itemprop="url">去中心化的众包数据分析（众包：市民产生->市民使用）</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-29 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-29T00:00:00+01:00">2020-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-06 10:21:31" itemprop="dateModified" datetime="2020-05-06T10:21:31+01:00">2020-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><strong>去中心化的系统</strong>不等于<strong>分布式系统</strong></p>
+<p>去中心化：没有中心节点</p>
+<p>分布式系统：可能有中心节点</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BC%97%E5%8C%85%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%EF%BC%88%E5%B8%82%E6%B0%91%E4%BA%A7%E7%94%9F-%E5%B8%82%E6%B0%91%E4%BD%BF%E7%94%A8%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/%E4%B8%BA%E4%BB%80%E4%B9%88MapReduce%E4%B8%8D%E9%80%82%E5%90%88%E6%8B%86%E5%88%86%E6%88%90%E7%9B%B8%E4%BA%92%E4%BE%9D%E8%B5%96%E7%9A%84%E5%AD%90%E4%BB%BB%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/%E4%B8%BA%E4%BB%80%E4%B9%88MapReduce%E4%B8%8D%E9%80%82%E5%90%88%E6%8B%86%E5%88%86%E6%88%90%E7%9B%B8%E4%BA%92%E4%BE%9D%E8%B5%96%E7%9A%84%E5%AD%90%E4%BB%BB%E5%8A%A1/" class="post-title-link" itemprop="url">为什么MapReduce不适合拆分成相互依赖的子任务</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-28 00:00:00 / 修改时间：23:03:47" itemprop="dateCreated datePublished" datetime="2020-04-28T00:00:00+01:00">2020-04-28</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>106</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Splitting computational problem to dependent subtasks is not an appropriate class of computational problems for MapReduce</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/%E4%B8%BA%E4%BB%80%E4%B9%88MapReduce%E4%B8%8D%E9%80%82%E5%90%88%E6%8B%86%E5%88%86%E6%88%90%E7%9B%B8%E4%BA%92%E4%BE%9D%E8%B5%96%E7%9A%84%E5%AD%90%E4%BB%BB%E5%8A%A1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/20%20%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%EF%BC%9A%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%9A%84%E6%99%AE%E9%80%82%E6%99%BA%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/20%20%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%EF%BC%9A%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%9A%84%E6%99%AE%E9%80%82%E6%99%BA%E8%83%BD/" class="post-title-link" itemprop="url">智慧城市：去中心化的普适智能</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-27T00:00:00+01:00">2020-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-06 10:06:30" itemprop="dateModified" datetime="2020-05-06T10:06:30+01:00">2020-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>数字化时代会给<u>科技-社会-经济系统</u>的<u>自我管理能力</u>带来机会和挑战</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/20%20%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%EF%BC%9A%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%9A%84%E6%99%AE%E9%80%82%E6%99%BA%E8%83%BD/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/19%20Apache-Storm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/19%20Apache-Storm/" class="post-title-link" itemprop="url">Apache Storm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-27 00:00:00 / 修改时间：16:47:09" itemprop="dateCreated datePublished" datetime="2020-04-27T00:00:00+01:00">2020-04-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Storm是一个分布式的实时计算系统，针对于大数据中高速率Velocity、大体积Volumn的特点。Storm中每个节点的处理速度能超过每秒百万条记录。Storm还旨在简化对无界的流数据的可靠处理</p>
+<p><a href="https://blog.csdn.net/u011082453/article/details/82417259" target="_blank" rel="noopener">补充参考文章</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/19%20Apache-Storm/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BA%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E6%8C%91%E6%88%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BA%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E6%8C%91%E6%88%98/" class="post-title-link" itemprop="url">云服务的软件质量挑战</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-25 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-25T00:00:00+01:00">2020-04-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-27 21:03:59" itemprop="dateModified" datetime="2020-04-27T21:03:59+01:00">2020-04-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>941</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>关于软件质量的挑战，它关注的重点是改进服务（软件）的质量，提高用户对产品的可接受性。解决方案可以从以下几方面进行创新（大约28%的项目选择了前2个方案，33%的项目选择了第三个方案）：</p>
+<ul>
+<li>协作驱动的需求启发和分析 collaboration-driven requirements elicitation and analysis</li>
+<li>软件验证方法 software validation and verification methods</li>
+<li><p>为软件设计适合的工具和框架 —— 它涉及价值链上的所有参与者，从开发者到产品经理再到用户</p>
+</li>
+<li><p>当前正在研究一种新的标准，该标准旨在提高基于云的服务的可信性、透明性和互操作性，并引入一种能够<u>让输出进行进行自我/联合认证</u>的方法来实现该标准。</p>
+</li>
+</ul>
+<ul>
+<li>另外还需要新方法来指导软件质量发展，这些方法通过以下几个方法，帮助开发易用的、高质量的软件：<ol>
+<li>推动应用程序开发的早期设计阶段，</li>
+<li>提供适当的质量工程工具</li>
+<li>学习优秀开源产品，遵循其中的最佳实践，包括开发，管理，许可，测试，标准</li>
+</ol>
+</li>
+</ul>
+<h4 id="需求工程"><a href="#需求工程" class="headerlink" title="需求工程"></a>需求工程</h4><p>在需求工程(requirement enginneering)中，通过利用大量在线用户反馈（e.g. 在论坛，应用市场，社交网络上的评分、评价），软件质量也可能得到显着提高。这能让用户参与到软件发展的过程中，帮助改进软件质量。但这需要专门的方法和工具来收集用户反馈，来帮助分析人员，系统架构师，开发人员和项目经理进行决策。方法和工具需要具有以下特点：</p>
+<ol>
+<li>可扩展性</li>
+<li>自动分析用户反馈和上下文数据</li>
+</ol>
+<p>该方向的进一步挑战是，对匿名、隐私保护的用户活动数据进行采集，这不仅能涉及用户与软件的交互，还有助于开发商了解用户的使用环境，该采集功能需要集成到软件中（即软件开发过程）</p>
+<h3 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h3><p>G. Casale, C. Chesta, P. Deussen, E. Di Nitto, P. Gouvas, S. Koussouris, V. Stankovski, A. Symeonidis, V. Vlassiou, A. Zafeiropoulos, et al. Current and future challenges of software engineering for services and applications. Procedia Computer Science, 97:34–42, 2016.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Image-Caption-Generation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -305,24 +1106,30 @@
       <meta itemprop="name" content="米达的博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Image-Caption-Generation/" class="post-title-link" itemprop="url">Image Caption Generation 相关问题</a>
-        </h1>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-04-15 14:25:47 / 修改时间：18:29:20" itemprop="dateCreated datePublished" datetime="2020-04-15T14:25:47+01:00">2020-04-15</time>
+              <time title="创建时间：2020-04-15 14:25:47" itemprop="dateCreated datePublished" datetime="2020-04-15T14:25:47+01:00">2020-04-15</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-17 17:10:35" itemprop="dateModified" datetime="2020-04-17T17:10:35+01:00">2020-04-17</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -337,17 +1144,17 @@
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
+                <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>12k</span>
+              <span>10k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>32 分钟</span>
+              <span>28 分钟</span>
             </span>
 
         </div>
@@ -382,10 +1189,10 @@
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/RNN%E5%92%8CLSTM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -398,15 +1205,15 @@
       <meta itemprop="name" content="米达的博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
             <a href="/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/RNN%E5%92%8CLSTM/" class="post-title-link" itemprop="url">LSTM和RNN</a>
-        </h1>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -414,14 +1221,14 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2020-04-15 18:30:02" itemprop="dateModified" datetime="2020-04-15T18:30:02+01:00">2020-04-15</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -436,14 +1243,14 @@
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
+                <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
               <span>316</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>1 分钟</span>
@@ -487,679 +1294,10 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/16%20%E4%BA%91%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/16%20%E4%BA%91%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7/" class="post-title-link" itemprop="url">云计算中的安全性</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-01 00:00:00 / 修改时间：22:56:04" itemprop="dateCreated datePublished" datetime="2020-04-01T00:00:00+01:00">2020-04-01</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>146</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <a id="more"></a>
-<h4 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h4><p>互联网最初的设计并没有太多的考虑安全问题。最初的观点是：“通过互联网联系在一起的相互信任的用户”，而互联网协议的设计者在其中充当佐料的角色。</p>
-<p>网络安全领域包括黑客如何攻击电脑网络，我们如何对这些攻击进行防御，以及如何设计能够免疫攻击的结构。</p>
-<p>在每一层中都应该考虑安全性问题。</p>
-<h4 id="什么是网络安全"><a href="#什么是网络安全" class="headerlink" title="什么是网络安全"></a>什么是网络安全</h4>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AF%B9%E6%AF%94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AF%B9%E6%AF%94/" class="post-title-link" itemprop="url">软件度量工具的使用和比较：SonarQube、JDEPEND、</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-01T00:00:00+01:00">2020-04-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-06 16:54:33" itemprop="dateModified" datetime="2020-04-06T16:54:33+01:00">2020-04-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">软件工程</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>软件度量是对程序本身进行数值化表示的一种方法，比如方法复杂度，代码行数，包数目等。目的是帮助开发者和管理者发现软件可能存在的缺陷、技术债务积累、代码气味等问题。</p>
-<p><a href="https://en.wikipedia.org/wiki/List_of_tools_for_static_code_analysis" target="_blank" rel="noopener">静态代码分析工具列表</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E8%BD%AF%E4%BB%B6%E5%BA%A6%E9%87%8F%E5%B7%A5%E5%85%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AF%B9%E6%AF%94/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8C%91%E6%88%98%E5%92%8C%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8C%91%E6%88%98%E5%92%8C%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/" class="post-title-link" itemprop="url">《A Manifesto for Future Generation Cloud Computing&#59 Research Directions for the Next Decade》 —— 读书笔记</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-01 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-01T00:00:00+01:00">2020-04-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-16 19:25:47" itemprop="dateModified" datetime="2020-04-16T19:25:47+01:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-                </span>
-                  ，
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>13k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>35 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>云计算和按需付费模型的出现，让用户可以随时随地获得基于订阅的服务。这带来的好处包括：更短的启动时间；创建可扩展的全球企业程序；给科学计算和高性能计算带来更好的成本价值关联；以及为无处不在的普适程序带来不同的调用/执行模型。</p>
-<p>另一方面，无服务计算、软件定义网络、物联网、边缘计算等新技术为云计算带来了机遇，但也同时带来了新的挑战，对新方法和研究策略的需求。对于解决可扩展性、灵活性、可靠性、安全性、可持续性等问题的模型，也需要重新进行评估。</p>
-<p>该文献将定义云计算中的主要的开放性挑战，调查最新的解决方案和它们的局限。接着讨论新兴的趋势和影响范围，以及它们如何推动未来云计算的挑战。据此再进一步讨论云计算的未来，并指出下一个十年的研究方向。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8C%91%E6%88%98%E5%92%8C%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/17%20IoT%E7%89%A9%E8%81%94%E7%BD%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/17%20IoT%E7%89%A9%E8%81%94%E7%BD%91/" class="post-title-link" itemprop="url">云计算的新方向1</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-27T00:00:00+00:00">2020-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-01 16:50:31" itemprop="dateModified" datetime="2020-04-01T16:50:31+01:00">2020-04-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>云计算、物联网、社交网络影响着整个服务行业，也因此关系着未来互联网的演变和全球的经济。</p>
-<p>云的生态系统需要普适性、高效性、安全性、用户接受性和值得信赖。</p>
-<p>云是塑造未来互联网的关键：物联网和社交网络正参与着商业、政府、教育、娱乐等的各个方面</p>
-<p><strong>《BIG SWITCH》描述了21世纪初出现的转变：</strong></p>
-<p>更强大的电脑；无限的存储；高带宽的网络和普遍的连接（TB级的网络、宽带无线移动）；行业竞相建立大型数据中心（容量）；虚拟化有助于实现规模经济</p>
-<p><strong>未来的网络开发存在以下技术挑战：</strong></p>
-<p>可编程的网络结构；合并互联网、移动网络、和TV网络；基于TCP/IP的实名数据网络；智能路由和内容分布；加强安全和隐私保护</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/17%20IoT%E7%89%A9%E8%81%94%E7%BD%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/18%20%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%96%B0%E6%96%B9%E5%90%91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/18%20%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%96%B0%E6%96%B9%E5%90%91/" class="post-title-link" itemprop="url">云计算的新方向2</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-27T00:00:00+00:00">2020-03-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-01 19:29:40" itemprop="dateModified" datetime="2020-04-01T19:29:40+01:00">2020-04-01</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>概述：</p>
-<ol>
-<li>回顾在物联网环境下，云计算的发展方向</li>
-<li>为了阻止来自物联网的数据泛滥，在远程设备上采用智能本地数据处理成为关键：雾计算、边缘计算</li>
-<li>本地数据处理中的虚拟化问题：以微服务和unikernels为例</li>
-<li>工业4.0和智能工程</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/18%20%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%96%B0%E6%96%B9%E5%90%91/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/" class="post-title-link" itemprop="url">图形数据库 Neo4J</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-03-20 20:04:14" itemprop="dateCreated datePublished" datetime="2020-03-20T20:04:14+00:00">2020-03-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-26 03:49:37" itemprop="dateModified" datetime="2020-03-26T03:49:37+00:00">2020-03-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>NoSQL可以被分成4类：键值对存储（MapReduce）、面向列的数据库（如Google Big Table）、文档数据库（MongoDB）、图形数据库（如Neo4J）</p>
-<p>图形数据库主要用于存储具有更多关联的数据，而传统的RDBMS对大量数据的遍历性能不佳</p>
-<p>图形数据库适合数据元素之间的关系与数据本身同样重要的项目</p>
-<blockquote>
-<p>由Neo4j，Inc.开发的图形数据库管理系统。它的开发人员将Neo4j描述为具有本机图形存储和处理的ACID兼容事务数据库，根据DB-Engines排名，Neo4j是最受欢迎的图形数据库，并且总体上是第22位最受欢迎的数据库。</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">云编程的现状</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-03-20 00:00:00 / 修改时间：15:23:56" itemprop="dateCreated datePublished" datetime="2020-03-20T00:00:00+00:00">2020-03-20</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="11-Cloud-Programming-Landscape-云编程"><a href="#11-Cloud-Programming-Landscape-云编程" class="headerlink" title="11 Cloud Programming Landscape 云编程"></a>11 Cloud Programming Landscape 云编程</h2><p>主要内容：</p>
-<p>云编程的前景</p>
-<p>在云中的执行应用程序和服务的框架</p>
-<p>云服务生命周期</p>
-<p>常用的编程框架和模型：MPI、MapReduce / Hadoop 、亚马逊、微软 Azure</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-  </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1227,20 +1365,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">85</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1250,16 +1388,16 @@
   </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
@@ -1283,12 +1421,14 @@
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">liaoooyx</span>
   

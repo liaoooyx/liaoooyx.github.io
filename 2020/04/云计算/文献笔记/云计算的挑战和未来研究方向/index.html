@@ -13,13 +13,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="云计算和按需付费模型的出现，让用户可以随时随地获得基于订阅的服务。这带来的好处包括：更短的启动时间；创建可扩展的全球企业程序；给科学计算和高性能计算带来更好的成本价值关联；以及为无处不在的普适程序带来不同的调用&#x2F;执行模型。 另一方面，无服务计算、软件定义网络、物联网、边缘计算等新技术为云计算带来了机遇，但也同时带来了新的挑战，对新方法和研究策略的需求。对于解决可扩展性、灵活性、可靠性、安全性、可持">
@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gdfjn0ul31j311n0u04d1.jpg">
 <meta property="article:published_time" content="2020-03-31T23:00:00.000Z">
-<meta property="article:modified_time" content="2020-04-16T18:25:47.623Z">
+<meta property="article:modified_time" content="2020-04-30T20:54:29.318Z">
 <meta property="article:author" content="liaoooyx">
 <meta property="article:tag" content="云计算">
 <meta name="twitter:card" content="summary">
@@ -45,7 +45,8 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true
+    isPost : true,
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -99,14 +100,12 @@
 
   <div class="site-meta">
 
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">米达的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">好好学习</p>
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
   </div>
 
   <div class="site-nav-right">
@@ -117,32 +116,33 @@
 </div>
 
 
+
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -150,17 +150,18 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
-    <div class="search-pop-overlay">
-  <div class="popup search-popup">
-      <div class="search-header">
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -174,10 +175,9 @@
   </div>
 </div>
 
+    </div>
   </div>
-</div>
 
-  </div>
 </div>
     </header>
 
@@ -191,14 +191,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content post posts-expand">
             
 
-  <div class="posts-expand">
-      
+    
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E4%BA%91%E8%AE%A1%E7%AE%97/%E6%96%87%E7%8C%AE%E7%AC%94%E8%AE%B0/%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E6%8C%91%E6%88%98%E5%92%8C%E6%9C%AA%E6%9D%A5%E7%A0%94%E7%A9%B6%E6%96%B9%E5%90%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -218,7 +217,7 @@
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
@@ -226,16 +225,20 @@
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-16 19:25:47" itemprop="dateModified" datetime="2020-04-16T19:25:47+01:00">2020-04-16</time>
+                <time title="修改时间：2020-04-30 21:54:29" itemprop="dateModified" datetime="2020-04-30T21:54:29+01:00">2020-04-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                </span>
+                  ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
                 </span>
@@ -248,17 +251,17 @@
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
+                <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>13k</span>
+              <span>27k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>35 分钟</span>
+              <span>1:16</span>
             </span>
 
         </div>
@@ -272,11 +275,11 @@
       
         <p>云计算和按需付费模型的出现，让用户可以随时随地获得基于订阅的服务。这带来的好处包括：更短的启动时间；创建可扩展的全球企业程序；给科学计算和高性能计算带来更好的成本价值关联；以及为无处不在的普适程序带来不同的调用/执行模型。</p>
 <p>另一方面，无服务计算、软件定义网络、物联网、边缘计算等新技术为云计算带来了机遇，但也同时带来了新的挑战，对新方法和研究策略的需求。对于解决可扩展性、灵活性、可靠性、安全性、可持续性等问题的模型，也需要重新进行评估。</p>
-<p>该文献将定义云计算中的主要的开放性挑战，调查最新的解决方案和它们的局限。接着讨论新兴的趋势和影响范围，以及它们如何推动未来云计算的挑战。据此再进一步讨论云计算的未来，并指出下一个十年的研究方向。</p>
+<p>该文献将定义云计算中的主要的开放性挑战，调查最新的解决方案和它们的局限。接 着讨论新兴的趋势和影响范围，以及它们如何推动未来云计算的挑战。据此再进一步讨论云计算的未来，并指出下一个十年的研究方向。</p>
 <a id="more"></a>
 <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>云计算模型，提供了对基于订阅的IT资源的按需访问，按需扩展，按使用付费。当前的三种主要服务模型为SaaS、PaaS、IaaS。在软件即服务SaaS中，用户通过互联网访问在数据中心上运行和管理的程序或软件，从而避免如版权、维护IT基础设施等费用；平台即服务PaaS，适合对IT资源需要更多控制的用户，但也同时为用户提供了一些框架来支持云程序的创建和部署；基础设施即服务IaaS，则允许用户访问计算资源，通常是提供虚拟机和存储空间。它不仅是前两者的基础，也是云计算的支柱。</p>
 <p>云计算中旧有的技术同样在不断发展，在虚拟化中，容器技术的出现和广泛使用，甚至导致新的服务模型出现：容器即服务CaaS。</p>
-<p>其中一些特定云服务专注于简化配置，以此满足特定的商业要求，这些旨在帮助企业创造价值的云服务，在种类和数量方面正在快速的增长：比如新兴的、易于使用的、基于云的数据分析服务和无服务结构。</p>
+<p>其中一些特定云服务专注于简化配置，以此满足特定的商业要求，这些旨在帮助企业创造价值的云服务，在种类和数量方面正在快速的增长：比如新兴的、易于使用的、基于云的数据分析服务和无服务器结构。</p>
 <p>云计算中的分布式计算是一个更明显的发展趋势，相关概念有雾计算、边缘计算、物联网、将服务分布在地理分布的数据中心等。边缘/雾计算的核心思想是将计算能力移动到更接近数据的地方，比如移动基站、网关、交换机、路由器等，从而降低延迟；</p>
 <blockquote>
 <p>cluster computing —— 网格计算<br>grid computing —— 集群计算</p>
@@ -295,23 +298,38 @@
 <p>成熟的<strong>虚拟机技术</strong>，使得CPU密集型应用中在虚拟机中的性能已经足以跟本机性能媲美，但依旧出现了<strong>容器技术</strong>，在快速启动的易于使用方面对虚拟机进行了改进。</p>
 <p><strong>编程模型</strong>则使程序能够<strong>动态重新配置</strong>，让中间件在公有云和私有云之间迁移数据和计算，甚至是将计算移动到离数据源更近的地方，如IoT中的传感器网络。</p>
 <p>云的可扩展性最终还是受各个<strong>组件</strong>（如计算、存储、相互联系）的扩展规模的限制。由Moore’s law 和 Dennard scaling可以推断，新的计算单元和用电量都将不再扩展，这直接影响了云的计算性能和成本。在这方面，需要研究CMOS（互补金属氧化物半导体）以外的新技术。类似的还有内存，DRAM（动态随机存取存储器）限制了成本和扩展，新的研究方向是非易失性技术，这些技术将在降低功耗的同时，进一步扩展负载存储操作内存。最后一个研究方向是<strong>光子互联</strong>，让所谓的硅光子通关光子连接传播到芯片中，改进性能、扩大规模、降低能耗。</p>
+<h5 id="研究方向-——-硬件、中间件、应用级别"><a href="#研究方向-——-硬件、中间件、应用级别" class="headerlink" title="研究方向 —— 硬件、中间件、应用级别"></a>研究方向 —— 硬件、中间件、应用级别</h5><p>在硬件级别上，研究方向是<strong>特定功能的专用云</strong>（如Amazon提供GPUs，Google提供TPUs，Microsoft提供FPGAs），比如机器学习、数据流分析、图像视频模式识别。可应用的领域包括，机场控制点、社交网络挖掘、IoT传感器数据分析、智能运输等。云还需要适应于非传统结构，如神经形态、量子计算、纳米计算等。</p>
+<p>研究还应包括开发合适的虚拟化抽象、即时编译的编程抽象、专用硬件的优化。还有FaaS云供应商的经济模型（比如可组合的视频、图像处理的微服务）</p>
+<p>在中间件级别，研究应包括继续增加对现有基础设施的可重用性，加快部署速度，加快大规模部署时硬件和网络的供应。其中包括算法和软件堆栈来保证程序的可靠执行，具体方法是将故障转移到地理上远程的私有云或混合云。</p>
+<p>研究应关于内部云，以支持同时在多个公有云供应商之间无缝的执行计算。对于高性能计算应用，需要保证多次运行下性能的一致性。还有匹配高性能计算应用的部署和调度算法来使用集群，即不会在并行执行时引入噪声。</p>
+<p>对于通信密集型应用，需要研究高吞吐量和低延迟的网络。大数据程序对大规模数据的（近）实时处理、智能分析和关闭控制回路有很高要求。</p>
 <blockquote>
-<p>Service Level Agreement/SLA —— 服务协议级别<br>neuromorphic —— 神经形态<br>sequential deterministic algorithms —— 顺序确定性算法<br>asynchronous evolutionary algorithms ——非同步演化算法<br>approximation algorithms —— 近似算法<br>online/incremental algorithms —— 在线/增量算法<br>Complementary Metal-Oxide-Semiconductor —— CMOS —— 互补金属氧化物半导体<br>Dynamic Random-Access Memory —— DRAM —— 动态随机存取存储器</p>
+<p>Service Level Agreement/SLA —— 服务协议级别<br>neuromorphic —— 神经形态<br>sequential deterministic algorithms —— 顺序确定性算法<br>asynchronous evolutionary algorithms ——非同步演化算法<br>approximation algorithms —— 近似算法<br>online/incremental algorithms —— 在线/增量算法<br>Complementary Metal-Oxide-Semiconductor —— CMOS —— 互补金属氧化物半导体<br>Dynamic Random-Access Memory —— DRAM —— 动态随机存取存储器<br>neuromorphic —— 神经形态<br>nanocomputing——纳米计算<br>Adiabatic quantum computation —— 绝热量子计算机<br>just-in-time compilation —— 即时编译</p>
 </blockquote>
 <h4 id="资源管理和调度"><a href="#资源管理和调度" class="headerlink" title="资源管理和调度"></a>资源管理和调度</h4><ul>
 <li>大规模服务中的自动扩展和资源控制</li>
 <li>多云操作和负载平衡</li>
-<li>专门的多重控制循环设计</li>
+<li>专门的多重控制回路设计</li>
 <li>工作负载特征错误的敏感性</li>
 <li>安全和资源管理的相互作用</li>
 </ul>
 <p>云数据中心有多达几十万的计算和存储设备，因此需要高效的资源管理和调度策略。当前的<strong>IaaS</strong>主要依赖两种<strong>虚拟机配置策略</strong>：<strong>静态</strong>和<strong>动态</strong>。静态策略使用<strong>装箱算法</strong>将固定数量的物理资源分配给虚拟机；动态则通过虚拟机<strong>实时迁移</strong>和其他负载平衡技术来处理负载的变化。这些策略可以是<strong>提前预测分配</strong>，也可以是<strong>监测后重新分配</strong>，但不管如何，都需要知道虚拟机资源的需求，可以是用户指定，也可以是通过监控数据进行预测</p>
 <p>对于<strong>PaaS</strong>、<strong>SaaS</strong>供应商来说，资源管理方法可以帮助管理分配给分布式应用、容器、网络服务、微服务的资源的种类和数量。相关的策略有：1<strong>.自动扩展技术</strong>（基于当前和预测的负载动态扩展或收缩）2<strong>.资源节流技术</strong>（处理瞬时自动扩展中的工作负载突发、平滑和变化，和控制可抢占VM的使用）3.<strong>准入控制方法</strong>（处理高峰负载和高价值客户的负载优先级）4.<strong>服务编排和工作流调度</strong>（整理和编排工作负载，可能专门为特定领域设计，如科学领域中对成本和任务需求有限制的工作流，<a href="https://manuscript.elsevier.com/S0167739X15000059/pdf/S0167739X15000059.pdf" target="_blank" rel="noopener">参考文献</a>）5.<strong>多云的负载平衡</strong>（将应用的负载分布到多个云数据中心）。</p>
 <p>其中的一个挑战是，当前的资源管理策略<strong>不适用</strong>于<strong>不精确的资管需求预测</strong>，因此需要新的权衡方法，在工作负载信息不精确的情况下，对策略<strong>最优性</strong>和<strong>稳健性</strong>之间进行权衡。当前的需求估计和工作负载预测方法在未来可能不适用，而机器学习和人工智能能否胜任有待研究。</p>
-<p>另一个常见的问题是，资源管理策略<strong>专注于优化特定的度量指标和资源</strong>，缺少一个能在<strong>相同多重控制循环环境中共存</strong>的系统方法，使用户能公平的访问资源，以及对云堆栈各层在整体上实现最佳化（<a href="https://ieeexplore.ieee.org/abstract/document/6809354" target="_blank" rel="noopener">参考文献</a>）</p>
+<p>另一个常见的问题是，资源管理策略<strong>专注于优化特定的度量指标和资源</strong>，缺少一个能在<strong>相同多重控制回路环境中共存</strong>的系统方法，使用户能公平的访问资源，以及对云堆栈各层在整体上实现最佳化（<a href="https://ieeexplore.ieee.org/abstract/document/6809354" target="_blank" rel="noopener">参考文献</a>）</p>
 <p>当前的研究功能工作还缺少安全和资源管理之间的相互作用的风险问题</p>
+<h5 id="研究方向"><a href="#研究方向" class="headerlink" title="研究方向"></a>研究方向</h5><p>雾计算增强了计算的去中心化，导致了资源和平台的异质性，以及工作负载的可变性。无服务计算和边缘计算则带来了将业务逻辑从系统核心中迁移出来的机会。软件定义计算和大数据则扩展了资管管理和调度的制定机制和推理技术。</p>
+<p><strong>边缘分析</strong>的实时处理，需要边缘节点和云中心的合作资源管理，它需要感知<u>边缘设备的位置</u>和<u>资源的可用性</u>以优化资源分配，还需要在规模上考虑可移动性、高度动态的网络拓扑、隐私和安全保护约束。</p>
+<p>在云中心和边缘上共存的<strong>多重控制回路</strong>的设计，分析、验证、实现和测试。</p>
+<p>关于调度，在去中心化和异质的环境中，<strong>多资源公正性</strong>、<strong>非传统博弈论方法</strong>主要应用在中小规模计算集群，需要扩展应用至大规模的异质的云中心和边缘节点上。比如均场博弈可以帮助推理大量的资源、设备、用户类型的交互，从而解决固有的可伸缩性问题。</p>
+<p>从终端用户的角度，无服务计算，即FaaS限制了函数执行的时间，从而提高了用户的期望值，而当前的性能不稳定，且响应时间还受到网络延迟的影响。此外，无服务计算按次数收费，因此需要新的资源管理策略来决定什么时候用FaaS，什么时候用在应用本地运行的微服务。</p>
+<p>从FaaS供应商的角度，需要对资源分配进行最优化。如果要满足用户对函数执行的QoS的要求，则要权衡执行需求、网络延迟、隐私和安全问题。相关的研究包括执行时间的软约束、主动式的FaaS供应以避免资源启动时的高延迟。还有对于FaaS和其他云服务的供应商和消费者，它们有不同的目标和约束，因此需要新的<strong>博弈论方法</strong>和<strong>面向市场的模型</strong>对资源进行分配和对需求和供应的调节。</p>
+<p>软件定义网络SDN扩展了可用于资源整体管理的控制机制的范围。在逻辑上使网络控制中心化，即单点管理，使资源管理更高效。研究之一是，软件定义网络还能促进虚拟机关联和流量的整合（传统数据中心的难点），从而优化能耗和满足SLA。</p>
+<p>SDN中的服务功能链接SFC，是对虚拟网络功能链（如NAT、防火墙、IDS）的自动化设置。SDN和NFV组合让<u>服务链</u>能够高效、按需的安置。但最优化<strong>服务链安置</strong>还需要新的资源管理策略。VNF的虚拟化特性也简化了编排和合并，并且可以动态部署网络服务，因此需要新算法来利用这些特性。</p>
+<p>机器学习算法也有助于VM配置、整合、负载平衡等资源管理问题，但也要注意，采用这些技术可能会导致潜在的控制失误，丧失确定性。相关的研究方法有<strong>可解释性AI</strong>。</p>
+<p>随着处理的数据量的增加和超大规模工作流的出现，考虑诸如容错，性能建模，有效的数据管理和有效的资源使用等关键问题非常重要，而<strong>大数据分析</strong>则有助于此。例如，监视和分析资源消耗数据，可以使工作流管理系统能够检测性能异常并潜在地预测故障，从而利用诸如无服务器计算之类的技术来管理可重复使用并可在多个利益相关者之间共享的复杂工作流的执行。尽管如今存在定义此类解决方案的技术可能性，但仍缺乏将无服务器功能应用到HPC和科学计算用例的情况，因此需要对此领域进行进一步研究。</p>
 <blockquote>
-<p>provisioning policies —— 配置策略<br>bin-packing algorithms —— 装箱算法<br>resource throttling methods —— 资源节流技术<br>preemptible —— 抢占式的<br>service orchestration —— 服务编排<br>multiple control loops —— 多重控制循环</p>
+<p>provisioning policies —— 配置策略<br>bin-packing algorithms —— 装箱算法<br>resource throttling methods —— 资源节流技术<br>preemptible —— 抢占式的<br>service orchestration —— 服务编排<br>multiple control loops —— 多重控制回路<br>edge analytics ——边缘分析<br>multi-resource fairness —— 多资源公正性<br>game-theoretic approaches —— 博弈论方法<br>mean-field games —— 均场博弈<br>Service Function Chaining (SFC) —— 服务功能链接<br>network address translation (NAT) —— 网络地址翻译<br>intrusion detection systems (IDS) —— 入侵检测系统<br> virtual network functions (VNFs)—— 虚拟网络功能<br>NFV —— 网络功能虚拟化<br>service chain placement —— 服务链安置<br>explainable AI —— 可解释性AI</p>
 </blockquote>
 <h4 id="可靠性"><a href="#可靠性" class="headerlink" title="可靠性"></a>可靠性</h4><ul>
 <li>导致大规模服务中断的故障关联</li>
@@ -320,9 +338,16 @@
 <li>缺少故障感知的配置策略</li>
 </ul>
 <p>云数据中心的系统是高度相互关联和相互依赖的。由于云计算系统的规模、复杂性和相互依赖性，它们需要面对可靠性相关挑战，比如硬件故障、资源缺失故障、溢出故障、网络故障、超时故障、和环境改变引发的软件缺陷。有些故障会影响系统操作，连锁故障甚至会应发大规模服务中断。企业组织通常会采用严格的可靠性保证和还原能力。需要新的云服务供应方式，来保障性能和<strong>从能各种故障中恢复的能力</strong>。另一个挑战是云系统的<strong>可靠性</strong>和<strong>能耗</strong>之间的相互影响的研究。</p>
-<p>云计算是<strong>面向服务</strong>的而不是面向资源的，所以分布式计算中保障可靠性的模型（如容错）不适和直接用于云计算系统。</p>
+<p><strong>云计算是面向服务的而不是面向资源的</strong>，所以分布式计算中保障可靠性的模型（如容错）不适和直接用于云计算系统。</p>
 <p>云计算中相互关联的特征的范围，比如巨大的规模、服务共享模型、广域网络、软/硬件组件异质性，导致难以分析云计算系统的规模和可靠性的<strong>期望值</strong>。</p>
 <p>现有许多研究对故障进行单独分析和解决，但都忽略了<strong>故障之间的相互影响</strong>。现存对的云计算环境中也缺少可靠性模型、自动的可靠性感知的服务管理机制，和故障感知配置策略</p>
+<h5 id="研究方向-1"><a href="#研究方向-1" class="headerlink" title="研究方向"></a>研究方向</h5><p>当前的挑战是如何提供一种可兼容的服务，以满足用户的期待——对性能、可靠性和处理各种类型故障。</p>
+<p>RaaS可靠性即服务，旨在提供创新的云服务，提高可靠性和恢复能力以确保服务性能。主要的挑战是开发一个层次的、面向服务的云服务可靠性模型。这要求现有云系统中包括新模块，例如故障模型和工作负载模型要适应资源供应策略，并为各种应用程序提供灵活的可靠性服务。</p>
+<p>RaaS中的其中一个研究方向是使用机器学习进行<strong>故障预测</strong>，提高故障感知的资源供应策略。这也可以作为雾计算的另一个研究方向。但需要同时考虑系统的能源效率问题。</p>
+<p>另一个研究方向是<strong>云存储系统</strong>的可靠性。挑战在于改进大数据应用的在云存储中的容错，比如复制和<a href="https://blog.csdn.net/BtB5e6Nsu1g511Eg5XEg/article/details/82321298?depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1&amp;utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-1" target="_blank" rel="noopener">纠删码</a>。涉及的参数有耐用性、可用性、存储开销、网络带宽和流量、能耗、恢复性能。<strong>基于节点故障预测的纠错码动态复制</strong>能节省网络流量和存储空间。主要挑战在于解决<strong>多变量的优化问题</strong>，以满足不同的要求。</p>
+<blockquote>
+<p>Reliability as a Service (RaaS) —— 可靠性即服务<br>replication —— 复制/副本<br>Erasure coding —— 纠删码<br>network traffic —— 网络流量</p>
+</blockquote>
 <h4 id="可持续性"><a href="#可持续性" class="headerlink" title="可持续性"></a>可持续性</h4><ul>
 <li>云数据中心的能源需求</li>
 <li>虚拟机整合以最小化服务器的能耗</li>
@@ -332,8 +357,13 @@
 </ul>
 <p>2017年世界上大约有850万云数据中心，它们每年的耗电量比大多数国家都多（除了美、中、俄、日）。ICT设施的耗电量接近世界总体耗电量的10%。但云和网络也有助于节能，比如智慧城市，或最大程度优化可再生和不可再生能源的混合使用。考<strong>虑能</strong>耗的同时还要考虑<strong>服务质量</strong>，比如在搜救领域就不能降低服务质量来减少能耗。</p>
 <p>当前的主要工作是整合虚拟机（涉及资源管理）以减少能耗。但其他的基础设施，比如制冷系统（接近35%能耗）、网络等也需要适合的调度算法。</p>
-<p>多核结构，新型的基于硬件的休眠启动控件、时钟速度管理技术，让服务器的能耗取决于瞬时工作负载。因此新的基于机器学习的方法能够动态<strong>分配</strong>任务到（云或雾的）多个服务器中，从而最少的违反SLA。整体技术也需要解决网络的服务质量，比如包延迟、远程访问云数据中心的网络能源效率问题。这些技术的目的都是为了提供一个能<strong>在线自动调整</strong>或自治的方法，使云系统的能耗和服务质量作为一个整体得到解决。</p>
+<p>多核结构，新型的基于硬件的休眠启动控件、时钟速度管理技术，让服务器的能耗取决于瞬时工作负载。因此新的基于机器学习的方法能够动态<strong>分配</strong>任务到（云或雾的）多个服务器中，从而最少的违反SLA。整体技术也需要解决网络的服务质量，比如包延迟、远程访问云数据中心的网络能源效率问题。这些技术的目的都是为了提供一个能<strong>在线自动调整</strong>或自治的方法，使云系统的能耗和服务质量<strong>作为一个整体得到解决</strong>。</p>
 <p>当前的实验研究表明，<strong>深度学习和神经网络</strong>能够按照规定的执行延迟、响应时间、系统吞吐量、和能耗对任务进行分配（<a href="https://spiral.imperial.ac.uk:8443/bitstream/10044/1/59726/2/ServerstateDetection.pdf" target="_blank" rel="noopener">参考文献</a>）。另一种方式涉及<strong>均衡能源供应</strong>，云数据中心可以调节自身能耗并以服务质量作为响应，根据供应的能源动态的修改处理器的可变时钟速率（<a href="https://ieeexplore.ieee.org/document/6903096" target="_blank" rel="noopener">参考文献</a>）。也有人建议使用混合使用可再生和不可再生能源</p>
+<h5 id="研究方向-2"><a href="#研究方向-2" class="headerlink" title="研究方向"></a>研究方向</h5><p>云中心可以建立在北极圈这样的地方，通过自然冷却降低能耗。但这需要研究新的系统结构，支持在地理上分布数据中心和云计算。比如依赖分布数据的协调、资源供应、能源意识和碳足迹感知的算法；地理的负载平衡。还可以通过定价影响云服务提供商的选择。还有比如使用智能电网来管理ICT组件的能耗。以及，将<u>能量流</u>与<u>计算和通信资源</u>和<u>相关的组件</u>进行动态耦合，在满足作业的QoS和SLA的同时最小化能耗。</p>
+<p>但要注意，云中心远离用户会<strong>增加网络的能耗</strong>，也会<strong>增大延迟</strong>。比如金融交易、股票等对响应时间的要求很严格。还要注意<strong>数据的专有性</strong>，比如数据是本地的，云中心也需要在该地。</p>
+<p>高性能和更多数据处理通常意味着更高的能耗。因此需要同时考虑QoS、SLAs和能耗，并对其在线管理。但由于情况复杂，变化太快，难以提前预测或构建出完善的模型，因此需要一种自我感知的技术。相关的研究涉及机器学习。</p>
+<p>由于雾计算带来的异质性问题，导致资源和能源的管理难度变大，进而增大能耗。但由于用户到雾节点的距离变短，因此网络能耗却降低了。研究应包括用户流量只经过最少的雾节点时网络QoS的改善情况。机器学习将有助于该研究。</p>
+<p><strong>虚拟机整合</strong>是一个降低云中心能耗的有效措施。但降低网络能耗是一个复杂的问题，它会影响网络的可靠性、可扩展性和性能。已经提出了智能的能量感知和路由算法。但网络能耗的研究相比计算能耗的研究要少很多。随着SDN软件定义网络的出现，SDN提供的全球网络意识和中心化决策，为此领域带来了机会。</p>
 <blockquote>
 <p>Information and Communications Technology, ICT —— 信息通信技术<br>sleep-start controls —— 休眠启动控件<br>Holistic techniques —— 整体技术<br>rationing the energy supply —— 均衡能源供应</p>
 </blockquote>
@@ -346,8 +376,13 @@
 <p><strong>虚拟机</strong>层面，原因是能够以<strong>多种方式和配置方法</strong>对同质的资源进行组织（或者接近同质的，比如相同的处理器族），比如N核的同质硬件处理器可以被组织为有任意核的虚拟机。<strong>供应商</strong>层面，原因是可以从<strong>多个云供应商</strong>中利用资源，不同的云供应商有不同的虚拟机监控程序和软件套件（通常出现在多重云环境中）。<strong>硬件结构</strong>层面，原因是<strong>同时利用</strong>CPUs和硬件加速器（如GPUs、FPGAs）。</p>
 <p>第一重挑战是<strong>异质环境中的资源和工作负载管理</strong>。资源管理专注于以静态和动态的方式对虚拟机进行安置，综合考虑网络参数和能耗的本地调度或全局调度技术。工作负载管理则通过基准技术优化工作负载的安置的调度。基准技术的实践在虚拟机层面已经足够成熟，在供应商层面也正在发展（<a href="https://link.springer.com/article/10.1007/s10922-014-9307-7" target="_blank" rel="noopener">参考文献1</a> &amp; <a href="https://pureadmin.qub.ac.uk/ws/files/74475124/Varghese_IEEETCC.pdf" target="_blank" rel="noopener">参考文献2</a>），但在<strong>硬件结构层面对工作负载的性能预测</strong>还缺少研究。除此之外 ，当前对异质资源的资源管理和工作负载管理的研究也是分别进行的。当前还缺少对3个层面的异质性进行整合和管理的通用云平台。</p>
 <p>第二重挑战关于<strong>应用软件的开发，使之兼容异质资源</strong>。当前大部分的加速器需要不同的编程语言（比如CUDA和OpenCL需要对GPU编程），导致云程序很难采用加速器。在IaaS中，开发者只能直接面对硬件环境进行编程，而SaaS、PaaS中，可以在中间件对硬件进行抽象。但在中间件提供对加速器硬件的抽象，则会减少优化性能的可能性。因此需要对性能和易用性进行权衡。在这方面的开放性挑战是开发与底层硬件无关的软件，并且可以基于可用硬件进行适应（<a href="https://ieeexplore.ieee.org/document/7495121" target="_blank" rel="noopener">参考文献</a>）</p>
+<h5 id="研究方向-3"><a href="#研究方向-3" class="headerlink" title="研究方向"></a>研究方向</h5><p>目前有两个因素影响异质性在云计算中的应用。<strong>第一个是管理平台</strong>，由于当前对异质云环境中的资源和工作负载管理的研究是分散的，因此缺乏在异质环境下，整体的可用性。因此提出一个涵盖了异质性三个层次的平台，可以根据应用的需求选择最佳策略。因此需要异质的内存管理。当前的内存管理主要依靠虚拟机监控程序Hypervisor，这限制了异质性带来的好处。提出的解决方案是采用异质性感知的GuestOS。</p>
+<p><strong>第二个是抽象</strong>，当前的硬件加速器的编程模型需要指定的语言，这限制了云程序对异质性的广泛采用。研究方向之一是开发一种开源的高级编程语言，满足抽象、弹性等核心云原则，以适用于异质环境中的云程序。这对迁移云程序到<u>云和雾的整合</u>中也有帮助。</p>
+<p>当前编程语言具有局限性，比如OpenCL。CPU和硬件加速器的交互需要显式编程。编程语言TANGRAM，提供了在不同加速器之间的可迁移性，但还缺少在CPU和加速器之间寻找最优策略的性能模型和运行时自适应。</p>
+<p>较早的技术或许能为解决异质性问题带来灵感，比如<u>多路复用信息和计算服务</u>提供了单级内存，这是异质系统的虚拟内存的基础。IBM的CP-67是虚拟化大型机操作系统以实现时间共享的首次尝试之一，后来被VMWare用于X86服务器的虚拟化。</p>
+<p>最近还有讨论关于拆分数据中心。传统的数据中心通过服务器和机架构建，每个服务器提供完整的计算资源。而拆分的数据中心，则是将每种资源（如CPU、内存、存储）构建成独立的资源片“blade”，通过网络进行连接，因为每种类型资源的发展速度都不一样</p>
 <blockquote>
-<p>homogeneous —— 同质的，同类的<br>heterogeneous —— 异质的<br>vendor —— 供应商<br>Hypervisor —— 虚拟机监控程序<br>Software suits —— 软件套件<br>Field Programmable Gate Arrays (FPGAs) —— 现场可编程门阵列<br>benchmarking techniques —— 基准技术</p>
+<p>homogeneous —— 同质的，同类的<br>heterogeneous —— 异质的<br>vendor —— 供应商<br>Hypervisor —— 虚拟机监控程序<br>Software suits —— 软件套件<br>Field Programmable Gate Arrays (FPGAs) —— 现场可编程门阵列<br>benchmarking techniques —— 基准技术<br>GuestOS —— 即虚拟机上的操作系统<br>Multiplexed Information and Computing Service (Multics) ——多路复用信息和计算服务</p>
 </blockquote>
 <h4 id="相互关联的云"><a href="#相互关联的云" class="headerlink" title="相互关联的云"></a>相互关联的云</h4><ul>
 <li>云的相互操作性</li>
@@ -358,11 +393,16 @@
 <p>云供应商都各自把工作局限于自己的服务。云的相互操作性是各种类型的云和系统（如公有云、私有云）彼此相互了解的一种能力，了解的信息包括：系统接口、配置、验证和授权格式、数据格式、程序的初始化和定制化。</p>
 <p>从更宽泛的角度来说，互连云有许多用于方法，用于整合不同的云供应商和数据中心的服务和功能。这些技术取决于互连云的参与者、它的目标、和提供给用户的服务整合的透明度（<a href="Interconnected Cloud Computing Environments: Challenges, Taxonomy, and Survey">参考文献</a>）</p>
 <p>现有的云供应商虽然有专门的互操作机制，但并<strong>没有统一的标准和开源</strong>，因此有很大的局限性。当前的标准化工作有：OGF的OCCI、SNIA的CDMI、DMTF的CIMI和OVF、IEEE的互连云、NIST的联合云。但<strong>现存云服务的接口并没有被标准化，且很多云服务的提供商都使用不同的接口、格式和上下文配置机制</strong>。</p>
-<p>广义上，如果各种云之间的互连是由供应商发起和管理的，这些方式可以被归为联合的云计算。<strong>联合云计算</strong>可以被看做是云计算发展的下一步，也是<strong>整合雾计算和边缘计算</strong>结构的下一步。联合云模型的好处有：资源优化、节约成本、敏捷资源交付、可扩展性、高可用性、商业连续性、地理分布</p>
+<p>广义上，如果各种云之间的互连是由供应商发起和管理的，这些方式可以被归为联合的云计算。<strong>联合云计算</strong>可以被看做是云计算发展的下一步，也是<strong>雾计算和边缘计算</strong>结构的组成部分。联合云模型的好处有：资源优化、节约成本、敏捷资源交付、可扩展性、高可用性、商业连续性、地理分布</p>
 <p>共享云之间的资源有2个原因，一是公司企业希望现有的内部基础设施能够<strong>最大程度的被使用</strong>，因此公司的私有云需要与公有云无缝集成；二是公司把的大部分的程序（没有隐私要求的）转移到公有云上，以此将程序的<strong>工作负载转移</strong>到云上，或放宽资源需求的限制。</p>
-<p>最新的项目Aneka开发了中间件和库来整个不同的资源（如VM、数据库等），但也导致非最优的云程序或者只支持特定的服务模型</p>
-<p>互操作性和便携性在不同的组件上有不同的考虑，包括接口规范、可移动的数据格式和应用、国际公认的服务质量和安全标准。如何以高效、透明的方式，通过跨站虚拟网络将本地云和外部供应商资源进行互连，实现云资源的供应、管理和配置，是普及该技术的重要挑战。</p>
+<p>最新的项目Aneka开发了中间件和库来整合不同的资源（如VM、数据库等），但也导致非最优的云程序或者只支持特定的服务模型</p>
+<p>互操作性和便携性在不同的组件上有不同的考虑，包括接口规范、可移动的数据格式和应用、国际公认的服务质量和安全标准。如何高效，透明的供应，管理和配置，跨站点虚拟网络，以互连本地云和外部提供商资源，是普及该技术的重要挑战。</p>
 <p>互连云服务的最小公分母是一个限制，如何突破这个限制，从而支持更丰富的云程序是其中的一个挑战。其他挑战还有：如何在多个供应商之间的授权、访问、账单方面进行协调；如何将互连云应用到雾计算等新兴趋势中。</p>
+<h5 id="研究方向-4"><a href="#研究方向-4" class="headerlink" title="研究方向"></a>研究方向</h5><p>跨云系统的<strong>相互操作性</strong>和<strong>可移植性</strong>是一个复杂的领域，单纯的标准化不足以解决此问题。对于可移植性，<strong>可以使用应用容器和配置管理工具</strong>。对于云服务和产品的互操作性，<strong>则可以使用软件适配器和库</strong>。但由于问题的复杂性，目前还没有让人满意的解决方案。</p>
+<p>采用软件适配器和库的挑战之一是如何在不强制采用服务之间最小的通用功能集的情况下促进云互连，即让用户仅通过一个供应商就能集成所需的复杂功能。其他研究方向还包括使用中间件进行，将多个提供商的简单服务，模拟成一个提供商提供的复杂服务。</p>
+<p>上述挑战带来了一个研究方向，即用户级别（内部云或混合云）的中间件，在没有供应商的支持下，识别服务组合中的各方候选。因为供应商更希望服务组合中的服务全是自己提供的。然而，只有云供应商发现互连云能给它们带来收益，真正的互连云才会出现。这需要新的计费方式。</p>
+<p>支持服务组合的中间件必须解决其两个接口中的难题：在与云用户的接口中，它需要无缝地交付服务，而交付功能的方式与用户无关：可以从单个提供商处获得所有服务（也许调用能够提供功能的SaaS），也可以通过组合来自不同提供商的不同服务来获得；在与供应商的接口中，不管如何与供应商合作，都能够获取复杂的功能：只要接口存在，中间件就应该提供该接口的使用方法，并自动检测是否满足使用要求。</p>
+<p>最后，软件定义网络的出现，改变和优化了网络流量，这可能对云的互连产生影响。根据谷歌的报告，SDN最早的使用方式是优化连接数据中心的广域网流量。需要研究SDN和NFV对解决此领域问题的可行性。比如SDN和NFV可以提高<u>来自多个供应商的服务组合的</u>安全性和服务质量，通过对不同服务的流量分配不同的优先级，以及分别指定安全要求。</p>
 <blockquote>
 <p>InterCloud —— interconnected Cloud —— 互连云<br>minimum common denominator —— 最小公分母</p>
 <ul>
@@ -381,11 +421,16 @@
 <li>雾计算</li>
 </ul>
 <p>智能手机等移动设备，它们的电池、CPU、内存、存储等跟台式设备比是受限的，但可以通过外部的云资源减少这些限制。因此出现了移动云的概念。</p>
-<p>在移动云上的主要研究包括<strong>任务委托</strong>和<strong>移动代码负担转移</strong>。任务委托是指，从多个云供应商中移动调用网络服务，因此涉及互操作性问题，解决方案是中间件。代码负担转移，则对应用程序进行配置和分区，并将资源密集型的方法函数转移到云实例的代理上（如Cloudlets/swarmlets）。相关的研究挑战有：如何开发理想的负担转移方式、如何识别资源密集型方法、如何学习合理的决策机制——兼顾设备上下文（如电池级别、网络连通性）和云上下文（如云代理的当前负载）</p>
+<p>在移动云上的主要研究包括<strong>任务委托</strong>和<strong>可移动代码负担转移</strong>。任务委托是指，从多个云供应商中移动调用网络服务，因此涉及互操作性问题，解决方案是中间件。代码负担转移，则对应用程序进行配置和分区，并将资源密集型的方法函数转移到云实例的代理上（如Cloudlets/swarmlets）。相关的研究挑战有：如何开发理想的负担转移方式、如何识别资源密集型方法、如何学习合理的决策机制——兼顾设备上下文（如电池级别、网络连通性）和云上下文（如云代理的当前负载）</p>
 <p>物联网演变为工业4.0和互联网4.0+，而云计算能够帮助存储和分布式处理物联网节点的数据。<strong>网络延迟</strong>是以云为中心的物联网模型的挑战之一。除此之外还有<strong>能耗</strong>问题，虽然可以通过可再生能源缓解，但却又引发了<strong>服务质量</strong>问题。</p>
 <p><strong>雾计算</strong>是一个新兴的解决方案，它的优点包括边缘设备的安全、位置识别、敏捷开发、低延迟、成本和性能上的效率，但同时也是关键的挑战。</p>
+<h5 id="研究方向-5"><a href="#研究方向-5" class="headerlink" title="研究方向"></a>研究方向</h5><p>在移动云领域，任务委托已经实现，但代码负担转移还存在适应性问题。并且由于移动设备的性能增强，代码负担转移的好处也变得有限。这意味着只有更大负担的程序需要转移，这意味着每次负担转移成本增加。该问题的研究方向应该是设计更好的针对移动云程序的多重租赁模型，在多个移动用户间分摊成本。而移动设备也云资源的异质性，增大了问题的复杂度。</p>
+<p>研究方向之一是针对异构环境中负担转移的激励机制，鼓励移动用户参与并获得回报。另一个研究方向是新技术（无服务计算、CaaS、雾计算）对移动云领域的作用的详细探索。</p>
+<p>激励机制还跟IoT和雾计算有关。比如由雾的提供者自己提供建立雾节点的基础设施，使雾节点更靠近数据源。这遵循消费者即提供者CaP模型，即利用消费者的台式机执行各种分布式计算任务。</p>
+<p>另一方面轻量级的容器技术也更适合被雾节点采用。</p>
+<p>对实时数据流分析之类的领域，<strong>边缘分析</strong>是另一个研究方向。原本的CIoT模型的数据处理在云中进行，雾节点只用于降低延迟。而边缘分析则是将数据处理分散在了整个雾计算拓扑层中，即边缘设备、雾节点和云。中间的处理包括过滤、整合、错误探测等。研究可以从QoS和QoE两方面对支持边缘分析的框架（如Apache Edgent）进行分析。目前已经有<u>在整个雾计算拓扑中对边缘分析任务和程序的调度和放置</u>的初步解决方案。</p>
 <blockquote>
-<p>task delegation —— 任务委托<br>mobile code offloading —— 移动代码负担转移<br>Cloudlet —— 小云<br>swarmlets —— 小集群</p>
+<p>task delegation —— 任务委托<br>mobile code offloading —— 可移动代码负担转移<br>Cloudlet —— 小云<br>swarmlets —— 小集群<br> consumer-as-provider (CaP) model —— 消费者即提供者模型<br>the Cloud-centric IoT (CIoT) model —— 以云为中心的物联网模型<br>QoE (Quality of Experience)  —— 体验质量</p>
 </blockquote>
 <h4 id="安全性和隐私"><a href="#安全性和隐私" class="headerlink" title="安全性和隐私"></a>安全性和隐私</h4><ul>
 <li>基于编码的数据保护</li>
@@ -404,8 +449,16 @@
 <p>关于可用性，是如何让用户能够选择到满足其安全性需求的云供应商（云供应商的行为通常在SLAs中声明）。最近的研究有关于不同云服务特征的可能依赖的探索，但这只是第一步。</p>
 <p>基于硬件的技术也可以保护云中的数据，最著名的是ARM TrustZone和 Intel SGX 技术。简单来说就是创建安全的执行环境。</p>
 <p>高级持久性威胁APTs是一类新的网络攻击，特点是面向目标，高度针对性，组织合理，资金充裕，技术先进，隐秘且持久。目前缺乏足够的防御手段，以及减少损失的措施，如技术驱动或原则驱动的解决方案。</p>
+<h5 id="研究方向-6"><a href="#研究方向-6" class="headerlink" title="研究方向"></a>研究方向</h5><p>主要研究方向是<strong>敏感数据管理</strong>。一，在简单的情况下，只需要保证数据存储的安全性，并保证对数据进行高效访问和操作。第二种情况是数据需要在多用户之间共享，并且可能存在多个提供者以提供更好的功能和安全性。</p>
+<p>在简单的情况下，除了要保证数据的安全性，还需要<strong>可扩展性</strong>和良好的<strong>性能</strong>，且<strong>不能影响服务功能</strong>。具体来说，需要：1，能简单与当前的云技术集成；2，避免由于<u>选择性的获取数据</u>或<u>支持加密查询</u>而泄露数据；3，支持多种查询。</p>
+<p>在第二种情况下，当有多个用户和多个云供应商时，第一个问题是设计用于选择性共享数据的解决方案，该方案支持：1，写入权限和多个写入者；2，当有多个供应商参与存储时，有效的执行策略更新；3，在参与分布式计算的各方中，选择性的共享信息，从而可以选择不安全但是更便宜的供应商。</p>
+<p>分布式计算的执行还与<strong>隐私数据查询</strong>和<strong>数据完整性</strong>有关。相关的研究应针对开发的可扩展和高效的技术，以：1，支持不同用户并发访问；2，确保用户的活动不会造成数据库上下文泄露。</p>
+<p>关于数据的完整性，挑战在于如何证明数据分布存储在多个云供应商时，数据的完整性。现有解决方案所提供的<u>完整性保证</u>以及<u>受支持的查询种类</u>受到限制。因此，需要设计一种通用框架来对<u>完整性的保证程度</u>进行评估，根据用户的付费来提供不同程度的保证和支持查询的类型。</p>
+<p>雾计算和大数据对的副作用是数据的泄露的可能性变大。基于雾计算的方案中缺乏中央控制可能会引发隐私和信任问题。雾计算会假设存在可信节点和恶意节点。这需要从早期的P2P扩展到雾计算中，包括安全路由、冗余路由和信任拓扑。尽管可以把所有数据都传到数据湖中进行安全性分析，但并非所有设备都保持联网状态，并且把所有数据集中的经济成本很高。数据的种类（半/非 结构化）加剧了可扩展数据的保护问题，尤其是在大数据领域。</p>
+<p>其他问题和<strong>大数据的来源和质量</strong>有关，数据的来源关系到数据是否可信，数据的质量对于特定领域十分重要（如医疗）。区块链可以保证数据不可变、可追溯、可验证，但由于数据不可变，也带来了新的隐私问题。</p>
+<p>在基础设施级别，需要研究的安全性和隐私问题有：1，针对云中的多重租赁的虚拟化的正确管理；2、针对用户安全性需求的虚拟机资源的分配和取消；3，识别合法请求以处理<u>拒绝服务DoS攻击</u>和其他网络攻击，比如对云服务的协同攻击可能被错误地推断为合法流量，云会扩大资源来处理它们，导致额外的成本和能源浪费。</p>
 <blockquote>
-<p>Order Preserving Encryption —— OPE<br>fully (or partial) homomorphic encryption —— 全、半同态加密<br>selective encryption —— 选择性加密<br>attribute-based encryption (ABE) ——基于属性的加密<br>Private Information Retrieval (PIR) —— 私有信息检索<br>privacy-preserving indexing techniques —— 隐私保护索引技术<br>Oblivious RAM<br>Provable Data Possession —— PDP<br>Proof Of Retrievability —— POR<br>Software Guard Extensions —— SGX<br>Advanced Persistent Threats (APTs) —— 高级持久性威胁</p>
+<p>Order Preserving Encryption —— OPE<br>fully (or partial) homomorphic encryption —— 全、半同态加密<br>selective encryption —— 选择性加密<br>attribute-based encryption (ABE) ——基于属性的加密<br>Private Information Retrieval (PIR) —— 私有信息检索<br>privacy-preserving indexing techniques —— 隐私保护索引技术<br>Oblivious RAM<br>Provable Data Possession —— PDP<br>Proof Of Retrievability —— POR<br>Software Guard Extensions —— SGX<br>Advanced Persistent Threats (APTs) —— 高级持久性威胁<br>selectively sharing data —— 选择性共享数据<br>Denial of Service (DoS) —— 拒绝服务</p>
 </blockquote>
 <h4 id="云计算的经济"><a href="#云计算的经济" class="headerlink" title="云计算的经济"></a>云计算的经济</h4><ul>
 <li>服务级别协议和策略管理</li>
@@ -416,11 +469,17 @@
 <p>近年来，云经济学的研究主题集中在许多关键方面：1.云服务的定价；2.代理机制（搜索符合用户预算的资源）；3.监视以确定是否满足用户要求（涉及SLAs），比如WS-Agreement之类的规范的实现。</p>
 <p>云经济学涉及SLA，而SLA管理又与<u>计算资源、实例和服务</u>的供应和需求有关，在这方面有许多关于<u>基于原则的方法</u>和相关的<u>最优化策略</u>的研究（因为缺少资源适用场景）</p>
 <p>另一个相关的方面是如何迁移公司内部的基础设施和IT部门到云供应商。比如迁移服务需要考虑服务后续如何使用，对业务能力的影响；迁移系统需要考虑是否会影响保留在企业内部的系统功能。其中IT部门应该起到中介者的角色。</p>
-<p>上述背景引起了新技术的出现，比如基于容器的部署（无服务计算），使亚秒级计费成为可能，例如 Google “functions”，AWS Lambda。</p>
+<p>上述背景引起了新技术的出现，比如基于容器的部署（无服务器计算），使亚秒级计费成为可能，例如 Google “functions”，AWS Lambda。</p>
 <p>使用许可是另一个问题，包括年度许可和永久许可。独立的软件供应商正在研究更适合云的许可模式，如<u>BYOL</u>，<u>完全按需</u>等。</p>
 <p>选择合适的云供应商是另一个挑战。比较不同的云供应商十分耗时，并且难以比较。有人提出，专门平台对各个云平台进行比较，帮助用户进行选择；还有关于市场模型的研究</p>
+<h5 id="研究方向-7"><a href="#研究方向-7" class="headerlink" title="研究方向"></a>研究方向</h5><p>容器的低开销的特性适合实时工作负载，这促进了无服务计算的普及。影响这种功能部署的经济因素，例如：（1）平均交易率与峰值交易率；（2）扩展系统上并发活动的数量，即随着用户数量的增加而运行多个并发功能；（3）基准测试不同后端硬件平台上无服务器功能的执行情况，以及该功能所需的总体执行时间。</p>
+<p>雾计算和边缘计算为云市场带来了更多的供应商和业务模型。这类系统可称为微数据中心MDCs。业务模型包括：动态MDC发现，预先商定的MDC合约，MDC联盟，MDC—CDC交换（用户首选CDC，如果不能满足QoS目标，如延迟，则将计算外包给MDC）</p>
+<p>使用雾计算和边缘计算资源会加剧云环境的不确定性。在不确定的情况下，设计师需要在服务质量和成本之间做出权衡。</p>
+<p>企业内部的IT系统（比如邮件管理）迁移到云上，可能是公司获得更高专业水平的管理（比如网络安全，软件更新，可用性，维护等），但也存在信任相关的问题。从长远来看，这种迁移对风险承受能力和业务连续性意味着什么仍然不清楚。</p>
+<p>边缘分析的相关研究。需要研究什么样的数据应该在边缘处理，什么样的数据在云数据中心处理。这也会影响收入模型。</p>
+<p>18年已经有90多个云供应商（<a href="https://cloudharmony.com/directory" target="_blank" rel="noopener">详见</a>）。</p>
 <blockquote>
-<p>BYOL (bring your own license)<br>marketplace models —— 市场模型</p>
+<p>BYOL (bring your own license)<br>marketplace models —— 市场模型<br>Micro Data Centres (MDCs) —— 微数据中心<br>CDC —— 云数据中心</p>
 </blockquote>
 <h4 id="应用部署和交付"><a href="#应用部署和交付" class="headerlink" title="应用部署和交付"></a>应用部署和交付</h4><ul>
 <li>资源的可编程性</li>
@@ -430,8 +489,15 @@
 <p>资源的可编程性，是开发者能够对基础设施和平台进行编程控制，带来的好处比如让程序能够自动扩展，使程序能够在运行时自动修复、优化等。关键的好处是能够加速产品更新的交付。实现的关键是敏捷交付工具和基于模型的编排语言（比如 Terraform，OASIS TOSCA）。这些工具有助于自动化生命周期管理，包括持续交付和持续集成，应用程序和平台配置以及测试。</p>
 <p>平台可编程性，开发云上的程序时，可以帮助减少软件开发的复杂度。比如用户专注于Map、Reduce任务，由中间件负责容错、任务分配的工作。当前正在研究的编程模型，关注如何处理<strong>云平台的异质性</strong>，比如将程序分布于边缘计算中的各个异质节点。当前缺乏交付框架和编程模型，将程序部署在CDC和边缘节点。因而无法在云应用中使用异构硬件，也无法使用互连云操作。</p>
 <p>另一个挑战是应用程序的发展，加速产品更新交付会影响程序的质量。当前缺少云软件工程的研究，将传统开发和敏捷开发的优点结合。比如记录云程序的所有发行版本的性能和可靠性数据，以便更好地指导产品更新，以及自动识别违反设计模式的行为，并在测试新功能期间探索假设场景</p>
+<h5 id="研究方向-8"><a href="#研究方向-8" class="headerlink" title="研究方向"></a>研究方向</h5><p>敏捷、连续的交付方式，通常是以降低设计质量（如遵循SLA、业务异质性、价值驱动设计）作为代价，比如，在早期设计时决定的架构有错误的风险。挑战之一是，如何在后续的开发中监控和修正云应用程序的设计和质量。目前的研究还局限于，如何定义能解决该挑战的支持方法、高级编程抽象、工具、组织过程。比如需要<u>可重用的抽象</u>来扩展现有的软件开发和交付方法。</p>
+<p>通过<strong>基础设施即代码</strong>，使用连续交付工具自动创建，配置和管理云基础架构，这样的趋势预计将会增长。但任然缺乏专门为编写、调试、发展基础设施即代码而设计的<strong>软件工程方法</strong>。挑战在于，基础设施即代码通常是基于由不同的编程语言和脚本语言组合而成，因此需要更通用的软件质量工程工具。</p>
+<p>专门为云定义新的架构和设计模式，使定义云产品更接近人的思维过程。该架构和模式需要考虑云的运行时的状态、容忍改变（上下文、情况、技术、SLAs）。新的架构和模式需要关注云程序的分解（即微服务），需要考虑这对安全性、性能、可靠性、和运营成本的影响。</p>
+<p>随着无服务计算和FaaS的发展，还需要开发新的整合和控制模式，将传统的外部服务和无服务计算服务结合。比如需要新的模式辅助开发者构建 Cloudlets/swarmlets。这需要研究元控制器，实现在运行时对模型的动态无缝切换。元控制器依赖开发者设计的云软件模型。在这个方向的研究包括：模型驱动引擎，以方便推理、假设分析、监测反馈分析、以及决策。</p>
+<p>还需要对用户的工作负载workload进行定义。关于性能、可靠性、安全性的需求需要本分解，不仅用于表达执行需求，还要能表征程序所处理的数据的属性。</p>
+<p>集成服务的权衡因素有：1，安全性（FaaS，单个功能更易于保护和验证 VS 扩大了攻击面）；2，隐私（FaaS，基于模型的访问控制编排的好处 VS 增加了数据暴露）；3，性能（FaaS，函数级的自动扩展的好处 VS 增大网络流量和延迟）；4，成本（FaaS，单个函数调用更便宜，但提高网络花销）。</p>
+<p>还需要设计编程模型，针对自适应、弹性、可移动、去中心化、分布式程序，提供给雾/边缘计算、互连云、物联网。<strong>功能性程序</strong>应该进行<strong>模块化</strong>的规范、编程、测试和验证。还需要对<u>不确定性程序</u>的正确性的验证和规范，比如在线机器学习算法。对于非功能性方面，可以交由中间件负责，比如容错可以是半透明的，或者有程序进行声明式控制，比如移动设备电量有限的情况下，将计算转移。</p>
 <blockquote>
-<p>CDC —— 云数据中心</p>
+<p>CDC —— 云数据中心<br>infrastructure-as-code —— 基础设施即代码<br>meta-controllers —— 元控制器<br>Translucent programming models —— 半透明的编程模型</p>
 </blockquote>
 <h4 id="数据管理"><a href="#数据管理" class="headerlink" title="数据管理"></a>数据管理</h4><ul>
 <li>服务在管理元数据上的局限性</li>
@@ -442,8 +508,15 @@
 <p>大数据平台有多种类型，如用于互联网和企业工作负载，采用批处理+NoSQL，如Apache Hadoop；用于物联网，处理分布式数据流，如Apache Storm。</p>
 <p><u>处理元数据（定位和使用数据）的服务</u>对<u>存储数据的服务</u>的支持不够。数据的隐私问题。广域网的延迟较高，从而影响物联网设备对低延迟处理的需求（出现边缘计算和雾计算）。数据中心里各个虚拟机之间的带宽和网络延迟，也会导致瓶颈和影响延迟敏感的数据流的处理。需要的解决方案包括，<strong>软件定义网络</strong>SDN，和<strong>网络功能虚拟化</strong>NFV。</p>
 <p>还需要对Lambda结构的研究，以便在休息和运行时都能处理数据。Apache Flink和Spark Streaming 提供了一些早期方案。大数据系统对在弹性云上自动扩展和收缩的支持不够。</p>
+<h5 id="研究方向-9"><a href="#研究方向-9" class="headerlink" title="研究方向"></a>研究方向</h5><p>缺乏对数据集的<strong>元数据</strong>的管理。与结构化数据仓库不同，“数据湖”的概念鼓励企业将其所有数据放入HDFS等云存储中，以便从中获取知识。但是，由于缺乏描述数据来源的<strong>元数据</strong>，因此很难挖掘数据。科学库对使用元数据有十多年的经验。</p>
+<p>云数据中心对全球数据进行集中管理和计算，有助于安全性，也促了规模经济。但也带来了数据延迟、性能、网络带宽的挑战。而内容分发网络CDN是为变化缓慢的数据设计的（如视频、文件）。并且CDN是向附近对的CDN服务器读取内容，却缺少类似的，在边缘写入数据的机制。</p>
+<p>如何最佳的放置数据处理程序，以及数据流的适配是难点。在此基础上，更大的挑战是如何分配带宽以满足延迟要求。</p>
+<p>支持高级编程抽象的框架，如Apache Bean，简化了使用混合模型的大数据程序的开发和部署，但这是平台绑定的。经过如此，这也已经将常用的分析任务交给边缘资源，也促进了分布式查询。但需要找出放置任务的中间点，以同时最大程度地减少网络资源使用和延迟。另外还要研究管理资源灵活性的方法。</p>
+<p>最后还要研究数据管理服务，以支持物联网、机器学习、区块链。物联网涉及处理流数据、高效存储、云和边缘的无缝合作。</p>
+<p>机器学习（深度学习）的重点是高效管理以训练的模型，以及模型的快速加载和切换，以支持在线分布式分析。训练模型还需要访问大量数据集。</p>
+<p>区块链和分布式帐本，可以改变我们管理和跟踪数据的方式。除了金融行业，它们也可以扩展为通过隐式审计线索以安全的方式存储其他企业数据。</p>
 <blockquote>
-<p>Software Defined Networking (SDN)<br>Network Functions Virtualization (NFV)</p>
+<p>Software Defined Networking (SDN)<br>Network Functions Virtualization (NFV)<br>Scientific repositories —— 科学库<br>Content Distribution Networks (CDN) —— 内容分发网络<br> traffic engineering (TE) —— 流量工程</p>
 </blockquote>
 <h4 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h4><ul>
 <li>高能耗和缺少能源的对称性</li>
@@ -454,10 +527,16 @@
 <p>关于网络的挑战之一是如何使<strong>能耗与负载成比例</strong>。大多数网络组件，比如交换机、路由器等硬件本身不支持节能的功能，比如没有通信时休眠，低流量时段的链路速率调整等。</p>
 <p>另一个挑战则关于服务质量的保证。因为没有实现<strong>性能隔离</strong>的机制，导致SLAs没有对比如带宽和延迟的保证。当前的研究有通过网络抽象层VDC<strong>对虚拟机带宽的保证</strong>（<a href="https://dl.acm.org/doi/abs/10.1145/1921168.1921188" target="_blank" rel="noopener">参考文献</a>），但没有<strong>对延迟的保证</strong>。</p>
 <p>在<strong>混合云环境中</strong>部署虚拟集群时，虽然可以通过虚拟化技术解决资源的网络连接问题，但云提供商无法像在其自己的数据中心中那样获得对核心Internet设备的特权访问。因此，云提供商在路由和流量工程方面的灵活性在很大程度上受到限制，<strong>网络性能缺少保证</strong>。</p>
-<p>此外，与专用的数据中心网络相比，诸如Internet之类的公用网络的性能更加不可预测和易变，这使得更难以提供有保证的性能要求。传统的WAN方法，例如用于此类网络中流量工程的多协议标签交换MPLS，由于缺乏网络全局视图，因此在带宽使用和处理对延迟敏感的流量方面也效率不高（<a href="https://dl.acm.org/doi/abs/10.1145/2486001.2486012" target="_blank" rel="noopener">参考文献</a>）。 </p>
-<p>由于现代云数据中心的网络规模很大，因此它也同样面临着和互联网相似的问题，比如VLAN的限制，VXLAN在多播种的限制，IPV4的限制等。</p>
+<p>此外，与专用的数据中心网络相比，诸如Internet之类的公用网络的性能更加不可预测和易变，这使得更难以提供有保证的性能要求。传统的WAN方法，例如用于此类网络中流量工程的多协议标签交换MPLS，由于缺乏<strong>网络全局视图</strong>，因此在带宽使用和处理对延迟敏感的流量方面也效率不高（<a href="https://dl.acm.org/doi/abs/10.1145/2486001.2486012" target="_blank" rel="noopener">参考文献</a>）。 </p>
+<p>由于现代云数据中心的网络规模很大，因此它也同样面临着和互联网相似的问题，比如VLAN的限制，VXLAN在多播中的限制，IPV4的限制等。</p>
+<h5 id="研究方向-10"><a href="#研究方向-10" class="headerlink" title="研究方向"></a>研究方向</h5><p>软件定义网络SDN的特征有：全局网络视野、可编程性、开放性，这些特征提供了一种研究方向，基于SDN的流量工程TE机制，应用于云数据中心网络内外。通过SDN，<strong>流量工程</strong>能更高效、智能的处理<u>动态流</u>的调度和管理。因此需要针对SDN的特性设计新的流量工程方法。</p>
+<p>SDN可能影响云的安全性和隐私问题。虽然社区普遍认为SDN能改善网络层和应用层的安全性、可靠性，比如通过策略实施（防火墙、访问控制、中间盒），DoS攻击探测和缓解，细粒度的入侵监控，流量异常探测。但是，SDN会给范式带来改变，从而给<u>网络本身或部署在SDN网络上的服务和相关用户</u>带肋威胁。比如对SDN控制器进行单点攻击。现有的威胁也可能因此扩大，比如网络转发设备被劫持，导致影响范围扩大。</p>
+<p>SDN技术的最新进展有望通过<u>使网络可编程</u>，并减少云提供商的资金和运营支，出来简化数据中心内部网络。但是需要进一步研究，当前用于互连云环境的方法的有效性，以及如何通过公共通信渠道使用SDN。</p>
+<p>迄今为止，在满足应用程序的QoS要求的同时，几乎没有对虚拟网络功能（VNF）的放置和整合给予任何关注。服务链中的VNF的自动扩展也需要深入关注。VNFs提供的网络功能的性能变化受到多种因素影响，比如服务负载，底层主机过载。因此需要开发自动扩展机制，监视VNF实例的性能，并动态增减实例数量。流量工程、迁移技术、VNF放置，3种技术组合可以降低到网络通信成本。此外，自动扩展技术还应该根据服务链（而不是单个服务器）对VNF进行扩展，。</p>
+<p>AI、ML、大数据分析在处理云计算的<u>网络</u>挑战和<u>自动化</u>方面有巨大潜力。</p>
+<p>连接数十亿个均生成数据的设备的物联网的出现将对网络基础设施提出重大需求。随着移动设备数量的爆炸式增长，5G无线及其带宽的增加也将迫使网络容量显着扩展。尽管解决延迟和降低网络资源使用率的关键策略是边缘 / 雾计算，但是边缘/雾计算本身不足以满足所有网络需求。为了满足这种过渡的需求，需要新的产品和技术来扩展网络的带宽或承载能力，以及更快的宽带技术和光网络的进步。也需要进一步研究边缘计算和雾计算与5G的集成。</p>
 <blockquote>
-<p>Multi-Protocol Label Switching (MPLS) —— 多协议标签转换</p>
+<p>Multi-Protocol Label Switching (MPLS) —— 多协议标签转换<br>middleboxes —— 中间盒<br>traffic anomaly detection —— 流量异常探测<br>paradigm —— 范式</p>
 </blockquote>
 <h4 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h4><ul>
 <li>HCI和分布式系统社区的差距</li>
@@ -468,6 +547,9 @@
 <p>云的可用性被NIST的可用性框架中突出为5个方面：能力、个人、可靠、安全、价值（<a href="https://link.springer.com/chapter/10.1007/978-3-319-20376-8_59" target="_blank" rel="noopener">参考文献</a>）。能力，与满足云消费者对云服务功能的期望有关。 个人，是允许用户和组织更改用户界面的外观和风格并自定义服务功能。 可靠，安全和价值，是与使系统在状态条件下安全、受保护地执行其功能，并分别将价值（结果）返回给用户。</p>
 <p>对于可用性，当前的工作主要集中在将复杂的服务封装到API中，以方便用户使用，比如HPC云，研究者一直在创建服务来公开HPC应用程序，以简化其使用。</p>
 <p>另一个方向是DevOps，它的目标是将开发（Dev）和操作（Ops）集成在一起，从而帮助更快地交付软件。在云环境中创建和部署解决方案时，DevOps提高了开发人员和运营商的生产力。 不仅要在云中构建新的解决方案，而且要简化从内部部署环境到多租户弹性云服务的旧软件迁移。</p>
+<h5 id="研究方向-11"><a href="#研究方向-11" class="headerlink" title="研究方向"></a>研究方向</h5><p>有许多机会可以提高云环境中的可用性。例如，由于工作量/资源的波动或特性，用户仍然很难知道他们将花多少钱租用资源。具有更好估计的工具肯定会改善用户体验和满意度。由于大数据社区的最新需求，可以在云环境的不同层上进一步探索新的可视化技术，以更好地了解基础设施和应用程序行为，并向最终用户见解。</p>
+<p>此外，用户仍然无法使用可用于运行其应用程序的资源和服务类型。资源和服务包括CPU，GPU，网络，存储，操作系统，以及PaaS中可用的所有服务。<strong>咨询系统</strong>将大大增强用户使用云资源和服务的体验，还可以建议用户应如何更有效地使用云。比如建议用户读数据进行远程传输或可视化，是否应该分配或删除资源，是否应将裸机替换为虚拟机等建议，以使Cloud易于使用且更具成本效益。</p>
+<p>这方面的主要困难在于评估。在复杂庞大的云上，大规模设计和执行实验并非易事。</p>
 <blockquote>
 <p>capable, personal, reliable, secure, and valuable<br>High Performance Computing (HPC) —— 高性能计算</p>
 </blockquote>
@@ -481,11 +563,64 @@
 <p>mounted file systems —— 挂载文件系统<br>container reference implementation —— 容器引用实现<br>trusted execution support of Intel SGX</p>
 </blockquote>
 <h4 id="雾计算"><a href="#雾计算" class="headerlink" title="雾计算"></a>雾计算</h4><p>雾计算是传统云计算模型的扩展。雾计算包括3个方面，一是使路由节点（如移动基站、网关、路由器等）执行通用目的计算；二是为路由节点添加计算能力，对传输数据进行处理；三是结合前2者。</p>
-<p>好处之一是<strong>减少延迟</strong>，改进流式应用和实时应用的服务质量。二是<strong>无缝支持移动性</strong>，可以启用用户设备和计算服务器之间的无线访问，并可以组织可伸缩的控制系统。这些好处都适用于IoT应用。</p>
+<p>好处之一是<strong>减少延迟</strong>，改进流式应用和实时应用的服务质量。二是<strong>位置感知</strong>。三是<strong>无缝支持可移动性</strong>，可以启用用户设备和计算服务器之间的无线访问，并可以组织可伸缩的控制系统。这些好处都适用于IoT应用。</p>
 <p>雾计算和边缘计算的不同在于，<strong>边缘计算</strong>将计算能力提供给了IoT设备本身，而<strong>雾计算</strong>的计算节点（Dockers、VMs）则是靠近数据源。<strong>边缘计算需要IoT设备有执行代码和通信的能力，问题在于这样的接口并没有被所有的IoT设备采用</strong>。因此，雾计算似乎是迄今为止唯一可行/通用的解决方案。</p>
 <p>雾计算尽管不能完全作为CDC，但也提供完整的IaaS，PaaS和SaaS资源堆栈。它的主要好处在于能减少延迟，预计每个城市只需要少数几个雾数据中心。从商业角度，还能使用私有云或独立的雾供应商的基础设施作为雾节点。对于<strong>移动边缘计算</strong>，它基于移动蜂窝网络，而不经过传统雾计算的路由节点</p>
-<p>雾计算的优点包括，应用在不同计算层之间的<strong>垂直扩展性</strong>。它允许对<strong>传输数据进行提前处理</strong>，从而只有必要的流量会被发送到云数据中心。<strong>工作负载</strong>也可从云中分解下发到雾节点上，或者从边缘节点向上迁移到雾节点。在雾节点中可以使用更轻量的<strong>容器</strong>代替虚拟机。</p>
-<h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><h4 id="无服务计算"><a href="#无服务计算" class="headerlink" title="无服务计算"></a>无服务计算</h4><h4 id="软件定义的云计算"><a href="#软件定义的云计算" class="headerlink" title="软件定义的云计算"></a>软件定义的云计算</h4><h4 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h4><h4 id="机器学习和深度学习"><a href="#机器学习和深度学习" class="headerlink" title="机器学习和深度学习"></a>机器学习和深度学习</h4><h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><p>&gt;</p>
+<p>雾计算的优点包括，应用在不同计算层之间的<strong>垂直扩展性</strong>：它允许对<strong>传输数据进行提前处理</strong>，从而只有必要的流量会被发送到云数据中心。<strong>工作负载</strong>也可从云中分解下发到雾节点上，或者从边缘节点向上迁移到雾节点。在雾节点中可以使用更轻量的<strong>容器</strong>代替虚拟机。</p>
+<p>云服务提供商已经开始建议客户使用它们提供的云接口来部署应用的存储和计算功能，以方便将来的雾节点迁移。云供应商已经开始使用边缘位置来提供<strong>更接近用户的安全服务</strong>（AWS Shield, Web Applica- tion Firewall Service）和<strong>网络流量修改</strong>（Lambda@Edge）</p>
+<p>能够从雾计算中受益的还有智慧城市、物联网应用、多维数据（文字、音频、视频）采集、深度学习模型的在线训练和实时决策（交通信号）、无人汽车、无人机、计算和数据归档、沉浸式环境（MMORPG）、3D环境（HoloLens、Google Glass）、机器人手术。</p>
+<p>挑战之一是<strong>与多方服务级别协议SLAs有关</strong>的复杂的管理问题，这关系到开发统一的可互操作的管理平台（<a href="https://www. edgexfoundry.org/">EdgeX Foundry项目</a>）。多个雾节点之间交互的可能性，涉及安全和隐私问题（<a href="https://www.openfogconsortium.org/" target="_blank" rel="noopener">Open Fog财团</a>）。</p>
+<blockquote>
+<p>MMORPG —— 大型多人在线角色扮演</p>
+</blockquote>
+<h4 id="大数据"><a href="#大数据" class="headerlink" title="大数据"></a>大数据</h4><p>大量的流数据（物联网传感器、CPS、社交网络）是人们对数据量Volume的关注转移到数据速度Velocity。比如in-memory处理数据的Spark Streaming、Flink、Kafka。</p>
+<p>视频数据（城市监控、无人驾驶、无人机）在增长，但云计算中心的延迟和带宽有限。</p>
+<p>与结构化数据仓库不同，“数据湖”鼓励企业将数据放到云中，但缺少对数据来源进行描述的元数据，导致数据难以被使用。</p>
+<blockquote>
+<p>streaming data —— 流数据<br>Cyber Physical Systems (CPS)</p>
+</blockquote>
+<h4 id="无服务器计算"><a href="#无服务器计算" class="headerlink" title="无服务器计算"></a>无服务器计算</h4><p>无服务器计算（功能即服务FaaS，后端即服务BaaS）是一种新兴的架构模型，极大的改变云计算应用的设计方式。与传统的三层模型（应用逻辑和数据库服务器都在云端）不同，无服务器程序的业务逻辑被迁移到了客户端，<strong>比如嵌入到app中，或者在临时分配的资源上</strong>。它的好处是不需要租用资源（如虚拟机）作为服务器运行程序。该模型隐式的处理了在VM上部署应用的挑战，如工作负载中平衡，可靠性、容错等，但也需要考虑平时不考虑的问题，如控制、灵活性、成本。</p>
+<p>无服务器的意思是指，程序运行所需的资源由云供应商管理（而不再是由开发者租用服务器并自己管理）</p>
+<p>无服务器计算减少了开发者的后端代码量、以及对云资源的管理。</p>
+<p>相关的供应商有AWS Lambda，IBM OpenWhiskand，Google Cloud Functions。</p>
+<p>在BaaS中，服务器端的逻辑由不同的云服务负责（如认证、数据库访问、消息传递）；而FaaS则使用短暂的计算资源，按访问次数计费。</p>
+<p>FaaS中的挑战在于，云在执行功能（代码）前并不知道它所需的资源。为此，云供应商对函数的作用和执行时间有许多限制。这也在软件工程方面产生了新的挑战，需要重新设计应用程序结构以适用于该模型。尽管这会带来一些改变，比如要求程序无状态，但却能提高灵活性。与该模型相关的挑战还有<strong>基于事件的</strong>和<strong>超时感知的</strong>程序逻辑。前者是因为每个功能都能看做是对一个事件的独立响应，该事件还会触发其他事件来获取响应。后者是无服务器计算对函数的运行时间有限制，因此在设计函数时需要考虑超时问题，比如如何规避，和处理超时。</p>
+<p>现在还没有一个成熟的<strong>通用目的</strong>的无服务器计算架构，尤其是在中间件层。</p>
+<blockquote>
+<p>serverless computing —— 无服务器计算</p>
+</blockquote>
+<h4 id="软件定义的云计算"><a href="#软件定义的云计算" class="headerlink" title="软件定义的云计算"></a>软件定义的云计算</h4><p>软件定义的云计算是一种方法，通过将虚拟化的概念扩展到数据中心的所有资源上（如计算、存储、网络），对<u>配置过程和物理资源抽象</u>的自动化和最佳化。<strong>虚拟化技术的目的是掩盖、抽象和透明地使用底层资源，而不需要程序和用户了解资源的属性</strong>。虚拟化技术在计算和存储方面已经有很大突破，当前的趋势是<strong>云的网络方面的虚拟化</strong>，即软件定义网络SDN和网络功能虚拟化NFV。</p>
+<p><strong>软件定义网络SDN</strong>，动机是对敏捷的和高性价比的计算机网络需求，该网络还支持多重租赁。SDN主要目的是克服传统网络的限制，尤其是在多重租赁环境中，云数据中心需要提供资源，并保证资源之间相互独立、隔离。早期的CDN支持者认为网络设备的制造商不能满足他们的创新需求，还有一人则旨在通过利用商品硬件的低成本处理能力来运行其网络。</p>
+<p>SDN将数据转发和网络控制解耦，使网络可被中心化管理和可编程。这样的拆分通过称为CDN控制器的软件，提高了<u>在逻辑上中心化网络的网络编排</u>的灵活性。SDN控制器提供了与供应商无关的开放标准（如OpenFlow），该标准为应用程序和网络服务抽象了基础结构。</p>
+<p><strong>网络功能虚拟化NFV</strong>，是<u>网络连接</u>的另一个趋势，它将网络功能（如入侵检测、负载平衡、防火墙、网络地址翻译NAT、域名服务DNS等）从专用硬件转移到基于软件的应用上，能够在商业的架外（COTS）设备上执行。</p>
+<p>网络服务链接，也称为<strong>服务功能链接（SFC）</strong>，是网络运营商用来建立互连的网络服务链的自动化过程。 SFC通过实例化在商品硬件上运行的纯软件服务，可以在NFV环境中组装虚拟网络功能（VNF）链。NFV环境的管理和编排是另一研究方向。</p>
+<p>除了网络连接上的挑战，SDN和NFV还与可持续性、相互关联的云、安全性有关，比如通过OpenFlow交换机实现了可持续性，并提供了网络能耗比例（<a href="https://www.usenix.org/legacy/event/nsdi10/tech/full_papers/heller.pdf" target="_blank" rel="noopener">参考文献</a>）。</p>
+<p>NFV的主要优点是能够让云供应商以更敏捷和灵活的方式提供网络功能服务。比如基于虚拟网络函数实例的迁移策略，减少能耗的整合算法（<a href="https://ieeexplore.ieee.org/abstract/document/7866881" target="_blank" rel="noopener">参考文献</a>）</p>
+<blockquote>
+<p>Software-defined networking (SDN)<br>Network functions virtualization (NFV).<br>multi-tenancy —— 多重租赁<br>data forwarding functions —— 数据转发功能<br>commercial off-the-shelf (COTS) equipment<br>network address translation (NAT)<br>domain name service (DNS)<br>service function chaining (SFC) —— 服务功能链接<br>virtual network functions (VNFs)</p>
+</blockquote>
+<h4 id="区块链"><a href="#区块链" class="headerlink" title="区块链"></a>区块链</h4><p>区块链有可追溯性、可靠性和可审计性的特点。区块链由不可改变的分布式账本ledger组成，账本分布在去中心化的网络上，账本的安全性依赖于密码学。链上的不同对象有账本的相同备份，且区块链上发生的事务需要得到所有对象的同意。</p>
+<p>云计算对区块链的促进作用，不仅是可以持有区块链节点，还能创建服务来利用区块链。云可以将区块链服务封装到PaaS和SaaS上，来促进使用。但这也导致了可扩展性的问题。</p>
+<p>除此之外，云在动态部署计算资源和管理存储上的特点，也是促进区块链被广泛采纳的重要因素。区块链的一个重要组件是作为平台对事务数据进行分析，而这可以和其他来源的数据混合，比如IoT、金融、天气等。</p>
+<p>当前区块链的许多事务都是在云外发送的，如果将区块链转移到云上，那么会增大数据中心的负载，因此导致可持续性问题（主要是能耗）。负载不仅是事务本事，还包括相关的分析服务。因此，在云中处理区块链服务还需要高效的基础设施，以及满足动态的计算需求。</p>
+<p>另一方面是区块链对云计算的促进作用。云是一个关于合作和数据交换的平台，而区块链可以构建一个更安全、可审计的事务平台。区块链和云计算可一起构建一个可信任的、可验证的数据市场，以高效的、可靠、可审核的方式交易数据。背后的原因是数据能够从AI/ML中产生价值。该领域涉及可扩展性、验证数据质量/有用性的机制、以及促进这类<u>区块链感知的数据交易机制</u>的可用性工具。</p>
+<blockquote>
+<p>cryptography —— 密码学</p>
+</blockquote>
+<h4 id="机器学习和深度学习"><a href="#机器学习和深度学习" class="headerlink" title="机器学习和深度学习"></a>机器学习和深度学习</h4><p>机器学习有助于云的资源管理的最优化，而云的计算资源（按需使用、易访问性）对机器学习服务也十分关键。</p>
+<p><strong>自动化计算</strong>，旨在通过自动化提高计算系统的效率，它包括4个主要特征：自配置、自优化、自愈、自保护。AI的出现让这成为可能。对于云来说，这意味着以高效的方式管理工作负载、预测计算需求、估计SLA违反行为、更好的工作分配决策等。</p>
+<p>业界已经开始为许多云服务提供<strong>自动调整技术</strong>，将运行应用程序堆栈委派给云平台，比如Azure SQL能够自动调整和清洗索引。该领域的其中一个研究方向是在机器学习的解决方案中，创建在不同环境下可重用的模型，而不是每次都从新创建模型。问题在于程序和服务本身的特点可能导致无法直接使用其他公司的资源优化方案。</p>
+<p>云计算还能以灵活的方式为机器学习提供大规模计算资源，并且支持以大规模并行的方式训练模型。提供AI服务的平台有：IBM Watson，Microsoft Azure Machine Learning，AWS Deep Learning AMIs，Google Cloud Machine Learning Engine。</p>
+<p>在未来，自动调整技术可能被大规模采纳（尤其是对SaaS）。此外还有，新的自动化工具的出现（半自动应用程序构建器——推荐成功案例的配置、自动化数据库分片、查询优化、智能负载平衡、服务的复制器）、基于机器学习的安全性云服务</p>
+<blockquote>
+<p>autonomic computing —— 自动化计算<br>auto-tuning —— 自动调整</p>
+</blockquote>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>跨云计算的所有服务模型（IaaS，PaaS和SaaS）将有重大发展。</p>
+<p>在IaaS中，可以使用异构硬件（例如CPU和加速器（例如GPU和TPU））以及用于特定应用（例如HPC和深度学习）的专用云。下一代云还应该准备好接受非传统的体系结构，例如神经形态，量子计算，绝热，纳米计算等。此外，诸如容器化，SDN和Fog / Edge计算等新兴趋势将扩大研究范围。 IaaS突飞猛进。还讨论了通过利用可再生能源和基于IoT的冷却系统来解决CDC可持续性的解决方案。IaaS的新兴趋势也存在很大的余地，例如分解的数据中心，其中计算任务（例如CPU，内存和存储）所需的资源将被构建为独立的资源片，这将允许更快，更理想的资源供应来满足基于云的应用程序的不同QoS要求。为解决可伸缩性，资源管理和调度，异构性，互连云和网络挑战而提出的未来研究方向，应该能够实现由云提供的这种全面的IaaS。</p>
+<p>同样，PaaS应该通过未来在资源管理和调度方面的研究方向取得重大进展。提出了对支持可伸缩的弹性计算和无缝使用异构资源的编程抽象，模型，语言和系统的需求，从而提高了能效，最小化了应用工程成本，提高了可移植性并确保了可靠性和性能水平。可以预见的是，对机器学习，深度学习和AI应用程序的持续热度将有助于处理通过PaaS开发的复杂性，异构性，规模和负载平衡应用程序。无服务器计算是PaaS的新兴趋势，这是一个有重大实际和经济影响的有希望探索的领域。提出了有趣的未来方向，例如功能级QoS管理和无服务器计算的经济性。此外，还将详细讨论数据管理和分析的未来研究方向以及安全性，从而为基于IoT和智能城市领域的实时流数据处理的边缘分析等具有平台支持的有趣应用提供支持。</p>
+<p>SaaS应该主要从应用程序开发和交付以及云服务的可用性方面看到进步。需要透明的编程模型，语言和API，以解决应用程序开发的复杂性，同时允许控制将应用程序交付给下一代Cloud。在云应用程序开发期间，越来越多地采用了各种敏捷交付工具和云标准（例如，TOSCA）。未来的研究应集中在如何持续监视和迭代地发展云应用程序的设计和质量上。还建议扩展DevOps方法并定义新颖的编程抽象，以将其包括在现有软件开发和交付方法中，以支持IoT，边缘计算，大数据和无服务器计算。重点还应该放在开发有效的云设计模式和形式主义的开发上，以描述强烈鼓励应用程序处理的工作负载和工作流程，以及它们在性能，可靠性和安全性方面的要求。有趣的是，尽管技术已经成熟，但某些领域（例如移动云）仍然存在适应性问题。移动云的适应性以及设计Fog架构都需要新颖的激励机制。</p>
+<p>因此，今后的研究应探讨云计算架构和市场模式，拥抱不确定性，并提供连续的“双赢”的决议，对于所有的参与者，包括供应商，用户和中介机构，无论是从收益上的投资回报率（ROI），并满足SLA的观点。</p>
+<h3 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h3><p>&gt;</p>
 <blockquote>
 <p>non-volatile technologies —— 非易失性技术<br>Ad-hoc —— 特设的<br>offloading —— 分流<br>proportionality —— 对称性</p>
 </blockquote>
@@ -523,7 +658,6 @@
   
   
 
-  </div>
 
 
           </div>
@@ -574,7 +708,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放性问题"><span class="nav-text">开放性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可扩展性和可伸缩性（弹性）"><span class="nav-text">可扩展性和可伸缩性（弹性）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源管理和调度"><span class="nav-text">资源管理和调度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠性"><span class="nav-text">可靠性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可持续性"><span class="nav-text">可持续性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异质性"><span class="nav-text">异质性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相互关联的云"><span class="nav-text">相互关联的云</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强化资源受限设备的自主权"><span class="nav-text">强化资源受限设备的自主权</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全性和隐私"><span class="nav-text">安全性和隐私</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云计算的经济"><span class="nav-text">云计算的经济</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用部署和交付"><span class="nav-text">应用部署和交付</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据管理"><span class="nav-text">数据管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络"><span class="nav-text">网络</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可用性"><span class="nav-text">可用性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新兴的趋势和影响范围"><span class="nav-text">新兴的趋势和影响范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#容器"><span class="nav-text">容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#雾计算"><span class="nav-text">雾计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据"><span class="nav-text">大数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无服务计算"><span class="nav-text">无服务计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件定义的云计算"><span class="nav-text">软件定义的云计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链"><span class="nav-text">区块链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#机器学习和深度学习"><span class="nav-text">机器学习和深度学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关术语"><span class="nav-text">相关术语</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#介绍"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开放性问题"><span class="nav-text">开放性问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#可扩展性和可伸缩性（弹性）"><span class="nav-text">可扩展性和可伸缩性（弹性）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-——-硬件、中间件、应用级别"><span class="nav-text">研究方向 —— 硬件、中间件、应用级别</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源管理和调度"><span class="nav-text">资源管理和调度</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可靠性"><span class="nav-text">可靠性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-1"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可持续性"><span class="nav-text">可持续性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-2"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异质性"><span class="nav-text">异质性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-3"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相互关联的云"><span class="nav-text">相互关联的云</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-4"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#强化资源受限设备的自主权"><span class="nav-text">强化资源受限设备的自主权</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-5"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安全性和隐私"><span class="nav-text">安全性和隐私</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-6"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#云计算的经济"><span class="nav-text">云计算的经济</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-7"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用部署和交付"><span class="nav-text">应用部署和交付</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-8"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据管理"><span class="nav-text">数据管理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-9"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#网络"><span class="nav-text">网络</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-10"><span class="nav-text">研究方向</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可用性"><span class="nav-text">可用性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#研究方向-11"><span class="nav-text">研究方向</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新兴的趋势和影响范围"><span class="nav-text">新兴的趋势和影响范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#容器"><span class="nav-text">容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#雾计算"><span class="nav-text">雾计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#大数据"><span class="nav-text">大数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#无服务器计算"><span class="nav-text">无服务器计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#软件定义的云计算"><span class="nav-text">软件定义的云计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区块链"><span class="nav-text">区块链</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#机器学习和深度学习"><span class="nav-text">机器学习和深度学习</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#相关术语"><span class="nav-text">相关术语</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -590,20 +724,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">85</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -613,16 +747,16 @@
   </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
@@ -646,12 +780,14 @@
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">liaoooyx</span>
   

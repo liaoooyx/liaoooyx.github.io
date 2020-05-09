@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="人类可以完成词义消歧的工作，但是难以自动化 词典编撰者Lexicographers 使用 词语索引concordance（比如通过SketchEngine）来可视化 单词含义word senses 部分词性标记PoS-tagging 能在一定程度上消除歧义（bank a plane VS. the river bank） 监督学习：基于含义标记语料库 sense-tagged corpus，单词搭">
+<meta property="og:type" content="article">
+<meta property="og:title" content="词汇语义学：词义消歧">
+<meta property="og:url" content="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/17%20%E5%8D%95%E8%AF%8D%E7%9A%84%E5%90%AB%E4%B9%89/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="人类可以完成词义消歧的工作，但是难以自动化 词典编撰者Lexicographers 使用 词语索引concordance（比如通过SketchEngine）来可视化 单词含义word senses 部分词性标记PoS-tagging 能在一定程度上消除歧义（bank a plane VS. the river bank） 监督学习：基于含义标记语料库 sense-tagged corpus，单词搭">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelr5v2l15j31100e4n0b.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelr7gmfiqj30xu07otbk.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geluhbehvaj316202s753.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1geluabe3jnj311q05kaap.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelub9m094j311i0ig0xc.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelutexk6pj30ys05smye.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelwo33gjij310o07q0vl.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelx5wdiexj30hw05wwey.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelxdc9dfwj30yq02k0tr.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelxebmxpfj30ya08k41i.jpg">
+<meta property="article:published_time" content="2020-02-17T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-09T01:51:37.736Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="SketchEngine">
+<meta property="article:tag" content="词义消歧WSD">
+<meta property="article:tag" content="部分词性标记PoS tagging">
+<meta property="article:tag" content="构建语料库">
+<meta property="article:tag" content="Lesk算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelr5v2l15j31100e4n0b.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/17%20%E5%8D%95%E8%AF%8D%E7%9A%84%E5%90%AB%E4%B9%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>词汇语义学：词义消歧 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/17%20%E5%8D%95%E8%AF%8D%E7%9A%84%E5%90%AB%E4%B9%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          词汇语义学：词义消歧
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-17T00:00:00+00:00">2020-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-09 02:51:37" itemprop="dateModified" datetime="2020-05-09T02:51:37+01:00">2020-05-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>人类可以完成词义消歧的工作，但是难以自动化</p>
+<p>词典编撰者Lexicographers 使用 词语索引concordance（比如通过SketchEngine）来可视化 单词含义word senses</p>
+<p>部分词性标记PoS-tagging 能在一定程度上消除歧义（bank a plane VS. the river bank）</p>
+<p>监督学习：基于含义标记语料库 sense-tagged corpus，单词搭配模式collocation patterns</p>
+<p>非、半监督学习：无标签语料库no tagged corpus，Lesk算法</p>
+<a id="more"></a>
+<h4 id="语义标签"><a href="#语义标签" class="headerlink" title="语义标签"></a>语义标签</h4><p>对于一个特定的领域，一个本体论ontology能够为单词提供标签，比如SNOMED-tagger作为标准医学标签。</p>
+<p>朗文当代英语词典LDOCE 使用朗文定义词典LDV1000。也就是说，任何一个单词都能够由这1000个单词定义。如，WordToLDOCEvector将任意一个单词匹配为一个1000维向量。</p>
+<h4 id="词义消歧-Word-Sense-Disambiguation-WSD"><a href="#词义消歧-Word-Sense-Disambiguation-WSD" class="headerlink" title="词义消歧 Word Sense Disambiguation (WSD)"></a>词义消歧 Word Sense Disambiguation (WSD)</h4><p>给定语境中的一个单词，以及由潜在词义组成的固定列表。</p>
+<p>目标是决定一个单词的意思是什么。比如：</p>
+<ul>
+<li>英文到中文的翻译</li>
+<li>语音合成和识别。比如确定具有不同发音的同形异义词，比如 bass 贝斯/鲈鱼</li>
+<li>混淆集的歧义消除。比如to two too<ul>
+<li>参考文献 Michelle Banko and Eric Brill 2001 “Scaling to very very large corpora for natural language disambiguation”</li>
+</ul>
+</li>
+</ul>
+<h4 id="SketchEngine"><a href="#SketchEngine" class="headerlink" title="SketchEngine"></a>SketchEngine</h4><blockquote>
+<p>Sketch Engine是Lexical Computing Limited自2003年以来开发的语料库管理器和文本分析软件。其目的是使学习语言行为的人们能够根据复杂的，基于语言的查询来搜索大型文本集合。</p>
+</blockquote>
+<p>【单词概述word sketch】是对单词的语法和搭配行为进行的单页的，自动的，语料库驱动的摘要。</p>
+<p>【概述引擎】展示了<u>单词概述</u>或<u>一系列搭配</u>或<u>出现频率比超过预期的，与目标单词一起出现的单词</u></p>
+<p>【Lexicographer】可以将相关的搭配用颜色标记分组，表示不同目标单词的不同含义</p>
+<p>在大规模的语料库中，Lexicographer应该找出更符合语境的含义，而不是依靠直觉。</p>
+<p>对于缺少语料库资源的少部分语言，比如阿姆哈拉语Amharic，概述引擎可以与网络引导Web-Bootcat结合，从而让研究者收集自己的基于网络的语料库</p>
+<h4 id="两种不同的自动化的词义消歧-WSD"><a href="#两种不同的自动化的词义消歧-WSD" class="headerlink" title="两种不同的自动化的词义消歧 WSD"></a>两种不同的自动化的词义消歧 WSD</h4><p>简单：词汇采样任务</p>
+<ul>
+<li>少量的提前选择的目标单词集，以及包含每个单词的含义的清单</li>
+</ul>
+<p>困难：全单词任务</p>
+<ul>
+<li>整个文本中的所有单词，以及包含每个单词含义的词汇表</li>
+<li>排序，比如按照【部分词性标记 part-of-speech tagging, PoS】</li>
+</ul>
+<blockquote>
+<p>在语料库语言学中，【部分词性标记】（也称为语法标记或词目类别消歧）是根据词的定义和上下文在文本中标记与词性特定部分相对应的词的过程，即，它与短语，句子或段落中相邻和相关单词的关系。通常向学龄儿童教授这种简化形式，将单词标识为名词，动词，形容词，副词等。</p>
+</blockquote>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li><p>部分词性标记。但只能解决小部分消歧问题，如 bank a plane VS the river bank</p>
+</li>
+<li><p>对有含义标记的语料库的【单词搭配模式】进行监督机器学习</p>
+</li>
+<li><p>非监督或半监督学习：无标记的语料库，使用基于字典的语言学知识</p>
+</li>
+<li><p>Lesk算法：字典定义中的重叠</p>
+</li>
+</ul>
+<h3 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h3><p>需要以下4个步骤：</p>
+<ul>
+<li>标签集（含义清单 sense inventory）（每个数据的分类）</li>
+<li>训练语料库（数据集）</li>
+<li>特征集，同于表达每个单词的含义，从训练语料库中提取（数据预处理）</li>
+<li>分类器（训练模型）</li>
+</ul>
+<h4 id="监督学习——词义消歧，第一步：WSD标签"><a href="#监督学习——词义消歧，第一步：WSD标签" class="headerlink" title="监督学习——词义消歧，第一步：WSD标签"></a>监督学习——词义消歧，第一步：WSD标签</h4><p>什么是标签？由语法学家确定的名词、动词、形容词、副词、介词、连词等</p>
+<p>但没有相同的【语义标签集】能覆盖所有英文单词。</p>
+<p>【自然语言处理工具包 NLTK】</p>
+<blockquote>
+<p>Natural Language Toolkit（更常见的是NLTK）是一套以Python编程语言编写的用于英语的符号和统计自然语言处理的库和程序。它是由宾夕法尼亚大学计算机与信息科学系的Steven Bird和Edward Loper开发的。NLTK包括图形演示和示例数据。</p>
+</blockquote>
+<p>【单词网WordNet】是每个单词的一组含义</p>
+<p>比如单词bass在WordNet中有8个含义：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelr5v2l15j31100e4n0b.jpg" alt="截屏2020-05-08 下午10.33.52"></p>
+<p>【含义标签清单 Sense Tag Inventory】</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelr7gmfiqj30xu07otbk.jpg" alt="截屏2020-05-08 下午10.35.25"></p>
+<h4 id="监督学习——词义消歧，第二步：构建语料库"><a href="#监督学习——词义消歧，第二步：构建语料库" class="headerlink" title="监督学习——词义消歧，第二步：构建语料库"></a>监督学习——词义消歧，第二步：构建语料库</h4><p>简单的，词汇采样，比如：</p>
+<ul>
+<li>Line-hard-serve corpus，Interest corpus，auto-generate confusion sets on very very large corpora (Banko&amp;Brill)</li>
+</ul>
+<p>复杂的，全词语料库：【语义的一致性】，即语料库中所有开放类别的单词都带有含义标签，标签来源于特定的字典或同义词。比如：</p>
+<ul>
+<li>SemCor：234,000 words from Brown Corpus, manually tagged with WordNet senses</li>
+<li>SENSEVAL-3 competition corpora - 2081 tagged word tokens</li>
+</ul>
+<h4 id="监督学习——词义消歧，第三步：提取特征向量"><a href="#监督学习——词义消歧，第三步：提取特征向量" class="headerlink" title="监督学习——词义消歧，第三步：提取特征向量"></a>监督学习——词义消歧，第三步：提取特征向量</h4><p>【特征向量】：属性集合表示的向量，比如.csv .arff文件中的一行：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geluhbehvaj316202s753.jpg" alt="截屏2020-05-09 上午12.28.39"></p>
+<p>对于【词义消歧】来说，特征向量需要表示目标词窗口的范围内的单词。但问题是，如何确定窗口的最小大小，使我们能够理解一个单词的意思。比如：<br>（通常采用+/-2的窗口）</p>
+<ul>
+<li><p>窗口大小为+/- 0：bass</p>
+</li>
+<li><p>窗口大小为+/- 1：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geluabe3jnj311q05kaap.jpg" alt="截屏2020-05-09 上午12.21.58" style="zoom: 33%;" /></p>
+</li>
+<li><p>窗口大小为一句话：</p>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelub9m094j311i0ig0xc.jpg" alt="截屏2020-05-09 上午12.22.52" style="zoom:33%;" /></p>
+<h5 id="向量中的特征的类型"><a href="#向量中的特征的类型" class="headerlink" title="向量中的特征的类型"></a>向量中的特征的类型</h5><p>【词袋 Bag-of-words】，任何出现在窗口中的单词（不考虑位置）。通常用于词频计算或权重，可以包括其他可计算的权重，比如TF/IDF</p>
+<p>比如：原文如下，窗口大小为+/- 2，</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelutexk6pj30ys05smye.jpg" alt="截屏2020-05-09 上午12.40.19" style="zoom:33%;" /></p>
+<ol>
+<li><p>第一步是创建词袋。假设词袋中有12个词：</p>
+<p>[fish,fishing,viol, guitar, double,cello…]</p>
+</li>
+<li><p>然后是创建【词向量】，用基于词袋的向量表示目标词窗口的内容。假设词袋中包含guitar和player，但没有and和stand，于是得到【guitar and bass player stand】对应的【词向量】：（按出现频率计数）</p>
+<p>[0,0,0,1,0,0,0,0,0,1,0,0]</p>
+</li>
+</ol>
+<h5 id="词向量技术：词嵌入word-embedding"><a href="#词向量技术：词嵌入word-embedding" class="headerlink" title="词向量技术：词嵌入word embedding"></a>词向量技术：词嵌入word embedding</h5><p>【词向量】的构建是基于【词袋】的。如果将所有的词都加入词袋中，那么构建出来的词向量可能绝大部分的值都是0。因此出现了【词嵌入】技术，比如：</p>
+<ul>
+<li><a href="https://www.tensorflow.org/tutorials/text/word_embeddings" target="_blank" rel="noopener">word2vec</a>：由Mikolov et al (Google, Facebook)发表</li>
+<li>Neural Network “deep learning” maps word to 1000-vector</li>
+</ul>
+<blockquote>
+<p>词嵌入是自然语言处理中语言模型与表征学习技术的统称。概念上而言，它是指把一个维数为所有词的数量的高维空间嵌入到一个维数低得多的连续向量空间中，每个单词或词组被映射为实数域上的向量。 词嵌入的方法包括人工神经网络、对词语同现矩阵降维、概率模型以及单词所在上下文的显式表示等。</p>
+</blockquote>
+<h4 id="监督学习——词义消歧，第四步：分类器"><a href="#监督学习——词义消歧，第四步：分类器" class="headerlink" title="监督学习——词义消歧，第四步：分类器"></a>监督学习——词义消歧，第四步：分类器</h4><p>当我们把歧义消除问题视为分类问题时，我们就可以采用机器学习的解决方案，比如在WEKA中可以使用：</p>
+<ul>
+<li>朴素贝叶斯</li>
+<li>决策列</li>
+<li>决策树</li>
+<li>神经网络</li>
+<li>支持向量机</li>
+<li>最临近算法，等</li>
+</ul>
+<p>如何选择以上算法，依赖于使用的特征集。有些算法在【数值类型的特征】上表现更好/更差；有些算法需在有大量的【表示可能性的特征】上表现得更好/更差。比如决策树可能不适合特征值特别多的场景，因为会产生大量的分支，而朴素贝叶斯可以将所有特征一起考虑，因此可能更适合。</p>
+<h4 id="分类器的评估"><a href="#分类器的评估" class="headerlink" title="分类器的评估"></a>分类器的评估</h4><p>对同一个任务比较不同的分类器，找出效果最好的分类器</p>
+<p>使用同一个分类器比较不同任务，找出最难的任务</p>
+<h4 id="词义消歧的评估"><a href="#词义消歧的评估" class="headerlink" title="词义消歧的评估"></a>词义消歧的评估</h4><p>对手动标记的语料库进行评估</p>
+<ul>
+<li>准确率：预测单词标签与人工分类的含义标签是否一样</li>
+<li>通常采用测试集进行评估：从训练集中保留一部分作为测试集</li>
+</ul>
+<p>比较基线和上限的准确率</p>
+<ul>
+<li><p>基线 Baseline(s)：最常出现的含义</p>
+<ul>
+<li><p>比如WordNet是按频率排序的，于是WordNet中的第一个就是最常见的含义</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelwo33gjij310o07q0vl.jpg" alt="截屏2020-05-09 上午1.44.20" style="zoom:50%;" /></p>
+</li>
+</ul>
+</li>
+<li><p>上限 Ceiling：得到的最好结果</p>
+<ul>
+<li>对某个标签的划分需要多个人一起评估，取得一致。</li>
+<li>比如，人们对【all-words corpora with Wordnet style senses】的标签只有大约75-80%能达成一致，如果模型划分的准确率超过这个数值，则是不合理的。</li>
+</ul>
+</li>
+</ul>
+<h3 id="词义消歧：字典-同义词方法——Lesk算法"><a href="#词义消歧：字典-同义词方法——Lesk算法" class="headerlink" title="词义消歧：字典/同义词方法——Lesk算法"></a>词义消歧：字典/同义词方法——Lesk算法</h3><p>Lesk算法——分监督学习算法，即训练集没有分类（标签）。但还是需要人们干涉字典和规则</p>
+<blockquote>
+<p>Lesk算法是Michael E. Lesk在1986年提出的一种经典的词义消歧算法</p>
+</blockquote>
+<h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>比如有PINE和CONE两个单词，它们的含义分别如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelx5wdiexj30hw05wwey.jpg" alt="截屏2020-05-09 上午2.01.30"></p>
+<p>当出现词组搭配【pine cone】时，由于pine1和cone3中的单词有重叠：“evergreen” + “tree”，于是可以认为pine cone中的pine是1，cone是3。</p>
+<h4 id="简化Lesk算法-Simplified-Lesk-algorithm"><a href="#简化Lesk算法-Simplified-Lesk-algorithm" class="headerlink" title="简化Lesk算法 Simplified Lesk algorithm"></a>简化Lesk算法 Simplified Lesk algorithm</h4><p><strong>任务：定义【原文】中bank的含义</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelxdc9dfwj30yq02k0tr.jpg" alt="截屏2020-05-09 上午2.08.40"></p>
+<p><strong>参数：给定的【WordNet sense】为：</strong></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gelxebmxpfj30ya08k41i.jpg" alt="截屏2020-05-09 上午2.09.36"></p>
+<p>计算步骤：</p>
+<ol>
+<li>分别计算【原文】与bank1和bank2的【Gloss和Examples】重叠的单词数量</li>
+<li>选择计数最高的【word sense】，即bank1或bank2</li>
+</ol>
+<h4 id="为什么谷歌不需要歧义消除技术——搜索引擎的匹配方案"><a href="#为什么谷歌不需要歧义消除技术——搜索引擎的匹配方案" class="headerlink" title="为什么谷歌不需要歧义消除技术——搜索引擎的匹配方案"></a>为什么谷歌不需要歧义消除技术——搜索引擎的匹配方案</h4><p>因为谷歌搜索引擎只需要找到匹配关键字的文本即可。</p>
+<p>方法一：【词嵌入技术】</p>
+<p>方法二：计算相似度</p>
+<ul>
+<li>【词袋】包含1000个基础单词</li>
+<li>任何一个单词都匹配能用一个1000维的向量表示</li>
+<li>任何一个文档，都能用每个单词所表示的向量相加</li>
+<li>文档之间（或文档和查询词之间）的相似度可以通过计算两个向量的距离。</li>
+</ul>
+<p>方法三：【倒排索引】</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/SketchEngine/" rel="tag"><i class="fa fa-tag"></i> SketchEngine</a>
+              <a href="/tags/%E8%AF%8D%E4%B9%89%E6%B6%88%E6%AD%A7WSD/" rel="tag"><i class="fa fa-tag"></i> 词义消歧WSD</a>
+              <a href="/tags/%E9%83%A8%E5%88%86%E8%AF%8D%E6%80%A7%E6%A0%87%E8%AE%B0PoS-tagging/" rel="tag"><i class="fa fa-tag"></i> 部分词性标记PoS tagging</a>
+              <a href="/tags/%E6%9E%84%E5%BB%BA%E8%AF%AD%E6%96%99%E5%BA%93/" rel="tag"><i class="fa fa-tag"></i> 构建语料库</a>
+              <a href="/tags/Lesk%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> Lesk算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Introduction%20to%20Mobile%20Device%20Virtualization/" rel="prev" title="移动设备虚拟化">
+      <i class="fa fa-chevron-left"></i> 移动设备虚拟化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/09%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/" rel="next" title="文本分类">
+      文本分类 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#语义标签"><span class="nav-text">语义标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词义消歧-Word-Sense-Disambiguation-WSD"><span class="nav-text">词义消歧 Word Sense Disambiguation (WSD)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SketchEngine"><span class="nav-text">SketchEngine</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两种不同的自动化的词义消歧-WSD"><span class="nav-text">两种不同的自动化的词义消歧 WSD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法"><span class="nav-text">方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#监督学习"><span class="nav-text">监督学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#监督学习——词义消歧，第一步：WSD标签"><span class="nav-text">监督学习——词义消歧，第一步：WSD标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监督学习——词义消歧，第二步：构建语料库"><span class="nav-text">监督学习——词义消歧，第二步：构建语料库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监督学习——词义消歧，第三步：提取特征向量"><span class="nav-text">监督学习——词义消歧，第三步：提取特征向量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#向量中的特征的类型"><span class="nav-text">向量中的特征的类型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#词向量技术：词嵌入word-embedding"><span class="nav-text">词向量技术：词嵌入word embedding</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监督学习——词义消歧，第四步：分类器"><span class="nav-text">监督学习——词义消歧，第四步：分类器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分类器的评估"><span class="nav-text">分类器的评估</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#词义消歧的评估"><span class="nav-text">词义消歧的评估</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#词义消歧：字典-同义词方法——Lesk算法"><span class="nav-text">词义消歧：字典&#x2F;同义词方法——Lesk算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本思想"><span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简化Lesk算法-Simplified-Lesk-algorithm"><span class="nav-text">简化Lesk算法 Simplified Lesk algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么谷歌不需要歧义消除技术——搜索引擎的匹配方案"><span class="nav-text">为什么谷歌不需要歧义消除技术——搜索引擎的匹配方案</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

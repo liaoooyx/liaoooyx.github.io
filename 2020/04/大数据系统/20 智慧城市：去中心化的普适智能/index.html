@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="数字化时代会给科技-社会-经济系统的自我管理能力带来机会和挑战">
+<meta property="og:type" content="article">
+<meta property="og:title" content="智慧城市：去中心化的普适智能">
+<meta property="og:url" content="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/20%20%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%EF%BC%9A%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%9A%84%E6%99%AE%E9%80%82%E6%99%BA%E8%83%BD/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="数字化时代会给科技-社会-经济系统的自我管理能力带来机会和挑战">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1ru9sp4j30s40i4n1g.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1sgcschj311q0midqm.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1w1wau9j31200h0wls.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1xeya1fj31180jigrh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea4v5l33uj30cg0dcgqr.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea566mtnsj312o0m2go7.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea584zgpqj30xo0mc0z4.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5bj7kuxj310o0nudmx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5bqkujej310o0nkn3q.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5ft0aadj310y0lq77f.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5gocy55j311u0lu7cm.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5h3qkylj312a0es79j.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5j94jlcj311y0negya.jpg">
+<meta property="article:published_time" content="2020-04-26T23:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-06T09:06:30.909Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="智慧城市示例">
+<meta property="article:tag" content="去中心化">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1ru9sp4j30s40i4n1g.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/20%20%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%EF%BC%9A%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%9A%84%E6%99%AE%E9%80%82%E6%99%BA%E8%83%BD/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>智慧城市：去中心化的普适智能 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/20%20%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%EF%BC%9A%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%9A%84%E6%99%AE%E9%80%82%E6%99%BA%E8%83%BD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          智慧城市：去中心化的普适智能
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-04-27T00:00:00+01:00">2020-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-06 10:06:30" itemprop="dateModified" datetime="2020-05-06T10:06:30+01:00">2020-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>数字化时代会给<u>科技-社会-经济系统</u>的<u>自我管理能力</u>带来机会和挑战</p>
+<a id="more"></a>
+<h4 id="数字化时代的机遇"><a href="#数字化时代的机遇" class="headerlink" title="数字化时代的机遇"></a>数字化时代的机遇</h4><p>高度自动化、更低的成本、更高的效率、更简单的通讯、在线适应 online adaptation</p>
+<p>发生革命性概念的社会-科学行业：能源、移动、监控、食物供应链</p>
+<blockquote>
+<p>profiling：记录和分析一个人的心理和行为特征，以便评估或预测他们在特定领域的能力或帮助识别特定人群</p>
+</blockquote>
+<h4 id="威胁和挑战"><a href="#威胁和挑战" class="headerlink" title="威胁和挑战"></a>威胁和挑战</h4><p>关于隐私入侵、监控、剖析：中心化的系统；底下的公民隐私意识，和高的推理机会。</p>
+<p>自动化：操纵性不透明算法，收割注意力，虚假新闻等。</p>
+<h3 id="共享经济中的自我管理挑战——from-local-to-global-objectives"><a href="#共享经济中的自我管理挑战——from-local-to-global-objectives" class="headerlink" title="共享经济中的自我管理挑战——from local to global objectives"></a>共享经济中的自我管理挑战——from local to global objectives</h3><h4 id="智慧网格-Smart-Grids"><a href="#智慧网格-Smart-Grids" class="headerlink" title="智慧网格 Smart Grids"></a>智慧网格 Smart Grids</h4><p>本地：日常生活（洗衣、做饭、洗澡、充电）</p>
+<p>全局：预防/减轻断电，最小化成产成本，最大化可再生资源的使用</p>
+<h4 id="智慧城市"><a href="#智慧城市" class="headerlink" title="智慧城市"></a>智慧城市</h4><p>本地：共享单车——从某地存取单车</p>
+<p>全局：预防/减缓共享单车站台过载，最小化以人工重新放置单车，最小化运营成本，最小化投资成本；</p>
+<p>本地：选择一条导航路径</p>
+<p>全局：预防/减轻交通拥挤，减少城市空气污染，发生交通事故或城市建造时高效的重新规划交通，最大化基础设施的生命周期</p>
+<h4 id="集体学习"><a href="#集体学习" class="headerlink" title="集体学习"></a>集体学习</h4><p>是一种新的范例，针对去中心化得到普适智能：设计社科、分布式系统、AI</p>
+<h5 id="自治的代理，能够自主决定一系列资源调度和分配的计划。"><a href="#自治的代理，能够自主决定一系列资源调度和分配的计划。" class="headerlink" title="自治的代理，能够自主决定一系列资源调度和分配的计划。"></a>自治的代理，能够自主决定一系列资源调度和分配的计划。</h5><p>核心思想：众包的运营灵活性。</p>
+<p>关键点：普适的自治性，隐私，没有推诿 no nudding，增强信任</p>
+<h5 id="平衡个人（本地）和集体（全球）目标的代理"><a href="#平衡个人（本地）和集体（全球）目标的代理" class="headerlink" title="平衡个人（本地）和集体（全球）目标的代理"></a>平衡个人（本地）和集体（全球）目标的代理</h5><p>核心思想：经过设计的对社会负责的决策</p>
+<p>关键点：内在利益与外在动机之间的相互作用</p>
+<h5 id="代理商协调和合作选择他们的计划"><a href="#代理商协调和合作选择他们的计划" class="headerlink" title="代理商协调和合作选择他们的计划"></a>代理商协调和合作选择他们的计划</h5><p>核心思想：利用群众的计算资源进对包进行自我管理</p>
+<p>关键点：通过设计使用专有的汇总信息来保护隐私</p>
+<h3 id="区域自治计划——参与模型"><a href="#区域自治计划——参与模型" class="headerlink" title="区域自治计划——参与模型"></a>区域自治计划——参与模型</h3><p>由代理自我决定的，（可替换的）运营计划</p>
+<ul>
+<li>自我决定：自治</li>
+<li>可替换的：灵活性</li>
+<li>运营：取决于应用</li>
+<li>计划：资源调度和分配</li>
+</ul>
+<h4 id="计划的灵活性"><a href="#计划的灵活性" class="headerlink" title="计划的灵活性"></a>计划的灵活性</h4><ul>
+<li>住宅供电需求</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1ru9sp4j30s40i4n1g.jpg" alt="截屏2020-04-28 下午7.34.08" style="zoom: 33%;" /></p>
+<ul>
+<li>共享单车</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1sgcschj311q0midqm.jpg" alt="截屏2020-04-28 下午7.34.46" style="zoom: 25%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1w1wau9j31200h0wls.jpg" alt="截屏2020-04-28 下午7.38.13" style="zoom:33%;" /></p>
+<ul>
+<li>交通</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea1xeya1fj31180jigrh.jpg" alt="截屏2020-04-28 下午7.39.34" style="zoom:33%;" /></p>
+<h3 id="全局优化"><a href="#全局优化" class="headerlink" title="全局优化"></a>全局优化</h3><h4 id="系统范围的集体目标-System-wide-Collective-Objectives"><a href="#系统范围的集体目标-System-wide-Collective-Objectives" class="headerlink" title="系统范围的集体目标 System-wide Collective Objectives"></a>系统范围的集体目标 System-wide Collective Objectives</h4><ul>
+<li>成本函数</li>
+<li><ul>
+<li>线性<ul>
+<li>可被局部优化——不需要协作</li>
+</ul>
+</li>
+<li>二元 quadratic：<ul>
+<li>需要协作和集体决策</li>
+<li>如最小化方差或均方根误差</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>通用稳定性，和指标匹配</li>
+<li>复杂度 = <script type="math/tex">可能的计划数量^{设备数量}</script></li>
+<li>组合优化问题——NP难</li>
+</ul>
+<h4 id="EPOS-解决方案"><a href="#EPOS-解决方案" class="headerlink" title="EPOS 解决方案"></a><a href="epos-net.org">EPOS</a> 解决方案</h4><p><strong>EPOS: Economic Planning &amp; Optimized Selections</strong></p>
+<p><strong>I-EPOS I</strong>terative</p>
+<h4 id="协作结构——自我管理树状拓扑"><a href="#协作结构——自我管理树状拓扑" class="headerlink" title="协作结构——自我管理树状拓扑"></a>协作结构——自我管理树状拓扑</h4><p>基于流言的交互与信息交换</p>
+<p>E.Pournaras,M.Warnier,and F.M.Brazier,“<em>Adaptive</em> <em>self-organization in distributed tree topologies</em>,” <em>International Journal of Distributed Systems and Technologies (IJDST)</em>, vol. 5, no. 3, pp. 24–57, 2014</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea4v5l33uj30cg0dcgqr.jpg" alt="截屏2020-04-28 下午9.21.11" style="zoom: 50%;" /></p>
+<h4 id="区域计划选择——区域-amp-全局成本"><a href="#区域计划选择——区域-amp-全局成本" class="headerlink" title="区域计划选择——区域&amp;全局成本"></a>区域计划选择——区域&amp;全局成本</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea566mtnsj312o0m2go7.jpg" alt="截屏2020-04-28 下午9.31.47"></p>
+<h4 id="协作——分布式集体决策"><a href="#协作——分布式集体决策" class="headerlink" title="协作——分布式集体决策"></a>协作——分布式集体决策</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea584zgpqj30xo0mc0z4.jpg" alt="截屏2020-04-28 下午9.33.40"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5bj7kuxj310o0nudmx.jpg" alt="截屏2020-04-28 下午9.36.56"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5bqkujej310o0nkn3q.jpg" alt="截屏2020-04-28 下午9.37.07"></p>
+<h3 id="社科权衡-Socio-technical-Trade-offs"><a href="#社科权衡-Socio-technical-Trade-offs" class="headerlink" title="社科权衡  Socio-technical Trade-offs"></a>社科权衡  <strong>Socio-technical Trade-offs</strong></h3><h4 id="社会衡量"><a href="#社会衡量" class="headerlink" title="社会衡量"></a>社会衡量</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5ft0aadj310y0lq77f.jpg" alt="截屏2020-04-28 下午9.40.39"></p>
+<h4 id="监管能力与权衡"><a href="#监管能力与权衡" class="headerlink" title="监管能力与权衡"></a>监管能力与权衡</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5gocy55j311u0lu7cm.jpg" alt="截屏2020-04-28 下午9.41.53"></p>
+<h4 id="对计划选择的影响"><a href="#对计划选择的影响" class="headerlink" title="对计划选择的影响"></a>对计划选择的影响</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5h3qkylj312a0es79j.jpg" alt="截屏2020-04-28 下午9.42.18"></p>
+<h3 id="最新技术的比较：COHDA-Greedy-EPOS"><a href="#最新技术的比较：COHDA-Greedy-EPOS" class="headerlink" title="最新技术的比较：COHDA, Greedy, EPOS"></a>最新技术的比较：COHDA, Greedy, EPOS</h3><p>C. Hinrichs, S. Lehnhoff, and M. Sonnenschein, “COHDA: A combinatorial optimization heuristic for distributed agents,” in <em>International Conference on Agents and Artificial Intelligence</em>. Springer, 2013, pp. 23–39.</p>
+<p>E. Pournaras, M. Warnier, and F. M. Brazier, “Local agent-based self-stabilisation in global resource utilisation,” <em>International Journal of Autonomic Computing</em>, vol. 1, no. 4, pp. 350–373, 2010.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gea5j94jlcj311y0negya.jpg" alt="截屏2020-04-28 下午9.44.21"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%E7%A4%BA%E4%BE%8B/" rel="tag"><i class="fa fa-tag"></i> 智慧城市示例</a>
+              <a href="/tags/%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 去中心化</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/19%20Apache-Storm/" rel="prev" title="Apache Storm">
+      <i class="fa fa-chevron-left"></i> Apache Storm
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/%E4%B8%BA%E4%BB%80%E4%B9%88MapReduce%E4%B8%8D%E9%80%82%E5%90%88%E6%8B%86%E5%88%86%E6%88%90%E7%9B%B8%E4%BA%92%E4%BE%9D%E8%B5%96%E7%9A%84%E5%AD%90%E4%BB%BB%E5%8A%A1/" rel="next" title="为什么MapReduce不适合拆分成相互依赖的子任务">
+      为什么MapReduce不适合拆分成相互依赖的子任务 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#数字化时代的机遇"><span class="nav-text">数字化时代的机遇</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#威胁和挑战"><span class="nav-text">威胁和挑战</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#共享经济中的自我管理挑战——from-local-to-global-objectives"><span class="nav-text">共享经济中的自我管理挑战——from local to global objectives</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#智慧网格-Smart-Grids"><span class="nav-text">智慧网格 Smart Grids</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#智慧城市"><span class="nav-text">智慧城市</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集体学习"><span class="nav-text">集体学习</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#自治的代理，能够自主决定一系列资源调度和分配的计划。"><span class="nav-text">自治的代理，能够自主决定一系列资源调度和分配的计划。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#平衡个人（本地）和集体（全球）目标的代理"><span class="nav-text">平衡个人（本地）和集体（全球）目标的代理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#代理商协调和合作选择他们的计划"><span class="nav-text">代理商协调和合作选择他们的计划</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#区域自治计划——参与模型"><span class="nav-text">区域自治计划——参与模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#计划的灵活性"><span class="nav-text">计划的灵活性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#全局优化"><span class="nav-text">全局优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#系统范围的集体目标-System-wide-Collective-Objectives"><span class="nav-text">系统范围的集体目标 System-wide Collective Objectives</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EPOS-解决方案"><span class="nav-text">EPOS 解决方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协作结构——自我管理树状拓扑"><span class="nav-text">协作结构——自我管理树状拓扑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#区域计划选择——区域-amp-全局成本"><span class="nav-text">区域计划选择——区域&amp;全局成本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协作——分布式集体决策"><span class="nav-text">协作——分布式集体决策</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#社科权衡-Socio-technical-Trade-offs"><span class="nav-text">社科权衡  Socio-technical Trade-offs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#社会衡量"><span class="nav-text">社会衡量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#监管能力与权衡"><span class="nav-text">监管能力与权衡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对计划选择的影响"><span class="nav-text">对计划选择的影响</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最新技术的比较：COHDA-Greedy-EPOS"><span class="nav-text">最新技术的比较：COHDA, Greedy, EPOS</span></a></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

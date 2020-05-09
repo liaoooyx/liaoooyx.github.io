@@ -13,13 +13,13 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
   <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
   <script src="/lib/pace/pace.min.js"></script>
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="坐标英国利兹">
@@ -40,7 +40,8 @@
   CONFIG.page = {
     sidebar: "",
     isHome : true,
-    isPost : false
+    isPost : false,
+    lang   : 'zh-CN'
   };
 </script>
 
@@ -94,14 +95,12 @@
 
   <div class="site-meta">
 
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">米达的博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-        <p class="site-subtitle">好好学习</p>
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
   </div>
 
   <div class="site-nav-right">
@@ -112,32 +111,33 @@
 </div>
 
 
+
+
 <nav class="site-nav">
-  
-  <ul id="menu" class="menu">
+  <ul id="menu" class="main-menu menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-about">
 
-    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
 
   </li>
       <li class="menu-item menu-item-search">
@@ -145,17 +145,18 @@
         </a>
       </li>
   </ul>
-
 </nav>
-  <div class="site-search">
-    <div class="search-pop-overlay">
-  <div class="popup search-popup">
-      <div class="search-header">
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
   <span class="search-icon">
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+    <input autocomplete="off" autocapitalize="off"
            placeholder="搜索..." spellcheck="false"
            type="search" class="search-input">
   </div>
@@ -169,10 +170,9 @@
   </div>
 </div>
 
+    </div>
   </div>
-</div>
 
-  </div>
 </div>
     </header>
 
@@ -186,15 +186,13 @@
         <div class="content-wrap">
           
 
-          <div class="content">
+          <div class="content index posts-expand">
             
-
-  <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/07%20Unsupervised%20ML%20Association%20Rules,%20Clustering/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/10%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%AD%98%E5%82%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -206,131 +204,30 @@
       <meta itemprop="name" content="米达的博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/07%20Unsupervised%20ML%20Association%20Rules,%20Clustering/" class="post-title-link" itemprop="url">数据挖掘和文本分析/07 Unsupervised ML Association Rules, Clustering</a>
-        </h1>
+            <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/10%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%AD%98%E5%82%A8/" class="post-title-link" itemprop="url">数据库和存储</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-02-10 13:26:10" itemprop="dateCreated datePublished" datetime="2020-02-10T13:26:10+00:00">2020-02-10</time>
+              <time title="创建时间：2020-02-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-24T00:00:00+00:00">2020-02-24</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-13 10:28:18" itemprop="dateModified" datetime="2020-02-13T10:28:18+00:00">2020-02-13</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>644</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="07-Unsupervised-ML-Association-Rules-Clustering"><a href="#07-Unsupervised-ML-Association-Rules-Clustering" class="headerlink" title="07 Unsupervised ML: Association Rules, Clustering"></a>07 Unsupervised ML: Association Rules, Clustering</h2><h4 id="关联规则-Assoication-Rules"><a href="#关联规则-Assoication-Rules" class="headerlink" title="关联规则 Assoication Rules"></a>关联规则 Assoication Rules</h4><p>基本算法：</p>
-<ul>
-<li>生成覆盖范围大于某些指定的最小覆盖范围的所有规则；</li>
-<li>仅从这些规则中选择精度高于某些指定的最低精度（例如100％！）的规则。</li>
-</ul>
-<p><strong>$n$-item sets</strong> (with minimum coverage = $m$)：任意n个属性，且满足attr-val对的实例数量超过m个</p>
-<p>Minimun coverage = $m$</p>
-<p>Rules from : attr1=val1, attr2=val2, … </p>
-<p>If …[Case]… then …</p>
-<p><strong>Coverage</strong>：满足“attr=val”的所有实例</p>
-<p><strong>Accuracy</strong> = Coverage / Cases</p>
-<h4 id="聚类算法：K-means"><a href="#聚类算法：K-means" class="headerlink" title="聚类算法：K-means"></a>聚类算法：K-means</h4><p>计算欧几里得距离</p>
-<p>将属性从nominal转化为numerical：可以是一维向量，或者N维数组</p>
-<h4 id="聚类算法：增量聚类-Incremental-Clustering"><a href="#聚类算法：增量聚类-Incremental-Clustering" class="headerlink" title="聚类算法：增量聚类 Incremental Clustering"></a>聚类算法：增量聚类 Incremental Clustering</h4><p>算法：根据category utility，把每一个实例添加到当前的树中最合适的位置。</p>
-<ul>
-<li>一次添加一个实例，建立树状图</li>
-<li>通过<strong>category utility</strong>，对与每一个新的实例，决定该实例应该划分到哪个簇cluster，或划分为一个新的簇</li>
-<li><strong>category utility</strong>是一个测量方法，用于判断一个簇的好坏，它不需要属性值为数字</li>
-</ul>
-<h4 id="比较Kmeans和增量聚类"><a href="#比较Kmeans和增量聚类" class="headerlink" title="比较Kmeans和增量聚类"></a>比较Kmeans和增量聚类</h4><p>两者都无法保证全局最优</p>
-<p>Kmeans的效果取决于聚类的数量和聚类中心的初始位置</p>
-<p>增量聚类生成可以检查和推理的层次结构</p>
-<p>增量聚类的效果取决于实例被添加的顺序</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/06%20MESSAGING%20AND%20STORAGE%20LAYER/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/06%20MESSAGING%20AND%20STORAGE%20LAYER/" class="post-title-link" itemprop="url">数据通信和存储层（Hadoop分布式文件系统）</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-10 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-10T00:00:00+00:00">2020-02-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-26 03:35:26" itemprop="dateModified" datetime="2020-03-26T03:35:26+00:00">2020-03-26</time>
+                <time title="修改时间：2020-05-04 10:21:17" itemprop="dateModified" datetime="2020-05-04T10:21:17+01:00">2020-05-04</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
+                <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
@@ -341,17 +238,17 @@
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
+                <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -363,10 +260,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>介绍Hadoop分布式文件系统的特点和行为</p>
+          <p>大数据系统需要存储大量的数据，并且需要花费大量的金钱对存储的数据进行获取和维护。</p>
+<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd3phyt1uoj30tw0hgaf0.jpg" alt="截屏2020-03-23上午3.35.43"  /></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/06%20MESSAGING%20AND%20STORAGE%20LAYER/#more" rel="contents">
+              <a class="btn" href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/10%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E5%AD%98%E5%82%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -386,11 +284,11 @@
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/04%20Virtualisation/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/12%20%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -402,194 +300,48 @@
       <meta itemprop="name" content="米达的博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/04%20Virtualisation/" class="post-title-link" itemprop="url">云计算/04 Virtualisation</a>
-        </h1>
+            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/12%20%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/" class="post-title-link" itemprop="url">数据仓库</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-02-08 14:04:22" itemprop="dateCreated datePublished" datetime="2020-02-08T14:04:22+00:00">2020-02-08</time>
+              <time title="创建时间：2020-02-21 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-21T00:00:00+00:00">2020-02-21</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
+                  <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-11 02:47:17" itemprop="dateModified" datetime="2020-02-11T02:47:17+00:00">2020-02-11</time>
+                <time title="修改时间：2020-05-07 17:06:18" itemprop="dateModified" datetime="2020-05-07T17:06:18+01:00">2020-05-07</time>
               </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="04-Virtualisation-1"><a href="#04-Virtualisation-1" class="headerlink" title="04 Virtualisation 1"></a>04 Virtualisation 1</h2><p>虚拟化的实现级别，机器设备级别的虚拟化，基于虚拟机监视器的虚拟化：全虚拟化、超虚拟化、硬件辅助，操作系统级的虚拟化</p>
-<h4 id="传统电脑和虚拟机的区别"><a href="#传统电脑和虚拟机的区别" class="headerlink" title="传统电脑和虚拟机的区别"></a>传统电脑和虚拟机的区别</h4><p>对于传统电脑来说，应用安装在电脑的操作系统上，操作系统管理和使用电脑的硬件资源；对于虚拟机来说，虚拟层安装在电脑的主操作系统上，虚拟层能够模拟硬件资源，管理多个虚拟操作系统，而不同客户的软件可以分别安装在不同的虚拟操作系统上。</p>
-<h4 id="虚拟化的定义"><a href="#虚拟化的定义" class="headerlink" title="虚拟化的定义"></a>虚拟化的定义</h4><p>不同的虚拟机VM可以在同一个物理电脑上运行不同的操作系统OS和多个软件</p>
-<p>Hyperviosr虚拟机监视器是主要的虚拟化技术：完全模拟硬件环境</p>
-<ul>
-<li>虚拟机管理者通过仿真（emulation）或者硬件辅助虚拟化（hardware-assisted virtualisation），以透明的方式，分隔物理服务器主机</li>
-</ul>
-<p>虚拟层是底层硬件和系统的虚拟机之间的中间件</p>
-<h4 id="虚拟机的好处——用户角度："><a href="#虚拟机的好处——用户角度：" class="headerlink" title="虚拟机的好处——用户角度："></a>虚拟机的好处——用户角度：</h4><p>更好的利用资源；减少硬件成本；改进容错；扩展容量</p>
-<h4 id="虚拟化的实现级别"><a href="#虚拟化的实现级别" class="headerlink" title="虚拟化的实现级别"></a>虚拟化的实现级别</h4><ul>
-<li>应用程序：将应用程序虚拟化为VM；处理级别的虚拟化；比如.NET JVM CLR</li>
-<li>库（用户级API）：API作为虚拟化的参与者；通过API hooks控制“应用程序与系统其余部分之间”的通信链接；比如：WINE，vCURD</li>
-<li>操作系统：在单个物理服务器和操作系统实例上创建隔离的容器，来使用硬件和软件。比如：OpenVZ</li>
-<li>硬件抽象层HAL（Hardware Abstraction Layer，虚拟化硬件）通过虚拟化管理硬件（进程、内存、输入输出设备）：VMware、XEN</li>
-<li>指令集结构ISA （Instruction Set Architecture）：通过主机的指令集模拟特定的指令；可以在新的主机上运行过时的二进制 legacy code 代码。比如：QEMU</li>
-</ul>
-<h4 id="机器级别的虚拟化"><a href="#机器级别的虚拟化" class="headerlink" title="机器级别的虚拟化"></a>机器级别的虚拟化</h4><p>2种不同的技术：托管 hosted；裸机 bare metal</p>
-<p>技术的不同取决于所使用的Hypervisor的类型</p>
-<p>目标是创建一个平台，使多个虚拟机可以共享相同的系统资源</p>
-<h4 id="托管模式-Hosted-Approach：Type-2-Hypervisor"><a href="#托管模式-Hosted-Approach：Type-2-Hypervisor" class="headerlink" title="托管模式 Hosted Approach：Type 2 Hypervisor"></a>托管模式 Hosted Approach：Type 2 Hypervisor</h4><p>在主操作系统上运行；Hypervisor是硬件之上的第二层；Guest OS在hypervisor上的一层运行</p>
-<p>比如：VMWare Workstations、Microsoft Virtual PC</p>
-<blockquote>
-<p>Unlike the bare-metal virtualization hypervisor, a hosted hypervisor requires you to first install an OS. These hypervisors are basically like applications that install on a guest OS. </p>
-<p>与裸机虚拟化管理程序不同，托管管理程序要求您首先安装操作系统。 这些虚拟机管理程序基本上类似于安装在来宾OS上的应用程序。</p>
-</blockquote>
-<h4 id="裸机模式-Bare-Metal-Type-1-hypervisor"><a href="#裸机模式-Bare-Metal-Type-1-hypervisor" class="headerlink" title="裸机模式 Bare Metal: Type 1 hypervisor"></a>裸机模式 Bare Metal: Type 1 hypervisor</h4><p>位于裸机计算机硬件上，例如CPU，内存等；所有来宾操作系统都在Hypervisor之上；Hypervisor是硬件之上的第一层</p>
-<blockquote>
-<p>A bare-metal virtualization hypervisor does not require admins to install a server operating system first. Bare-metal virtualization means the hypervisor has direct access to hardware resources, which results in better performance, scalability and stability. </p>
-<p>裸机虚拟化管理程序不需要管理员首先安装服务器操作系统。裸机虚拟化意味着管理程序可以直接访问硬件资源，从而获得更好的性能，可伸缩性和稳定性。</p>
-</blockquote>
-<h4 id="Hypervisor-虚拟监控程序"><a href="#Hypervisor-虚拟监控程序" class="headerlink" title="Hypervisor 虚拟监控程序"></a>Hypervisor 虚拟监控程序</h4><p>Hyperviosr在客户系统之前展示了一个虚拟的操作平台；监控和管理客户系统和虚拟机的执行；基于Hypervisor的虚拟化技术可以被分为3类</p>
-<h4 id="全虚拟化-Full-Virtualisation"><a href="#全虚拟化-Full-Virtualisation" class="headerlink" title="全虚拟化 Full Virtualisation"></a>全虚拟化 Full Virtualisation</h4><p>通过Hypervisor，使用普通的操作系统（如Windows，Linux，即不需要专门定制）作为来宾OS运行：灵活性！</p>
-<p>Hypervisor完全模拟或仿真基础硬件：处理所有Guest OS的硬件呼叫</p>
-<p>关键指令由软件通过使用二进制翻译来模拟</p>
-<p>这种二进制翻译方法会降低性能：VMWare、Microsoft Virtual Server</p>
-<h4 id="半虚拟化-Para-Virtualisation"><a href="#半虚拟化-Para-Virtualisation" class="headerlink" title="半虚拟化 Para-Virtualisation"></a>半虚拟化 Para-Virtualisation</h4><p>将一部分虚拟化管理任务从Hypervisor中移交给了Guest OS</p>
-<ul>
-<li><p>需要修改Guest OS以实现以下功能：porting移植</p>
-</li>
-<li><p>Guest OS已显式支持（ported for）Para-Application Program Interface（API）</p>
-<p>需要事先知道：</p>
-<ul>
-<li>将在虚拟平台上运行</li>
-<li>将在哪个特定的Hypervisor上运行</li>
-</ul>
-</li>
-<li><p>在安装到VM之前，要重新编译Guest OS</p>
-</li>
-<li><p>Guest OS与虚拟机的接口，和Guest OS与基础硬件的接口，可以不同</p>
-<ul>
-<li>提供专门定义的“挂钩hooks”以在主机和来宾操作系统中执行某些任务</li>
-</ul>
-</li>
-<li><p>半虚拟化平台中的Hypervisor更简单，因为关键任务现在在操作系统中执行，而不是由Hypervisor执行</p>
-<ul>
-<li>由于虚拟化开销减少，因此性能提高。</li>
-</ul>
-</li>
-<li><p>缺点：</p>
-<ul>
-<li>由于修改了操作系统，降低了兼容性和可移植性；</li>
-<li>由于OS的深层修改，维护成本很高。</li>
-</ul>
-</li>
-</ul>
-<h4 id="硬件辅助虚拟化-Hardware-Assisted-Virtualisation"><a href="#硬件辅助虚拟化-Hardware-Assisted-Virtualisation" class="headerlink" title="硬件辅助虚拟化 Hardware-Assisted Virtualisation"></a>硬件辅助虚拟化 <strong>Hardware-Assisted Virtualisation</strong></h4><p>不需要Hypervisor，虚拟客户操作系统直接与硬件交互</p>
-<ul>
-<li>硬件商专门为支持虚拟化定制的硬件</li>
-<li>处理器中包含虚拟化特性</li>
-<li>允许来Guest OS中的某些特权CPU调用直接由CPU处理：不需要通过Hypervisor对这些调用进行翻译</li>
-<li>比如：AMD虚拟化（AMD-V）、英特尔-虚拟化技术（Intel-VT）</li>
-</ul>
-<h4 id="操作系统级别的虚拟化"><a href="#操作系统级别的虚拟化" class="headerlink" title="操作系统级别的虚拟化"></a>操作系统级别的虚拟化</h4><p>虚拟服务器：由操作系统的共享内核启用；与父系统具有相同的操作系统</p>
-<p>如：FeeBSD jail，Linux Vserver，OpenVZ</p>
-<p>优点：更轻量级</p>
-<h4 id="Hypervisor的定义"><a href="#Hypervisor的定义" class="headerlink" title="Hypervisor的定义"></a>Hypervisor的定义</h4><p>是一个软件层，用于裸机硬件的虚拟化。该层可以被实现为操作系统的微型内核（micro-kernel）。它将物理设备转化为虚拟资源，使用户软件可以运行在虚拟机上</p>
-<h4 id="XEN架构"><a href="#XEN架构" class="headerlink" title="XEN架构"></a>XEN架构</h4><p>特殊的Domain 0用于控制和I/O，其他Guest Domain用于用户的应用</p>
-<h4 id="传统物理机器-vs-3种虚拟机结构"><a href="#传统物理机器-vs-3种虚拟机结构" class="headerlink" title="传统物理机器 vs 3种虚拟机结构"></a>传统物理机器 vs 3种虚拟机结构</h4><ul>
-<li>Physical Machine 物理机器：操作系统以特权模式执行</li>
-<li>Native VM 本地虚拟机：VMM在特权模式下运行</li>
-<li>Hosted VM 托管虚拟机：受信任的主机OS在托管的VM系统中以特权模式执行。来宾操作系统驻留在VM中，并以较低的特权级别运行</li>
-<li>Dual-mode VM 双模虚拟机：VMM的某些部分在特权模式下运行。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/04_%20hosted%20and%20bare-metal%20virtualization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/04_%20hosted%20and%20bare-metal%20virtualization/" class="post-title-link" itemprop="url">云计算/04_ hosted and bare-metal virtualization</a>
-        </h1>
-
-        <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-folder"></i>
               </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-02-08 14:01:23 / 修改时间：14:02:09" itemprop="dateCreated datePublished" datetime="2020-02-08T14:01:23+00:00">2020-02-08</time>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
             </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
+                <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
               <span>6 分钟</span>
@@ -604,550 +356,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="hosted-and-bare-metal-virtualization"><a href="#hosted-and-bare-metal-virtualization" class="headerlink" title="hosted and bare-metal virtualization"></a>hosted and bare-metal virtualization</h2><p>When choosing a <a href="https://searchservervirtualization.techtarget.com/definition/hypervisor" target="_blank" rel="noopener">virtualization hypervisor</a>, you have to consider both <a href="https://searchservervirtualization.techtarget.com/tip/Virtualization-hypervisor-comparison-Type-1-vs-Type-2-hypervisors" target="_blank" rel="noopener">hypervisor types</a>.</p>
-<p>A virtualization hypervisor comes in one of two forms: a bare-metal hypervisor, also known as Type 1; or a hosted hypervisor, also known as Type 2. There are important differences between a hosted and bare-metal virtualization hypervisor, and each has pretty specific use cases.</p>
-<p><strong>Bare-metal virtualization hypervisors</strong></p>
-<p>A bare-metal virtualization hypervisor does not require admins to install a server operating system first. Bare-metal virtualization means the hypervisor has direct access to hardware resources, which results in better performance, scalability and stability. One disadvantage of a bare-metal virtualization hypervisor, however, is that hardware support is typically more limited, because the hypervisor usually has limited device drivers built into it.</p>
-<p>Bare-metal virtualization  is well suited for enterprise data centers, because it usually comes with advanced features for resource management, high availability and security. Admins can centrally manage this kind of virtualization hypervisor, which is critical when you have many hosts in your virtual infrastructure. The most popular bare-metal virtualization hypervisors are:</p>
-<ul>
-<li>VMware ESX and ESXi</li>
-<li><a href="https://searchservervirtualization.techtarget.com/tip/How-the-Hyper-V-architecture-differs-from-VMware-ESXi" target="_blank" rel="noopener">Microsoft Hyper-V</a></li>
-<li>Citrix Systems XenServer</li>
-</ul>
-<h3 id="Hosted-virtualization-hypervisors"><a href="#Hosted-virtualization-hypervisors" class="headerlink" title="Hosted virtualization hypervisors"></a><strong>Hosted virtualization hypervisors</strong></h3><p>Unlike the bare-metal virtualization hypervisor, a hosted hypervisor requires you to first install an OS. These hypervisors are basically like applications that install on a guest OS. This approach provides better hardware compatibility than bare-metal virtualization, because the OS is responsible for the hardware drivers instead of the hypervisor.</p>
-<p>But, as with the bare-metal hypervisor, there are disadvantages. A hosted virtualization hypervisor does not have direct access to hardware and must go through the OS, which increases resource overhead and can degrade virtual machine (VM) performance. Also, because there are typically many services and applications running on the <a href="https://searchvmware.techtarget.com/definition/host-operating-system" target="_blank" rel="noopener">host OS</a>, the hypervisor often steals resources from the VMs running on it.</p>
-<p>Hosted hypervisors are common for desktops, because they allow you to run multiple OSes. These virtualization hypervisor types are also popular for developers, to maintain application compatibility on modern OSes. The most popular hosted virtualization hypervisors are:</p>
-<ul>
-<li>VMware Workstation, Server, Player and Fusion</li>
-<li>Oracle VM VirtualBox</li>
-<li>Microsoft Virtual PC</li>
-<li>Parallels Desktop</li>
-</ul>
-<p>Once you understand the differences between a hosted and bare-metal virtualization hypervisor — and the best use cases for each — it’s time to consider hypervisor vendors, cost and features.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/06%20Supervised%20ML%20to%20learn%20Classifiers%20Decision%20Trees%20and%20Classification%20Rules/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/06%20Supervised%20ML%20to%20learn%20Classifiers%20Decision%20Trees%20and%20Classification%20Rules/" class="post-title-link" itemprop="url">数据挖掘和文本分析/06 Supervised ML to learn Classifiers Decision Trees and Classification Rules</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-07 12:45:58" itemprop="dateCreated datePublished" datetime="2020-02-07T12:45:58+00:00">2020-02-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 12:09:29" itemprop="dateModified" datetime="2020-02-08T12:09:29+00:00">2020-02-08</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="06-Supervised-ML-to-learn-Classifiers-Decision-Trees-and-Classification-Rules"><a href="#06-Supervised-ML-to-learn-Classifiers-Decision-Trees-and-Classification-Rules" class="headerlink" title="06 Supervised ML to learn Classifiers: Decision Trees and Classification Rules"></a>06 Supervised ML to learn Classifiers: Decision Trees and Classification Rules</h2><h4 id="数据挖掘的目标"><a href="#数据挖掘的目标" class="headerlink" title="数据挖掘的目标"></a>数据挖掘的目标</h4><p>发现数据中有用的模式，因此我们需要数据挖掘技术、算法、工具（如Weka），和用于采集数据，应用算法的方法学框架（CRISP-DM）</p>
-<p>机器学习中的监督学习：训练集已经被分类</p>
-<h4 id="概念-Concept"><a href="#概念-Concept" class="headerlink" title="概念 Concept"></a>概念 Concept</h4><p>Concept 的定义：</p>
-<ul>
-<li>数据集间的关键区别：比如某区域不同年份的销售额sales的区别</li>
-<li>簇clusters 或自然分隔partitions：根据用户的购物习惯对用户进行分类</li>
-<li><p>分类的规则：Adj+X+Verb =&gt; X=Noun</p>
-</li>
-<li><p>通用的关联：高频词一般是语法性的，而不是有含义的</p>
-</li>
-<li>数字的预测：找到预测数值的规则，比如根据成绩预测毕业生的工资</li>
-</ul>
-<h4 id="决策树的构建方法"><a href="#决策树的构建方法" class="headerlink" title="决策树的构建方法"></a>决策树的构建方法</h4><p>建立决策树</p>
-<p>决定用哪个属性划分节点：基于entropy熵</p>
-<p>避免过度拟合：决策树太复杂，能够精确的描述训练集，但不适合用于预测</p>
-<p>异常点</p>
-<h4 id="建立决策树"><a href="#建立决策树" class="headerlink" title="建立决策树"></a>建立决策树</h4><p>算法是递归的</p>
-<p>节点表示在该属性值上进行分类（测试），分支表示分类（测试）的输出</p>
-<p>决策树算法会选择information gain最高的属性进行划分</p>
-<p>目标：更小更紧凑的树（节点数量少），和更低的错误率（错误划分）；如果精确度相同，那么优先选择更小的树</p>
-<h4 id="Entropy-熵"><a href="#Entropy-熵" class="headerlink" title="Entropy 熵"></a>Entropy 熵</h4><p>$H=E(I)=\sum_i(-p_ilog_2p_i)$</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Information_Gain &#x3D; Entropy_before - Entropy_after</span><br></pre></td></tr></table></figure>
-<p>ID3会选择information gain最高的属性进行划分</p>
-<p>划分后的熵越低，最后得到的Information gain越高</p>
-<p>该属性中，如果多个分类的数量都一样，那么熵最高；如果只有一个分类，那么熵最低</p>
-<p>所以，如果对一个属性划分后，只有一个种类，那么决策树就会选择该属性进行划分</p>
-<h4 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h4><p>混淆矩阵</p>
-<p>如果决策树算法已“过度拟合”数据，则基于训练集的错误率将远小于基于测试集的错误率。</p>
-<p>10-fold cross-validation：将数据集随机分成10组（subsets），9组用于训练，1组用于测试，然后循环10次。</p>
-<h4 id="决策树-gt-规则-Rules"><a href="#决策树-gt-规则-Rules" class="headerlink" title="决策树 =&gt; 规则 Rules"></a>决策树 =&gt; 规则 Rules</h4><p>决策树可能不容易解释</p>
-<ul>
-<li>与较低节点相关的测试（属性），不得不在树的更远端中读取</li>
-<li>有时可能会将“子概念”分解并分发到树的不同部分</li>
-<li>计算机科学家可能更喜欢“If…then…”规则！</li>
-</ul>
-<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><ul>
-<li>决策树可用于预测或解释。<ul>
-<li>预测：将未分类的实例与树进行比较，并预测其属于哪个类（带有错误估计）</li>
-<li>解释：检查树并尝试了解实例为何最终归入它们所在的类。</li>
-</ul>
-</li>
-<li>规则集通常更易于解释</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/04%20Data%20Mining%20and%20Knowledge%20Management/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/04%20Data%20Mining%20and%20Knowledge%20Management/" class="post-title-link" itemprop="url">数据挖掘和文本分析/04 Data Mining and Knowledge Management</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-02-06 16:26:34 / 修改时间：19:49:33" itemprop="dateCreated datePublished" datetime="2020-02-06T16:26:34+00:00">2020-02-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="04-Data-Mining-and-Knowledge-Management"><a href="#04-Data-Mining-and-Knowledge-Management" class="headerlink" title="04 Data Mining and Knowledge Management"></a>04 Data Mining and Knowledge Management</h2><p>数据挖掘利用机器学习从数据中提取/发现知识，用于知识管理。</p>
-<p>什么是知识？管理/发现知识是什么意思？信息技术有什么用？</p>
-<h4 id="柯林斯英语词典中的定义"><a href="#柯林斯英语词典中的定义" class="headerlink" title="柯林斯英语词典中的定义"></a>柯林斯英语词典中的定义</h4><p>一个人或一群人知道的事实、感觉、经验；知道的状态；通过经验或学习所获得的感知、意识、熟悉感；博学或知情的学习；关于某主题的特定信息</p>
-<h4 id="朗文当代英语词典中的定义"><a href="#朗文当代英语词典中的定义" class="headerlink" title="朗文当代英语词典中的定义"></a>朗文当代英语词典中的定义</h4><p>一个人或一群人知道的事实、感觉、经验；知道某事发生过或者是真的；你所知道的关于特定的情况、事件的信息；</p>
-<h4 id="“知识管理”中的知识"><a href="#“知识管理”中的知识" class="headerlink" title="“知识管理”中的知识"></a>“知识管理”中的知识</h4><p>三种含义：</p>
-<ul>
-<li>知道或熟悉或熟悉的状态（知道是什么）</li>
-<li>行动能力（知道怎么做）</li>
-<li>整理，记录，积累事实，方法，原理，技术</li>
-</ul>
-<h4 id="“知识库”中的的知识"><a href="#“知识库”中的的知识" class="headerlink" title="“知识库”中的的知识"></a>“知识库”中的的知识</h4><p>除了示例，没有对“知识库”的定义。<br>Knowledge based：推论新事实的事实和逻辑规则，例如：如果（sun = yes）和（湿度= low）然后play = yes …而且还有信息检索，语言/语音/图像</p>
-<h4 id="Explicit-Knowledge-显性知识"><a href="#Explicit-Knowledge-显性知识" class="headerlink" title="Explicit Knowledge 显性知识"></a>Explicit Knowledge 显性知识</h4><p><strong>以文本形式记录下be articulated（清晰表达）的知识</strong>：产品规格、科学公式、电脑程序、专利、记录的最佳实践、手册。</p>
-<p>可以储存于可以存储在知识库中（如果我们可以解决数据捕获/转换的问题，…）</p>
-<h4 id="Tacit-Knowledge-隐性知识"><a href="#Tacit-Knowledge-隐性知识" class="headerlink" title="Tacit Knowledge 隐性知识"></a>Tacit Knowledge 隐性知识</h4><p><strong>无法以文本形式记录下来（无法清晰表达）的知识</strong>：如何骑单车、如何识别脸、如何理解句子、如何创造艺术</p>
-<p>AI试图将隐性知识改写为显性知识，例如处理英语句子的规则</p>
-<h4 id="Implicit-Knowledge-内含知识"><a href="#Implicit-Knowledge-内含知识" class="headerlink" title="Implicit Knowledge 内含知识"></a>Implicit Knowledge 内含知识</h4><p><strong>可以表达但尚未表达的知识</strong>：培训知识工程师和系统分析员，以识别隐性知识并帮助专家表达其知识。</p>
-<p>可以储存于可以存储在知识库中（如果我们可以解决数据捕获/转换的问题，…）</p>
-<h4 id="Cultural-Knowledge-文化知识"><a href="#Cultural-Knowledge-文化知识" class="headerlink" title="Cultural Knowledge 文化知识"></a>Cultural Knowledge 文化知识</h4><p><strong>（文化或环境带来的知识）</strong></p>
-<p>一个组织对自身及其环境的了解（“元知识”？）：共同的信念，规范和价值观；组织成员在其中构筑现实的框架；需要了解和使用事实，规则和试探法；需要以与其他人相同的方式进行归纳，以便采取一致行动</p>
-<h4 id="Terminology术语-and-Ontology本体"><a href="#Terminology术语-and-Ontology本体" class="headerlink" title="Terminology术语 and Ontology本体"></a>Terminology术语 and Ontology本体</h4><ul>
-<li>本体Ontology：学科中的“概念”，和这些概念之间的意义关系<ul>
-<li>“概念”大致等同于术语Terminology：学科中的专业单词和短语</li>
-</ul>
-</li>
-<li>术语Terminology和本体论对学科中的知识进行编码</li>
-</ul>
-<h4 id="从数据到知识"><a href="#从数据到知识" class="headerlink" title="从数据到知识"></a>从数据到知识</h4><p>信号 Signals =1.=&gt; 数据 Data =2.=&gt; 信息 Information =3.=&gt; 知识 Knowledge</p>
-<ol>
-<li>物理 Physical 构造：感知、选择</li>
-<li>认知 Cognitive 构造：意义、重要性</li>
-<li>信念 Belief 构造：信念、证明</li>
-</ol>
-<h4 id="数据的不同角度（术语解释）"><a href="#数据的不同角度（术语解释）" class="headerlink" title="数据的不同角度（术语解释）"></a>数据的不同角度（术语解释）</h4><p>数据挖掘：发现数据中的模式（知识）</p>
-<p>机器学习：算法，用于发现数据中的知识</p>
-<p>知识发现：发现（数据中的）知识</p>
-<p>数据库：存储知识</p>
-<p>信息管理：使用数据</p>
-<p>知识管理：发现并使用数据中的模式，“驯服数据”</p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>数据挖掘不只是关于数据库技术</p>
-<p>数据挖掘包括：获取数据、清洗数据、从数据中提取有用的结构或知识</p>
-<p>数据不仅仅在数据库中</p>
-<p>网络中大多数的数据或信息，是非结构化的文本（HTML/XML标记多少有点帮助）</p>
-<p>所以我们需要提取、清洗、格式化数据，从“网络”的格式转化为“类似于数据库”的格式，用于数据挖掘</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Differences%20between%20ASIC,%20ASSP,%20ASIP,%20SoC,%20FPGA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Differences%20between%20ASIC,%20ASSP,%20ASIP,%20SoC,%20FPGA/" class="post-title-link" itemprop="url">云计算/03_ Differences between ASIC, ASSP, ASIP, SoC, FPGA</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-06 11:57:31" itemprop="dateCreated datePublished" datetime="2020-02-06T11:57:31+00:00">2020-02-06</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>6.8k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>19 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Differences-between-ASIC-ASSP-ASIP-SoC-FPGA"><a href="#Differences-between-ASIC-ASSP-ASIP-SoC-FPGA" class="headerlink" title="Differences between ASIC, ASSP, ASIP, SoC, FPGA"></a>Differences between ASIC, ASSP, ASIP, SoC, FPGA</h3><p><strong>ASIC</strong> (Application Specified Integrated Circuit) is a customized integrated circuit. It is usually used by a person or company for a very limited usage. So when it is developed, only the person or company who orders it can use it. It is not useful for other usages, for example, an IC designed for a specific line of cellular phones of a company, whereby no other products can use it except the cell phones belonging to that product line.<br>- ASIC is just built for one and only one customer.<br>- ASIC is used only in one product line<br>- Only volume production of ASICs for one product can make sense which means low unit cost for high volume products, otherwise the cost is not efficient.<br>- Can exploit parallelism to achieve high performance<br>- Low power consumption</p>
-<p><strong>ASSP</strong> (Application Specified Standard Processor) is an integrated circuit that implements a specific function that appeals to a wide market, which means its function is specified for example a motor drive chip. But it is used widely, not limited to only one customer as ASIC does. So ASSPs are available as off-the-shelf components which means you can go to electronic shops and just buy it directly from the “shelf”. It means ASSPs have been developed well and you can just buy it without designing it from scratch.<br>- It addresses the product space between ASIC and generic processor based products<br>- Extremely useful for low to medium volume applications because it help reduce cost and design overheads.</p>
-<p><strong>ASIP</strong> (application specific instruction processor) is usually used in SoC (System on a Chip). ASIP is an architecture including two parts which are a minimum ISA (Instruction Set Archietecture) and a configurable logic which you can use to design your own instruction set. So it provides relatively high flexibility compared to ASIC and better performance compared to FPGA (Field Programmable Gate Array). Also, it is cheaper than FPGA, but slightly more expensive than ASIC.<br>- ASIP can help build your own instruction set to meet your specific requirement.<br>- It provide a minimum ISA, which can make shorter TTM (Time to Market).</p>
-<h4 id="How-to-choose-ASIC-or-ASSP"><a href="#How-to-choose-ASIC-or-ASSP" class="headerlink" title="How to choose ASIC or ASSP?"></a>How to choose ASIC or ASSP?</h4><p>- Whether TTM (Time-To-Marker) allows to design an ASIC<br>- Whether you have special requirement for your design which is not common in ASSPs, for example, you can exploit parallelism to achieve high performance<br>- Whether your products can have a big volume in market<br>- Power consumption requirement<br>- Whether software development tools are available<br>- How is the skill of the developers, whether they are capable for designing an ASIC<br>- Whether you can burden the technology risk for designing AISC<br>- How much is your plan for NRE (Non-Recurring Expense) cost to the project: ASIC needs relatively large NRE cost, and ASSP needs no NRE cost.</p>
-<h4 id="There-is-a-lot-of-confusion-with-regard-to-devices-like-ASICs-ASSPs-SoCs-and-FPGAs-Is-an-SoC-an-ASIC-or-vice-versa-for-example"><a href="#There-is-a-lot-of-confusion-with-regard-to-devices-like-ASICs-ASSPs-SoCs-and-FPGAs-Is-an-SoC-an-ASIC-or-vice-versa-for-example" class="headerlink" title="There is a lot of confusion with regard to devices like ASICs, ASSPs, SoCs, and FPGAs. Is an SoC an ASIC, or vice versa, for example?"></a><strong>There is a lot of confusion with regard to devices like ASICs, ASSPs, SoCs, and FPGAs. Is an SoC an ASIC, or vice versa, for example?</strong></h4><p>I often receive questions about the differences between various types of devices, such as ASICs, ASSPs, SoCs, and FPGAs. Is an SoC an ASIC, or vice versa, for example? What’s the difference between an ASIC and an ASSP? And should a high-end FPGA be classed as a form of SoC?</p>
-<p>There are several problems here, not the least that the technologies and terminologies have evolved over time. Keeping this in mind, the following is my highly simplified interpretation of where these terms came from and what they mean today.</p>
-<p><strong>ASICs</strong><br>Let’s start with an application-specific integrated circuit (ASIC). As the name suggests, this is a device that is created with a specific purpose in mind. When most people hear the term ASIC, their “knee-jerk” reaction is to assume a digital device. In reality, any chip that is custom-made is an ASIC, irrespective of whether it is analog, digital, or a mix of both. For the purposes of these discussions, however, we shall assume a chip that is either wholly or predominantly digital in nature, with any analog and mixed-signal functions being along the lines of physical interfaces (PHYs) or phase-locked loops (PLLs).</p>
-<p>ASICs are typically designed and used by a single company in a specific system. They are incredibly expensive, time-consuming, and resource-intensive to develop, but they do offer extremely high performance coupled with low power consumption.</p>
-<p><strong>ASSPs</strong><br>Application-specific standard parts (ASSPs) are designed and implemented in exactly the same way as ASICs. This is not surprising, because they are essentially the same thing. The only difference is that an ASSP is a more general-purpose device that is intended for use by multiple system design houses. For example, a standalone USB interface chip would be classed as an ASSP.</p>
-<p><strong>SoCs</strong><br>A System-on-Chip (SoC) is a silicon chip that contains one or more processor cores — microprocessors (MPUs) and/or microcontrollers (MCUs) and/or digital signal processors (DSPs) — along with on-chip memory, hardware accelerator functions, peripheral functions, and (potentially) all sorts of other “stuff.” One way to look at this is that if an ASIC contains one or more processor cores then it’s an SoC. Similarly, if an ASSP contains one or more processor cores then <em>it’s</em> an SoC.</p>
-<p><img src="https://www.eetimes.com/wp-content/uploads/2019/12/asic-fpga-soc-max-0326-01.gif?resize=405%2C188" alt="img"></p>
-<p>On this basis, we could view ASIC (and ASSP) as being the superset term because it embraces SoC, or we could regard the SoC as being the superset term because it includes everything in an ASIC (or ASSP) along with one or more processor cores. Are we having fun yet?</p>
-<p><strong>FPGAs</strong><br>ASICs, ASSPs, and SoCs offer high-performance and low power consumption, but any algorithms they contain — apart from those that are executed in software on internal processor cores — are “frozen in silicon.” And so we come to field-programmable gate arrays (FPGAs). The architecture of early FPGA devices was relatively simple — just an array of programmable blocks linked by programmable interconnect.</p>
-<p>The great thing about an FPGA is that we can configure its programmable fabric to implement any combination of digital functions we desire. Also, we can implement algorithms in a massively parallel fashion, which means we can perform a humongous amount of data processing very quickly and efficiently.</p>
-<p><strong>SoC-class FPGAs</strong><br>Over time, the capabilities (capacity and performance) of FPGAs increased dramatically. For example, a modern FPGA might contain thousands of adders, multipliers, and digital signal processing (DSP) functions; megabits of on-chip memory, large numbers of high-speed serial interconnect (SERDES) transceiver blocks, and a host of other functions.</p>
-<p>The problem is that the field-programmable gate array (FPGA) moniker no longer reflects the capabilities and functionality of today’s programmable devices. We really need to come up with some new terminology that embraces everything today’s state-of-the-art tools and technologies are capable of doing.</p>
-<p>Of particular relevance to our discussions here is the fact that today’s FPGAs can contain one or more soft and/or hard core processors. On this basis, should we class this type of FPGA as being an SoC? Well, personally I have to say that SoC doesn’t work for me, because I equate the term “SoC” with a custom device created using ASIC technology.</p>
-<p>Another alternative would be to call these devices Programmable SoCs, or PSoCs, but Cypress Semiconductor has already got the PSoC moniker locked down. The Cypress devices feature a hard microcontroller core augmented with some programmable analog and programmable digital fabric (the digital fabric is more CPLD than FPGA).</p>
-<p>Altera used to call its versions of these devices — the ones that combine hard MCU cores with programmable FPGA fabric — SoC FPGAs, but they seem to have evolved to just calling them SoCs. Meanwhile, Xilinx calls its flavor of these devices “All Programmable SoCs.”</p>
-<p>Personally, I’m undecided as to what would be the best name. I think I’d prefer to use PSoC if the folks at Cypress hadn’t already taken control of this appellation, but they have, so we can’t. Failing this, I guess I’d opt for SoC FPGA… unless you can suggest something better.</p>
-<p>— Max Maxfield, Editor of All Things Fun &amp; Interesting</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/02%20Image%20classification%20using%20CNNs/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/02%20Image%20classification%20using%20CNNs/" class="post-title-link" itemprop="url">人工智能/02 Image classification using CNNs</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-05 11:06:51" itemprop="dateCreated datePublished" datetime="2020-02-05T11:06:51+00:00">2020-02-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-12 12:46:47" itemprop="dateModified" datetime="2020-02-12T12:46:47+00:00">2020-02-12</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="02-Image-classification-using-CNNs"><a href="#02-Image-classification-using-CNNs" class="headerlink" title="02 Image classification using CNNs"></a>02 Image classification using CNNs</h2><p>经典的神经网络模型，需要读取整幅图像作为神经网络模型的输入（即全连接的方式），当图像的尺寸越大时，其连接的参数将变得很多，从而导致计算量非常大。</p>
-<p>在图像中的空间联系中，局部范围内的像素之间联系较为紧密，而距离较远的像素则相关性较弱。因而，每个神经元其实没有必要对全局图像进行感知，只需要对局部进行感知，然后在更高层将局部的信息综合起来就得到了全局的信息。这种模式就是卷积神经网络中降低参数数目的重要神器：局部感受野。</p>
-<h4 id="Convolution卷积"><a href="#Convolution卷积" class="headerlink" title="Convolution卷积"></a>Convolution卷积</h4><p>以每一个像素为中心，以一个n*n的遮罩（特征）mask为过滤器，在原图中移动，进行加权求和，并代替该像素的值。</p>
-<h4 id="Padding-四周填充"><a href="#Padding-四周填充" class="headerlink" title="Padding 四周填充"></a>Padding 四周填充</h4><p>比如 zero padding</p>
-<h4 id="Stride-间隔"><a href="#Stride-间隔" class="headerlink" title="Stride 间隔"></a>Stride 间隔</h4><p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gblrn8qhqmj30fo0gadlf.jpg" alt="截屏2020-02-05上午11.49.29" style="zoom:33%;" /></p>
-<h4 id="Dilation-扩大"><a href="#Dilation-扩大" class="headerlink" title="Dilation 扩大"></a>Dilation 扩大</h4><p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gblrnc9y6vj30f80ho0ys.jpg" alt="截屏2020-02-05上午11.49.40" style="zoom:33%;" /></p>
-<h4 id="Gaussian-mask（高斯模糊、高斯平滑）"><a href="#Gaussian-mask（高斯模糊、高斯平滑）" class="headerlink" title="Gaussian mask（高斯模糊、高斯平滑）"></a>Gaussian mask（高斯模糊、高斯平滑）</h4><p>从数学的角度来看，图像的高斯模糊过程就是图像与正态分布做卷积。</p>
-<p>每个像素的值都是周围相邻像素值的加权平均。原始像素的值有最大的高斯分布值，所以有最大的权重，相邻像素随着距离原始像素越来越远，其权重也越来越小。</p>
-<p>整个过程也被称为过滤</p>
-<h4 id="局部对比度归一化-Local-Contrast-Normalisation"><a href="#局部对比度归一化-Local-Contrast-Normalisation" class="headerlink" title="局部对比度归一化 Local Contrast Normalisation"></a>局部对比度归一化 Local Contrast Normalisation</h4><p>用于消除整个图像强度intensity的大规模变化variations。</p>
-<blockquote>
-<p>它使用一个9x9的内核在通道上卷积图像，其权重为均值0，方差1的高斯函数。将图像居中后（通过从图像中减去上述输出），确定其方差。然后，找到所有像素的标准偏差的平均值。之后，将中心图像除以max（standard_deviation，mean_standard_deviation）以得到LCN_Image。</p>
-</blockquote>
-<h4 id="学习图像特征"><a href="#学习图像特征" class="headerlink" title="学习图像特征"></a>学习图像特征</h4><ol>
-<li>数据采集：采样大量图像补丁patch（例如20,000个15x15补丁）</li>
-<li>聚类：将二维向量转化为一维向量，在此向量空间中查找聚类，这些聚类定义了不同的特征</li>
-</ol>
-<h4 id="特征地图"><a href="#特征地图" class="headerlink" title="特征地图"></a>特征地图</h4><p>用特征图形补丁（过滤器）过滤图像，对匹配的部分进行上色</p>
-<h4 id="单层卷积网络"><a href="#单层卷积网络" class="headerlink" title="单层卷积网络"></a>单层卷积网络</h4><h4 id="ReLU激活函数"><a href="#ReLU激活函数" class="headerlink" title="ReLU激活函数"></a>ReLU激活函数</h4><p>rectified linear activation function（ReLU），该算法的关键思想是让感知机专注于positive value</p>
-<blockquote>
-<p>线性整流函数（Rectified Linear Unit, ReLU），又称修正线性单元，是一种人工神经网络中常用的激活函数（activation function），通常指代以斜坡函数及其变种为代表的非线性函数：即对于输入的负值，输出全为0，对于正值，则原样输出</p>
-</blockquote>
-<h4 id="卷积神经网络-Convolutional-Neural-Network"><a href="#卷积神经网络-Convolutional-Neural-Network" class="headerlink" title="卷积神经网络 Convolutional Neural Network"></a>卷积神经网络 Convolutional Neural Network</h4><h4 id="Pooling-池化"><a href="#Pooling-池化" class="headerlink" title="Pooling 池化"></a>Pooling 池化</h4><p>池化就是将输入图像进行缩小，减少像素信息，只保留重要信息，能有效地减少计算量<br>池化的操作也很简单，通常情况下，池化区域是2*2大小，然后按一定规则转换成相应的值，例如取这个池化区域内的最大值（max-pooling）、平均值（mean-pooling）等，以这个值作为结果的像素值。</p>
-<h4 id="Softmax-function"><a href="#Softmax-function" class="headerlink" title="Softmax function"></a>Softmax function</h4><p>维度归一化，且所有维度之和为1</p>
-<p>softmax设计的初衷，是希望特征对概率的影响是乘性的。</p>
-<p>我们希望分值大的那一项被经常取到，而分值较小的那一项也有一定的概率偶尔被取到，所以我们就应用到了soft的概念，即最后的输出是每个分类被取到的概率。</p>
-<h4 id="conditional-probability-distribution"><a href="#conditional-probability-distribution" class="headerlink" title="conditional probability distribution"></a>conditional probability distribution</h4><p>最大化probability，以最小化loss。采用梯度下降</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/05%20MapReduce/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/05%20MapReduce/" class="post-title-link" itemprop="url">MapReduce</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-05T00:00:00+00:00">2020-02-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-26 03:35:04" itemprop="dateModified" datetime="2020-03-26T03:35:04+00:00">2020-03-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>7 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>大数据的挑战、MapReduce、Hadoop、例子</p>
+          <p>数据无处不在，而知识/信息则是另一个概念。数据仓库的目标是让正确的信息在正确的时间可用。数据仓库是一个【标准化的数据存储】和【处理】，【存储】指的是数据库、文件存储等，【处理】指的是将贯穿组织的不同的数据整合，以支持决策。</p>
+<p>数据仓库是数据挖掘的天然盟友（可以很好地协同工作）；数据挖掘可以满足数据仓库的部分目标；</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/05%20MapReduce/#more" rel="contents">
+              <a class="btn" href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/12%20%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1167,11 +380,11 @@
   
   
 
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Federated%20Cloud%20%E8%81%94%E5%90%88%E4%BA%91/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/08%20CLOUD%20%E2%80%93%20PART%201/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -1183,36 +396,51 @@
       <meta itemprop="name" content="米达的博客">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Federated%20Cloud%20%E8%81%94%E5%90%88%E4%BA%91/" class="post-title-link" itemprop="url">云计算/03_ Federated Cloud 联合云</a>
-        </h1>
+            <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/08%20CLOUD%20%E2%80%93%20PART%201/" class="post-title-link" itemprop="url">云(1)</a>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
+                <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-02-04 16:20:17 / 修改时间：16:39:22" itemprop="dateCreated datePublished" datetime="2020-02-04T16:20:17+00:00">2020-02-04</time>
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+00:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 03:38:00" itemprop="dateModified" datetime="2020-03-26T03:38:00+00:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
             </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
               <span class="post-meta-item-icon">
-                <i class="fa fa-file-word-o"></i>
+                <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>1.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
-                <i class="fa fa-clock-o"></i>
+                <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -1224,14 +452,695 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Federated-Cloud-联合云"><a href="#Federated-Cloud-联合云" class="headerlink" title="Federated Cloud 联合云"></a>Federated Cloud 联合云</h2><p>Federated cloud usually describes joining up and managing multiple public cloud environments – but there is nothing to prohibit joining multiple public clouds to a private one (so some overlap with Hybrid).</p>
-<p>The central idea is that you have multiple IaaS and PaaS environments in the cloud. An application or a set of services may require the joining up and managing multiple PaaS and IaaS environments.</p>
-<p>Now there are two classic scenarios:</p>
-<ol>
-<li>I have my storefront in the cloud. During peak periods, I want to quickly expand my capacity. I may choose to federate my load across multiple cloud providers both from a cost or location issue (for example: I am a US-based service, but I have an European sales promotion – I should probably choose a local cloud provider to federate my load across, etc.).</li>
-<li>I have multiple cloud services (think RDS from Amazon, a CDN from Akamai, etc.). I will (either for cost or functionality) choose to federate my application across multiple different clouds.</li>
-</ol>
-<p>The reasons for doing it are usually either functional, location or cost-based. You can get a lot of flexibility here, as you don’t need to rely upon a single vendor to support you, so there is less vendor lock-in. However, the flexibility you gain can be at the cost of complexity. You now have multiple different SLAs, you have to manage potentially different APIs, monitoring and management and deployment approaches.</p>
+          <p>实用计算：使<u>计算资源</u>像水电这样按表计量的服务一样按需使用；按需动态提供资源的能力</p>
+<p>云计算：是一种模型，用于支持对可配置计算资源（例如，网络，服务器，存储，应用程序和服务）共享池的普遍，方便，按需的网络访问，这些资源可通过最少的管理工作或与服务提供商的交互，快速地进行配置和发布。（美国国家标准技术研究院（NIST））</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/08%20CLOUD%20%E2%80%93%20PART%201/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/09%20CLOUD%20PART%202/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/09%20CLOUD%20PART%202/" class="post-title-link" itemprop="url">云(2)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-19 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-19T00:00:00+00:00">2020-02-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 03:38:44" itemprop="dateModified" datetime="2020-03-26T03:38:44+00:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>云数据中心——物理层（系统级）：存储、网络</p>
+<p>虚拟机——虚拟化层（核心中间件）：Hypervisor、Infrastructure</p>
+<p>编程模型 —— 结构层（用户级中间件）：MapReduce、Hadoop</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/09%20CLOUD%20PART%202/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/07%20OpenNebula%20-%20A%20Cloud%20Virtual%20Infrastructure%20Manager/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/07%20OpenNebula%20-%20A%20Cloud%20Virtual%20Infrastructure%20Manager/" class="post-title-link" itemprop="url">云计算/07 OpenNebula - A Cloud Virtual Infrastructure Manager</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-18 18:08:03" itemprop="dateCreated datePublished" datetime="2020-02-18T18:08:03+00:00">2020-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-20 10:20:51" itemprop="dateModified" datetime="2020-02-20T10:20:51+00:00">2020-02-20</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>305</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="07-OpenNebula-A-Cloud-Virtual-Infrastructure-Manager"><a href="#07-OpenNebula-A-Cloud-Virtual-Infrastructure-Manager" class="headerlink" title="07 OpenNebula - A Cloud Virtual Infrastructure Manager"></a>07 OpenNebula - A Cloud Virtual Infrastructure Manager</h2><h4 id="OpenNebula的主要特征"><a href="#OpenNebula的主要特征" class="headerlink" title="OpenNebula的主要特征"></a>OpenNebula的主要特征</h4><p>内部接口、调度（任务、负载）、虚拟化管理、镜像管理、网络管理、服务管理和语境化、安全、容错、可扩展性Scalability、安装、灵活且可扩展Extensibility</p>
+<h4 id="OpenNebula结构——核心Core"><a href="#OpenNebula结构——核心Core" class="headerlink" title="OpenNebula结构——核心Core"></a>OpenNebula结构——核心Core</h4><p>请求管理：提供XML-RPC接口，用于管理和获取实体信息</p>
+<h4 id="OpenNebula结构——工具层"><a href="#OpenNebula结构——工具层" class="headerlink" title="OpenNebula结构——工具层"></a>OpenNebula结构——工具层</h4><p>调度器</p>
+<p>命令行接口</p>
+<h4 id="OpenNebula结构——驱动层"><a href="#OpenNebula结构——驱动层" class="headerlink" title="OpenNebula结构——驱动层"></a>OpenNebula结构——驱动层</h4><p>传输Transfer驱动：负责镜像的管理，如克隆、删除、创建swap交换镜像</p>
+<p>虚拟机驱动：</p>
+<p>信息驱动：</p>
+<h4 id="进程拆分"><a href="#进程拆分" class="headerlink" title="进程拆分"></a>进程拆分</h4><h4 id="构造私有云：存储"><a href="#构造私有云：存储" class="headerlink" title="构造私有云：存储"></a>构造私有云：存储</h4><h4 id="构造私有云：网络"><a href="#构造私有云：网络" class="headerlink" title="构造私有云：网络"></a>构造私有云：网络</h4>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/10%20%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E7%B2%BE%E7%A1%AE%E7%8E%87%E5%92%8C%E5%8F%AC%E5%9B%9E%E7%8E%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/10%20%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E7%B2%BE%E7%A1%AE%E7%8E%87%E5%92%8C%E5%8F%AC%E5%9B%9E%E7%8E%87/" class="post-title-link" itemprop="url">混淆矩阵中的精确率和召回率 Precision and Recall</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-17T00:00:00+00:00">2020-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-07 13:26:46" itemprop="dateModified" datetime="2020-05-07T13:26:46+01:00">2020-05-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>135</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="Precision"><a href="#Precision" class="headerlink" title="Precision"></a>Precision</h4><p>所有预测为正的值中，有多少是正确的</p>
+<p>$\frac{正确预测的正值TP}{所有预测为正的值TP+FP}$</p>
+<h4 id="Recall"><a href="#Recall" class="headerlink" title="Recall"></a>Recall</h4><p>所有正值中，有多少被正确预测</p>
+<p>$\frac{正确预测的正值TP}{所有正值TP+FN}$</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/10%20%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E7%B2%BE%E7%A1%AE%E7%8E%87%E5%92%8C%E5%8F%AC%E5%9B%9E%E7%8E%87/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/09%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/09%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/" class="post-title-link" itemprop="url">文本分类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-17T00:00:00+00:00">2020-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-06 20:29:59" itemprop="dateModified" datetime="2020-05-06T20:29:59+01:00">2020-05-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="文档分类-Document-classification"><a href="#文档分类-Document-classification" class="headerlink" title="文档分类 Document classification"></a>文档分类 Document classification</h4><p>根据内容将文档划分到用户定义的类中。</p>
+<p>文档分类包括以下几种类型：</p>
+<ul>
+<li>情感分析：文本的属性是什么<ul>
+<li>自动探测文档中积极和消极的陈述</li>
+<li>让人们可以追踪关于政策、产品和立场的观点</li>
+</ul>
+</li>
+<li>著作权属性：<ul>
+<li>作者识别：</li>
+<li>法证 Forensic Evidence（这个签名是谁写的）</li>
+<li>抄袭检测 Plagiarism Detection</li>
+</ul>
+</li>
+<li>垃圾邮件过滤</li>
+<li>语言识别：文档中使用的是什么语言</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/09%20%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/17%20%E5%8D%95%E8%AF%8D%E7%9A%84%E5%90%AB%E4%B9%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/17%20%E5%8D%95%E8%AF%8D%E7%9A%84%E5%90%AB%E4%B9%89/" class="post-title-link" itemprop="url">词汇语义学：词义消歧</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-17T00:00:00+00:00">2020-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-09 02:51:37" itemprop="dateModified" datetime="2020-05-09T02:51:37+01:00">2020-05-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>人类可以完成词义消歧的工作，但是难以自动化</p>
+<p>词典编撰者Lexicographers 使用 词语索引concordance（比如通过SketchEngine）来可视化 单词含义word senses</p>
+<p>部分词性标记PoS-tagging 能在一定程度上消除歧义（bank a plane VS. the river bank）</p>
+<p>监督学习：基于含义标记语料库 sense-tagged corpus，单词搭配模式collocation patterns</p>
+<p>非、半监督学习：无标签语料库no tagged corpus，Lesk算法</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/17%20%E5%8D%95%E8%AF%8D%E7%9A%84%E5%90%AB%E4%B9%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Introduction%20to%20Mobile%20Device%20Virtualization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Introduction%20to%20Mobile%20Device%20Virtualization/" class="post-title-link" itemprop="url">移动设备虚拟化</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-17T00:00:00+00:00">2020-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-26 03:36:30" itemprop="dateModified" datetime="2020-03-26T03:36:30+00:00">2020-03-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>大规模的物联网设备及其数据需要有效利用云资源，但随之而来的是隐私和性能问题</p>
+<p>解决方案：物联网设备的虚拟化</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Introduction%20to%20Mobile%20Device%20Virtualization/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/06_%20Service%20Level%20Agreement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/06_%20Service%20Level%20Agreement/" class="post-title-link" itemprop="url">云计算/06_ Service Level Agreement</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-13 13:33:44" itemprop="dateCreated datePublished" datetime="2020-02-13T13:33:44+00:00">2020-02-13</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="06-Service-Level-Agreement"><a href="#06-Service-Level-Agreement" class="headerlink" title="06_ Service Level Agreement"></a>06_ Service Level Agreement</h2><p>A service-level agreement is an agreement between two or more parties, where one is the customer and the others are service providers. This can be a legally binding formal or an informal “contract” (for example, internal department relationships). The agreement may involve separate organizations, or different teams within one organization. Contracts between the service provider and other third parties are often (incorrectly) called SLAs – because the level of service has been set by the (principal) customer, there can be no “agreement” between third parties; these agreements are simply “contracts.” Operational-level agreements or OLAs, however, may be used by internal groups to support SLAs. If some aspect of a service has not been agreed with the customer, it is not an “SLA”.</p>
+<p>SLAs commonly include many components, from a definition of services to the termination of agreement. To ensure that SLAs are consistently met, these agreements are often designed with specific lines of demarcation and the parties involved are required to meet regularly to create an open forum for communication. Rewards and penalties applying to the provider are often specified. Most SLAs also leave room for periodic (annual) revisitation to make changes.</p>
+<p>Since late 1980s SLAs have been used by fixed line telecom operators. SLAs are so widely used these days that larger organizations have many different SLAs existing within the company itself. Two different units in an organization script a SLA with one unit being the customer and another being the service provider. This practice helps to maintain the same quality of service amongst different units in the organization and also across multiple locations of the organization. This internal scripting of SLA also helps to compare the quality of service between an in-house department and an external service provider.</p>
+<p>The output received by the customer as a result of the service provided is the main focus of the service level agreement.</p>
+<p>Service level agreements are also defined at different levels:</p>
+<ul>
+<li><p><strong>Customer-based SLA</strong>: An agreement with an individual customer group, covering all the services they use. For example, an SLA between a supplier (IT service provider) and the finance department of a large organization for the services such as finance system, payroll system, billing system, procurement/purchase system, etc.</p>
+</li>
+<li><p>Service-based SLA: An agreement for all customers using the services being delivered by the service provider</p>
+<p>For example:</p>
+<ul>
+<li>A mobile service provider offers a routine service to all the customers and offers certain maintenance as a part of an offer with the universal charging.</li>
+<li>An email system for the entire organization. There are chances of difficulties arising in this type of SLA as level of the services being offered may vary for different customers (for example, head office staff may use high-speed <a href="https://en.wikipedia.org/wiki/Local_area_network" target="_blank" rel="noopener">LAN</a> connections while local offices may have to use a lower speed leased line).</li>
+</ul>
+</li>
+<li><p>Multilevel SLA: The SLA is split into the different levels, each addressing different set of customers for the same services, in the same SLA.</p>
+<ul>
+<li><strong>Corporate-level SLA</strong>: Covering all the generic <a href="https://en.wikipedia.org/wiki/Service_level_management#Service_level_management" target="_blank" rel="noopener">service level management</a> (often abbreviated as SLM) issues appropriate to every customer throughout the organization. These issues are likely to be less volatile and so updates (SLA reviews) are less frequently required.</li>
+<li><strong>Customer-level SLA</strong>: covering all SLM issues relevant to the particular customer group, regardless of the services being used.</li>
+<li>Service-level SLA: covering all SLM issue relevant to the specific services, in relation to this specific customer group.</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -1247,11 +1156,10 @@
   
   
 
-  </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1319,20 +1227,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-count">68</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">50</span>
+        <span class="site-state-item-count">85</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1342,16 +1250,16 @@
   </div>
   <div class="links-of-author motion-element">
       <span class="links-of-author-item">
-        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="fa fa-fw fa-book"></i>CSDN</a>
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
       </span>
       <span class="links-of-author-item">
-        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
       </span>
       <span class="links-of-author-item">
-        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
       </span>
   </div>
 
@@ -1375,12 +1283,14 @@
       <div class="footer-inner">
         
 
+        
+
 <div class="copyright">
   
   &copy; 
   <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
-    <i class="fa fa-user"></i>
+    <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">liaoooyx</span>
   

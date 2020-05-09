@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Storm是一个分布式的实时计算系统，针对于大数据中高速率Velocity、大体积Volumn的特点。Storm中每个节点的处理速度能超过每秒百万条记录。Storm还旨在简化对无界的流数据的可靠处理 补充参考文章">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache Storm">
+<meta property="og:url" content="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/19%20Apache-Storm/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="Storm是一个分布式的实时计算系统，针对于大数据中高速率Velocity、大体积Volumn的特点。Storm中每个节点的处理速度能超过每秒百万条记录。Storm还旨在简化对无界的流数据的可靠处理 补充参考文章">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8l82hgsvj30e80a4t9q.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8mch3w61j30y20j60wy.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8nehiv6bj30rk09amz9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8nsz9aa4j30k60k0dia.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8p73szlqj30g80dk77m.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8pku8sbrj311o0d2dio.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8pllch4jj312o0oc77z.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8prfy4gjj30i00dk0vj.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8q4zds44j312y0p6wjj.jpg">
+<meta property="article:published_time" content="2020-04-26T23:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-27T15:47:09.819Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="Storm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8l82hgsvj30e80a4t9q.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/19%20Apache-Storm/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Apache Storm | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/19%20Apache-Storm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Apache Storm
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-27 00:00:00 / 修改时间：16:47:09" itemprop="dateCreated datePublished" datetime="2020-04-27T00:00:00+01:00">2020-04-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Storm是一个分布式的实时计算系统，针对于大数据中高速率Velocity、大体积Volumn的特点。Storm中每个节点的处理速度能超过每秒百万条记录。Storm还旨在简化对无界的流数据的可靠处理</p>
+<p><a href="https://blog.csdn.net/u011082453/article/details/82417259" target="_blank" rel="noopener">补充参考文章</a></p>
+<a id="more"></a>
+<h4 id="Storm流"><a href="#Storm流" class="headerlink" title="Storm流"></a>Storm流</h4><p>Storm中的核心抽象是流Stream。流是一种数据格式，是一个不间断的无界的连续多元组序列。Storm在建模事件流时，把流中的事件抽象为tuple即多元组。流通过schema定义，其中的字段以多元组形式出现，每个流都有一个ID。</p>
+<p>Storm提供原语，以可靠的方式，将流转化为新的分布式流（比如将推文流转化为趋势话题流）。</p>
+<p>Spouts和Bolts是两个基本的Storm原语</p>
+<blockquote>
+<p>流是一个没有边界的tuple序列，而这些tuples会被以一种分布式的方式并行创建和处理。 每个tuple可以包含多列，字段类型可以是： integer, long, short, byte, string, double, float, boolean和byte array。 还可以自定义类型 — 只要你实现对应的序列化器。</p>
+</blockquote>
+<h4 id="Spouts：消息生产者"><a href="#Spouts：消息生产者" class="headerlink" title="Spouts：消息生产者"></a>Spouts：消息生产者</h4><blockquote>
+<p>Spouts是topology消息的生产者。Spout从一个外部源（如消息队列，Twitter API）读取多元组，并发送到topology中。 消息源Spouts可以是可靠的也可以是不可靠的。一个可靠的消息源可以重新发送一个处理失败的tuple， 一个不可靠的消息源Spouts不会。</p>
+<p>Spout类的方法nextTuple不断发送把多元组发送到topology中，storm在检测到一个元祖被整个topology成功处理的时候调用ack, 否则调用fail。</p>
+<p>Storm只对可靠的spout调用ack和fail。</p>
+</blockquote>
+<h4 id="Bolts：消息消费者"><a href="#Bolts：消息消费者" class="headerlink" title="Bolts：消息消费者"></a>Bolts：消息消费者</h4><p>一个Bolt可以消费任意数量的输入流，比如处理输入流、输出新的流等。复杂的转化可能需要多个Bolt。Bolt可以执行任何操作，包括执行函数、过滤多元组、聚合流、关联流、数据库通信等</p>
+<blockquote>
+<p>消息处理逻辑被封装在bolts里面，Bolts可以做很多事情： 过滤， 聚合， 查询数据库等。</p>
+<p>Bolts可以简单的做消息流的传递。复杂的消息流处理往往需要很多步骤， 从而也就需要经过很多Bolts。第一级Bolt的输出可以作为下一级Bolt的输入。而Spout不能有下一级。</p>
+<p>Bolts的主要方法是execute（死循环）连续处理传入的tuple，成功处理完每一个tuple调用OutputCollector的ack方法，以通知storm这个tuple被处理完成了。当处理失败时，可以调fail方法通知Spout端可以重新发送该tuple。</p>
+</blockquote>
+<h4 id="Storm-Topologies"><a href="#Storm-Topologies" class="headerlink" title="Storm Topologies"></a>Storm Topologies</h4><p>Storm topology网的节点由Spout和Bolt组成。它是流转化的图，topology中的边指示了bolt用于处理那些流。当spout或bolt将多元组发送到流上，它会下发到下一级指向的所有bolt。</p>
+<p>下图是Storm集群的topology的顶级抽象。</p>
+<p>topology中的每个节点都能并行执行，可以中心化配置并行数量（parallelism）。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8l82hgsvj30e80a4t9q.jpg" alt="截屏2020-04-27 下午1.15.59" style="zoom: 50%;" /></p>
+<p>Strom中运行的Topologies，相当于在MapReduce模型中运行的jobs。而Strom topology可以无限的处理数据。</p>
+<blockquote>
+<p>Storm将流中元素抽象为tuple，一个tuple就是一个值列表value list，list中的每个value可以是任意可序列化的类型。topology的每个节点都要说明它所发送出的多元组的字段的name，其他节点只需要订阅该name就可以接收处理。</p>
+</blockquote>
+<p>在Storm集群中用于运行topology的实体有3个：Worker processes、Executors（Threads）、Tasks</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>实体</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Worker processes 工作进程</td>
+<td>一个工作进程负责执行一个topology。Storm上的一台机器可以运行一个或多个工作进程。</td>
+</tr>
+<tr>
+<td>Executors（Threads）处理器线程</td>
+<td>处理器将作为线程运行。一个工作进程可以运行多个这样的处理器线程。每个处理器线程运行一个或多个相同组件的任务（spouts、bolts）</td>
+</tr>
+<tr>
+<td>Tasks 任务</td>
+<td>负责真正的数据处理工作</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>在Storm集群中有2种类型的节点：主节点和工作节点</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主节点 Master</td>
+<td>运行后台进程“Nimbus”，类似于Hadoop中的Job Tracker；Nimbus负责在集群上分发代码，而分配任务到机器上，以及监控故障</td>
+</tr>
+<tr>
+<td>工作节点 Worker</td>
+<td>每个工作节点运行一个后台进程“Supervisor”；Supervisor负责监听分配到自身机器上的任务，开启或关闭必要工作进程</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Storm的结构"><a href="#Storm的结构" class="headerlink" title="Storm的结构"></a>Storm的结构</h4><p>Nimbus和Supervisor之间的协调通过 <strong>Apache Zookeeper cluster</strong>完成</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8mch3w61j30y20j60wy.jpg" alt="截屏2020-04-27 下午1.54.40"></p>
+<h4 id="Apache-ZooKeeper"><a href="#Apache-ZooKeeper" class="headerlink" title="Apache ZooKeeper"></a>Apache ZooKeeper</h4><p>原本是一个Hadoop子项目。它是一个中心化的服务，针对分布式系统中的：分布式配置、服务同步、命名注册表。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8nehiv6bj30rk09amz9.jpg" alt="截屏2020-04-27 下午2.31.25" style="zoom: 50%;" /></p>
+<p>ZooKeeper允许分布式的进程之间进行协作，通过共享的数据寄存器的分层命名空间（Znodes）实现。</p>
+<p>ZooKeeper服务被复制到集群上的所有机器中。每个机器都维护，在内存上in-memory的<u>数据树</u>镜像，以及，持久化存储的事务日志和快照。</p>
+<h4 id="Storm上的ZooKeeper"><a href="#Storm上的ZooKeeper" class="headerlink" title="Storm上的ZooKeeper"></a>Storm上的ZooKeeper</h4><p>Strom通过ZooKeeper集群实现Nimbus和Supervisors之间的协调。</p>
+<p>ZooKeeper管理集群的状态（e.g. 消息acks，处理状态），使得Strom重启后也能恢复状态（关系到容错、可靠性）。</p>
+<p>Nimbus和Surpervisors是<strong>快速衰退fail-fast</strong>和<strong>无状态stateless</strong>的，所有的状态都保存在ZooKeeper或本地磁盘上。</p>
+<p>由于数据是在内存中处理的，因此ZooKeeper可以实现高吞吐和低延迟。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8nsz9aa4j30k60k0dia.jpg" alt="截屏2020-04-27 下午2.45.21" style="zoom:67%;" /></p>
+<h4 id="Storm的数据模型（数据结构）"><a href="#Storm的数据模型（数据结构）" class="headerlink" title="Storm的数据模型（数据结构）"></a>Storm的数据模型（数据结构）</h4><p>Storm使用多元组作为数据模型（数据结构）。一个多元组是一个值列表。Storm支持<u>原始类型（基本数据类型）、字符串和二进制数组</u>作为多元组的字段类型。也可以通过序列化器实现自定义类型。topology中的节点还需要声明它发送的多元组的<strong>输出字段（output fields）</strong>。</p>
+<blockquote>
+<p>字段类型可以是： integer, long, short, byte, string, double, float, boolean和byte array。 还可以自定义类型 — 只要你实现对应的序列化器。</p>
+<p>topology的每个节点都要说明它所发射出的多元组的字段的name，其他节点只需要订阅该name就可以接收处理。</p>
+</blockquote>
+<h4 id="Strom-Groupings-分组"><a href="#Strom-Groupings-分组" class="headerlink" title="Strom Groupings 分组"></a>Strom Groupings 分组</h4><p>它告诉topology应该如何将多元组发送到下一个任务</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8p73szlqj30g80dk77m.jpg" alt="截屏2020-04-27 下午3.33.32" style="zoom:50%;" /></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shuffle groupings</td>
+<td>发送多元组到随机任务上</td>
+</tr>
+<tr>
+<td>Fields groupings</td>
+<td>按照流的输出字段分组，相同输出字段的流会被发送到同一个任务上</td>
+</tr>
+<tr>
+<td>Partial Key groupings</td>
+<td>同样是按照字段分组，但会平衡两个bolts之间的负载</td>
+</tr>
+<tr>
+<td>All groupings</td>
+<td>将流复制到bolts的所有任务上</td>
+</tr>
+<tr>
+<td>Global groupings</td>
+<td>将整个流发送到最小ID值的一个bolt上</td>
+</tr>
+<tr>
+<td>Direct groupings</td>
+<td>允许多元组的生产者指定接收多元组的任务</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8pku8sbrj311o0d2dio.jpg" alt="截屏2020-04-27 下午3.46.43"></p>
+<h4 id="Hadoop中的Storm"><a href="#Hadoop中的Storm" class="headerlink" title="Hadoop中的Storm"></a>Hadoop中的Storm</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8pllch4jj312o0oc77z.jpg" alt="截屏2020-04-27 下午3.47.28"></p>
+<h4 id="流的可靠性"><a href="#流的可靠性" class="headerlink" title="流的可靠性"></a>流的可靠性</h4><p>Storm保证每个spout多元组都会被topology完全处理。Storm会追踪每个spout触发的元组树，并确认它什么时候能完全被处理完。每个拓扑都会有提供关联的<strong>消息超时message timeout</strong>（可配置）。如果一个spout元组没有在超时时间内完成处理，则storm会终止它，并在之后重新执行。</p>
+<p>在bolt中，使用emit方法表示产生了一个新的多元组，使用ack方法声明该元组已经完成处理</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8prfy4gjj30i00dk0vj.jpg" alt="截屏2020-04-27 下午3.53.03" style="zoom:50%;" /></p>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ge8q4zds44j312y0p6wjj.jpg" alt="截屏2020-04-27 下午4.06.02"></p>
+<h4 id="相关术语"><a href="#相关术语" class="headerlink" title="相关术语"></a>相关术语</h4><blockquote>
+<p>unbounded sequence of tuples —— 无界的多元组序列<br>primitives —— 原语<br>hierarchical namespace of data registers —— 数据寄存器的分层命名空间<br>in-memory —— 内存上的</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Storm/" rel="tag"><i class="fa fa-tag"></i> Storm</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/%E4%BA%91%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%BD%AF%E4%BB%B6%E8%B4%A8%E9%87%8F%E6%8C%91%E6%88%98/" rel="prev" title="云服务的软件质量挑战">
+      <i class="fa fa-chevron-left"></i> 云服务的软件质量挑战
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/20%20%E6%99%BA%E6%85%A7%E5%9F%8E%E5%B8%82%EF%BC%9A%E5%8E%BB%E4%B8%AD%E5%BF%83%E5%8C%96%E7%9A%84%E6%99%AE%E9%80%82%E6%99%BA%E8%83%BD/" rel="next" title="智慧城市：去中心化的普适智能">
+      智慧城市：去中心化的普适智能 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Storm流"><span class="nav-text">Storm流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spouts：消息生产者"><span class="nav-text">Spouts：消息生产者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bolts：消息消费者"><span class="nav-text">Bolts：消息消费者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Storm-Topologies"><span class="nav-text">Storm Topologies</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Storm的结构"><span class="nav-text">Storm的结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Apache-ZooKeeper"><span class="nav-text">Apache ZooKeeper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Storm上的ZooKeeper"><span class="nav-text">Storm上的ZooKeeper</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Storm的数据模型（数据结构）"><span class="nav-text">Storm的数据模型（数据结构）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Strom-Groupings-分组"><span class="nav-text">Strom Groupings 分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hadoop中的Storm"><span class="nav-text">Hadoop中的Storm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流的可靠性"><span class="nav-text">流的可靠性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子"><span class="nav-text">例子</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#相关术语"><span class="nav-text">相关术语</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>
