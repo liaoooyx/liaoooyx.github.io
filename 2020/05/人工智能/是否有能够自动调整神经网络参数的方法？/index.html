@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="问题Is there any method or technique can help us to infer the parameters of a CNN model automatically in a reasonable way rather than tedious experiments? Such as the parameters 4096 and 512 in the scre">
+<meta property="og:type" content="article">
+<meta property="og:title" content="是否有能够自动调整神经网络参数的方法？">
+<meta property="og:url" content="https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%98%AF%E5%90%A6%E6%9C%89%E8%83%BD%E5%A4%9F%E8%87%AA%E5%8A%A8%E8%B0%83%E6%95%B4%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="问题Is there any method or technique can help us to infer the parameters of a CNN model automatically in a reasonable way rather than tedious experiments? Such as the parameters 4096 and 512 in the scre">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-19T23:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-20T09:42:13.432Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="遗传算法">
+<meta property="article:tag" content="强化学习">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%98%AF%E5%90%A6%E6%9C%89%E8%83%BD%E5%A4%9F%E8%87%AA%E5%8A%A8%E8%B0%83%E6%95%B4%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>是否有能够自动调整神经网络参数的方法？ | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%98%AF%E5%90%A6%E6%9C%89%E8%83%BD%E5%A4%9F%E8%87%AA%E5%8A%A8%E8%B0%83%E6%95%B4%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          是否有能够自动调整神经网络参数的方法？
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-05-20 00:00:00 / 修改时间：10:42:13" itemprop="dateCreated datePublished" datetime="2020-05-20T00:00:00+01:00">2020-05-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>Is there any method or technique can help us to infer the parameters of a CNN model automatically in a reasonable way rather than tedious experiments? Such as the parameters 4096 and 512 in the screenshot.</p>
+<a id="more"></a>
+<h4 id="回答"><a href="#回答" class="headerlink" title="回答"></a>回答</h4><p>Unfortunately there’s no real way to know what the optimal architecture for a neural network is. Some researchers have suggested methods such as reinforcement learning (<a href="https://openreview.net/forum?id=r1Ue8Hcxg&amp;noteId=r1Ue8Hcxg" target="_blank" rel="noopener">https://openreview.net/forum?id=r1Ue8Hcxg&amp;noteId=r1Ue8Hcxg</a>) or genetic algorithms (<a href="https://ieeexplore.ieee.org/abstract/document/7731699?casa_token=M5491lfwA_AAAAAA:5pnyD5x1Bu8hbj3Tqj_Tu4AK3ruCDp4Q2DjBtRqVJAIPjDim38bY3KkAJQZYNK8gVlOnhUnJ" target="_blank" rel="noopener">https://ieeexplore.ieee.org/abstract/document/7731699?casa_token=M5491lfwA_AAAAAA:5pnyD5x1Bu8hbj3Tqj_Tu4AK3ruCDp4Q2DjBtRqVJAIPjDim38bY3KkAJQZYNK8gVlOnhUnJ</a>) to experimentally evolve the network architecture and find the best one. In CW1 we got a feel for how changing network configurations can affect the performance; but in reality, our experiments with each component isolated aren’t a route to finding the optimal architecture, because it’s difficult to tune each parameter in isolation. Varying one affects what is optimal for all the rest.</p>
+<p>In practice, most people don’t spend too much time tuning. Rather, they first pick a few network architectures which have worked well on a similar dataset or on a similar task, and they train and compare. They might then choose to fine-tune the best-performing network with a few variations on things like dropout, activation function, etc. </p>
+<h4 id="关于遗传算法"><a href="#关于遗传算法" class="headerlink" title="关于遗传算法"></a>关于遗传算法</h4><blockquote>
+<p>作者：番茄鸡蛋炒饭被抢注啦<br>链接：<a href="https://www.jianshu.com/p/ae5157c26af9" target="_blank" rel="noopener">https://www.jianshu.com/p/ae5157c26af9</a></p>
+<p>既然我们把函数曲线理解成一个一个山峰和山谷组成的山脉。那么我们可以设想所得到的每一个解就是一只袋鼠，我们希望它们不断的向着更高处跳去，直到跳到最高的山峰。<strong>所以求最大值的过程就转化成一个“袋鼠跳”的过程。</strong></p>
+<p>下面介绍介绍“袋鼠跳”的几种方式。</p>
+<ul>
+<li>爬山算法：一只袋鼠朝着比现在高的地方跳去。它找到了不远处的最高的山峰。但是这座山不一定是最高峰。这就是爬山算法，它不能保证局部最优值就是全局最优值。</li>
+<li>模拟退火：袋鼠喝醉了。它随机地跳了很长时间。这期间，它可能走向高处，也可能踏入平地。但是，它渐渐清醒了并朝最高峰跳去。这就是模拟退火算法。</li>
+<li>遗传算法：有很多袋鼠，它们降落到喜玛拉雅山脉的任意地方。这些袋鼠并不知道它们的任务是寻找珠穆朗玛峰。但每过几年，就在一些海拔高度较低的地方射杀一些袋鼠。于是，不断有袋鼠死于海拔较低的地方，而越是在海拔高的袋鼠越是能活得更久，也越有机会生儿育女。就这样经过许多年，这些袋鼠们竟然都不自觉地聚拢到了一个个的山峰上，可是在所有的袋鼠中，只有聚拢到珠穆朗玛峰的袋鼠被带回了美丽的澳洲。</li>
+</ul>
+<p>遗传算法并不保证你能获得问题的最优解，但是使用遗传算法的最大优点在于你不必去了解和操心如何去“找”最优解。（你不必去指导袋鼠向那边跳，跳多远。）而只要简单的“否定”一些表现不好的个体就行了。（把那些总是爱走下坡路的袋鼠射杀，这就是遗传算法的精粹！）</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i> 遗传算法</a>
+              <a href="/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> 强化学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AE%B2%E5%BA%A7%EF%BC%9A%E5%B0%86%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-AIDI-Artificial-Intelligence-for-Data-Analytics/" rel="prev" title="将人工智能用户数据分析 AIDI Artificial Intelligence for Data Analytics">
+      <i class="fa fa-chevron-left"></i> 将人工智能用户数据分析 AIDI Artificial Intelligence for Data Analytics
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BB%8B%E7%BB%8DVGG%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E7%AB%A0%E9%93%BE%E6%8E%A5/" rel="next" title="关于VGG网络的文章链接">
+      关于VGG网络的文章链接 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题"><span class="nav-text">问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回答"><span class="nav-text">回答</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于遗传算法"><span class="nav-text">关于遗传算法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

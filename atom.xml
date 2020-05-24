@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://liaoooyx.com/"/>
-  <updated>2020-05-09T01:55:44.430Z</updated>
+  <updated>2020-05-24T01:53:00.005Z</updated>
   <id>https://liaoooyx.com/</id>
   
   <author>
@@ -15,6 +15,133 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>梯度消失和梯度爆炸问题解决方案</title>
+    <link href="https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
+    <published>2020-05-23T23:00:00.000Z</published>
+    <updated>2020-05-24T01:53:00.005Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本质上是因为神经网络的更新方法，梯度消失是因为反向传播过程中对梯度的求解会产生sigmoid导数和参数的连乘，sigmoid导数的最大值为0.25，权重一般初始都在0，1之间，乘积小于1，多层的话就会有多个小于1的值连乘，导致靠近输入层的梯度几乎为0，得不到更新。梯度爆炸是也是同样的原因，只是如果初始权重大于1，或者更大一些，多个大于1的值连乘，将会很大或溢出，导致梯度更新过大，模型无法收敛。</p></blockquote><a id="more"></a><h4 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h4><blockquote><ul><li>解决方案一（预训练加微调）</li><li>解决方案二（梯度剪切、正则）</li><li>解决方案三（改变激活函数）</li><li>解决方案四（batchnorm）</li><li>解决方案五（残差结构）</li><li>解决方案六（LSTM）</li></ul><p>——<a href="https://zhuanlan.zhihu.com/p/76772734" target="_blank" rel="noopener">从反向传播推导到梯度消失and爆炸的原因及解决方案（从DNN到RNN，内附详细反向传播公式推导</a>，第四节</p></blockquote><h4 id="梯度爆炸"><a href="#梯度爆炸" class="headerlink" title="梯度爆炸"></a>梯度爆炸</h4><blockquote><p>在深层神经网络或循环神经网络中，误差的梯度可在更新中累积相乘。如果网络层之间的梯度值大于 1.0，那么重复相乘会导致梯度呈指数级增长，梯度变的非常大，然后导致网络权重的大幅更新，并因此使网络变得不稳定。</p><p>信号：</p><ul><li><p>模型不稳定，导致更新过程中的损失出现显著变化；</p></li><li><p>训练过程中，在极端情况下，权重的值变得非常大，以至于溢出，导致模型损失变成 NaN等等。</p></li></ul><p>解决梯度爆炸的其他方法：</p><ol><li>减少学习率（个人理解梯度爆炸是模型训练发散的一种情况）；</li><li>使用ReLU函数，使得梯度稳定；</li><li>使用正则化，即检查网络中权重的大小，对较大的权重进行惩罚，限制了梯度爆炸造成的权重变得很大的情况。</li></ol><p>——[常见损失函数小结](</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;本质上是因为神经网络的更新方法，梯度消失是因为反向传播过程中对梯度的求解会产生sigmoid导数和参数的连乘，sigmoid导数的最大值为0.25，权重一般初始都在0，1之间，乘积小于1，多层的话就会有多个小于1的值连乘，导致靠近输入层的梯度几乎为0，得不到更新。梯度爆炸是也是同样的原因，只是如果初始权重大于1，或者更大一些，多个大于1的值连乘，将会很大或溢出，导致梯度更新过大，模型无法收敛。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+      <category term="人工智能" scheme="https://liaoooyx.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>摘录各参数对神经网络的影响</title>
+    <link href="https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AE%B0%E5%BD%95%E5%90%84%E5%8F%82%E6%95%B0%E5%AF%B9%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%BD%B1%E5%93%8D/"/>
+    <id>https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AE%B0%E5%BD%95%E5%90%84%E5%8F%82%E6%95%B0%E5%AF%B9%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E5%BD%B1%E5%93%8D/</id>
+    <published>2020-05-23T23:00:00.000Z</published>
+    <updated>2020-05-24T06:27:11.377Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h3 id="神经网络中的常见问题"><a href="#神经网络中的常见问题" class="headerlink" title="神经网络中的常见问题"></a>神经网络中的常见问题</h3><h4 id="梯度爆炸"><a href="#梯度爆炸" class="headerlink" title="梯度爆炸"></a>梯度爆炸</h4><blockquote><p>在深层神经网络或循环神经网络中，误差的梯度可在更新中累积相乘。如果网络层之间的梯度值大于 1.0，那么重复相乘会导致梯度呈指数级增长，梯度变的非常大，然后导致网络权重的大幅更新，并因此使网络变得不稳定。</p><p>信号：</p><ul><li><p>模型不稳定，导致更新过程中的损失出现显著变化；</p></li><li><p>训练过程中，在极端情况下，权重的值变得非常大，以至于溢出，导致模型损失变成 NaN等等。</p></li></ul><p>解决梯度爆炸的其他方法：</p><ol><li>减少学习率（个人理解梯度爆炸是模型训练发散的一种情况）；</li><li>使用ReLU函数，使得梯度稳定；</li><li>使用正则化，即检查网络中权重的大小，对较大的权重进行惩罚，限制了梯度爆炸造成的权重变得很大的情况。</li></ol><p>——<a href="https://zhuanlan.zhihu.com/p/37217242" target="_blank" rel="noopener">常见损失函数小结</a></p></blockquote><h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><blockquote><ol><li><strong>神经网络为什么需要激活函数：</strong>首先数据的分布绝大多数是非线性的，而一般神经网络的计算是线性的，引入激活函数，是在神经网络中引入非线性，强化网络的学习能力。所以激活函数的最大特点就是非线性。</li><li><strong>不同的激活函数，根据其特点，应用也不同。</strong>Sigmoid和tanh的特点是将输出限制在(0,1)和(-1,1)之间，说明Sigmoid和tanh适合做概率值的处理，例如LSTM中的各种门；而ReLU就不行，因为ReLU无最大值限制，可能会出现很大值。同样，根据ReLU的特征，Relu适合用于深层网络的训练，而Sigmoid和tanh则不行，因为它们会出现梯度消失。</li></ol><p>——<a href="https://zhuanlan.zhihu.com/p/73214810" target="_blank" rel="noopener">激活函数总结</a></p></blockquote><h4 id="sigmoid"><a href="#sigmoid" class="headerlink" title="sigmoid"></a>sigmoid</h4><blockquote><p>sigmoid函数作为激活函数本身就存在梯度消失的问题（见缺点3）</p><p>——<a href="https://zhuanlan.zhihu.com/p/37217242" target="_blank" rel="noopener">常见损失函数小结</a></p><p>优缺点：</p><ul><li>优点：平滑、易于求导。</li><li>缺点：<ol><li>激活函数计算量大（在正向传播和反向传播中都包含幂运算和除法）；</li><li>反向传播求误差梯度时，求导涉及除法；</li><li>Sigmoid导数取值范围是[0, 0.25]，由于神经网络反向传播时的“链式反应”，很容易就会出现梯度消失的情况。例如对于一个10层的网络， 根据<img src="https://www.zhihu.com/equation?tex=0.25^{10}\approx0.000000954" alt="[公式]">，第10层的误差相对第一层卷积的参数<img src="https://www.zhihu.com/equation?tex=W_1" alt="[公式]">的梯度将是一个非常小的值，这就是所谓的“梯度消失”。</li><li>Sigmoid的输出不是0均值（即zero-centered）；这会导致后一层的神经元将得到上一层输出的非0均值的信号作为输入，随着网络的加深，会改变数据的原始分布。</li></ol></li></ul><p>——<a href="https://zhuanlan.zhihu.com/p/73214810" target="_blank" rel="noopener">激活函数总结</a></p></blockquote><h4 id="tanh"><a href="#tanh" class="headerlink" title="tanh"></a>tanh</h4><blockquote><p>相比Sigmoid函数</p><ol><li>tanh的输出范围时(-1, 1)，解决了Sigmoid函数的不是zero-centered输出问题；</li><li>幂运算的问题仍然存在；</li><li>tanh导数范围在(0, 1)之间，相比sigmoid的(0, 0.25)，梯度消失（gradient vanishing）问题会得到缓解，但仍然还会存在。</li></ol><p>——<a href="https://zhuanlan.zhihu.com/p/73214810" target="_blank" rel="noopener">激活函数总结</a></p></blockquote><h4 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h4><p><strong>特点</strong></p><blockquote><p>ReLU的有效导数是常数1，解决了深层网络中出现的梯度消失问题，也就使得深层网络可训练。<strong>同时ReLU又是非线性函数，所谓非线性，就是一阶导数不为常数；对ReLU求导，在输入值分别为正和为负的情况下，导数是不同的，即ReLU的导数不是常数，所以ReLU是非线性的（只是不同于Sigmoid和tanh，relu的非线性不是光滑的）。</strong></p><p>——<a href="https://zhuanlan.zhihu.com/p/73214810" target="_blank" rel="noopener">激活函数总结</a></p><p>relu函数的导数在正数部分是恒等于1的，因此在深层网络中使用relu激活函数就不会导致梯度消失和爆炸的问题。</p><p><strong>relu</strong>的主要贡献在于：</p><ul><li>解决了梯度消失、爆炸的问题</li><li>计算方便，计算速度快</li><li>加速了网络的训练</li></ul><p>同时也存在一些<strong>缺点</strong>：</p><ul><li>由于负数部分恒为0，会导致一些神经元无法激活（可通过设置小学习率部分解决）</li><li>输出不是以0为中心的</li></ul><p>——<a href="https://zhuanlan.zhihu.com/p/76772734" target="_blank" rel="noopener">从反向传播推导到梯度消失and爆炸的原因及解决方案（从DNN到RNN，内附详细反向传播公式推导）</a></p></blockquote><p><strong>ReLU函数相对于tanh和sigmoid函数好在哪里：</strong></p><blockquote><p>采用sigmoid等函数，算激活函数是（指数运算），计算量大；反向传播求误差梯度时，求导涉及除法，计算量相对大。而采用Relu激活函数，整个过程的计算量节省很多。</p><p>对于深层网络，sigmoid函数反向传播时，很容易就会出现梯度消失的情况（在sigmoid接近饱和区时，变换太缓慢，导数趋于0），这种情况会造成信息丢失，梯度消失在网络层数多的时候尤其明显，从而无法完成深层网络的训练。</p><p>ReLU会使一部分神经元的输出为0，这样就造成了网络的稀疏性，并且减少了参数的相互依存关系，缓解了过拟合问题的发生。</p><p>——<a href="https://zhuanlan.zhihu.com/p/37217242" target="_blank" rel="noopener">常见损失函数小结</a></p><p>相比Sigmoid和tanh，ReLU摒弃了复杂的计算，提高了运算速度。</p><p>解决了梯度消失问题，收敛速度快于Sigmoid和tanh函数，但要<strong>防范ReLU的梯度爆炸</strong></p><p>容易得到更好的模型，但也要<strong>防止训练中出现模型【Dead】情况</strong>。</p><p>——<a href="https://zhuanlan.zhihu.com/p/73214810" target="_blank" rel="noopener">激活函数总结</a></p></blockquote><p><strong>在使用relu的网络中，是否还存在梯度消失的问题？</strong></p><blockquote><p>梯度衰减的原因包括：激活函数导数，此外，还有多个权重连乘也会影响。梯度消失只是表面说法，按照这样理解，底层使用非常大的学习率，或者人工添加梯度噪音，原则上也能回避，有不少论文这样试了，然而目前来看，有用，但没太大的用处。深层原因训练不好的本质难题可能不是衰减或者消失（残差网络论文也提到这一点），是啥目前数理派也搞不清楚，所以写了论文也顺势这样说开了。不然，贸贸然将开山鼻祖的观点否定了，是需要极大勇气和大量的实验，以及中二精神的。</p><p>—— <a href="https://www.zhihu.com/question/49230360/answer/114914080" target="_blank" rel="noopener">知乎问题</a>，回答 <a href="https://www.zhihu.com/people/lykquitphy" target="_blank" rel="noopener">纳米酱</a></p></blockquote><h4 id="Leaky-ReLU-PReLU（Parametric-Relu）-RReLU（Random-ReLU）"><a href="#Leaky-ReLU-PReLU（Parametric-Relu）-RReLU（Random-ReLU）" class="headerlink" title="Leaky ReLU, PReLU（Parametric Relu）, RReLU（Random ReLU）"></a>Leaky ReLU, PReLU（Parametric Relu）, RReLU（Random ReLU）</h4><blockquote><p>为了防止模型的【Dead】情况，后人将x&lt;0部分并没有直接置为0，而是给了一个很小的负数梯度值</p><p><strong>Leaky ReLU</strong>中的<img src="https://www.zhihu.com/equation?tex=\alpha" alt="[公式]">为常数，一般设置 0.01。这个函数通常比 Relu 激活函数效果要好，但是效果不是很稳定，所以在实际中 Leaky ReLu 使用的并不多。</p><p><strong>PRelu（参数化修正线性单元）</strong> 中的<img src="https://www.zhihu.com/equation?tex=\alpha+" alt="[公式]">作为一个可学习的参数，会在训练的过程中进行更新。</p><p><strong>RReLU（随机纠正线性单元）</strong>也是Leaky ReLU的一个变体。在RReLU中，负值的斜率在训练中是随机的，在之后的测试中就变成了固定的了。RReLU的亮点在于，在训练环节中，aji是从一个均匀的分布U(I,u)中随机抽取的数值。</p><p>——<a href="https://zhuanlan.zhihu.com/p/73214810" target="_blank" rel="noopener">激活函数总结</a></p></blockquote><h3 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a>损失函数</h3><blockquote><p>损失函数是网络学习的指挥棒，它引导着网络学习的方向——能让损失函数变小的参数就是好参数。所以，损失函数的选择和设计要能表达你希望模型具有的性质与倾向。——<a href="https://me.csdn.net/firelx" target="_blank" rel="noopener">shine-lee</a>（<a href="https://blog.csdn.net/blogshinelee/article/details/103518097" target="_blank" rel="noopener">原文</a>）</p></blockquote><h4 id="交叉熵损失"><a href="#交叉熵损失" class="headerlink" title="交叉熵损失"></a>交叉熵损失</h4><p>（Pytorch）CrossEntropyLoss本身已经包含了softmax，在神经网络中使用CrossEntropyLoss作为损失函数时，不需要再添加softmax。（以下文章有提及：<a href="https://blog.csdn.net/zhufenghao/article/details/52735750" target="_blank" rel="noopener">1</a>，<a href="https://blog.csdn.net/haiyuanboy/article/details/90377817" target="_blank" rel="noopener">2</a>）</p><blockquote><p><a href="https://zhuanlan.zhihu.com/p/95386061" target="_blank" rel="noopener">交叉熵损失</a>：扩大低概率高损失、高概率低损失的差距，同样使得损失函数对网络输出“更敏感”，更有利于分类。</p><p>——<a href="https://zhuanlan.zhihu.com/p/37217242" target="_blank" rel="noopener">常见损失函数小结</a></p></blockquote><h4 id="交叉熵与均方误差损失函数对比"><a href="#交叉熵与均方误差损失函数对比" class="headerlink" title="交叉熵与均方误差损失函数对比"></a>交叉熵与均方误差损失函数对比</h4><p>交叉熵只看重正确分类的结果，而均方差对每个输出结果都看重。</p><blockquote><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf3bno6qd9j31hs0ju794.jpg" alt="截屏2020-05-24 上午3.17.13"></p><p>——<a href="https://blog.csdn.net/blogshinelee/article/details/103518097" target="_blank" rel="noopener">直观理解为什么分类问题用交叉熵损失而不用均方误差损失?</a></p><p><strong>交叉熵的损失函数只和分类正确的预测结果有关系，而MSE的损失函数还和错误的分类有关系，该分类函数除了让正确的分类尽量变大，还会让错误的分类变得平均，但实际在分类问题中这个调整是没有必要的。但是对于回归问题来说，这样的考虑就显得很重要了。所以，回归问题熵使用交叉上并不合适。</strong><br>——<a href="https://blog.csdn.net/weixin_41888969/article/details/89450163" target="_blank" rel="noopener">为什么均方差（MSE）不适合分类问题？交叉熵（cross-entropy）不适合回归问题？</a></p><ol><li>神经网络中如果预测值与实际值的误差越大，那么在反向传播训练的过程中，各种参数调整的幅度就要更大，从而使训练更快收敛，如果预测值与实际值的误差小，各种参数调整的幅度就要小，从而减少震荡。</li><li><strong>使用均方误差损失函数，误差增大参数的梯度会增大（梯度大，告诉权重要向这个方向更新），但是当误差很大时，参数的梯度就会又减小了（权重又不往这个方向更新了，这不合理）。</strong></li><li>使用交叉熵损失函数，误差越大参数的梯度也越大，能够快速收敛。</li></ol><p>——<a href="https://blog.csdn.net/liuweiyuxiang/article/details/90707375" target="_blank" rel="noopener">分类问题为什么要使用交叉熵损失函数而不是均方误差</a></p></blockquote><h3 id="激活函数-损失函数"><a href="#激活函数-损失函数" class="headerlink" title="激活函数+损失函数"></a>激活函数+损失函数</h3><blockquote><p>MSE均方误差+Sigmoid激活函数使得神经网络反向传播的起始位置——输出层神经元学习率缓慢。</p><p>交叉熵损失+Sigmoid激活函数可以解决输出层神经元学习率缓慢的问题，但是不能解决隐藏层神经元学习率缓慢的问题。</p><ul><li><p>改变激活函数或损失函数有可能解决该问题：</p><p>激活函数：将sigmoid函数，改为不会造成梯度消失的函数，例如：ReLU函数，不仅能解决输出层学习率缓慢，还能解决隐藏层学习率缓慢问题。</p><p>损失函数：将均方误差损失，改为交叉熵损失（<a href="https://blog.csdn.net/blogshinelee/article/details/103518097" target="_blank" rel="noopener">直观理解为什么分类问题用交叉熵损失而不用均方误差损失?</a>）</p></li></ul><p>——<a href="https://zhuanlan.zhihu.com/p/37217242" target="_blank" rel="noopener">常见损失函数小结</a></p><p>只要激活函数是sigmoid，tanh类似的曲线，不适合使用MSE，需要搭配交叉熵损失函数。</p><p>对于MSE，随着误差的增大，权值需要调整的幅度先变大后变小，这就导致当误差很大时，模型显得“自暴自弃”不肯学习</p><p>——<a href="https://zhuanlan.zhihu.com/p/63731947" target="_blank" rel="noopener">为什么使用交叉熵作为损失函数</a>，评论</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;神经网络中的常见问题&quot;&gt;&lt;a href=&quot;#神经网络中的常见问题&quot; class=&quot;headerlink&quot; title=&quot;神经网络中的常见问题&quot;&gt;&lt;/a&gt;神经网络中的常见问题&lt;/h3&gt;&lt;h4 id=&quot;梯度爆炸&quot;&gt;&lt;a href=&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="人工智能" scheme="https://liaoooyx.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>关于VGG网络的文章链接</title>
+    <link href="https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BB%8B%E7%BB%8DVGG%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E7%AB%A0%E9%93%BE%E6%8E%A5/"/>
+    <id>https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BB%8B%E7%BB%8DVGG%E7%BD%91%E7%BB%9C%E7%9A%84%E6%96%87%E7%AB%A0%E9%93%BE%E6%8E%A5/</id>
+    <published>2020-05-22T23:00:00.000Z</published>
+    <updated>2020-05-23T01:45:00.929Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/41423739" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/41423739</a></p><blockquote><p><a href="https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1409.1556">VGG</a>是Oxford的<strong>V</strong>isual <strong>G</strong>eometry <strong>G</strong>roup的组提出的（大家应该能看出VGG名字的由来了）。该网络是在ILSVRC 2014上的相关工作，主要工作是证明了增加网络的深度能够在一定程度上影响网络最终的性能。VGG有两种结构，分别是VGG16和VGG19，两者并没有本质上的区别，只是网络深度不一样。</p></blockquote><p>我的理解是，根据【感受野】的思想，将一些现有的神经网络改为更深层的神经网络</p><a id="more"></a>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/41423739&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://zhuanlan.zhihu.com/p/41423739&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://link.zhihu.com/?target=https%3A//arxiv.org/abs/1409.1556&quot;&gt;VGG&lt;/a&gt;是Oxford的&lt;strong&gt;V&lt;/strong&gt;isual &lt;strong&gt;G&lt;/strong&gt;eometry &lt;strong&gt;G&lt;/strong&gt;roup的组提出的（大家应该能看出VGG名字的由来了）。该网络是在ILSVRC 2014上的相关工作，主要工作是证明了增加网络的深度能够在一定程度上影响网络最终的性能。VGG有两种结构，分别是VGG16和VGG19，两者并没有本质上的区别，只是网络深度不一样。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我的理解是，根据【感受野】的思想，将一些现有的神经网络改为更深层的神经网络&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="人工智能" scheme="https://liaoooyx.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+      <category term="VGG" scheme="https://liaoooyx.com/tags/VGG/"/>
+    
+      <category term="感受野" scheme="https://liaoooyx.com/tags/%E6%84%9F%E5%8F%97%E9%87%8E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>是否有能够自动调整神经网络参数的方法？</title>
+    <link href="https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%98%AF%E5%90%A6%E6%9C%89%E8%83%BD%E5%A4%9F%E8%87%AA%E5%8A%A8%E8%B0%83%E6%95%B4%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F/"/>
+    <id>https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%98%AF%E5%90%A6%E6%9C%89%E8%83%BD%E5%A4%9F%E8%87%AA%E5%8A%A8%E8%B0%83%E6%95%B4%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%8F%82%E6%95%B0%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%9F/</id>
+    <published>2020-05-19T23:00:00.000Z</published>
+    <updated>2020-05-20T09:42:13.432Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>Is there any method or technique can help us to infer the parameters of a CNN model automatically in a reasonable way rather than tedious experiments? Such as the parameters 4096 and 512 in the screenshot.</p><a id="more"></a><h4 id="回答"><a href="#回答" class="headerlink" title="回答"></a>回答</h4><p>Unfortunately there’s no real way to know what the optimal architecture for a neural network is. Some researchers have suggested methods such as reinforcement learning (<a href="https://openreview.net/forum?id=r1Ue8Hcxg&amp;noteId=r1Ue8Hcxg" target="_blank" rel="noopener">https://openreview.net/forum?id=r1Ue8Hcxg&amp;noteId=r1Ue8Hcxg</a>) or genetic algorithms (<a href="https://ieeexplore.ieee.org/abstract/document/7731699?casa_token=M5491lfwA_AAAAAA:5pnyD5x1Bu8hbj3Tqj_Tu4AK3ruCDp4Q2DjBtRqVJAIPjDim38bY3KkAJQZYNK8gVlOnhUnJ" target="_blank" rel="noopener">https://ieeexplore.ieee.org/abstract/document/7731699?casa_token=M5491lfwA_AAAAAA:5pnyD5x1Bu8hbj3Tqj_Tu4AK3ruCDp4Q2DjBtRqVJAIPjDim38bY3KkAJQZYNK8gVlOnhUnJ</a>) to experimentally evolve the network architecture and find the best one. In CW1 we got a feel for how changing network configurations can affect the performance; but in reality, our experiments with each component isolated aren’t a route to finding the optimal architecture, because it’s difficult to tune each parameter in isolation. Varying one affects what is optimal for all the rest.</p><p>In practice, most people don’t spend too much time tuning. Rather, they first pick a few network architectures which have worked well on a similar dataset or on a similar task, and they train and compare. They might then choose to fine-tune the best-performing network with a few variations on things like dropout, activation function, etc. </p><h4 id="关于遗传算法"><a href="#关于遗传算法" class="headerlink" title="关于遗传算法"></a>关于遗传算法</h4><blockquote><p>作者：番茄鸡蛋炒饭被抢注啦<br>链接：<a href="https://www.jianshu.com/p/ae5157c26af9" target="_blank" rel="noopener">https://www.jianshu.com/p/ae5157c26af9</a></p><p>既然我们把函数曲线理解成一个一个山峰和山谷组成的山脉。那么我们可以设想所得到的每一个解就是一只袋鼠，我们希望它们不断的向着更高处跳去，直到跳到最高的山峰。<strong>所以求最大值的过程就转化成一个“袋鼠跳”的过程。</strong></p><p>下面介绍介绍“袋鼠跳”的几种方式。</p><ul><li>爬山算法：一只袋鼠朝着比现在高的地方跳去。它找到了不远处的最高的山峰。但是这座山不一定是最高峰。这就是爬山算法，它不能保证局部最优值就是全局最优值。</li><li>模拟退火：袋鼠喝醉了。它随机地跳了很长时间。这期间，它可能走向高处，也可能踏入平地。但是，它渐渐清醒了并朝最高峰跳去。这就是模拟退火算法。</li><li>遗传算法：有很多袋鼠，它们降落到喜玛拉雅山脉的任意地方。这些袋鼠并不知道它们的任务是寻找珠穆朗玛峰。但每过几年，就在一些海拔高度较低的地方射杀一些袋鼠。于是，不断有袋鼠死于海拔较低的地方，而越是在海拔高的袋鼠越是能活得更久，也越有机会生儿育女。就这样经过许多年，这些袋鼠们竟然都不自觉地聚拢到了一个个的山峰上，可是在所有的袋鼠中，只有聚拢到珠穆朗玛峰的袋鼠被带回了美丽的澳洲。</li></ul><p>遗传算法并不保证你能获得问题的最优解，但是使用遗传算法的最大优点在于你不必去了解和操心如何去“找”最优解。（你不必去指导袋鼠向那边跳，跳多远。）而只要简单的“否定”一些表现不好的个体就行了。（把那些总是爱走下坡路的袋鼠射杀，这就是遗传算法的精粹！）</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;问题&quot;&gt;&lt;a href=&quot;#问题&quot; class=&quot;headerlink&quot; title=&quot;问题&quot;&gt;&lt;/a&gt;问题&lt;/h4&gt;&lt;p&gt;Is there any method or technique can help us to infer the parameters of a CNN model automatically in a reasonable way rather than tedious experiments? Such as the parameters 4096 and 512 in the screenshot.&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="人工智能" scheme="https://liaoooyx.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
+    
+    
+      <category term="遗传算法" scheme="https://liaoooyx.com/tags/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="强化学习" scheme="https://liaoooyx.com/tags/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>将人工智能用户数据分析 AIDI Artificial Intelligence for Data Analytics</title>
+    <link href="https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AE%B2%E5%BA%A7%EF%BC%9A%E5%B0%86%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-AIDI-Artificial-Intelligence-for-Data-Analytics/"/>
+    <id>https://liaoooyx.com/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AE%B2%E5%BA%A7%EF%BC%9A%E5%B0%86%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%94%A8%E6%88%B7%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90-AIDI-Artificial-Intelligence-for-Data-Analytics/</id>
+    <published>2020-05-14T23:00:00.000Z</published>
+    <updated>2020-05-15T11:54:34.855Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h4 id="CRISP-DM方法学"><a href="#CRISP-DM方法学" class="headerlink" title="CRISP-DM方法学"></a>CRISP-DM方法学</h4><h4 id="数据工程挑战"><a href="#数据工程挑战" class="headerlink" title="数据工程挑战"></a>数据工程挑战</h4><p>数据组织</p><ul><li>数据解析——cleverCSV</li><li>获取或推断数据字典——ptype，colnet</li><li>数据整合——datadiff</li><li>数据转换 </li></ul><p>数据质量</p><ul><li>Cannoicalization</li><li>缺失数据——HI-VAE</li><li>异常检测和诊断——RVAE</li><li>数据不稳定 non-stationarity——CP Evalution</li></ul><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>机器学习、语义技术、编程语言</p><h4 id="AI-Assistance"><a href="#AI-Assistance" class="headerlink" title="AI Assistance"></a>AI Assistance</h4><ul><li>基于AI的算法</li><li>确保可重复生产和透明性</li></ul><h4 id="数据工程相关的工作"><a href="#数据工程相关的工作" class="headerlink" title="数据工程相关的工作"></a>数据工程相关的工作</h4><ul><li>数据库</li><li>数据挖掘，比如 anomaly detection (Emmott et al, 2013)</li><li>编程语言</li><li>统计学</li></ul><h3 id="datadiff"><a href="#datadiff" class="headerlink" title="datadiff"></a>datadiff</h3><ul><li>数据的格式可能每年都在变化<ul><li>swap, delete, insert columns</li></ul></li><li>Hungarian 算法</li></ul><h3 id="异常检测——RVAE"><a href="#异常检测——RVAE" class="headerlink" title="异常检测——RVAE"></a>异常检测——RVAE</h3><p>真实数据通常伴随着异常数据outliers anomalies</p><h4 id="Variational-Autoencoder-VAE"><a href="#Variational-Autoencoder-VAE" class="headerlink" title="Variational Autoencoder, VAE"></a>Variational Autoencoder, VAE</h4><p>VAE被用于异常点检测 (An &amp; Cho, 2015; Wang et al, 2017)</p><p>可以拟合异常点，但也会对导致对异常点过度拟合，</p><h4 id="Robust-VAE-RVAE"><a href="#Robust-VAE-RVAE" class="headerlink" title="Robust VAE, RVAE"></a>Robust VAE, RVAE</h4><p>异常点注入 outlier injection process</p><h3 id="ptype"><a href="#ptype" class="headerlink" title="ptype"></a>ptype</h3><p>Ceritli, Williams and Geddes (2020)</p><p>评估方法：accuracy and jaccard index</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1getd66infhj30kv08b0uw.jpg" alt="截屏2020-05-15 下午12.34.17"></p><h4 id="trifacta"><a href="#trifacta" class="headerlink" title="trifacta"></a>trifacta</h4><p>基于正则表达式和验证公式</p><h3 id="ColNet"><a href="#ColNet" class="headerlink" title="ColNet"></a>ColNet</h3><p>Chen, Jimenz-Ruiz, Horrocks, Sutton (2019)</p><p>预测数据列的语义类型</p><h3 id="CleverCSV"><a href="#CleverCSV" class="headerlink" title="CleverCSV"></a>CleverCSV</h3><p>van den Burg, Nazabal, Sutton (2019)</p><p>CleverCSV通过改进对杂乱CSV文件的方言检测功能，为Python csv软件包提供了直接替代。它还提供了一个方便的命令行工具，该工具可以标准化凌乱的文件或生成Python代码以将其导入。</p><h4 id="Wrattler"><a href="#Wrattler" class="headerlink" title="Wrattler"></a>Wrattler</h4><p>Petricek, Geddes andd Sutton (2018)</p><p>常见的notebook问题</p><ul><li>有限的可重用性</li><li>没有状态回滚</li><li>有限的交互</li><li>每个核用于单语言</li></ul><h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><p>Tundra Traits (Bjorkman et al, Nature 2018)</p><p>Household Electricity Survey</p><p>CleanEHR: Electronic Health Records</p><p>Ofcom Broadband</p><h4 id=""><a href="#" class="headerlink" title=" "></a> </h4>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h4 id=&quot;CRISP-DM方法学&quot;&gt;&lt;a href=&quot;#CRISP-DM方法学&quot; class=&quot;headerlink&quot; title=&quot;CRISP-DM方法学&quot;&gt;&lt;/a&gt;CRISP-DM方法学&lt;/h4&gt;&lt;h4 id=&quot;数据工程挑战&quot;&gt;&lt;a 
+      
+    
+    </summary>
+    
+    
+      <category term="讲座笔记" scheme="https://liaoooyx.com/categories/%E8%AE%B2%E5%BA%A7%E7%AC%94%E8%AE%B0/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>搜索引擎的关键词匹配方案</title>
@@ -245,8 +372,8 @@
   
   <entry>
     <title>Image Caption Generation 相关问题</title>
-    <link href="https://liaoooyx.com/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Image-Caption-Generation/"/>
-    <id>https://liaoooyx.com/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/Image-Caption-Generation/</id>
+    <link href="https://liaoooyx.com/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BB%83%E4%B9%A0%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%AD%97%E5%B9%95%E7%94%9F%E6%88%90Image-Caption-Generation/"/>
+    <id>https://liaoooyx.com/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BB%83%E4%B9%A0%EF%BC%9A%E5%9B%BE%E5%83%8F%E5%AD%97%E5%B9%95%E7%94%9F%E6%88%90Image-Caption-Generation/</id>
     <published>2020-04-15T13:25:47.522Z</published>
     <updated>2020-04-17T16:10:35.688Z</updated>
     
@@ -271,41 +398,6 @@
       <category term="RNN" scheme="https://liaoooyx.com/tags/RNN/"/>
     
       <category term="encoder-decoder" scheme="https://liaoooyx.com/tags/encoder-decoder/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>LSTM和RNN</title>
-    <link href="https://liaoooyx.com/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/RNN%E5%92%8CLSTM/"/>
-    <id>https://liaoooyx.com/2020/04/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/RNN%E5%92%8CLSTM/</id>
-    <published>2020-04-11T23:00:00.000Z</published>
-    <updated>2020-04-15T17:30:02.481Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a><h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><p><a href="https://www.jianshu.com/p/89f3b045d9cb" target="_blank" rel="noopener">从结构上描述</a></p><p><a href="https://www.jianshu.com/p/7e6e55c48972" target="_blank" rel="noopener">从算法层面描述</a></p><p><a href="https://www.jianshu.com/p/9dc9f41f0b29" target="_blank" rel="noopener">整体描述LSTM</a></p><h4 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h4><p>循环神经网络的主要用途是处理和预测序列数据。</p><p>在全连接神经网络或者卷积神经网络中，都是从输入层到隐藏层再到输出层的，层与层之间都的全连接的，但<strong>每层之间的结点是无连接的</strong>。这就导致当前神经元没有前一个的记忆。而RNN的隐藏层之间的结点是有连接的，RNN的当前节点的输入包含上一层的输出和本层上一个节点的输出。</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdrer62l38j30ys0ae791.jpg" alt="截屏2020-04-12 下午4.37.36" style="zoom:33%;" /></p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdreshd3cuj30wg0d4wit.jpg" alt="截屏2020-04-12 下午4.38.49" style="zoom:33%;" /></p><p>它对短距离依赖很有效，但对长距离依赖的效果则变差</p><h4 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h4><p>LSTM 是一种特殊的RNN。通过精巧的设计（CNN中的深度残差网络也是类似）<strong>解决长序列训练过程中的梯度消失和梯度爆炸问题</strong>，即远距离传递导致的信息丢失问题。</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdret6tzvnj30vo0ca0yo.jpg" alt="截屏2020-04-12 下午4.39.32" style="zoom:33%;" /></p><h4 id="相关名词"><a href="#相关名词" class="headerlink" title="相关名词"></a>相关名词</h4><blockquote><p>Long-Term Dependencies —— 长距离依赖</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h4 id=&quot;参考文章&quot;&gt;&lt;a href=&quot;#参考文章&quot; class=&quot;headerlink&quot; title=&quot;参考文章&quot;&gt;&lt;/a&gt;参考文章&lt;/h4&gt;&lt;p&gt;&lt;a href=&quot;https://www.jianshu.com/p/89f3b045d
-      
-    
-    </summary>
-    
-    
-      <category term="人工智能" scheme="https://liaoooyx.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    
-      <category term="机器学习" scheme="https://liaoooyx.com/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="RNN" scheme="https://liaoooyx.com/tags/RNN/"/>
-    
-      <category term="机器学习" scheme="https://liaoooyx.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="人工智能" scheme="https://liaoooyx.com/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/"/>
-    
-      <category term="LSTM" scheme="https://liaoooyx.com/tags/LSTM/"/>
     
   </entry>
   
@@ -487,112 +579,6 @@
       <category term="微服务的虚拟化 unikernels" scheme="https://liaoooyx.com/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E7%9A%84%E8%99%9A%E6%8B%9F%E5%8C%96-unikernels/"/>
     
       <category term="工业4.0" scheme="https://liaoooyx.com/tags/%E5%B7%A5%E4%B8%9A4-0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>图形数据库 Neo4J</title>
-    <link href="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/"/>
-    <id>https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/</id>
-    <published>2020-03-20T20:04:14.000Z</published>
-    <updated>2020-03-26T03:49:37.319Z</updated>
-    
-    <content type="html"><![CDATA[<p>NoSQL可以被分成4类：键值对存储（MapReduce）、面向列的数据库（如Google Big Table）、文档数据库（MongoDB）、图形数据库（如Neo4J）</p><p>图形数据库主要用于存储具有更多关联的数据，而传统的RDBMS对大量数据的遍历性能不佳</p><p>图形数据库适合数据元素之间的关系与数据本身同样重要的项目</p><blockquote><p>由Neo4j，Inc.开发的图形数据库管理系统。它的开发人员将Neo4j描述为具有本机图形存储和处理的ACID兼容事务数据库，根据DB-Engines排名，Neo4j是最受欢迎的图形数据库，并且总体上是第22位最受欢迎的数据库。</p></blockquote><a id="more"></a><h4 id="NoSQL的种类"><a href="#NoSQL的种类" class="headerlink" title="NoSQL的种类"></a>NoSQL的种类</h4><p>NoSQL可以被分成4类：键值对存储（MySQL）、面向列的数据库（如Google Big Table）、文档数据库、图形数据库（如Neo4J）</p><h4 id="图-树结构的数据库"><a href="#图-树结构的数据库" class="headerlink" title="图/树结构的数据库"></a>图/树结构的数据库</h4><p>图包括2个元素：</p><ul><li><p>节点node：表示实体</p></li><li><p>关系relationship：表示2个节点之间是如何联系在一起的</p></li></ul><blockquote><p>2019年Twitter的每月活跃用户数量为3.21亿，通过图形数据库关联在一起</p></blockquote><h4 id="图形数据库-VS-传统的关系数据库管理系统RDBMS"><a href="#图形数据库-VS-传统的关系数据库管理系统RDBMS" class="headerlink" title="图形数据库 VS 传统的关系数据库管理系统RDBMS"></a>图形数据库 VS 传统的关系数据库管理系统RDBMS</h4><p>图形数据库主要用于存储更多连接的数据，而传统的RDBMS对大量数据的遍历(traverse)性能不佳</p><p>图形数据库适合：数据元素之间的关系与数据本身同样重要的项目</p><div class="table-container"><table><thead><tr><th>RDBMS</th><th>Graph DataBase</th></tr></thead><tbody><tr><td>表</td><td>图</td></tr><tr><td>行</td><td>节点</td></tr><tr><td>列和数据</td><td>属性和值</td></tr><tr><td>约束</td><td>关系</td></tr><tr><td>Joins</td><td>Traversal 遍历</td></tr></tbody></table></div><p>属性是用来表示数据的键值对</p><h3 id="Neo4J"><a href="#Neo4J" class="headerlink" title="Neo4J"></a>Neo4J</h3><p>是服从ACID的事务性数据库，提供自带的(native)图存储和处理</p><p>由Java编写，其他语言可以通过Cypher Query Language (CQL) 进行访问</p><blockquote><p>Cypher是一种声明性图形查询语言，它允许在属性图形中进行有表现力且有效的数据查询。</p></blockquote><h4 id="特征"><a href="#特征" class="headerlink" title="特征"></a>特征</h4><p>以CQL作为查询语言，类似于SQL的查询语言</p><p>遵循属性图数据模型 Property Graph Data Model</p><p>包含可执行CQL命令的用户接口（Neo4J数据浏览器）</p><p>尽管是NoSQL，但其他大多数图像界面一样，服从ACID</p><p>提供REST和JavaScript接口</p><h4 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h4><p>能够简单快速对<u>连接的数据</u>进行表示和获取</p><p>CQL的设计是人类可读的，并且易于学习</p><p>不需要复杂的Joins来获取连接的数据</p><h4 id="属性图数据模型"><a href="#属性图数据模型" class="headerlink" title="属性图数据模型"></a>属性图数据模型</h4><p>Neo4J使用属性图数据模型对数据进行存储和管理，Neo4J使用自带的图处理引擎GPE，对以这个格式存储的数据进行处理。该模型简单，只有少量的基本元素：</p><ul><li>数据由节点、关系和属性表示</li><li>节点和关系都包含属性</li><li>关系连接节点</li><li>属性是键值对</li><li><p>每个关系都包含“起始节点”和“结束节点”</p></li><li><p><strong>标签</strong>：将一系列的节点或关系用一个常用的名字管理起来。一个节点或关系可以有多个标签</p></li></ul><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd12m5xkukj30qw0bk0vr.jpg" alt="截屏2020-03-20下午8.52.53"></p><h4 id="可视化——Neo4J-数据浏览器"><a href="#可视化——Neo4J-数据浏览器" class="headerlink" title="可视化——Neo4J 数据浏览器"></a>可视化——Neo4J 数据浏览器</h4><p>Neo4J 2.0版开始自带。能够快速简单的图形数据库进行可视化和编辑</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd12sg645oj312g0faafz.jpg" alt="截屏2020-03-20下午8.58.59"></p><h4 id="Cypher查询语言"><a href="#Cypher查询语言" class="headerlink" title="Cypher查询语言"></a>Cypher查询语言</h4><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd12xhqnq2j311i0g2djr.jpg" alt="截屏2020-03-20下午9.03.50"></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;创建emp节点，标签名为Employee</span><br><span class="line">CREATE (emp:Employee)</span><br><span class="line">&#x2F;&#x2F; 创建包含属性的节点</span><br><span class="line">CREATE (emp:Employee &#123;employeeNumber:10, name&#x3D;“Paul”, location&#x3D;“Leeds”&#125; ) ;</span><br><span class="line">&#x2F;&#x2F; 获取数据</span><br><span class="line">MATCH (myresults: Employee)</span><br><span class="line">RETURN myresults.name, myresults.location</span><br></pre></td></tr></table></figure><h4 id="与Java整合"><a href="#与Java整合" class="headerlink" title="与Java整合"></a>与Java整合</h4><p>Neo4J有自带接口和Cypher接口与Java整合，Cypher接口能让用户通过Java接口直接执行CQL命令</p><h3 id="Neo4J-VS-MySQL"><a href="#Neo4J-VS-MySQL" class="headerlink" title="Neo4J VS MySQL"></a>Neo4J VS MySQL</h3><p>对于MySQL来说，表中的每个元素都有一组提前定义好的属性（列）</p><p>在Neo4J中，每个节点node等价于MySQL中的一行记录</p><ul><li>Label能将相似的数据归为同一组，比如用户组。相当于MySQL中的表，但同一组数据并不会真正的存储在一起，只是语义上的划分</li></ul><h4 id="图形数据库-VS-传统的RDBMS——以用户-餐厅为例"><a href="#图形数据库-VS-传统的RDBMS——以用户-餐厅为例" class="headerlink" title="图形数据库 VS 传统的RDBMS——以用户/餐厅为例"></a>图形数据库 VS 传统的RDBMS——以用户/餐厅为例</h4><p>传统数据库需要3张表分别表示用户、餐厅和关系：</p><ul><li><p>存储：<img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd167p6tmfj30em086q6v.jpg" alt="截屏2020-03-20下午10.57.26" style="zoom: 33%;" /></p></li><li><p>查询：</p></li></ul><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> user.*, restaurant.* </span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">user</span>, restaurant, joinTable </span><br><span class="line"><span class="keyword">WHERE</span> user.firstName = ‘Paul’ <span class="keyword">AND</span> user.id = joinTable.userId <span class="keyword">AND</span> restaurant.id = joinTable.restaurantId <span class="keyword">AND</span> joinTable.rating = ‘LOVED’</span><br></pre></td></tr></table></figure><p>图形数据库通过<u>节点</u>表示用户和餐厅，<u>关系</u>表示节点之间的关联信息，比如当用户写的评论可以直接储存在<u>关系</u>中</p><ul><li><p>存储：<img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd16bcna2jj30gu0cgwf3.jpg" alt="截屏2020-03-20下午11.00.43" style="zoom:33%;" /></p></li><li><p>查询：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Neo4J会忽略不匹配该模式的所有值</span><br><span class="line">&#x2F;&#x2F; 通过提供的变量名，可以使用name.property与所有匹配的节点或关系进行交互</span><br><span class="line">MATCH (u:User &#123;firstName:‘Paul&#39;&#125;)-[rel:LOVED]-&gt;(res:Restaurant) RETURN res</span><br><span class="line">MATCH (u:User)-[rel]-&gt;(res:Restaurant &#123;name:&#39;French Laundry&#39;&#125;) RETURN u</span><br></pre></td></tr></table></figure></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;NoSQL可以被分成4类：键值对存储（MapReduce）、面向列的数据库（如Google Big Table）、文档数据库（MongoDB）、图形数据库（如Neo4J）&lt;/p&gt;
-&lt;p&gt;图形数据库主要用于存储具有更多关联的数据，而传统的RDBMS对大量数据的遍历性能不佳&lt;/p&gt;
-&lt;p&gt;图形数据库适合数据元素之间的关系与数据本身同样重要的项目&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;由Neo4j，Inc.开发的图形数据库管理系统。它的开发人员将Neo4j描述为具有本机图形存储和处理的ACID兼容事务数据库，根据DB-Engines排名，Neo4j是最受欢迎的图形数据库，并且总体上是第22位最受欢迎的数据库。&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-      <category term="大数据" scheme="https://liaoooyx.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-      <category term="NoSQL" scheme="https://liaoooyx.com/tags/NoSQL/"/>
-    
-      <category term="Neo4J" scheme="https://liaoooyx.com/tags/Neo4J/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>云编程的现状</title>
-    <link href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/"/>
-    <id>https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/</id>
-    <published>2020-03-20T00:00:00.000Z</published>
-    <updated>2020-03-20T15:23:56.802Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="11-Cloud-Programming-Landscape-云编程"><a href="#11-Cloud-Programming-Landscape-云编程" class="headerlink" title="11 Cloud Programming Landscape 云编程"></a>11 Cloud Programming Landscape 云编程</h2><p>主要内容：</p><p>云编程的前景</p><p>在云中的执行应用程序和服务的框架</p><p>云服务生命周期</p><p>常用的编程框架和模型：MPI、MapReduce / Hadoop 、亚马逊、微软 Azure</p><a id="more"></a><h4 id="云产品的现状"><a href="#云产品的现状" class="headerlink" title="云产品的现状"></a>云产品的现状</h4><p>云产品可应用于以下领域：科学/技术（无人驾驶汽车）、商务（电商、消费者关系管理CRM、会计、企业资源规划ERP）、消费者/社交（FB、Gmail、Twitter）</p><h3 id="产品和服务的编程"><a href="#产品和服务的编程" class="headerlink" title="产品和服务的编程"></a>产品和服务的编程</h3><p>现有的框架支持对应用程序和服务进行编程，并在云中执行：</p><ol><li>新的接口用以开发程序：比如Azure、Google App Engine</li><li>基于服务的工作流程的图形（Web服务业务流程执行语言）</li><li>高性能计算：MPI，OpenMP</li><li>非通用编程模型：MapReduce，Aneka（用于在云上开发分布式应用的平台和框架）</li></ol><h3 id="云服务的生命周期"><a href="#云服务的生命周期" class="headerlink" title="云服务的生命周期"></a>云服务的生命周期</h3><p>编程模型/构造服务：</p><ul><li>编程模型——用于开发产品</li><li>应用包装器——用于创建服务清单</li><li>虚拟机镜像构造器——用于产生镜像</li></ul><p>部署服务</p><ul><li>产品管理器——经服务部署到云基础设施上</li><li>虚拟机上下文工具contextualiser——将服务的软件依赖嵌入到虚拟机镜像中，并支持运行时配置</li><li>产品监控器——在操作是监控服务</li></ul><p>操作服务：</p><ul><li>虚拟机管理器——将虚拟机部署到物理节点</li><li>虚拟机基础设施管理器——管理虚拟机</li><li>基础设施监控器——监控云资源 </li></ul><h3 id="构造云服务"><a href="#构造云服务" class="headerlink" title="构造云服务"></a>构造云服务</h3><p>云服务是专门为了在云基础设施上部署而开发、策划和配置的</p><p>需执行的活动有：</p><ol><li>服务开发：开发应用程序，为用户提供功能服务<ul><li>使用编程模型简化服务开发：MapReduce、MPI、COMP Superscalar</li></ul></li><li>准备好虚拟机，等服务开发完成后，将服务部署在虚拟机上</li><li><p>指定和配置服务需求，描述参数（功能性和非功能性）</p><ul><li>容量需求、位置限制、能源效率限制</li></ul><p>针对云量身定制的编程语言：GO——针对云项目Docker的编程语言，提供并发操作</p></li></ol><h4 id="例1：消息传递接口MPI"><a href="#例1：消息传递接口MPI" class="headerlink" title="例1：消息传递接口MPI"></a>例1：消息传递接口MPI</h4><p>高性能多重计算机的出现；需要面向消息的<u>原语Primitives</u>以轻松编写高效的应用程序</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd04xhtyu7j30ys0i8tbv.jpg" alt="截屏2020-03-20上午1.27.08" style="zoom: 33%;" /></p><p>问题：大多数内部交互网络和高性能多重计算机都自带专有的通信库——需要硬件独立的通信库</p><p>解决方案：MPI</p><ul><li>为并行产品设计</li><li>使用底层网络</li><li>假设通信发生在已知的进程组</li></ul><h5 id="消息传递模型"><a href="#消息传递模型" class="headerlink" title="消息传递模型"></a>消息传递模型</h5><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd04om93dyj30ou0lw418.jpg" alt="截屏2020-03-20上午1.18.52" style="zoom:33%;" /></p><p>消息同步传输：</p><ul><li><p>需要发送者与接受者配合，但“配合”并不总是反映在代码上。</p></li><li><p>比较一对一通信和集体通信</p></li></ul><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd04u6rjjuj30yg0aodgp.jpg" alt="截屏2020-03-20上午1.24.17"></p><h5 id="进程执行：裸机与虚拟环境的对比"><a href="#进程执行：裸机与虚拟环境的对比" class="headerlink" title="进程执行：裸机与虚拟环境的对比"></a>进程执行：裸机与虚拟环境的对比</h5><p>对消息传递的方式对进程来说没有区别，区别在于进程是位于裸机中还是虚拟机中</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd0503wa9hj30xu0nen3p.jpg" alt="截屏2020-03-20上午1.29.58" style="zoom:33%;" /></p><h4 id="例2：MapReduce——在大型集群上的可扩展数据处理"><a href="#例2：MapReduce——在大型集群上的可扩展数据处理" class="headerlink" title="例2：MapReduce——在大型集群上的可扩展数据处理"></a>例2：MapReduce——在大型集群上的可扩展数据处理</h4><ul><li>用于快速处理大规模数据集的编程模型</li><li>适用于网络规模的搜索和云计算产品</li><li>用户编写的<ul><li>map函数用于生成中间操作的键值对</li><li>reduce函数将键值对按键合并</li></ul></li></ul><h4 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h4><p>由雅虎开发的软件平台，让用户编写和运行基于大规模分布式数据的产品</p><p>特点：</p><ul><li>可扩展：可以轻松的在网络空间上扩展，存储和处理PB级的数据</li><li>经济的：开源框架，能够最小化过量的任务滋生和大规模数据通信</li><li>高效的：通过大量的简单节点，进行高度并行的数据处理</li><li>可靠的：自动维护多个数据备份，当发送故障时能够重新部署计算任务</li></ul><h3 id="部署云服务"><a href="#部署云服务" class="headerlink" title="部署云服务"></a>部署云服务</h3><p>成果：服务能够在云基础设施资源上运行</p><p>执行的活动有：</p><ul><li>选择最合适的基础设施来部署服务</li><li>当服务被部署后，确保服务按照其约束进行<ul><li>约束指的是在性能、成本、能耗等方面达成一致</li></ul></li><li>上下文（配置）信息的传递，当服务被部署后，上下文信息用于初始化服务</li></ul><h3 id="操作云服务"><a href="#操作云服务" class="headerlink" title="操作云服务"></a>操作云服务</h3><p>服务运行在云基础设之上</p><p>执行的活动有：</p><ul><li>满足服务需求的管理操作（比如服务质量）</li><li>资源分配机制（包括数据放置）</li><li>（被虚拟机、容器使用的）基础设施用量的监控机制</li><li>根据基础设备用量、历史模式、预测未来用量的变化的报告机制</li></ul><h3 id="在AWS上的并行编程"><a href="#在AWS上的并行编程" class="headerlink" title="在AWS上的并行编程"></a>在AWS上的并行编程</h3><p>部分亚马逊平台上提供的服务</p><ul><li><p>EC2 亚马逊弹性云服务：提供可重新调整计算能力的Web服务，为开发者设计，简化网络规模的云计算</p></li><li><p>S3 简单存储服务：为用户提供安全、可容忍、可高度扩展的对象存储，通过简单的网络服务接口，从网络的任何地方，对任何数量的数据进行存储和获取</p></li><li><p>EBS 弹性块存储：基于EC2实例，支持<u>块级别</u>存储大小的持久化</p></li><li><p>SimpleDB：高度可用和灵活的非关系数据存储，减少开发者对数据库管理的工作。开发者只要通过网络服务请求对数据进行查询和存储，SimpleDB负责其余的工作</p></li></ul><h4 id="EC2——AMI-亚马逊虚拟机镜像"><a href="#EC2——AMI-亚马逊虚拟机镜像" class="headerlink" title="EC2——AMI 亚马逊虚拟机镜像"></a>EC2——AMI 亚马逊虚拟机镜像</h4><p>AMI是虚拟机实例的模板，AMI是预装了软件Linux系统，部署在EC2上。</p><p>AMI的类型包括私有（个人创建和使用），公开（由用户创建，并在AWS社区发布，任何人都能使用），付费（由个人创建，其他用户可以付费使用）</p><h4 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h4><p>特点：</p><ul><li><p>基于对象的存储服务，对象是最基础的数据单元，每个对象的大小为1Byte-5GB</p><ul><li>使用Bucket来存储对象，用Key来获取数据对象</li><li>对象包括：键、值、元数据、访问控制</li></ul></li><li><p>通过地理分散实现冗余，99.99%的可用性目标，共有或私有，每个对象都有专门的URL，支持比特流BitTorrent</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;11-Cloud-Programming-Landscape-云编程&quot;&gt;&lt;a href=&quot;#11-Cloud-Programming-Landscape-云编程&quot; class=&quot;headerlink&quot; title=&quot;11 Cloud Programming Landscape 云编程&quot;&gt;&lt;/a&gt;11 Cloud Programming Landscape 云编程&lt;/h2&gt;&lt;p&gt;主要内容：&lt;/p&gt;
-&lt;p&gt;云编程的前景&lt;/p&gt;
-&lt;p&gt;在云中的执行应用程序和服务的框架&lt;/p&gt;
-&lt;p&gt;云服务生命周期&lt;/p&gt;
-&lt;p&gt;常用的编程框架和模型：MPI、MapReduce / Hadoop 、亚马逊、微软 Azure&lt;/p&gt;
-    
-    </summary>
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Apache Spark</title>
-    <link href="https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/16%20APACHE%20SPARK/"/>
-    <id>https://liaoooyx.com/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/16%20APACHE%20SPARK/</id>
-    <published>2020-03-16T00:00:00.000Z</published>
-    <updated>2020-04-27T15:25:37.012Z</updated>
-    
-    <content type="html"><![CDATA[<p><strong>MapReduce的限制</strong></p><ol><li>MapReduce编程对许多人来说都是有难度的</li><li>性能通常会遇到瓶颈（因为批处理不适合所需的用例）</li></ol><p>这导致MapReduce不适用于大型应用程序。因此出现了多种专业系统的发展。</p><p> 因此Spark面世——将所有的专业系统整合到一起</p><a id="more"></a><h2 id="Apache-Spark"><a href="#Apache-Spark" class="headerlink" title="Apache Spark"></a>Apache Spark</h2><p>是一个通用目的数据处理引擎，为不同的需求设计，</p><ul><li>更快的批处理</li><li>应用需要交互式查询处理</li><li>处理流数据</li><li>系统需要迭代算法</li></ul><p>特征：</p><ul><li>是in-memory的计算引擎（充分利用内存）</li><li>用磁盘时比Hadoop快10倍，用内存时比Hadoop快100倍</li></ul><h4 id="Spark-结构"><a href="#Spark-结构" class="headerlink" title="Spark 结构"></a>Spark 结构</h4><p>Spark不提供任何类似HDFS的存储或者资源管理能力，它是一个以几乎实时的方式，处理大量数据的，统一的框架</p><p>三个主要的分层：</p><ol><li>生态层：基于核心层执行操作的库<ul><li>Spark SQL， Spark Streaming， BlinkDB， Spark ML， GraphX， Tachyon</li></ul></li><li>核心层：框架的通用层，它定义了所有的基础功能，其他功能和扩展都是基于这一层创建的<ul><li>Spark Core，Spark DataFrame API</li></ul></li><li>资源管理层：Spark以独立模式（单节点群集设置）管理自己的资源。 但是对于分布式集群模式，它可以与YARN之类的资源管理模块集成在一起。<ul><li>Standalone，YARN，Mesos</li></ul></li></ol><p>结构：</p><ul><li>Spark应用程序在集群上作为独立的进程集运行，由SparkContext对象（也称为驱动程序）协调。<ul><li>每个应用程序都有其自己的执行程序进程，这些进程在整个应用程序期间保持不变，并在多个线程中运行任务。</li><li>这具有将应用程序彼此<strong>隔离</strong>的好处——每个驱动程序调度自己的任务，并且来自不同应用程序的任务在不同的JVM中运行。</li><li>但是，这也意味着，如果不将数据写入外部存储系统，则无法在不同的Spark应用程序（SparkContext实例）之间共享数据。</li></ul></li><li>SparkContext负责将应用程序代码（JAR或Python文件）和任务发送给执行程序。</li><li>每个驱动程序都有一个Web UI，通常在端口4040上，该Web UI显示有关正在运行的任务，执行程序和存储使用情况的信息。</li></ul><h4 id="语言支持"><a href="#语言支持" class="headerlink" title="语言支持"></a>语言支持</h4><p>提供了Java、Scala、Python的high-level APIs</p><p>提供了优化引擎支持：产生执行图，结构化数据处理的高级工具</p><h3 id="Spark-Core"><a href="#Spark-Core" class="headerlink" title="Spark Core"></a>Spark Core</h3><p>处理：</p><ul><li>内存管理和容错</li><li><p>对集群上的任务jobs进行调度，分配，监控</p></li><li><p>与存储系统进行交互</p></li></ul><p>它也实现了弹性分布式数据库（RDDs）的关键概念。</p><ul><li>RDD是对象的不可变容错分布式集合，可以并行操作。</li><li>RDD可以包含任何类型的对象，并且可以通过加载外部数据集或从驱动程序分配集合来创建</li><li>RDD是分布在整个集群中的数据集的表示。</li></ul><h4 id="弹性分布式数据库-RESILIENT-DISTRIBUTED-DATABASES（RDDs）"><a href="#弹性分布式数据库-RESILIENT-DISTRIBUTED-DATABASES（RDDs）" class="headerlink" title="弹性分布式数据库 RESILIENT DISTRIBUTED DATABASES（RDDs）"></a>弹性分布式数据库 RESILIENT DISTRIBUTED DATABASES（RDDs）</h4><ul><li>RDDs可以被存储在内存或磁盘中，主要的性能来自于将数据存在内存中<ul><li>诸如MapReduce之类的当前框架提供了许多用于<u>访问集群的计算资源的接口</u>，但是缺乏<u>利用分布式内存的接口。</u></li></ul></li><li>Spark的优势：<ul><li>数据重用在许多迭代ML算法中很常见，例如K-means聚类。另一个示例是当用户对同一数据子集运行多个临时查询时。</li></ul></li><li>在Hadoop（和其他框架）中，在不同作业之间<u>重用数据的唯一方法</u>是将其写入外部存储系统（例如HDFS）。使用内存中的RDD，可以更快地处理数据。可以存储在分布式内存中的数据大小仅受群集大小限制。</li></ul><h4 id="RDD操作"><a href="#RDD操作" class="headerlink" title="RDD操作"></a>RDD操作</h4><ul><li>Transformations 转换：在RDD上执行并产生包含结果的新RDD的操作（例如，映射，过滤器，联接，联合等）</li><li>Actions 行动：在RDD上运行计算后返回值的操作（例如reduce，count，first等）。</li></ul><p>Spark上的转换操作是lazy的，并不会立即执行。只有当行动被调用时，转换才会执行。执行的结果将返回给驱动程序。该设计能提高Spark的运行效率</p><h4 id="Lazy-（Transformations）评估"><a href="#Lazy-（Transformations）评估" class="headerlink" title="Lazy （Transformations）评估"></a>Lazy （Transformations）评估</h4><p>转换是对数据的操纵。 它们从一个RDD转换到下一个。</p><p>比如：一个Action查询数据集中有多少数据，Spark在收到查询后，才会进行Transformations，再将结果返回给Action</p><h4 id="RDD用例"><a href="#RDD用例" class="headerlink" title="RDD用例"></a>RDD用例</h4><p>假设我们必须在大量的Web服务器访问日志中查找错误代码。</p><p>我们可以使用MapReduce，Storm或我们喜欢的任何框架来读取文件集，查找特定的错误代码，并将带有该代码的所有行放入存储设备（例如HDFS）</p><p>然后，当我们分析这些结果数据时，我们可能希望将错误与其他用户活动进行交叉引用cross-reference。 这将要求我们再次获取文件，处理并提供结果等。</p><p>对于传统方式需要重复对磁盘进行查询，而RDD是将数据存储在内存中，并提供了重新查询所用子集的功能。 </p><p>内存中数据存储非常适合许多迭代和交互式算法</p><h4 id="RDD容错"><a href="#RDD容错" class="headerlink" title="RDD容错"></a>RDD容错</h4><p>设计RDD的主要挑战是定义一个可提供有效容错能力的编程接口。</p><ul><li>故障是系统中的缺陷defect。</li><li>错误error是系统边界内观察到的行为与系统的指定行为之间的<strong>差异</strong></li><li>故障failure是系统当时<u>显示的行为</u>与<u>规范相反</u>的<strong>实例</strong></li></ul><p>现有解决方案提供基于<strong>细粒度更新</strong>的容错接口。</p><ul><li><p>使用这样的系统，获得容错的唯一方法，是<u>跨计算机复制数据</u>或<u>跨计算机记录更新</u>。</p></li><li><p>这些方法是数据密集型的——<strong>高带宽</strong>用于在群集网络上移动数据。</p></li></ul><p>RDD提供了基于粗粒度转换的接口（例如，映射，过滤器，联接）。 这些转换将相同的操作应用于许多数据项。</p><ul><li><p>这允许通过记录用于构建数据库的转换而不是实际数据本身来有效地应用容错。</p></li><li><p>如果RDD的分区丢失，则RDD具有有关如何从其他RDDS派生出来的足够信息，以便仅重新计算该分区。</p></li></ul><h4 id="RDD的限制"><a href="#RDD的限制" class="headerlink" title="RDD的限制"></a>RDD的限制</h4><p>不适合非迭代应用程序，因为Spark的主要性能提升是内存数据的迭代。</p><p>RDD也不太适合对共享状态进行异步细粒度更新的应用程序，例如Web应用程序的存储系统或增量Web爬虫。批量转换对于小的更新是浪费的。</p><h4 id="传统的流处理管道"><a href="#传统的流处理管道" class="headerlink" title="传统的流处理管道"></a>传统的流处理管道</h4><ol><li>从数据源接收流数据</li><li>在集群上并行处理流数据</li><li>将数据输出到下游的系统</li></ol><p>大多数传统的流处理器使用连续操作器（continuous operator）模型进行数据处理</p><ul><li>一组工作节点，每个工作节点运行一个或多个连续操作器</li><li>每个连续的操作器一次处理流数据一个记录，然后将记录转发给管道中的其他操作器。</li><li>有源操作器用于从采集系统接收数据，而下沉操作器则输出到下游系统。</li></ul><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcwbap19kxj30o80e4wii.jpg" alt="截屏2020-03-16下午6.05.24"></p><p>比如Apache Storm；这是一个非常优雅的解决方案，但是随着系统变得越来越大以及大数据分析的复杂性增加，使用此模型面临着越来越多的挑战。</p><h4 id="传统流数据处理系统的问题"><a href="#传统流数据处理系统的问题" class="headerlink" title="传统流数据处理系统的问题"></a>传统流数据处理系统的问题</h4><p><strong>故障和任务被卡主（straggling）：</strong></p><ul><li><p>随着规模扩大，集群节点故障或者无法预测的变慢（比如stragglers，掉队者）的可能性会增加</p></li><li><p>系统需要能自动从故障和卡住的任务（stragglers）中恢复，以实时提供结果</p></li><li>将<u>连续操作器</u>静态分配给工作节点，会使传统系统很难从故障和卡住的任务（stragglers）中快速恢复。</li></ul><p><strong>负载平衡：</strong></p><ul><li>Workers之间的处理负载分配不均，会导致连续操作器系统出现瓶颈。</li><li>这在大型集群和动态变化的工作负载中更可能发生。</li><li>系统需要能够根据工作负载动态调整资源分配。</li></ul><p><strong>流、批处理、交互式工作负载的统一：</strong></p><ul><li>在许多使用案例中，以交互方式查询流数据或将其与静态数据集（例如，预先计算的模型）结合起来很有吸引力。</li><li>在连续的操作器系统中，这很难做到，因为它们并非旨在动态地为临时查询引入新的运算器</li><li>这需要一个可以结合批处理，流式处理和交互式查询的引擎。</li></ul><p><strong>高级分析：</strong></p><ul><li><p>复杂的工作负载需要连续的学习和更新数据模型，甚至是用sql查询最新的流数据视图</p></li><li><p>使这些分析任务具有通用抽象（API），能让开发人员的工作更加轻松</p></li></ul><h4 id="离散流-Discretized-Streams-——-解决方案"><a href="#离散流-Discretized-Streams-——-解决方案" class="headerlink" title="离散流 Discretized Streams —— 解决方案"></a>离散流 Discretized Streams —— 解决方案</h4><p>为了解决这些问题，Spark Streaming组件使用称为离散化流的新架构，该架构直接利用了Spark引擎的库和容错能力。</p><ul><li>Spark Streaming接收器不会一次读取单个数据记录，而是将数据流离散化为亚秒级的微小批量（RDDs）。（即接收者并行接受数据并将其缓冲在Spark worker节点的内存中）。然后，Spark引擎运行简短的任务（数十毫秒）以处理批处理并将结果输出到其他系统。</li></ul><p>与连续操作器模型不同，Spark任务根据数据的位置和可用资源动态分配给工作人员。这是为了实现更好的负载平衡和更快的故障恢复。</p><ul><li>每个数据的batches都是一个RDD。这允许使用任何Spark代码或库来处理流数据。</li></ul><h4 id="DSP好处：动态负载平衡"><a href="#DSP好处：动态负载平衡" class="headerlink" title="DSP好处：动态负载平衡"></a>DSP好处：动态负载平衡</h4><p>将数据划分为多个微批，可以将计算能力以细粒度的方式分配给资源。</p><p>以字数统计为例：分区不均衡的流会导致某个节点过载，达到瓶颈；而将数据离散Discretized 后，可以根据节点的负载对任务进行分配和调度。</p><h4 id="DSP好处：从故障和卡住的任务中快速恢复"><a href="#DSP好处：从故障和卡住的任务中快速恢复" class="headerlink" title="DSP好处：从故障和卡住的任务中快速恢复"></a>DSP好处：从故障和卡住的任务中快速恢复</h4><p>传统流：</p><ul><li>万一发生节点故障，传统系统必须在另一个节点上重新启动发生故障的连续运算器，并重播数据流的某些部分以重新计算丢失的信息。（请注意，在重播后新节点赶上之前，管道无法继续进行。）</li></ul><p>Spark流（离散流）</p><ul><li><p>可以在集群中的所有其他节点上并行重新启动失败的任务，从而将所有重新计算均匀地分布在多个节点上，从而从故障中恢复。</p><p><u>计算已经离散化为可以在任何地方运行而不会影响正确性的任务。</u></p></li></ul><h4 id="DSP好处：流、批处理、交互的统一"><a href="#DSP好处：流、批处理、交互的统一" class="headerlink" title="DSP好处：流、批处理、交互的统一"></a>DSP好处：流、批处理、交互的统一</h4><p>Spark Streaming中的关键编程接口是DStream或分布式流。 每一批流数据都由RDD表示，因此DStream只是一系列RDD。</p><p>因此，我们可以使用任何Spark函数处理DStream。例如，我们可以将DStream与预先计算的静态数据集（已加载到另一个RDD中）结合在一起</p><p>数据批存储在workers的内存中，因此可以按需交互查询。<br>批处理，流和交互式工作负载的这种统一在Spark中非常简单，但是在没有<u>工作负载的通用接口</u>的系统中很难实现</p><h4 id="DSP好处：高级分析"><a href="#DSP好处：高级分析" class="headerlink" title="DSP好处：高级分析"></a>DSP好处：高级分析</h4><p>DStreams生成的RDD可以转换为DataFrames并使用SQL查询</p><p>例如，使用Spark的JDBC驱动程序，可以公开流的状态，并支持SQL语句进行查询。</p><p>然后，通过JDBC服务器，就能够以交互方式（比如SQL命令、GUI）查询持续更新的表。</p><h4 id="Spark流：性能"><a href="#Spark流：性能" class="headerlink" title="Spark流：性能"></a>Spark流：性能</h4><p>实际上，Spark Streaming具有批处理数据和利用Spark引擎的能力，可以使吞吐量与其他流系统相当或更高。</p><ul><li>Spark Streaming可以实现低至几百毫秒的延迟。</li></ul><p>开发人员有时会问微批处理是否会固有地增加过多的延迟。</p><ul><li>实际上，批处理延迟仅是端到端管道延迟的一小部分。</li></ul><ul><li>例如，许多应用程序在滑动窗口上计算结果，甚至在COS中，该窗口也仅定期更新（例如，每2秒滑动20秒的窗口）。</li></ul><ul><li>许多管道等待很短的时间来处理延迟或乱序的数据。</li></ul><ul><li>最后，任何自动触发算法都倾向于等待一段时间才能触发。</li></ul><p>同样，DStreams带来的吞吐量提高通常意味着您需要更少的计算机来处理相同的工作负载。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;&lt;strong&gt;MapReduce的限制&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;MapReduce编程对许多人来说都是有难度的&lt;/li&gt;
-&lt;li&gt;性能通常会遇到瓶颈（因为批处理不适合所需的用例）&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;这导致MapReduce不适用于大型应用程序。因此出现了多种专业系统的发展。&lt;/p&gt;
-&lt;p&gt; 因此Spark面世——将所有的专业系统整合到一起&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="大数据" scheme="https://liaoooyx.com/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-    
-      <category term="Spark" scheme="https://liaoooyx.com/tags/Spark/"/>
-    
-      <category term="RDD" scheme="https://liaoooyx.com/tags/RDD/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>云计算/10 云中间件，配置管理，PaaS</title>
-    <link href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/10%20%E4%BA%91%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%8C%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%EF%BC%8CPaaS/"/>
-    <id>https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/10%20%E4%BA%91%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%8C%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%EF%BC%8CPaaS/</id>
-    <published>2020-03-12T18:19:46.893Z</published>
-    <updated>2020-03-20T00:39:38.810Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="10-云中间件，配置管理，PaaS"><a href="#10-云中间件，配置管理，PaaS" class="headerlink" title="10 云中间件，配置管理，PaaS"></a>10 云中间件，配置管理，PaaS</h2><h4 id="云计算的好处"><a href="#云计算的好处" class="headerlink" title="云计算的好处"></a>云计算的好处</h4><ul><li>弹性资源：自治的资源按需供应（通过实用的模型）</li><li><p>多重租赁：多个用户并发使用相同资源</p></li><li><p>工作负载整合：将利用不足的资源释放，把工作负载低的虚拟机整合到同一个物理机器上。</p></li></ul><h4 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h4><p>位于网络中分布式计算系统每一侧的操作系统和应用程序之间的软件层：</p><ul><li>连接不同的软件组件</li><li>是在系统和分布式软件之间的软件层</li><li><p>隐藏了分布式系统的复杂性和多样性 heterogeneity</p></li><li><p>连接了低层次的OS通信（系统级别的通信实现）和编程语言抽象（通信的接口）的间隔</p></li><li><p>为分布式应用提供了常用的编程接口和基础设施</p></li><li>促进资源服务的使用</li><li>将应用与基础设施连接</li></ul><h4 id="Platform-as-a-Service-PaaS"><a href="#Platform-as-a-Service-PaaS" class="headerlink" title="Platform as a Service (PaaS)"></a>Platform as a Service (PaaS)</h4><p>定义：“向消费者提供的功能是将使用提供商提供的编程语言，库，服务和工具创建的，由消费者创建或获取的应用程序部署到云基础架构上。 使用者不管理或控制包括网络，服务器，操作系统或存储在内的底层云基础架构，但可以控制已部署的应用程序以及应用程序托管环境的配置设置。</p><p>简单的定义：在基本虚拟资源（即虚拟机，块存储）管理之外提供的任何服务。</p><p>是什么：是一种云中间件；提供<u>软件解决方案堆栈</u>即服务；可以聚合其他PaaS和IaaS供应商服务；通常由工具和/或库(APIs)组成</p><p>用处：通过抽象简化应用开发；通过简化管理促进应用部署</p><h4 id="PaaS例子"><a href="#PaaS例子" class="headerlink" title="PaaS例子"></a>PaaS例子</h4><ul><li>• Google App Engine</li><li>• Amazon Web Services<ul><li>– Amazon RDS (Relational Database Service) </li><li>– Amazon Elastic Transcoder</li></ul></li><li>• Hadoop Project<ul><li>– MapReduce</li><li>– Hbase: Bigtable-like capabilities on top of Hadoop and HDFS</li></ul></li></ul><h4 id="云服务的生命周期"><a href="#云服务的生命周期" class="headerlink" title="云服务的生命周期"></a>云服务的生命周期</h4><ol><li>construction：开发、组合、配置</li><li>deployment：选择供应商、部署、上下文化</li><li>operation：调度、优化、执行、重新上下文化</li></ol><h4 id="配置管理-Configuration-Management-CM"><a href="#配置管理-Configuration-Management-CM" class="headerlink" title="配置管理 Configuration Management (CM)"></a>配置管理 Configuration Management (CM)</h4><p>用于：在构造阶段后（但不是在部署和操作阶段），在大规模机器上（10k）配置应用和中间件</p><p>例子：puppet、chef</p><h4 id="Puppet"><a href="#Puppet" class="headerlink" title="Puppet"></a>Puppet</h4><p>提供基于图像的和模型驱动的方式；通过人类可读的DSL（Domain Specific Language）实现；资源是存储在“清单”中的配置单位；可以将资源编译到定义依赖项的目录中（作为有向非循环图）；目录已应用于系统以对其进行配置；在许多计时器步骤中，配置更改是不确定的（最终应用）</p><h4 id="Chef"><a href="#Chef" class="headerlink" title="Chef"></a>Chef</h4><p>是Puppet的一个受欢迎的分支；</p><p>主要区别：天生就是确定性的 Deterministic</p><p>强调启动一个新的服务（适合虚拟机和云）</p><p>按顺序应用配置，且用户可知</p><p>使用烹饪的类比：<br>•创建配方（安装步骤或脚本的预算）<br>•使用刀（用于管理的命令行工具）<br>•存储在服务器内的食谱中</p><h4 id="Chef的结构"><a href="#Chef的结构" class="headerlink" title="Chef的结构"></a>Chef的结构</h4><p>Client-Server架构</p><p>服务器推送配置变更</p><p>客户端在机器上实施配置变更</p><h4 id="配置管理在Cloud上的问题"><a href="#配置管理在Cloud上的问题" class="headerlink" title="配置管理在Cloud上的问题"></a>配置管理在Cloud上的问题</h4><ol><li>云环境天生就是动态的：CM工具并不是用于处理有弹性的资源集合（AWS Elastic Beanstalk 是Chef的云生命周期可感知版）；因为云的生命周期，导致云应用和普通应用不一样（Useful in Construction，What about: Deployment, Operation?）</li><li>遗留软件如何迁移到云：如何使遗留软件和他们的中间件适应云的动态特征（如何将云的dynamic nature提取走）</li><li>如何构建可内部交互的云应用</li></ol><h4 id="Contextualization-上下文化"><a href="#Contextualization-上下文化" class="headerlink" title="Contextualization 上下文化"></a>Contextualization 上下文化</h4><p>定义：上下文是在部署到特定环境期间自主配置应用程序的各个组件并支持软件堆栈的过程。</p><p>通过在整个生命周期内通过PaaS组件配置SaaS和PaaS，启用弹性云软件堆栈。<br>通过通用配置机制支持旧式中间件<br>通过recontextualization 实现IaaS提供程序的互操作性</p><p>上下文化机制的两个阶段：</p><ul><li>Deployment：从环境中（在PaaS层）采集动态生成的配置数据</li><li>Operation：由VM boot触发，使用上述数据的软件配置</li></ul><p>被OpenNebula和OpenStack采用，用于使软件使用Iaas供应商的环境，例如：</p><ul><li>配置基础网络（静态和动态）</li><li>配置虚拟机秘钥识别（SSH VPN）</li><li>连接基于网络的存储</li></ul><h4 id="Operation阶段的上下文化"><a href="#Operation阶段的上下文化" class="headerlink" title="Operation阶段的上下文化"></a>Operation阶段的上下文化</h4><ul><li>配置数据是如何传递到虚拟机的（见图）</li><li>在boot阶段安装ISO光盘镜像（ISO CD image）：上下文数据通过网络脚本传递到虚拟机内部的脚本上，由脚本创建软件专门的配置文件和域数据</li><li>配置文件和数据用于设置云环境中，软件依赖和中间件服务的上下文，</li></ul><h4 id="Recontextualization-重新上下文化"><a href="#Recontextualization-重新上下文化" class="headerlink" title="Recontextualization 重新上下文化"></a>Recontextualization 重新上下文化</h4><p>在Operation阶段（runtime）改变配置数据</p><blockquote><p>The recontextualizer is responsible for triggering the creation and association of new infrastructure class context data when applicable domains are migrated to the infrastructure.</p></blockquote><p>触发：虚拟机实时迁移Live Migration，比如本地环境变量更改，但无需重启reboot，因此需要触发机制，而不是有规律的执行</p><p>在重新上下文化的过程中，虚拟机将会持续运行，自动的，且更改对应用是透明的</p><h4 id="Contextualizer-结构"><a href="#Contextualizer-结构" class="headerlink" title="Contextualizer 结构"></a>Contextualizer 结构</h4><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gcsnmpoczxj31c00g2dlv.jpg" alt="截屏2020-03-13下午2.09.51"></p><blockquote><p>Figure 3 also includes the order in which components are called. From the figure it can be seen that the Contextualizer component is invoked by the VM Manger during application deployment (step 1) to create ISO images (steps 2, 3), create VM images (steps 4, 5) and/or manip- ulate VM images (steps 6, 7). After images have been created and/or manipulated, they are stored in a local data repository (step 8) for deployment by the VM Manager. During operation, if an event from the underlying hypervisor indicates that a VM has been stopped, started or migrated (step 9), alterations to the existing ISO images are made (steps 10, 11) and reinserted into the VM’s virtual device (step 12).</p></blockquote><p>从图中可以看出，在应用程序部署期间，VM管理器调用了Contextuizer组件（步骤1）以创建ISO映像（步骤2、3），创建VM映像（步骤4、5）和/或操作 -确定VM映像（步骤6、7）。 创建和/或操作映像后，它们将存储在本地数据存储库中（步骤8），以供VM Manager进行部署。 在操作过程中，如果来自底层管理程序的事件指示VM已停止，启动或迁移（步骤9），则对现有ISO映像进行更改（步骤10、11），然后将其重新插入VM的虚拟设备中（ 第12步）。</p><h4 id="Recontextualization-例子"><a href="#Recontextualization-例子" class="headerlink" title="Recontextualization 例子"></a>Recontextualization 例子</h4><p>由于先前的设置，分布式文件系统的操作性能可能会在实时迁移后降低</p><p>客户端数据与远程服务节点交互，而不是附近的节点</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;10-云中间件，配置管理，PaaS&quot;&gt;&lt;a href=&quot;#10-云中间件，配置管理，PaaS&quot; class=&quot;headerlink&quot; title=&quot;10 云中间件，配置管理，PaaS&quot;&gt;&lt;/a&gt;10 云中间件，配置管理，PaaS&lt;/h2&gt;&lt;h4 id=&quot;云计算的好
-      
-    
-    </summary>
-    
-    
     
   </entry>
   

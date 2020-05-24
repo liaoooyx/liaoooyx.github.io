@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="J. Charles et al., Virtual Immortality: Reanimating Characters from TV Shows, VARVAI workshop at ECCV, 2016.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从电视节目中恢复角色">
+<meta property="og:url" content="https://liaoooyx.com/2020/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/05next%20%E4%BB%8E%E7%94%B5%E8%A7%86%E4%B8%AD%E6%8D%95%E8%8E%B7%E4%BA%BA%E7%89%A9/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="J. Charles et al., Virtual Immortality: Reanimating Characters from TV Shows, VARVAI workshop at ECCV, 2016.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1cjbvhh9j31180e0tpn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1cly0prwj30vu0bo173.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1gk2466fj30yk0dg119.jpg">
+<meta property="og:image" content="https://liaoooyx.com/Library/Application%20Support/typora-user-images/%E6%88%AA%E5%B1%8F2020-05-22%20%E4%B8%8B%E5%8D%8812.43.54.png">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1h0dq95yj30l40g8wi4.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1hgebu64j310e0j47wh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1hbh7p21j310y0oun5s.jpg">
+<meta property="article:published_time" content="2020-03-04T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-22T12:18:19.674Z">
+<meta property="article:author" content="liaoooyx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1cjbvhh9j31180e0tpn.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/05next%20%E4%BB%8E%E7%94%B5%E8%A7%86%E4%B8%AD%E6%8D%95%E8%8E%B7%E4%BA%BA%E7%89%A9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>从电视节目中恢复角色 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/05next%20%E4%BB%8E%E7%94%B5%E8%A7%86%E4%B8%AD%E6%8D%95%E8%8E%B7%E4%BA%BA%E7%89%A9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从电视节目中恢复角色
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-04 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-04T00:00:00+00:00">2020-03-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-22 13:18:19" itemprop="dateModified" datetime="2020-05-22T13:18:19+01:00">2020-05-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>J. Charles et al., Virtual Immortality: Reanimating Characters from TV Shows, VARVAI workshop at ECCV, 2016.</p>
+<a id="more"></a>
+<h4 id="移除视频中的背景声音"><a href="#移除视频中的背景声音" class="headerlink" title="移除视频中的背景声音"></a>移除视频中的背景声音</h4><p>比如音乐、笑声等</p>
+<h4 id="自动音素标记"><a href="#自动音素标记" class="headerlink" title="自动音素标记"></a>自动音素标记</h4><p>使用【动态编程】和【美式英语声学模型】将【transcript】与音频对齐</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1cjbvhh9j31180e0tpn.jpg" alt="截屏2020-05-22 上午10.16.44" style="zoom:50%;" /></p>
+<blockquote>
+<p>If you already have 【transcripts】 for your videos, 【transcript alignment】 is the fastest and least expensive way to create captions and use interactive video plugins.</p>
+</blockquote>
+<h4 id="面部识别与追踪"><a href="#面部识别与追踪" class="headerlink" title="面部识别与追踪"></a>面部识别与追踪</h4><p>正面面部识别(Viola and Jones, CVPR 2001)——Frontal face</p>
+<p>使用关键点进行侧面追踪(Shi and Tomasi, CVPR 1994)——Profile</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1cly0prwj30vu0bo173.jpg" alt="截屏2020-05-22 上午10.19.21" style="zoom:50%;" /></p>
+<h4 id="自动人物标记"><a href="#自动人物标记" class="headerlink" title="自动人物标记"></a>自动人物标记</h4><ol>
+<li>从对齐的【transcript】中，用<u>人名</u>标记<u>单独的人脸轨迹</u></li>
+<li>使用【深度人脸特征 deep face features】训练分类器 （Parkhi et al., BMVC 2015）</li>
+<li>对所有的【人脸轨迹】进行分类，并将分类器识别程度最高的<u>人脸轨迹标签加入到训练集中</li>
+<li>重复2、3步骤：从对齐的【transcript】中，使用<u>未分配的人名</u>，对<u>还未标记的单独的人脸轨迹</u>进行重新训练（标记）</li>
+<li>深度人脸识别</li>
+</ol>
+<h4 id="深度人脸识别"><a href="#深度人脸识别" class="headerlink" title="深度人脸识别"></a>深度人脸识别</h4><p>（Parkhi et al., Deep Face Recognition, BMVC 2015）</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1gk2466fj30yk0dg119.jpg" alt="截屏2020-05-22 下午12.35.59" style="zoom:50%;" /></p>
+<h4 id="提取动态视位"><a href="#提取动态视位" class="headerlink" title="提取动态视位"></a>提取动态视位</h4><p>从检测到嘴部区域中，给每个音位（发音）提取视位（嘴型），捕捉共同发音（co-articulation）</p>
+<blockquote>
+<p>co-articulation：the articulation of two or more speech sounds together, so that one influences the other.<br>共同发音：两个或两个以上语音的表达一起发出声音，从而使一个影响另一个。</p>
+</blockquote>
+<p><img src="../../../../../Library/Application Support/typora-user-images/截屏2020-05-22 下午12.43.54.png" alt="截屏2020-05-22 下午12.43.54" style="zoom:50%;" /></p>
+<h4 id="语言模型"><a href="#语言模型" class="headerlink" title="语言模型"></a>语言模型</h4><p>针对每个人的说法方式，建立对应的语言模型——LSTM，deep RNN，基于字符（因为说话的方式可能是非标准的单词或句子结构）</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1h0dq95yj30l40g8wi4.jpg" alt="截屏2020-05-22 下午12.51.39" style="zoom:33%;" /></p>
+<h4 id="生成对话"><a href="#生成对话" class="headerlink" title="生成对话"></a>生成对话</h4><p>对训练好的网络进行采样，来生成对话。</p>
+<p>通过还使用【Levenshtein/edit distance】显示训练集中的最佳匹配句子，可以显示每个生成句子的<u>唯一性</u>。</p>
+<blockquote>
+<p>Levenshtein/edit distance 原理：从一个句子变化成另一个句子，需要改变多少个字符</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1hgebu64j310e0j47wh.jpg" alt="截屏2020-05-22 下午1.06.57" style="zoom: 50%;" /></p>
+<h4 id="文本到语言"><a href="#文本到语言" class="headerlink" title="文本到语言"></a>文本到语言</h4><ol>
+<li>为某个人生成人物对话</li>
+<li>合成人物语音（通过软件）</li>
+<li>基于1、2步骤，合成嘴型（将嘴部动作与音位（发音）对齐）</li>
+<li>与背景视频融合</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf1hbh7p21j310y0oun5s.jpg" alt="截屏2020-05-22 下午1.01.58" style="zoom: 33%;" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/12%20Bloom%20filters%20%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="prev" title="Bloom filters 布隆过滤器">
+      <i class="fa fa-chevron-left"></i> Bloom filters 布隆过滤器
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/11%20Hadoop%E5%92%8CMapReduce%E7%9A%84%E5%8F%91%E5%B1%95/" rel="next" title="Hadoop和MapReduce的发展">
+      Hadoop和MapReduce的发展 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#移除视频中的背景声音"><span class="nav-text">移除视频中的背景声音</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动音素标记"><span class="nav-text">自动音素标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#面部识别与追踪"><span class="nav-text">面部识别与追踪</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自动人物标记"><span class="nav-text">自动人物标记</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#深度人脸识别"><span class="nav-text">深度人脸识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提取动态视位"><span class="nav-text">提取动态视位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#语言模型"><span class="nav-text">语言模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成对话"><span class="nav-text">生成对话</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本到语言"><span class="nav-text">文本到语言</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

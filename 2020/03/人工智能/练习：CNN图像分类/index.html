@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="实验步骤和分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CNN图像分类">
+<meta property="og:url" content="https://liaoooyx.com/2020/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BB%83%E4%B9%A0%EF%BC%9ACNN%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="实验步骤和分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduxi6uxvsj31320ioe5h.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduxixih8lj311m0d6qoo.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy0gqk30j30um0ec49z.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy110xrwj30uw0e0n8i.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy1ia24zj311s0dw7jy.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy2hyckcj311y0euakn.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy3hpsi1j30u00u6b29.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy3qjgaoj313e0eejuh.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy4h8ikej31240pgaej.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy4s62maj310c09swh3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy5ahtb9j311608o76i.jpg">
+<meta property="article:published_time" content="2020-03-02T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-04-15T17:31:01.833Z">
+<meta property="article:author" content="liaoooyx">
+<meta property="article:tag" content="图像分类">
+<meta property="article:tag" content="CNN">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduxi6uxvsj31320ioe5h.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BB%83%E4%B9%A0%EF%BC%9ACNN%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CNN图像分类 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%BB%83%E4%B9%A0%EF%BC%9ACNN%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CNN图像分类
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-02 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-02T00:00:00+00:00">2020-03-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-15 18:31:01" itemprop="dateModified" datetime="2020-04-15T18:31:01+01:00">2020-04-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>10k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>28 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>实验步骤和分析</p>
+<a id="more"></a>
+<h3 id="Clarification"><a href="#Clarification" class="headerlink" title="Clarification"></a>Clarification</h3><ul>
+<li><p>This coursework is running and testing on Google Colab. </p>
+</li>
+<li><p>Because the test set is extracted randomly from the dataset, the accuracy on the test set cannot precisely represent the performance of model. But it is still a reasonable approach for evaluating the performance of model.</p>
+</li>
+<li><p>The evaluation on the test set is using the model at final epoch in task 1-3 using the model with lowest loss on validation set in task 4.</p>
+</li>
+</ul>
+<h3 id="Task-1-Experiments"><a href="#Task-1-Experiments" class="headerlink" title="Task 1: Experiments"></a><strong>Task 1: Experiments</strong></h3><h4 id="Subtask-1-1-How-does-the-number-of-layers-affect-the-training-process-and-test-performance-Try-between-2-and-5-layers"><a href="#Subtask-1-1-How-does-the-number-of-layers-affect-the-training-process-and-test-performance-Try-between-2-and-5-layers" class="headerlink" title="Subtask 1-1: How does the number of layers affect the training process and test performance? Try between 2 and 5 layers."></a><strong>Subtask 1-1: How does the number of layers affect the training process and test performance? Try between 2 and 5 layers.</strong></h4><p>Firstly, to clarify the architecture of 4 CNNs for the experiments, I assume the layer 4 and 5 are following the pattern of given layer 1-3 —— the output channels of each layer are added by 8 from its input channels. The parameters of each layer are listed in table 1. Each convolutional layer is followed by the same ReLU, max-pooling and dropout (see table 2). After the last convolutional layer, there are 2 fully connected layers (see table 3). Other relevant parameters are shown in table 4.</p>
+<p>In short, the control variable is only the number of layers and its parameters, everything else, even the increasing pattern of the layer’s parameters, keep the same as possible.</p>
+<p>Table 1: Parameters of each convolutional layer.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Layer 1</th>
+<th>Input channels = 3, output channels = 16,  kernel size = 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layer 2</td>
+<td>Input channels = 16, output channels = 24,  kernel size = 4</td>
+</tr>
+<tr>
+<td>Layer 3</td>
+<td>Input channels = 24, output channels = 32,  kernel size = 4</td>
+</tr>
+<tr>
+<td>Layer 4</td>
+<td>Input channels = 32, output channels = 40,  kernel size = 4</td>
+</tr>
+<tr>
+<td>Layer 5</td>
+<td>Input channels = 40, output channels = 48, kernel  size = 4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Table 2: Functional layers followed by each layer, and relevant parameters.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>ReLU</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Max-pooling</td>
+<td>Kernel size = 2</td>
+</tr>
+<tr>
+<td>Dropout</td>
+<td>Rate = 0.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Table 3: Fully connected layer, and relevant parameters.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Fully connected layer 1</th>
+<th>Input = (flattened output of last  convolutional layer), output = 512</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fully connected layer 2</td>
+<td>Input = 512, output = 10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Table 4: Other relevant parameters and methods.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Other relevant parameters and methods.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Learning  rate = 0.001, Batch size = 16, momentum=0.9  Optimizer = SGD, Loss function = CrossEntropyLoss</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>In the subtask 1-1, table 5 compares the accuracy of CNNs with a different number of maximal layers, visualizing their confusion matrixes and Loss curves. For each CNNs, the training will stop when the model converges (pre-train the model to find out the most suitable training epochs —— the point when loss curve start increasing, which means overfitting and losing generalization on unseen data). For example, 2-layer CNN will converge at 4th epoch and achieve 49.89% accuracy on the test set, and 5-layer CNN can achieve 63.17% of accuracy on the test set, and this 5-layer CNN will converge at 40th epoch.</p>
+<p>Table 5. Range of accuracy on the test set, after 3 times execution for each architectures (different number of maximal layers).</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Maximal  layer</th>
+<th>The highest  accuracy (%)</th>
+<th>The lowest  accuracy (%)</th>
+<th>Number of  Epochs when converge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layer 2</td>
+<td>49.89</td>
+<td>45.06</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Layer 3</td>
+<td>53.22</td>
+<td>53.11</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Layer 4</td>
+<td>57.17</td>
+<td>55.94</td>
+<td>15</td>
+</tr>
+<tr>
+<td>Layer 5</td>
+<td>63.17</td>
+<td>59.00</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Convolution layer is used to abstract feature and simplify the complexity of the network. A different number of filters and layers can have different performance. The results shown in table 5 indicate that with the increment of layers mentioned above, the accuracy of the model on the test set also increased. It is reasonable in this case because more layer will output more feature map to represent the original image and for classifying</p>
+<p>In figure 1, we can have a clearer understanding of how the models with different layer perform when predicting the class on the test set. On confusion matrix (a) (b) (c) (d), the percentages of a misclassified image are decreasing when the CNN go deeper (seeing the light cells excluding diagonal getting dark from (a) to (b)). The loss curves (e) (f) (g) (h) in which the lines tend to be flat are used to detect converge.</p>
+<p>The best performance is given by 5-layer CNN, achieving 63.17% accuracy on the test set at 40th epochs. The parameters are listed in Table 1-5. This 5-layer CNN will be used in task 2 &amp; 3, called CNN-5L.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduxi6uxvsj31320ioe5h.jpg" alt="截屏2020-04-15 下午5.43.01"></p>
+<p>Figure 1. Confusion matrix and loss curves of CNNs at 1st execution —— (a) (e) 2-layer, (b) (f) 3-layer, (c) (g) 4-layer, (d) (h) 5-layer</p>
+<h4 id="Subtask-2-Choose-one-more-architectural-element-to-test"><a href="#Subtask-2-Choose-one-more-architectural-element-to-test" class="headerlink" title="Subtask 2: Choose one more architectural element to test"></a><strong>Subtask 2: Choose one more architectural element to test</strong></h4><p>In subtask2, the report will test with 3 different elements. The first experiment is to test the performance of different batch size in 3-layer CNN. The second experiment is to increase the number of fully connected layers in 5-layer CNN. The third experiment is to increase the parameters for each convolutional layer.</p>
+<ol>
+<li><p>The first experiment is based on 3-layer convolutional neural, keeping other parameters same as mentioned above, and train the model with different batch size (see table 6). The model will be pre-trained to find out the number of epoch to converge before the evaluation of accuracy on the test set.</p>
+<p>Intuitively, a larger batch size means the number of iterations required to run an epoch is reduced and therefore speed up the processing. If the batch size is within an ideal range, a larger the batch size will take more points into account, and therefore can make the gradient direction more accurate with less fluctuation. However, based on the result, to achieve similar accuracy, it needs more epochs to run.</p>
+</li>
+</ol>
+<p>Table 6 Comparison of accuracy and converge epochs for different batch size</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Batch size</th>
+<th>Converge epochs</th>
+<th>Accuracy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8</td>
+<td>7</td>
+<td>49.44</td>
+</tr>
+<tr>
+<td>16</td>
+<td>10</td>
+<td>53.22</td>
+</tr>
+<tr>
+<td>32</td>
+<td>13</td>
+<td>51.28</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Figure 2: Confusion matrixes of 8 batches CNN (a), 16 batches CNN (b) and 32 batches CNN (c).</p>
+<ol>
+<li>The result of 5-layer architecture seems good. In this experiment, based on the previous 5-layer network, a new CNN with one more fully connected layer with the same 512 input and output channels is tested (see table 7.).  The accuracy of this model on the test set is 59.22% for the first time and 59.59% for the second time. It seems that the performance does not have much difference comparing with CNN-5L (the original 5-layer CNN).</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduxixih8lj311m0d6qoo.jpg" alt="截屏2020-04-15 下午5.43.29"></p>
+<p>Table 7. Parameters of 3 fully connected layers</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Fully connected layer 1</th>
+<th>Input = (flattened output of last  convolutional layer), output = 512</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fully connected layer 2</td>
+<td>Input = 512, output = 512</td>
+</tr>
+<tr>
+<td>Fully connected layer 3</td>
+<td>Input = 512, output = 10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy0gqk30j30um0ec49z.jpg" alt="截屏2020-04-15 下午6.00.33"></p>
+<p>Figure 3. Confusion matrix (a) and loss curve (b) in experiment 2 (with 59.22% ACC on the test set).</p>
+<ol>
+<li>The third experiment is to increase the parameters for each convolutional layer —— multiply by 4 (see table 8). Larger channels values normally mean that the model can extract more features from an image. After pre-trained the CNN, the loss curve shows the model will converge at around 23rd epoch. Running 23rd epoch again, the model got 61.22% accuracy on the test set. It seems slightly better than the model in experiment 2 but still stays in the potential accuracy range of CNN-5L.</li>
+</ol>
+<p>Table 8. Parameters of each layer in the 5-layer CNN</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Layer 1</th>
+<th>Input channels = 3, output channels = 64,  kernel size = 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Layer 2</td>
+<td>Input channels = 64, output channels = 96,  kernel size = 4</td>
+</tr>
+<tr>
+<td>Layer 3</td>
+<td>Input channels = 96, output channels = 128,  kernel size = 4</td>
+</tr>
+<tr>
+<td>Layer 4</td>
+<td>Input channels = 128, output channels = 160,  kernel size = 4</td>
+</tr>
+<tr>
+<td>Layer 5</td>
+<td>Input channels = 160, output channels = 196,  kernel size = 4</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy110xrwj30uw0e0n8i.jpg" alt="截屏2020-04-15 下午6.01.09"></p>
+<p>Figure 4: Confusion matrix (a) and loss curve (b) in experiment 3.</p>
+<h3 id="Task-2-Filter-visualization"><a href="#Task-2-Filter-visualization" class="headerlink" title="Task 2: Filter visualization"></a><strong>Task 2: Filter visualization</strong></h3><p>The filters before training are initialized randomly (see figure 5-a). During the training process, the filters will be updated by gradient descent and backpropagation. In figure 5, there are significant differences between the filters before training (5-a) and halfway training (5-b), which means the model change a lot during the process. However, comparing with the filters in halfway training and after training, there only slight differences, which means that the filters of the first layer of this specific model are close to the optimal values (but possibility local optimum instead of global optimum). This phenomenon can also be observed on loss and accuracy curve (see figure 6). It is clear that the differences between 0 and 20th epochs are significant but much smaller between 20th and 40th epochs (e.g. compare the gaps between 3 lines in figure 6-a).</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy1ia24zj311s0dw7jy.jpg" alt="截屏2020-04-15 下午6.01.39"></p>
+<p>Figure 5: Filters before training (a), halfway training (b) and after training (c), outputting from Conv2d without ReLU.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy2hyckcj311y0euakn.jpg" alt="截屏2020-04-15 下午6.02.35"></p>
+<p>Figure 6: Loss (a) and accuracy (b) curve in CNN-5L.</p>
+<h3 id="Task-3-Feature-map-visualization"><a href="#Task-3-Feature-map-visualization" class="headerlink" title="Task 3: Feature map visualization"></a><strong>Task 3: Feature map visualization</strong></h3><p>The number of feature maps equals to that of output channels, each filter will extract a type of feature map. With the network goes deeper, feature maps will become smaller and blurrier, but also means being more representative than the previous layer. For example, figure 7 (a) is showing the image of a banana. It is obvious that the feature maps at 6th row are smaller and more abstractive than the 2nd row. Loot at the graffiti on the banana peel in the original image. The information of these graffiti which is unrelated for identifying and classifying is gradually removed from the feature maps as the network goes deeper.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy3hpsi1j30u00u6b29.jpg" alt="截屏2020-04-15 下午6.03.21"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy3qjgaoj313e0eejuh.jpg" alt="截屏2020-04-15 下午6.03.40"></p>
+<p>Figure 7: Original and normalized image (1), feature maps after each CONV layer without ReLU (2-6), and feature map before fully connected layer (7), banana (a) and mug (b)</p>
+<h3 id="Task-4-Improving-network-performance"><a href="#Task-4-Improving-network-performance" class="headerlink" title="Task 4: Improving network performance"></a><strong>Task 4: Improving network performance</strong></h3><p>In this task, inspired by AlexNet, this improved model (call CNN-task4) can achieve 69.11% accuracy on the test set. The relevant structure and parameters are listed below (see table 9). Noticed that the accuracy on the test set is evaluated by the model achieving the lowest loss on validation set during training (save the model at that epoch and reload it in evaluation).</p>
+<p>Table 9: Structure and parameters of CNN-task4</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy4h8ikej31240pgaej.jpg" alt="截屏2020-04-15 下午6.04.27"></p>
+<p>One of the adjustments is using another optimizer Adam, which support adaptive learning rate, updating the learning rate during learning. The reason behind is that adaptive learning rate will slow down the stride of gradient descent during the training. Giving a small stride can help reduce the possibility of missing and fluctuating around the (local or global) optimal solution. From figure 8, we can notice that CNN-task4 with 0.0001 initial learning rate can give a better loss curve than the others.</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy4s62maj310c09swh3.jpg" alt="截屏2020-04-15 下午6.04.48"></p>
+<p>Figure 8: Loss curve of original 5-layer CNN with 0.01 LR (a)，CNN-task4 with 0.001 initial LR (b)，CNN-task4 with 0.0001 initial LR (c)</p>
+<p>Another adjustment is to move the dropout layer from convolution layers to fully connected layers. One reason is that the parameters in the convolution layer are quite few but highly relative. The pixels within a certain area of an image in convolutional layers are sharing the same information, which means that the discarded information may still be retained by nearby pixels. Using dropout layer in convolution layer may only help control the noise of the input images but not improving the generalization on unseen data (see figure 9 (d)). On the other hand, if the feature maps between 2 layers are highly abstracted when passing forward such as convolution operation with large kernel size or stride, or max-pooling operation, using dropout will, on the contrary, cause the feature maps to lose important information for classifying. And therefore, the performance of the model will decline, especially causing a significant decrease of accuracy on the test set and fluctuation of loss curve on the validation set (see figure 9 (c)).</p>
+<p>Table 10 is comparing the accuracy on the test set of 4 different dropout layer placing strategies. The 2nd and 4th row are showing that adding dropout after convolution layer 3 &amp; 4, which have small kernel and stride, having similar performance. However, once the dropout layers are placed after max-pooling layer (see 3rd row). The accuracy of the model on the test set will decline from around 65% to 50%.</p>
+<p>Table 10, Position of dropout layer (based on the CNN-task4 in table 9) and the highest accuracy on the test set after 30 epochs training</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Dropout(0.5)  Before FC1&amp;2</th>
+<th>69.11%</th>
+<th>Figure 9 (a)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No dropout</td>
+<td>66.17%</td>
+<td>Figure 9 (b)</td>
+</tr>
+<tr>
+<td>Dropout(0.3)  after max-pooling layer 1&amp;2&amp;3</td>
+<td>50.22%</td>
+<td>Figure 9 (c)</td>
+</tr>
+<tr>
+<td>Dropout(0.3)  after CONV 3&amp;4</td>
+<td>64.94%</td>
+<td>Figure 9 (d)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gduy5ahtb9j311608o76i.jpg" alt="截屏2020-04-15 下午6.05.16"></p>
+<p>Figure 9: Loss curve of CNN-task4, with dropout before FC1&amp;2 (original) (a), without dropout (b)，with 0.3 dropout after max-pooling (c)，with 0.3 dropout after CONV 3&amp;4 (d).</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB/" rel="tag"><i class="fa fa-tag"></i> 图像分类</a>
+              <a href="/tags/CNN/" rel="tag"><i class="fa fa-tag"></i> CNN</a>
+              <a href="/tags/AI/" rel="tag"><i class="fa fa-tag"></i> AI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/16%20%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%EF%BC%88%E8%B0%B7%E6%AD%8C%E6%90%9C%E7%B4%A2%EF%BC%89/" rel="prev" title="信息检索（谷歌搜索）">
+      <i class="fa fa-chevron-left"></i> 信息检索（谷歌搜索）
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/12%20Bloom%20filters%20%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" rel="next" title="Bloom filters 布隆过滤器">
+      Bloom filters 布隆过滤器 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Clarification"><span class="nav-text">Clarification</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Task-1-Experiments"><span class="nav-text">Task 1: Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Subtask-1-1-How-does-the-number-of-layers-affect-the-training-process-and-test-performance-Try-between-2-and-5-layers"><span class="nav-text">Subtask 1-1: How does the number of layers affect the training process and test performance? Try between 2 and 5 layers.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Subtask-2-Choose-one-more-architectural-element-to-test"><span class="nav-text">Subtask 2: Choose one more architectural element to test</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Task-2-Filter-visualization"><span class="nav-text">Task 2: Filter visualization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Task-3-Feature-map-visualization"><span class="nav-text">Task 3: Feature map visualization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Task-4-Improving-network-performance"><span class="nav-text">Task 4: Improving network performance</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

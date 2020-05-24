@@ -192,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/01%20Image%20classification%20and%20object%20detection/">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/06%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%EF%BC%9A%E5%86%B3%E7%AD%96%E6%A0%91%E5%92%8C%E5%88%86%E7%B1%BB%E8%A7%84%E5%88%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -206,7 +206,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/01%20Image%20classification%20and%20object%20detection/" class="post-title-link" itemprop="url">人工智能/01 Image classification and object detection</a>
+            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/06%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%EF%BC%9A%E5%86%B3%E7%AD%96%E6%A0%91%E5%92%8C%E5%88%86%E7%B1%BB%E8%A7%84%E5%88%99/" class="post-title-link" itemprop="url">监督学习分类器：决策树和分类规则 Decision Trees and Classification Rules</a>
         </h2>
 
         <div class="post-meta">
@@ -216,191 +216,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-29 11:55:14" itemprop="dateCreated datePublished" datetime="2020-01-29T11:55:14+00:00">2020-01-29</time>
+              <time title="创建时间：2020-02-08 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-08T00:00:00+00:00">2020-02-08</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-12 11:06:43" itemprop="dateModified" datetime="2020-02-12T11:06:43+00:00">2020-02-12</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>652</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="01-Image-classification-and-object-detection"><a href="#01-Image-classification-and-object-detection" class="headerlink" title="01 Image classification and object detection"></a>01 Image classification and object detection</h2><h4 id="视频："><a href="#视频：" class="headerlink" title="视频："></a>视频：</h4><p>640×480 解析度，3色，颜色编码8bit，每秒25帧(25 frames per second)</p>
-<p>Data rate：<script type="math/tex">640*480*3*8*25=184-million-bits/seconds</script></p>
-<h4 id="Confusion-matrix-混淆矩阵"><a href="#Confusion-matrix-混淆矩阵" class="headerlink" title="Confusion matrix 混淆矩阵"></a>Confusion matrix 混淆矩阵</h4><p>对角线为正确分类</p>
-<h4 id="特殊情况的混淆矩阵"><a href="#特殊情况的混淆矩阵" class="headerlink" title="特殊情况的混淆矩阵"></a>特殊情况的混淆矩阵</h4><p><strong>Recall</strong>：表示正确分类的比例：是否把所有猫都找出来了/ 1=目标是否全部都找到了/ 有多少目标找出来了，有多少目标没有被找出来（找错了不影响，只要找到了就行）</p>
-<p><strong>Precision</strong>：表示正确预测的比例：正确找到了多少猫 / 1=找到的目标是否都是对的 / 找到的目标中有多少是正确的，有多少是错误的（没找到的不影响）</p>
-<h4 id="Object-detection-物体探测"><a href="#Object-detection-物体探测" class="headerlink" title="Object detection 物体探测"></a>Object detection 物体探测</h4><h4 id="acceptable-bounding-box"><a href="#acceptable-bounding-box" class="headerlink" title="acceptable bounding-box"></a>acceptable bounding-box</h4><p>$AO=\frac{轮廓的交集}{轮廓的并集}（真实物体的轮廓和预测物体的轮廓）$</p>
-<h4 id="Softmax-function"><a href="#Softmax-function" class="headerlink" title="Softmax function"></a>Softmax function</h4><p>维度归一化，且所有维度之和为1</p>
-<p>softmax设计的初衷，是希望特征对概率的影响是乘性的。</p>
-<p>我们希望分值大的那一项被经常取到，而分值较小的那一项也有一定的概率偶尔被取到，所以我们就应用到了soft的概念，即最后的输出是每个分类被取到的概率。</p>
-<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><p>一个线性方程的线性方程还是线性方程，所以线性方程的多层感知机实际上还是单层的，所以需要非线性的激活函数（激活函数的输入是上一层神经元输出的加权求和，输出是神经元的输入）</p>
-<p>多层感知机中建立神经元的方式是一样的，但权重是不同的</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/01%20Introduction/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/01%20Introduction/" class="post-title-link" itemprop="url">人工智能/01 Introduction</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-29 11:04:08 / 修改时间：11:32:01" itemprop="dateCreated datePublished" datetime="2020-01-29T11:04:08+00:00">2020-01-29</time>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>216</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="01-Introduction"><a href="#01-Introduction" class="headerlink" title="01 Introduction"></a>01 Introduction</h2><p>关于深度学习</p>
-<p>Reasoning with logic</p>
-<p>Multi level Neuron processing</p>
-<p>图像处理</p>
-<p>文字处理</p>
-<p>自然的智能——大脑、人</p>
-<p>actually learning is really poor</p>
-<p>模拟神经元</p>
-<p>与环境交互</p>
-<p>计算的模型作为自然智能的理论</p>
-<p>自然智能的理论启发工业方案</p>
-<p>预测——深度学习、机器学习</p>
-<p>simulation</p>
-<p>sensory input</p>
-<p>evolutionary process</p>
-<p>把传感器放入环境中，提取数据</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/02%20EXAMPLES%20AND%20TECHNOLOGY%20LANDSCAPE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/02%20EXAMPLES%20AND%20TECHNOLOGY%20LANDSCAPE/" class="post-title-link" itemprop="url">大数据的例子和技术前景</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-29 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-29T00:00:00+00:00">2020-01-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-26 03:33:05" itemprop="dateModified" datetime="2020-03-26T03:33:05+00:00">2020-03-26</time>
+                <time title="修改时间：2020-05-18 14:22:07" itemprop="dateModified" datetime="2020-05-18T14:22:07+01:00">2020-05-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -408,7 +231,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘和文本分析</span></a>
                 </span>
             </span>
 
@@ -437,10 +260,240 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>大数据不是一个单独的科技、技术、或创新，而是一个可表征的趋势：对大量数据的收集，并从中获得收益</p>
+          <a id="more"></a>
+<h4 id="数据挖掘的目标"><a href="#数据挖掘的目标" class="headerlink" title="数据挖掘的目标"></a>数据挖掘的目标</h4><p>发现数据中有用的模式，因此我们需要数据挖掘技术、算法、工具（如Weka），和用于采集数据，应用算法的方法学框架（CRISP-DM）</p>
+<p>机器学习中的监督学习：训练集中每个样本都有确定的分类</p>
+<h4 id="概念-Concept"><a href="#概念-Concept" class="headerlink" title="概念 Concept"></a>概念 Concept</h4><p>我们试图通过机器学习来发现一些【概念】，这些概念包括以下类型：</p>
+<ul>
+<li>数据集间的关键区别：比如某区域不同年份的销售额sales的区别</li>
+<li>簇clusters 或自然分隔partitions：根据用户的购物习惯对用户进行分类</li>
+<li><p>分类的规则：Adj+X+Verb =&gt; X=Noun</p>
+</li>
+<li><p>通用的关联：高频词一般是语法性的，而不是有含义的</p>
+</li>
+<li>数字的预测：找到预测数值的规则，比如根据成绩预测毕业生的工资</li>
+</ul>
+<h4 id="决策树的构建方法"><a href="#决策树的构建方法" class="headerlink" title="决策树的构建方法"></a>决策树的构建方法</h4><p>建立决策树</p>
+<p>决定用哪个属性划分节点：基于entropy熵</p>
+<p>避免过度拟合：决策树太复杂，能够精确的描述训练集，但不适合用于预测</p>
+<p>异常点</p>
+<h4 id="建立决策树"><a href="#建立决策树" class="headerlink" title="建立决策树"></a>建立决策树</h4><p>通过训练集进行构建，使用测试集进行评估</p>
+<p>算法是递归的</p>
+<p>节点表示在该属性值上进行分类（测试），分支表示分类（测试）的输出</p>
+<p>决策树算法会选择information gain最高的属性进行划分</p>
+<p>目标：更小更紧凑的树（节点数量少），和更低的错误率（错误划分）；如果精确度相同，那么优先选择更小的树</p>
+<p>如果修剪后的树的错误的概率很小，则可以修剪覆盖率较小的叶节点。</p>
+<h4 id="Entropy-熵"><a href="#Entropy-熵" class="headerlink" title="Entropy 熵"></a>Entropy 熵</h4><p>$H=E(I)=\sum_i(-p_ilog_2p_i)$</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Information_Gain &#x3D; Entropy_before - Entropy_after</span><br></pre></td></tr></table></figure>
+<p>ID3会选择information gain最高的属性进行划分</p>
+<p>划分后的熵越低，最后得到的Information gain越高</p>
+<p><strong>该属性中，如果多个分类的数量都一样，那么熵最高；如果只有一个分类，那么熵最低</strong></p>
+<p><strong>所以，如果对一个属性划分后，只有一个种类，那么决策树就会选择该属性进行划分</strong></p>
+<p>计算方式：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gev8r0e57vj30qu0f2dgs.jpg" alt="截屏2020-05-17 上午3.32.00" style="zoom:50%;" /></p>
+<blockquote>
+<p>ID3，C4.5，J48算法详解：<a href="https://cis.temple.edu/~giorgio/cis587/readings/id3-c45.html" target="_blank" rel="noopener">https://cis.temple.edu/~giorgio/cis587/readings/id3-c45.html</a></p>
+</blockquote>
+<h4 id="评估"><a href="#评估" class="headerlink" title="评估"></a>评估</h4><p>混淆矩阵</p>
+<p>如果决策树算法已“过度拟合”数据，则基于训练集的错误率将远小于基于测试集的错误率。</p>
+<p>10-fold cross-validation：将数据集随机分成10组（subsets），9组用于训练，1组用于测试，然后循环10次。</p>
+<h4 id="决策树-gt-规则-Rules"><a href="#决策树-gt-规则-Rules" class="headerlink" title="决策树 =&gt; 规则 Rules"></a>决策树 =&gt; 规则 Rules</h4><p>决策树有时候可能不易于被理解：</p>
+<ul>
+<li>与较低节点相关的测试（属性），不得不在树的更远端中读取</li>
+<li>有时可能会将“子概念”分解并分发到树的不同部分</li>
+<li>计算机科学家可能更喜欢“If…then…”规则！</li>
+</ul>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><ul>
+<li>决策树可用于预测或解释。<ul>
+<li>预测：将未分类的实例与树进行比较，并预测其属于哪个类（带有错误估计）</li>
+<li>解释：检查树并尝试了解实例为何最终归入它们所在的类。</li>
+</ul>
+</li>
+<li>规则集通常更易于解释</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Differences%20between%20ASIC,%20ASSP,%20ASIP,%20SoC,%20FPGA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Differences%20between%20ASIC,%20ASSP,%20ASIP,%20SoC,%20FPGA/" class="post-title-link" itemprop="url">云计算/03_ Differences between ASIC, ASSP, ASIP, SoC, FPGA</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-06 11:57:31" itemprop="dateCreated datePublished" datetime="2020-02-06T11:57:31+00:00">2020-02-06</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>19 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Differences-between-ASIC-ASSP-ASIP-SoC-FPGA"><a href="#Differences-between-ASIC-ASSP-ASIP-SoC-FPGA" class="headerlink" title="Differences between ASIC, ASSP, ASIP, SoC, FPGA"></a>Differences between ASIC, ASSP, ASIP, SoC, FPGA</h3><p><strong>ASIC</strong> (Application Specified Integrated Circuit) is a customized integrated circuit. It is usually used by a person or company for a very limited usage. So when it is developed, only the person or company who orders it can use it. It is not useful for other usages, for example, an IC designed for a specific line of cellular phones of a company, whereby no other products can use it except the cell phones belonging to that product line.<br>- ASIC is just built for one and only one customer.<br>- ASIC is used only in one product line<br>- Only volume production of ASICs for one product can make sense which means low unit cost for high volume products, otherwise the cost is not efficient.<br>- Can exploit parallelism to achieve high performance<br>- Low power consumption</p>
+<p><strong>ASSP</strong> (Application Specified Standard Processor) is an integrated circuit that implements a specific function that appeals to a wide market, which means its function is specified for example a motor drive chip. But it is used widely, not limited to only one customer as ASIC does. So ASSPs are available as off-the-shelf components which means you can go to electronic shops and just buy it directly from the “shelf”. It means ASSPs have been developed well and you can just buy it without designing it from scratch.<br>- It addresses the product space between ASIC and generic processor based products<br>- Extremely useful for low to medium volume applications because it help reduce cost and design overheads.</p>
+<p><strong>ASIP</strong> (application specific instruction processor) is usually used in SoC (System on a Chip). ASIP is an architecture including two parts which are a minimum ISA (Instruction Set Archietecture) and a configurable logic which you can use to design your own instruction set. So it provides relatively high flexibility compared to ASIC and better performance compared to FPGA (Field Programmable Gate Array). Also, it is cheaper than FPGA, but slightly more expensive than ASIC.<br>- ASIP can help build your own instruction set to meet your specific requirement.<br>- It provide a minimum ISA, which can make shorter TTM (Time to Market).</p>
+<h4 id="How-to-choose-ASIC-or-ASSP"><a href="#How-to-choose-ASIC-or-ASSP" class="headerlink" title="How to choose ASIC or ASSP?"></a>How to choose ASIC or ASSP?</h4><p>- Whether TTM (Time-To-Marker) allows to design an ASIC<br>- Whether you have special requirement for your design which is not common in ASSPs, for example, you can exploit parallelism to achieve high performance<br>- Whether your products can have a big volume in market<br>- Power consumption requirement<br>- Whether software development tools are available<br>- How is the skill of the developers, whether they are capable for designing an ASIC<br>- Whether you can burden the technology risk for designing AISC<br>- How much is your plan for NRE (Non-Recurring Expense) cost to the project: ASIC needs relatively large NRE cost, and ASSP needs no NRE cost.</p>
+<h4 id="There-is-a-lot-of-confusion-with-regard-to-devices-like-ASICs-ASSPs-SoCs-and-FPGAs-Is-an-SoC-an-ASIC-or-vice-versa-for-example"><a href="#There-is-a-lot-of-confusion-with-regard-to-devices-like-ASICs-ASSPs-SoCs-and-FPGAs-Is-an-SoC-an-ASIC-or-vice-versa-for-example" class="headerlink" title="There is a lot of confusion with regard to devices like ASICs, ASSPs, SoCs, and FPGAs. Is an SoC an ASIC, or vice versa, for example?"></a><strong>There is a lot of confusion with regard to devices like ASICs, ASSPs, SoCs, and FPGAs. Is an SoC an ASIC, or vice versa, for example?</strong></h4><p>I often receive questions about the differences between various types of devices, such as ASICs, ASSPs, SoCs, and FPGAs. Is an SoC an ASIC, or vice versa, for example? What’s the difference between an ASIC and an ASSP? And should a high-end FPGA be classed as a form of SoC?</p>
+<p>There are several problems here, not the least that the technologies and terminologies have evolved over time. Keeping this in mind, the following is my highly simplified interpretation of where these terms came from and what they mean today.</p>
+<p><strong>ASICs</strong><br>Let’s start with an application-specific integrated circuit (ASIC). As the name suggests, this is a device that is created with a specific purpose in mind. When most people hear the term ASIC, their “knee-jerk” reaction is to assume a digital device. In reality, any chip that is custom-made is an ASIC, irrespective of whether it is analog, digital, or a mix of both. For the purposes of these discussions, however, we shall assume a chip that is either wholly or predominantly digital in nature, with any analog and mixed-signal functions being along the lines of physical interfaces (PHYs) or phase-locked loops (PLLs).</p>
+<p>ASICs are typically designed and used by a single company in a specific system. They are incredibly expensive, time-consuming, and resource-intensive to develop, but they do offer extremely high performance coupled with low power consumption.</p>
+<p><strong>ASSPs</strong><br>Application-specific standard parts (ASSPs) are designed and implemented in exactly the same way as ASICs. This is not surprising, because they are essentially the same thing. The only difference is that an ASSP is a more general-purpose device that is intended for use by multiple system design houses. For example, a standalone USB interface chip would be classed as an ASSP.</p>
+<p><strong>SoCs</strong><br>A System-on-Chip (SoC) is a silicon chip that contains one or more processor cores — microprocessors (MPUs) and/or microcontrollers (MCUs) and/or digital signal processors (DSPs) — along with on-chip memory, hardware accelerator functions, peripheral functions, and (potentially) all sorts of other “stuff.” One way to look at this is that if an ASIC contains one or more processor cores then it’s an SoC. Similarly, if an ASSP contains one or more processor cores then <em>it’s</em> an SoC.</p>
+<p><img src="https://www.eetimes.com/wp-content/uploads/2019/12/asic-fpga-soc-max-0326-01.gif?resize=405%2C188" alt="img"></p>
+<p>On this basis, we could view ASIC (and ASSP) as being the superset term because it embraces SoC, or we could regard the SoC as being the superset term because it includes everything in an ASIC (or ASSP) along with one or more processor cores. Are we having fun yet?</p>
+<p><strong>FPGAs</strong><br>ASICs, ASSPs, and SoCs offer high-performance and low power consumption, but any algorithms they contain — apart from those that are executed in software on internal processor cores — are “frozen in silicon.” And so we come to field-programmable gate arrays (FPGAs). The architecture of early FPGA devices was relatively simple — just an array of programmable blocks linked by programmable interconnect.</p>
+<p>The great thing about an FPGA is that we can configure its programmable fabric to implement any combination of digital functions we desire. Also, we can implement algorithms in a massively parallel fashion, which means we can perform a humongous amount of data processing very quickly and efficiently.</p>
+<p><strong>SoC-class FPGAs</strong><br>Over time, the capabilities (capacity and performance) of FPGAs increased dramatically. For example, a modern FPGA might contain thousands of adders, multipliers, and digital signal processing (DSP) functions; megabits of on-chip memory, large numbers of high-speed serial interconnect (SERDES) transceiver blocks, and a host of other functions.</p>
+<p>The problem is that the field-programmable gate array (FPGA) moniker no longer reflects the capabilities and functionality of today’s programmable devices. We really need to come up with some new terminology that embraces everything today’s state-of-the-art tools and technologies are capable of doing.</p>
+<p>Of particular relevance to our discussions here is the fact that today’s FPGAs can contain one or more soft and/or hard core processors. On this basis, should we class this type of FPGA as being an SoC? Well, personally I have to say that SoC doesn’t work for me, because I equate the term “SoC” with a custom device created using ASIC technology.</p>
+<p>Another alternative would be to call these devices Programmable SoCs, or PSoCs, but Cypress Semiconductor has already got the PSoC moniker locked down. The Cypress devices feature a hard microcontroller core augmented with some programmable analog and programmable digital fabric (the digital fabric is more CPLD than FPGA).</p>
+<p>Altera used to call its versions of these devices — the ones that combine hard MCU cores with programmable FPGA fabric — SoC FPGAs, but they seem to have evolved to just calling them SoCs. Meanwhile, Xilinx calls its flavor of these devices “All Programmable SoCs.”</p>
+<p>Personally, I’m undecided as to what would be the best name. I think I’d prefer to use PSoC if the folks at Cypress hadn’t already taken control of this appellation, but they have, so we can’t. Failing this, I guess I’d opt for SoC FPGA… unless you can suggest something better.</p>
+<p>— Max Maxfield, Editor of All Things Fun &amp; Interesting</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/04%20%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/04%20%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">数据挖掘和知识管理</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-06 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-06T00:00:00+00:00">2020-02-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-04 19:25:18" itemprop="dateModified" datetime="2020-05-04T19:25:18+01:00">2020-05-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘和文本分析</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>数据挖掘采用机器学习来从数据中发现知识，并对知识进行管理</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/01/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/02%20EXAMPLES%20AND%20TECHNOLOGY%20LANDSCAPE/#more" rel="contents">
+              <a class="btn" href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/04%20%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -464,7 +517,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/02%20Introduction%20to%20Cloud%20Computing/">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/05%20MapReduce/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -478,7 +531,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/02%20Introduction%20to%20Cloud%20Computing/" class="post-title-link" itemprop="url">云计算/02 Introduction to Cloud Computing</a>
+            <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/05%20MapReduce/" class="post-title-link" itemprop="url">MapReduce</a>
         </h2>
 
         <div class="post-meta">
@@ -488,15 +541,24 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-27 22:55:17" itemprop="dateCreated datePublished" datetime="2020-01-27T22:55:17+00:00">2020-01-27</time>
+              <time title="创建时间：2020-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-05T00:00:00+00:00">2020-02-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-03 14:40:30" itemprop="dateModified" datetime="2020-02-03T14:40:30+00:00">2020-02-03</time>
+                <time title="修改时间：2020-04-27 09:25:14" itemprop="dateModified" datetime="2020-04-27T09:25:14+01:00">2020-04-27</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -504,14 +566,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4k</span>
+              <span>2.6k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>11 分钟</span>
+              <span>7 分钟</span>
             </span>
 
         </div>
@@ -523,109 +585,355 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="02-Introduction-to-Cloud-Computing"><a href="#02-Introduction-to-Cloud-Computing" class="headerlink" title="02 Introduction to Cloud Computing"></a>02 Introduction to Cloud Computing</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>云系统的分类、可视的基础架构管理者、云用例、云计算—开放问题</p>
-<h4 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h4><p>“云”是一些可以自我维护和管理的虚拟计算资源，通常为一些大型服务器集群，包括计算服务器、存储服务器、宽带资源等等。云计算将所有的计算资源集中起来，并由软件实现自动管理，无需人为参与。</p>
-<p>基本原理是将计算任务分布在云端的大量的分布式计算机上、数据也存储在云端，使得企业将有限的资源切换到需要的应用上，降低企业运行的成本。这样带来的结果是中小企业不需要购置专门的计算机系统去满足某一应用需求，只需要想云计算中心支付服务费即可获得响应服务，而云计算中心则大规模的云，以向用户提供服务。总的来说云计算具有如下的特点：超大规模云计算集群、虚拟化、高可靠性、通用性、按需服务、极其廉价。</p>
-<h4 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h4><p>分布式计算是一门计算机科学，它研究如何把一个需要非常巨大的计算能力才能解决的问题分成许多小的部分，然后把这些部分分配给许多计算机进行处理，最后把这些计算结果综合起来得到最终的结果。分布式计算是利用互联网上的计算机的 CPU 的闲置处理能力来解决大型计算问题的一种计算科学。</p>
-<p>一个分布式系统（Distributed System）是一组逻辑和物理上互联的处理单元的集合。其实质就是对资源的系统范围的分散控制，以达到应用程序的协同执行。这种系统不要求单台计算机的功能十分强大，故能降低成本。分布式系统具有快速访问、多用户使用的优点。系统中的每台计算机可以方便快捷的访问其他内部节点的信息文件，它既可以为本地用户的特殊要求服务，也可以为网络中其他用户服务，实现不同计算机之间的通信与协同工作。</p>
-<h4 id="并行计算和分布式计算"><a href="#并行计算和分布式计算" class="headerlink" title="并行计算和分布式计算"></a>并行计算和分布式计算</h4><p>并行计算与分布式计算都是运用并行来获得更高性能，化大任务为小任务。<strong>简单说来，如果处理单元共享内存，就称为并行计算，反之就是分布式计算。</strong></p>
-<p>但是分布式的任务包互相之间有独立性，上一个任务包的结果未返回或者是结果处理错误，对下一个任务包的处理几乎没有什么影响。因此，分布式的实时性要求不高，而且允许存在计算错误（因为每个计算任务给好几个参与者计算，上传结果到服务器后要比较结果，然后对结果差异大的进行验证。</p>
-<h4 id="云系统的分类"><a href="#云系统的分类" class="headerlink" title="云系统的分类"></a>云系统的分类</h4><p>云的结构由3个服务层组成，服务可以在任何一层提供，更低的层对用户端隐藏</p>
-<ol>
-<li>Software as a Service：远程运行应用代替本地运行。比如通过浏览器运行应用程序，而不用下载安装。用户不需要管理任何东西。比如：Google Apps, Dropbox，Office365</li>
-<li>Platform as a Service：Software stack软件堆栈促进应用程序的部署。比如提供一个平台（比如Apache）让开发者部署Web Application，开发者只需要管理和维护自己的应用(WebApp代码)和数据，运行状态、操作系统、网络等工作由平台自动管理和监控。比如：AWS Elastic Beanstalk</li>
-<li>Infrastructure as a Service：由高度可扩展的自动化计算资源组成。 IaaS是完全自助服务，用于访问和监视计算机，网络，存储和其他服务。 IaaS允许企业按需和按需购买资源，而不必直接购买硬件。比如租一个Linux系统。用户需要管理自己的操作系统、中间件、运行状态、数据、应用。比如：Microsoft Azure</li>
-</ol>
-<p>Database、Function、Hardware、Sensor、Network … *  as a Service</p>
-<h4 id="资源虚拟化"><a href="#资源虚拟化" class="headerlink" title="资源虚拟化"></a>资源虚拟化</h4><p>同一台机器上的不同的虚拟机可以运行不同的操作系统和多个应用</p>
-<p>主要的虚拟化技术是：Hypervisor 虚拟机监控程序</p>
-<ul>
-<li><p>Virtual Machine Manager (VMM) 虚拟机管理者用户，通过仿真和硬件辅助虚拟化，透明地分割物理服务器主机</p>
-</li>
-<li><p>提供了一个全仿真的硬件环境：虚拟机、宾客操作系统</p>
-</li>
-</ul>
-<p>Virtualization layer 虚拟层是一个中间层，位于硬件和系统的虚拟机之间</p>
-<h4 id="云的结构"><a href="#云的结构" class="headerlink" title="云的结构"></a>云的结构</h4><ol>
-<li><p>Distributed Application 分布式应用（SaaS）：被设计为 ”运行在多个机器上以执行一个特定的任务“ 的软件</p>
-</li>
-<li><p>Virtual Machine Cluster 虚拟机集群（PaaS）：一组包含内嵌程序的虚拟机，作为应用程序的中间层</p>
-</li>
-<li><p>Virtual Infrastructure Manager 虚拟基础架构管理者（IaaS）：把虚拟机分隔成组，管理上千的虚拟机</p>
-</li>
-<li><p>Hypervisor 虚拟机监控程序（IaaS）：在同一个机器上创建多个虚拟机的实例</p>
-<p>如：VMware、ESX、Xen、KVM</p>
-</li>
-</ol>
-<p>物理机器 -&gt; Hypervisor创建虚拟机镜像 -&gt; Virtual Infrastructure Manager管理上千的虚拟机镜像 -&gt; Virtual Machine Cluster 虚拟机镜像被上者分成不用的集群 -&gt; Distributed Application 应用分布在集群中，最后提供给用户 -&gt; User</p>
-<h4 id="Virtual-Infrastructure-Manager-虚拟基础架构管理者"><a href="#Virtual-Infrastructure-Manager-虚拟基础架构管理者" class="headerlink" title="Virtual Infrastructure Manager 虚拟基础架构管理者"></a>Virtual Infrastructure Manager 虚拟基础架构管理者</h4><p>代表终端用户配置虚拟资源的供应。如Open Nebula </p>
-<p>主要功能：</p>
-<ul>
-<li>虚拟资源调度<ul>
-<li>镜像分段、创建、迁移、外包、终止</li>
-</ul>
-</li>
-<li>虚拟和物理资源监控</li>
-<li>用户访问控制</li>
-</ul>
-<h4 id="Virtual-Infrastructure-Manager和Hyperviosr的关系"><a href="#Virtual-Infrastructure-Manager和Hyperviosr的关系" class="headerlink" title="Virtual Infrastructure Manager和Hyperviosr的关系"></a>Virtual Infrastructure Manager和Hyperviosr的关系</h4><ul>
-<li><strong>终端用户</strong>通过<strong>公开的云接口</strong>访问<strong><u>虚拟基础架构管理者</u></strong></li>
-<li><p><strong>本地用户</strong>直接访问<strong><u>虚拟基础架构管理者</u></strong></p>
-</li>
-<li><p><strong><u>虚拟基础架构管理者</u></strong>通过本地的<strong><u>Hypervisor虚拟机监控程序</u></strong>访问<strong>私有本地物理资源（私有云）</strong></p>
-</li>
-<li><p><strong><u>虚拟基础架构管理者</u></strong>通过<strong>外包接口</strong>访问<strong>共有远程物理资源（公有云）</strong></p>
-</li>
-</ul>
-<center><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gbbw4v6twoj30hw0hiac7.jpg" alt="截屏2020-01-27下午10.48.44" style="zoom:50%"/>
-</center>
+          <p>大数据的挑战、MapReduce、Hadoop、例子</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/05%20MapReduce/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
-<h4 id="云结构各部分的关系"><a href="#云结构各部分的关系" class="headerlink" title="云结构各部分的关系"></a>云结构各部分的关系</h4><ol>
-<li><u><strong>分布式应用</strong></u>部署在虚拟机集群中</li>
-<li>通过分布式应用，<strong><u>虚拟基础设施管理者</u></strong>把<strong><u>虚拟机集群资源</u></strong>提供给用户</li>
-<li><strong><u>基础设施管理者</u></strong>通过<u><strong>基础设施监控程序</strong></u>提供虚拟资源</li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gbbw3mv0voj30nk0lyqa6.jpg" alt="截屏2020-01-27下午10.48.04" style="zoom:50%;" /></p>
-<h4 id="Virtual-Infrastructure-Manager"><a href="#Virtual-Infrastructure-Manager" class="headerlink" title="Virtual Infrastructure Manager"></a>Virtual Infrastructure Manager</h4><p><strong>Open Nebula</strong></p>
-<p>特点：通过云插件进行多站点资源池、Hypervisor监控程序诊断、广泛采用云接口、简单的用户管理、灵活的模块化设计、成熟</p>
-<p><strong>Openstack</strong></p>
-<p>特点：高效地分配资源、通过服务门户授权管理员和用户、开发者通过API授权使应用具有”云感知“的能力、使”云“能够联合(cloud federation)</p>
-<h4 id="企业-云-企业"><a href="#企业-云-企业" class="headerlink" title="企业-云-企业"></a>企业-云-企业</h4><p>重点是将资源托管在云中，以便企业间的应用程序可以相互操作</p>
-<h4 id="混合云"><a href="#混合云" class="headerlink" title="混合云"></a>混合云</h4><p>”混合云“可以由”federated cloud provider联合云提供商”交付，将其自身的资源与其他提供商的资源相结合</p>
-<h4 id="Cloud-federation"><a href="#Cloud-federation" class="headerlink" title="Cloud federation"></a>Cloud federation</h4><p>different clouds can share resources：</p>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/02%20Image%20classification%20and%20object%20detection/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/02%20Image%20classification%20and%20object%20detection/" class="post-title-link" itemprop="url">图像分类和目标检测——介绍</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-05T00:00:00+00:00">2020-02-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-20 10:00:27" itemprop="dateModified" datetime="2020-05-20T10:00:27+01:00">2020-05-20</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>包括以下内容：</p>
+<p>目标检测的难点, 视频比特率计算, 混淆矩阵, AUC, precision, recall, Bounding-box, 人脸识别, Softmax, 激活函数, 线性分类器</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/02%20Image%20classification%20and%20object%20detection/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/03%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/03%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CCNN/" class="post-title-link" itemprop="url">使用CNN卷积神经网络进行图像识别</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-05 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-05T00:00:00+00:00">2020-02-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-24 05:52:22" itemprop="dateModified" datetime="2020-05-24T05:52:22+01:00">2020-05-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.6k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>13 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h4 id="卷积-Convolution"><a href="#卷积-Convolution" class="headerlink" title="卷积 Convolution"></a>卷积 Convolution</h4><ol>
+<li><p>将三通道的彩色图片转化为单通道的【灰度图片】，即对每个像素的三通道求平均值<script type="math/tex">f=\frac{r+g+b}{3}</script></p>
 <ul>
-<li><p>如果其中一个云的负载满了，那么cloud1的虚拟机可以迁移到cloud2</p>
+<li>在卷积操作中，分别对三通道进行卷积，然后将结果相加</li>
+</ul>
 </li>
-<li><p>用户与broker（代理人/经纪人）交互，broker决定是与cloud1或2或3进行交互，但对于用户来说，cloud1 2 3是透明的。</p>
+<li><p>【平滑图像】以去除小规模的细节。</p>
+<ul>
+<li><p>使用一个3*3（或任何大小）的遮罩窗口，以某像素为中心的窗口范围内的加权值（比如平均值），代替该像素原本的像素值。该操作被称为【互相关cross-correlation】</p>
+<blockquote>
+<p>注意，【卷积】和【互相关】的区别在于，卷积是将【互相关】的遮罩进行180度的反转。</p>
+<p>在机器学习中，使用所谓【卷积核（遮罩窗口）】在提取特征时，使用的是【互相关】的操作。而在后面的反向传播更新权重时，才是真正的【卷积】，也就是将卷积核进行水平垂直翻转，再进行加权求和。</p>
+<p>当遮罩窗口是对称的时，【卷积】与【互相关】等价。</p>
+</blockquote>
+</li>
+<li><p>当使用3*3的窗口时，<script type="math/tex">u,v\in [-1,1]</script>；当使用5*5的窗口时，<script type="math/tex">u,v\in [-2,2]</script>；<script type="math/tex">u,v</script> 代表着周围像素的相对位置索引</p>
 </li>
 </ul>
-<h3 id="Worksheet-1-问题"><a href="#Worksheet-1-问题" class="headerlink" title="Worksheet 1 问题"></a>Worksheet 1 问题</h3><ol>
-<li><p><strong>Make a list of activities that you do every day in which cloud computing is used. How would your life be altered if cloud services were suddenly switched off?</strong></p>
-<p>Office 365，Outlook，Google Cloud Platform；</p>
-<p>云计算能够为企业提供廉价的按需付费的服务，这样企业可以专注于自己的商业目标，减少了购买和维护额外计算机资源的花费（比如租用云服务器而不是购买硬件），进而降低了成本。如果没有了云计算，那么企业的成本会增加，也会导致产品定价上涨，因此消费者需要花更多的钱的购买产品</p>
-<p>Cloud can help companies to focus on whatever their business domain is. The total cost will decrease by the form of cloud amortization</p>
-</li>
-<li><p>What is meant by ”cloud” in cloud computing?</p>
-<p>“云”是一些可以自我维护和管理的虚拟计算资源，通常为一些大型服务器集群，包括计算服务器、存储服务器、宽带资源等等。云计算将所有的计算资源集中起来，并由软件实现自动管理，无需人为参与。</p>
-</li>
-<li><p>Where do the clouds reside?</p>
-<p>cloud center / data center</p>
-</li>
-<li><p>Which of the following is an advantage of the cloud computing approach:</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gesqx4bojcj30t80bodil.jpg" alt="截屏2020-05-14 下午11.44.25" style="zoom: 50%;" /></p>
 <ul>
-<li>it is ubiquitous</li>
-<li>enabled by pay-for-usage model </li>
-<li>responsiveness</li>
-<li><strong>all of these</strong></li>
+<li>如果我们的目标是平滑图像，那么选择合适的权重很重要。</li>
 </ul>
 </li>
-<li><p>What is the main advantage of utility computing (公用计算) as compared to traditional computing?</p>
-<p><strong>Utility computing</strong> is a service provisioning model in which a service provider makes computing resources and infrastructure management available to the customer as needed. Utility computing support a pay-per-use service while traditional computing is flat rate.</p>
+<li><p>移动遮罩窗口有多种方式：</p>
+<ul>
+<li><p>【No Padding】，输出的图像会比原图像缩小，比如3*3的窗口会导致原图像上下左右各减少一排像素。</p>
 </li>
-<li><p>Check the Amazon Web Services (AWS) cloud Web site. How would you plan a real computing application using EC2 or S3? You must specify the resources requested and figure out the costs charged by Amazon.</p>
-<p>系统、CPU、内存、硬盘大小、带宽、数据中心位置</p>
+<li><p>【Zero Padding】，在最外侧填充一圈0像素，保证输出图像与原图像大小一致</p>
+</li>
+<li><p>【Stride步长】，即移动遮罩窗口的距离，步长为1，则每次移动一格像素。当步长为2时，输出图像大小变为原来的一半</p>
+</li>
+<li><p>【Dilation扩大】，即放大遮罩窗口到原图像上的映射间隔。如右下图</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1getaq7ww1lj30mk0dgn1x.jpg" alt="截屏2020-05-15 上午11.09.43" style="zoom:33%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1getar0wf71j30r40f8n3o.jpg" alt="截屏2020-05-15 上午11.10.32" style="zoom: 33%;" /></p>
+</li>
+</ul>
 </li>
 </ol>
+<h4 id="Gaussian-mask-高斯模糊遮罩"><a href="#Gaussian-mask-高斯模糊遮罩" class="headerlink" title="Gaussian mask 高斯模糊遮罩"></a>Gaussian mask 高斯模糊遮罩</h4><blockquote>
+<p>图像的高斯模糊过程就是图像与<a href="https://zh.wikipedia.org/wiki/正态分布" target="_blank" rel="noopener">正态分布</a>做卷积，由于正态分布又叫作“高斯分布”，所以这项技术就叫作高斯模糊。</p>
+<p>高斯模糊是一种图像模糊<a href="https://zh.wikipedia.org/wiki/濾波器" target="_blank" rel="noopener">滤波器</a>，它用<a href="https://zh.wikipedia.org/wiki/正态分布" target="_blank" rel="noopener">正态分布</a>计算图像中每个像素的<a href="https://zh.wikipedia.org/w/index.php?title=变换&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">变换</a>。</p>
+</blockquote>
+<p>每个像素的值都是周围相邻像素值的<a href="https://zh.wikipedia.org/wiki/加權平均" target="_blank" rel="noopener">加权平均</a>。</p>
+<p>如果目标是彩色图像，可以对每个颜色通道单独计算。</p>
+<p>为了保证处理后的图像不会变得更亮或更暗，需要对遮罩的权重进行标准化，即遮罩窗口的权重之和为1，方法是对遮罩中的每个权重都除以遮罩窗口的总权重。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1getbfyp0swj307a01c745.jpg" alt="截屏2020-05-15 上午11.34.31"></p>
+<p>其中<script type="math/tex">u,v</script>表示遮罩窗口的大小；<script type="math/tex">\sigma</script>控制权重散布的范围，<script type="math/tex">\sigma</script>越大，则正太分布的范围越大，边缘的权重值越高，中间的权重值越低，原像素点受到周围像素的影响越大，图像越模糊。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1getbk1fsswj30ao0a63zg.jpg" alt="截屏2020-05-15 上午11.38.26" style="zoom: 50%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1getblp16k7j30qm0em7br.jpg" alt="截屏2020-05-15 上午11.39.44" style="zoom: 67%;" /></p>
+<h4 id="局部对比度归一化-Local-Contrast-Normalisation"><a href="#局部对比度归一化-Local-Contrast-Normalisation" class="headerlink" title="局部对比度归一化 Local Contrast Normalisation"></a>局部对比度归一化 Local Contrast Normalisation</h4><p>该技术用于移除整张图像像素的大范围变动。通过减去邻近像素的平均值并除以邻近像素的标准差来修改每个像素。</p>
+<blockquote>
+<p>如果我们有一个场景，包含了一个大的黑暗区域和一个大的明亮的区域（例如一个城市广场有一半的区域处于建筑物的阴影之中），则全局对比度归一化将确保暗区域的亮度与亮区域的亮度之间存在大的差异。然而，它不能确保暗区内的边缘突出。</p>
+<p>局部对比度归一化更多地改变了图像，丢弃了所有相同强度的区域这使，得模型能够只关注于边缘。</p>
+</blockquote>
+<p>有原图A，对其进行平滑后得到图像B，B的每个像素都是A的局部像素的平均值。通过<script type="math/tex">A-B</script> 得到图像C，C展示了图像的细节。</p>
+<ul>
+<li>在图像B中，原图光亮的部分对应的值比较高，黑暗的部分对应的值比较低</li>
+<li>将A-B后，所得到的C可能是正值也可能是负值（像素点周围的值很大，本身的像素值很小）。<ul>
+<li>为了可视化该步骤图像，假设C中所有的像素值都在[-b,b]之间，可以将所有的像素值缩放到[0,1]之间。</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1getiemz1a4j30l60gaq8q.jpg" alt="截屏2020-05-15 下午3.35.00" style="zoom:50%;" /></p>
+<ul>
+<li>由于图像C的值有正负，于是对每个像素，将对应的遮罩窗口拉成向量，然后计算该向量到原点的欧式距离（平方之和再开方），得到图像D<ul>
+<li>缩放后可视化如下图</li>
+</ul>
+</li>
+<li>将图像C的每个像素除以图像D的对应像素，得到最终输出。注意，如果D中的像素值为0，则用一个大于0的数代替，比如1。</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1getpdv454oj30os0hg45x.jpg" alt="截屏2020-05-15 下午7.36.52" style="zoom: 50%;" /></p>
+<blockquote>
+<p>对输入图像的每一个像素，我们计算其邻域（例如3x3窗口）的均值，然后每个像素先减去这个均值，再除以这个邻域窗口（例如3x3窗口）拉成的9维向量的欧几里德范数（如果这个范数大于1的时候才除：这个约束是为了保证归一化只作用于减少响应（除以大于1的数值变小），而不会加强响应（除以小于1的数值变大））。也有论文在计算均值和范数的时候，都加入了距离的影响，也就是距离离该窗口中心越远，影响越小，例如加个高斯权重窗口（空间上相邻的像素点的相关性随着距离变大而变小）。</p>
+</blockquote>
+<h4 id="学习图像特征"><a href="#学习图像特征" class="headerlink" title="学习图像特征"></a>学习图像特征</h4><p>学习图像特征，也就是从图片中自动发现局部特征，使用这些学习到的特征来构建特征地图。</p>
+<p>人脑会适应从视觉中观察到的物体特征，这一过程称之为学习。神经元的这一属性称为可塑性 plasticity。</p>
+<p>我们的目的是建立【可塑性】的计算模型，也就是学习如何检测图像特征。该步骤很简单，就是从图像中提取上千个n*n大小的小块：</p>
+<ol>
+<li><p>数据采集：采样大量图像补丁patch（例如20,000个15x15补丁）</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geurvpkgktj30sq0buahe.jpg" alt="截屏2020-05-16 下午5.48.40" style="zoom:50%;" /></p>
+</li>
+<li><p>聚类：将二维向量转化为一维向量（该步骤称为：vectorizing the patch），在此向量空间中查找聚类，这些聚类定义了不同的特征。比如使用K-means，可以使上图的特征集最终被划分为9种类型。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geus3nvk2kj30rg0a80ud.jpg" alt="截屏2020-05-16 下午5.56.24" style="zoom:50%;" /></p>
+</li>
+</ol>
+<h4 id="特征图"><a href="#特征图" class="headerlink" title="特征图"></a>特征图</h4><p>用图像特征（过滤器）过滤图像，对匹配的部分进行上色。原图的特征图如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geus5f1rqrj30qu09kmzw.jpg" alt="截屏2020-05-16 下午5.58.08" style="zoom:33%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geusdpjf1hj30ia0dsgr7.jpg" alt="截屏2020-05-16 下午6.06.05" style="zoom:50%;" /></p>
+<p>这里的特征图与CNN中的特征图意思不同，CNN的特征地图指的是经过卷积核得到的卷积层的输出，这里的特征地图指的根据不同聚类中心的距离划分出来的特征图。简单来说就是使用的方法不一样。<strong>一个是CNN用卷积核进行卷积（互相关），一个这里是分块后聚类。</strong></p>
+<p>局部对比度均一化后的特征图如下：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geusgo5aqzj30qc092n13.jpg" alt="截屏2020-05-16 下午6.08.54" style="zoom:50%;" /></p>
+<p>对比：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geusgvj7zqj30os0gytpe.jpg" alt="截屏2020-05-16 下午6.09.08" style="zoom: 50%;" /></p>
+<h4 id="使用词袋-Bag-of-Words-进行图像分类"><a href="#使用词袋-Bag-of-Words-进行图像分类" class="headerlink" title="使用词袋 Bag of Words 进行图像分类"></a>使用词袋 Bag of Words 进行图像分类</h4><p>具体思想：假设数据集是带有标签的图像。使用上述方法，提取训练集的特征图，并进行聚类，将划分后的各个分类称为<strong>codeword</strong>。我们可以计算每个图像包含的codeword的数量。然后使用标准的分类器，对图像进行分类。这是CNN出现前最前沿的图像识别方法（Csurka et al. 2004）</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geusk31eg3j30s40kyqc3.jpg" alt="截屏2020-05-16 下午6.12.13" style="zoom:50%;" /></p>
+<p>缺点：“词袋”在构建直方图时会失去空间排列。CNN的卷积模型对此作出了改进</p>
+<h3 id="对于卷积网络中的单层"><a href="#对于卷积网络中的单层" class="headerlink" title="对于卷积网络中的单层"></a>对于卷积网络中的单层</h3><h4 id="权值共享"><a href="#权值共享" class="headerlink" title="权值共享"></a>权值共享</h4><p>一个卷积层的一个卷积核，将应用于图像的所有窗口位置。换句话说，卷积核在图像中移动时，权重不变。</p>
+<h4 id="ReLU激活函数"><a href="#ReLU激活函数" class="headerlink" title="ReLU激活函数"></a>ReLU激活函数</h4><p>rectified linear activation function（ReLU），该算法的关键思想是让感知机专注于strong response</p>
+<blockquote>
+<p>线性整流函数（Rectified Linear Unit, ReLU），又称修正线性单元，是一种人工神经网络中常用的激活函数（activation function），通常指代以斜坡函数及其变种为代表的非线性函数：即对于输入的负值，输出全为0，对于正值，则原样输出</p>
+</blockquote>
+<h4 id="RGB图像"><a href="#RGB图像" class="headerlink" title="RGB图像"></a>RGB图像</h4><p>对于RGB图像，每个颜色通道都使用不同的卷积核，经过ReLU，最后将3个输出相加，得到最终的特征图。</p>
+<h3 id="卷积神经网络-Convolutional-Neural-Network-CNN"><a href="#卷积神经网络-Convolutional-Neural-Network-CNN" class="headerlink" title="卷积神经网络 Convolutional Neural Network, CNN"></a>卷积神经网络 Convolutional Neural Network, CNN</h3><p>CNN全连接层输出的每一个值，都是通过如下方式进行计算，一个输出值对应一个神经元。</p>
+<blockquote>
+<p>思考：假设对于每一个图像，卷积层最终输出为128个10*10的特征图像，拉长后变为128维的向量，对于全连接层来说，有12800个输入参数，最终输出为10个分类，中间可以再添加一层全连接层，比如12800-&gt;512-&gt;10。其中512是我们通过经验或调参得出的数值，是否有方法，可以基于12800*N个参数（N为图像数量），发现潜在的聚类数量，比如x，使得12800-&gt;x-&gt;10。</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geut29yssgj30oc07cab1.jpg" alt="截屏2020-05-16 下午6.29.43"></p>
+<h4 id="Pooling-池化"><a href="#Pooling-池化" class="headerlink" title="Pooling 池化"></a>Pooling 池化</h4><p>池化就是将输入图像进行缩小，减少像素信息，只保留重要信息，能有效地减少计算量<br>池化的操作也很简单，通常情况下，池化区域是2*2大小，然后按一定规则转换成相应的值，例如取这个池化区域内的最大值（max-pooling）、平均值（mean-pooling）等，以这个值作为像素值。</p>
+<h4 id="CNN的模型结构"><a href="#CNN的模型结构" class="headerlink" title="CNN的模型结构"></a>CNN的模型结构</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geuw7gtgthj30f9052wen.jpg" alt="截屏2020-05-16 下午8.17.53"  /></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geuzz7x8kvj30q60hydli.jpg" alt="截屏2020-05-16 下午10.28.55" style="zoom: 50%;" /></p>
+<p>第一个卷积层中，<script type="math/tex">32*32*32</script>中的第一个32表示32个卷积核，后面两个32表示图像大小</p>
+<p>参数量 =（前一层特征图的通道数 <em> 卷积核大小 ）</em> 当前层卷积核数量 + 偏置项数量（当前层卷积核数量）</p>
+<p><a href="https://zhuanlan.zhihu.com/p/77471991" target="_blank" rel="noopener">具体计算方式</a></p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><ol>
+<li>选择数据集</li>
+<li>将数据集拆分为训练集和测试集<ul>
+<li>为了防止【过拟合】，还需要把训练集拆分为训练集和验证集</li>
+</ul>
+</li>
+<li>选择损失函数（如何测量模型）<ul>
+<li>模型学习的过程是：迭代更新weight和bias，以最小化损失函数</li>
+</ul>
+</li>
+<li>调整参数（最小化训练集loss）</li>
+<li>评估模型（使用测试集）</li>
+</ol>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>对于分类任务，分类器的输出是一个【概率分布】。对于图像x，它分类y的概率为<script type="math/tex">p(y|x;\theta)</script></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geuwqlfmzmj30rk086tbb.jpg" alt="截屏2020-05-16 下午8.36.53"></p>
+<p>对于深度神经网络，我们的目标是找到一组参数，使得【likelihood cost function】<strong>最大化</strong>，其中<script type="math/tex">x^i</script>是输入，<script type="math/tex">y^i</script>是对应分类的独热编码，<script type="math/tex">\theta</script>表示模型的参数</p>
+<ul>
+<li>我们称该乘积为【似然likelihood】而不是【概率probability】，是因为该变量的所有值之和并不为1</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geuyu7dqp3j30sc0aydjq.jpg" alt="截屏2020-05-16 下午9.49.31" style="zoom:50%;" /></p>
+<h4 id="独热编码"><a href="#独热编码" class="headerlink" title="独热编码"></a>独热编码</h4><p>由0，1组成的二维数组，数组的长度是分类的数量，1表示数据的标签为该分类，0表示否。</p>
+<p>(标签1,2,3,4) &lt;=&gt; [0,1,0,0]</p>
+<h4 id="negative-log-likelihood-loss-和-cross-entropy-loss"><a href="#negative-log-likelihood-loss-和-cross-entropy-loss" class="headerlink" title="negative log likelihood loss 和 cross-entropy loss"></a>negative log likelihood loss 和 cross-entropy loss</h4><p>在【输出】一节中提到，我们的目标是最大化<script type="math/tex">\prod p(y|x;\theta)</script>，即<script type="math/tex">argmax_\theta(\prod p(y|x;\theta))</script>。由于取对数log不会改变<script type="math/tex">\theta</script>的最大值（log是单调递增的），因此我们可以将乘积操作改为求和操作（根据公式<script type="math/tex">log(ab)=log(a)+log(b)</script>），最后一个式子称为【交叉熵损失】或【负对数似然损失】。</p>
+<blockquote>
+<p>注意，negative log likelihood loss 和 cross-entropy loss，在pytorch中的实现是不同的：</p>
+<p>Technical note that can be ignored: Averaging log probability over the dataset is equal to the expected value over the data distribution. Hence the cross-entropy is between the data distribution and the model. Note that in PyTorch the losses differ since nn.NLLLoss takes log probabilities as input and averages (assuming “mean” default is used), whereas nn.CrossEntropyLoss takes raw confidence values as input and starts out by applying nn.LogSoftMax.</p>
+</blockquote>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geuzl1ept3j30rc0k2n30.jpg" alt="截屏2020-05-16 下午10.15.17" style="zoom:50%;" /></p>
+<h4 id="数据增强"><a href="#数据增强" class="headerlink" title="数据增强"></a>数据增强</h4><p>我们可以对图像进行微小的旋转和平移，来扩充数据。更大的数据集，能够提高模型的准确率。</p>
+<h4 id="特征图像"><a href="#特征图像" class="headerlink" title="特征图像"></a>特征图像</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geuzuhi15pj30li0aa0v3.jpg" alt="截屏2020-05-16 下午10.24.23" style="zoom:50%;" /></p>
+<p>注意，对于RGB图像，三个通道的卷积核是不同的，最后叠加为一个特征图像。</p>
+<p>关于卷积核（滤波器）与通道数（特征图像数量）的关系：</p>
+<blockquote>
+<p>实际上，真实的情况是，卷积过程中，输入层有多少个通道，滤波器就要有多少个通道，但是滤波器的数量是任意的，滤波器的数量决定了卷积后 feature map 的通道数。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf3g2milxcj30nn0dkmxr.jpg" alt="截屏2020-05-24 上午5.50.19" style="zoom:50%;" /></p>
+<p><a href="https://blog.csdn.net/briblue/article/details/83063170" target="_blank" rel="noopener">多通道图像卷积过程及计算方式</a></p>
+</blockquote>
+<h4 id="梯度下降更新损失函数"><a href="#梯度下降更新损失函数" class="headerlink" title="梯度下降更新损失函数"></a>梯度下降更新损失函数</h4><h4 id="反向传播-BP"><a href="#反向传播-BP" class="headerlink" title="反向传播 BP"></a>反向传播 BP</h4><h4 id="随机梯度下降"><a href="#随机梯度下降" class="headerlink" title="随机梯度下降"></a>随机梯度下降</h4><p><a href="https://blog.csdn.net/u011848397/article/details/102598084" target="_blank" rel="noopener">以上三个概念，详见</a></p>
+<h4 id="感受野-receptive-field"><a href="#感受野-receptive-field" class="headerlink" title="感受野 receptive field"></a>感受野 receptive field</h4><p>就是特征图上的一个点对应输入图上的区域。其实就是假设卷积后的特征图像大小为一个像素点，反推原图大小。</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/program_developer/article/details/80958716" target="_blank" rel="noopener">例子</a>：<img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gev13nlporj30hw0dgacs.jpg" alt="img"></p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/carsonzhu/p/11884501.html" target="_blank" rel="noopener">详细描述</a></p>
+<p><a href="https://fomoro.com/research/article/receptive-field-calculator#3,1,1,VALID;2,2,1,VALID;3,1,1,VALID;2,2,1,VALID;3,1,1,VALID;3,1,1,VALID;2,2,1,VALID" target="_blank" rel="noopener">在线计算网站</a></p>
 
       
     </div>
@@ -645,7 +953,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/02_%20Virtual%20Infrastructure/">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Federated%20Cloud%20%E8%81%94%E5%90%88%E4%BA%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -659,7 +967,172 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/02_%20Virtual%20Infrastructure/" class="post-title-link" itemprop="url">云计算/02_ Virtual Infrastructure</a>
+            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Federated%20Cloud%20%E8%81%94%E5%90%88%E4%BA%91/" class="post-title-link" itemprop="url">云计算/03_ Federated Cloud 联合云</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-04 16:20:17 / 修改时间：16:39:22" itemprop="dateCreated datePublished" datetime="2020-02-04T16:20:17+00:00">2020-02-04</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Federated-Cloud-联合云"><a href="#Federated-Cloud-联合云" class="headerlink" title="Federated Cloud 联合云"></a>Federated Cloud 联合云</h2><p>Federated cloud usually describes joining up and managing multiple public cloud environments – but there is nothing to prohibit joining multiple public clouds to a private one (so some overlap with Hybrid).</p>
+<p>The central idea is that you have multiple IaaS and PaaS environments in the cloud. An application or a set of services may require the joining up and managing multiple PaaS and IaaS environments.</p>
+<p>Now there are two classic scenarios:</p>
+<ol>
+<li>I have my storefront in the cloud. During peak periods, I want to quickly expand my capacity. I may choose to federate my load across multiple cloud providers both from a cost or location issue (for example: I am a US-based service, but I have an European sales promotion – I should probably choose a local cloud provider to federate my load across, etc.).</li>
+<li>I have multiple cloud services (think RDS from Amazon, a CDN from Akamai, etc.). I will (either for cost or functionality) choose to federate my application across multiple different clouds.</li>
+</ol>
+<p>The reasons for doing it are usually either functional, location or cost-based. You can get a lot of flexibility here, as you don’t need to rely upon a single vendor to support you, so there is less vendor lock-in. However, the flexibility you gain can be at the cost of complexity. You now have multiple different SLAs, you have to manage potentially different APIs, monitoring and management and deployment approaches.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Cloud%20Bursting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03_%20Cloud%20Bursting/" class="post-title-link" itemprop="url">云计算/03_ Cloud Bursting</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-04 16:00:50 / 修改时间：16:00:56" itemprop="dateCreated datePublished" datetime="2020-02-04T16:00:50+00:00">2020-02-04</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>10 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Cloud-Brusting-云爆发"><a href="#Cloud-Brusting-云爆发" class="headerlink" title="Cloud Brusting 云爆发"></a>Cloud Brusting 云爆发</h1><h2 id="The-latest-hybrid"><a href="#The-latest-hybrid" class="headerlink" title="The latest hybrid"></a>The latest hybrid</h2><p>model could be a cost-effective way to take advantage of the cloud</p>
+<p>Cloud bursting is a rather nebulous buzzword that sounds cool but, I’m afraid, has nothing to do with Kate Bush. Instead, it’s the term used to describe a setup where you run your business mostly on your own kit, but also have a set of cloud accounts sitting idle, ready to take on extra “bursts” of work when demand peaks.</p>
+<h2 id="Isn’t-that-already-the-idea-behind-hybrid-cloud"><a href="#Isn’t-that-already-the-idea-behind-hybrid-cloud" class="headerlink" title="Isn’t that already the idea behind hybrid cloud?"></a>Isn’t that already the idea behind hybrid cloud?</h2><p>Yes and no. Hybrid cloud is an umbrella term for dividing up your computing resources across local and off-premises servers; cloud bursting is a specific way of using those resources.</p>
+<p>In practice, a cloud burst setup might use containerised VMs and some form of load orchestration package to shift containers to locations where user sessions can reach them. It will probably require quite a lot of work at the database design level as well, so that this too can be replicated, multi-homed or remotely accessed. In short, cloud bursting isn’t an architecture or a computing philosophy, but a capability of your entire technology estate.</p>
+<h2 id="Is-it-just-an-agile-implementation-of-hybrid-cloud"><a href="#Is-it-just-an-agile-implementation-of-hybrid-cloud" class="headerlink" title="Is it just an agile implementation of hybrid cloud?"></a>Is it just an agile implementation of hybrid cloud?</h2><p>That’s a question of semantics. A cloud bursting setup should quickly respond to unforeseen changes in demand, but this isn’t quite what’s conventionally meant by “agile”. Agility is about being able to retool your code quickly to adapt to changing circumstances, whereas cloud bursting requires everything to be in place well before the high-load day comes.</p>
+<p>You need to have your cloud accounts in place and paid up, you need to be sure that your code platform will run on the cloud, and you need to make sure that it’s actually capable of meeting the demands you want to place on it. Doing this properly involves a great deal of pre-emptive development and testing. I’d be very wary of a business that went into a cloud bursting project with an “agile” mindset.</p>
+<h2 id="Is-a-cloud-bursting-setup-is-cheaper-than-regular-cloud-hosting"><a href="#Is-a-cloud-bursting-setup-is-cheaper-than-regular-cloud-hosting" class="headerlink" title="Is a cloud bursting setup is cheaper than regular cloud hosting?"></a>Is a cloud bursting setup is cheaper than regular cloud hosting?</h2><p>It might work out that way, but the two models aren’t perfectly comparable. Hybrid cloud usually tends to imply an IAAS model, whereas cloud bursting finds most interest from heavy SAAS users.</p>
+<p>Cloud bursting also relies on your orchestration software correctly working out when to spin up the offsite services and incur the associated charges - which involves an element of voodoo, as it’s exquisitely difficult to distinguish between blips and booms as they’re happening. A hybrid cloud setup with plenty of slack capacity may or may not work out cheaper, but it’s likely to be more dependable, and have a more predictable cost.</p>
+<h2 id="When-is-cloud-bursting-the-right-answer"><a href="#When-is-cloud-bursting-the-right-answer" class="headerlink" title="When is cloud bursting the right answer?"></a>When is cloud bursting the right answer?</h2><p>There are some such scenarios, but they’re mostly inside the world of IT itself. For example, if you’re an antivirus developer combatting zero-day exploits, you’ll want the ability to scale your download links out into the cloud on bad virus days. Some classes of simulation can also easily parcel up workloads and hand them off to compute nodes with no regard for where those nodes are hosted. Unfortunately, this model has become controversial, since it’s currently mostly employed by Bitcoin-mining trojans.</p>
+<h2 id="What’s-the-key-downside-of-a-cloud-bursting-approach"><a href="#What’s-the-key-downside-of-a-cloud-bursting-approach" class="headerlink" title="What’s the key downside of a cloud bursting approach?"></a>What’s the key downside of a cloud bursting approach?</h2><p>Finance directors probably aren’t going to love cloud burst projects, because (as we’ve noted) the costs are unpredictable by design. What’s more, since the whole point of cloud bursting is that you don’t use it regularly, it’s only when you really need to fire up those cloud servers that you discover that a recent update has unexpectedly broken your meticulously crafted handover routines.</p>
+<p>These inherent risks will tend to push most businesses back in the direction of a more traditional hybrid architecture.</p>
+<h2 id="Why-are-vendors-pushing-cloud-bursting-as-the-next-big-thing"><a href="#Why-are-vendors-pushing-cloud-bursting-as-the-next-big-thing" class="headerlink" title="Why are vendors pushing cloud bursting as the next big thing?"></a>Why are vendors pushing cloud bursting as the next big thing?</h2><p>I suspect that the vendors aren’t trying to get you specifically into cloud bursting. They want to make you think more generally about where your computing resources live.</p>
+<p>A little research, and my own anecdotal experience, suggests that very few companies have actually committed to a full-on cloud bursting model - which probably tells you everything you need to know.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03%20Cloud%20Platform%20Architecture%20over%20Virtualized%20Datacenters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/03%20Cloud%20Platform%20Architecture%20over%20Virtualized%20Datacenters/" class="post-title-link" itemprop="url">云计算/03 Cloud Platform Architecture over Virtualized Datacenters</a>
         </h2>
 
         <div class="post-meta">
@@ -669,7 +1142,218 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-27 18:37:29" itemprop="dateCreated datePublished" datetime="2020-01-27T18:37:29+00:00">2020-01-27</time>
+              <time title="创建时间：2020-02-04 15:52:25" itemprop="dateCreated datePublished" datetime="2020-02-04T15:52:25+00:00">2020-02-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-06 12:25:28" itemprop="dateModified" datetime="2020-02-06T12:25:28+00:00">2020-02-06</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>15 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="03-Cloud-Platform-Architecture-over-Virtualized-Datacenters"><a href="#03-Cloud-Platform-Architecture-over-Virtualized-Datacenters" class="headerlink" title="03 Cloud Platform Architecture over Virtualized Datacenters"></a>03 <strong>Cloud Platform Architecture over Virtualized Datacenters</strong></h2><p>公有云，私有云，混合云；云计算；数据中心设计；仓库规模计算 Warehouse scale Computing；异质性heterogeneity</p>
+<h4 id="Cloud-Computing在硬件方面的好处"><a href="#Cloud-Computing在硬件方面的好处" class="headerlink" title="Cloud Computing在硬件方面的好处"></a>Cloud Computing在硬件方面的好处</h4><p>计算资源可以随时按需获取，使用户不需要提前规划将来的资源使用；</p>
+<p>消除了云用户的前期承诺，从而使公司可以从小做起，并在将来需要时增加硬件资源。</p>
+<p>能够根据需要在短期内支付计算资源成本的能力（例如，按小时计算的处理器和按天存储的处理器），并在完成后释放它们，从而可以节约资源。</p>
+<h4 id="公有云"><a href="#公有云" class="headerlink" title="公有云"></a>公有云</h4><p>建立在网络上；能够被任何购买了服务的用户访问；被服务提供商拥有；可以通过订阅访问</p>
+<p>例子：Google App Engine、Amazon Web Services、Microsoft Azure</p>
+<h4 id="私有云"><a href="#私有云" class="headerlink" title="私有云"></a>私有云</h4><p>建立在企业的内部网中；企业自己拥有并管理；访问仅限于企业本身及其合作伙伴；可能与云的标准冲突，但更能自定义和更可控</p>
+<h4 id="混合云"><a href="#混合云" class="headerlink" title="混合云"></a>混合云</h4><p>包含了公有云和私有云的特性；如果需要更多资源，那么可以让私有云访问公有云</p>
+<ul>
+<li>比如IBM Reserach Compute Cloud (RC2)：<ul>
+<li>IBM构建的私有云</li>
+<li>互连分布在美国，欧洲和亚洲的8个IBM研究中心的计算和IT资源</li>
+<li>混合云提供对客户端，合作伙伴网络和第三方的访问。</li>
+</ul>
+</li>
+</ul>
+<h4 id="公有云和私有云的特征"><a href="#公有云和私有云的特征" class="headerlink" title="公有云和私有云的特征"></a>公有云和私有云的特征</h4><p><strong>技术杠杆leverage和拥有权</strong>：公有云的拥有者是服务提供者。私有云利用现有的IT基础架构和人员； 由单个组织拥有</p>
+<blockquote>
+<p>（技术杠杆Technology leverage作用是在资源稳定或减少的情况下创造增值的能力，同时又提高了以更快的速度发展的能力）</p>
+</blockquote>
+<p><strong>供应资源的管理</strong>：公有云在专门的基础设备中创建和管理虚拟实例，促进标准化、减少资金支出、增加应用的灵活性。私有云由客户（企业）管理，实现定制化和更高的效率</p>
+<p><strong>工作负载workload分配方法和负载策略</strong>：公有云处理工作负载而没有通信依赖性，分配数据和虚拟机资源，高峰工作负载被转移到其他设备(off-loaded)。私有云动态的处理工作负载，但可以更好的平衡工作负载；分布数据和虚拟资源。</p>
+<blockquote>
+<p>off-load：1.卸载。2.转移到其他设备</p>
+</blockquote>
+<p><strong>安全和数据隐私强化</strong>：公有云通过远程接口可被公开访问。私有云的访问时受限的，提供生产前测试并执行数据隐私和安全策略</p>
+<p><strong>例子</strong>：公有云：Google App Engine、Amazon Web Services、Microsoft Azure。私有云：IBM Reserach Compute Cloud (RC2)</p>
+<h4 id="云计算的部署场景——Bursted-internal-cloud、Federated-clouds、Multi-clouds"><a href="#云计算的部署场景——Bursted-internal-cloud、Federated-clouds、Multi-clouds" class="headerlink" title="云计算的部署场景——Bursted internal cloud、Federated clouds、Multi-clouds"></a>云计算的部署场景——Bursted internal cloud、Federated clouds、Multi-clouds</h4><p><strong>Brusted internal cloud</strong>：比如电商平台某一小时打折，这一小时内的用户流量将会激增并超过平时的负载。根据云爆发的思想，该平台应该提前准备好一组闲置的资源（比如在Azure上租赁），能够在这一小时内应对流量高峰的情况。</p>
+<blockquote>
+<p>Cloud bursting is an application deployment model in which an application runs in a private cloud or data center, but also have a set of cloud accounts sitting idle, ready to bursts into a public cloud when there is a necessity to meet peak demands or computing capacity spikes. </p>
+<p>云爆发是一种应用程序部署模型，其中应用程序在私有云或数据中心中运行，但是还有一组闲置的云帐户，并在需要满足峰值需求或计算能力高峰时爆发到公共云中。</p>
+</blockquote>
+<p><strong>Federated cloud</strong>：联合云是两个或更多个独立的云，它们遵循一致的策略（例如，共享身份验证，存储和计算资源），使客户可以根据他们的预算和投资计划从许多供应商中进行选择。Federated cloud is two or more independent clouds follow consistent policies (e.g. share either authentication, storage and computing resources), giving customers many vendors to choose from based on their budgets and investment plans.</p>
+<p><strong>Multi-clouds</strong>：与联合云相反，多个云之间并不会通信或共享资源，他们是完全独立的。Broker帮助服务提供商发现适合的云（which call indermediate）；或者由Broker直接代理基础设施提供者与服务提供者通信，infrastructure providers对service provider来说透明（which call virtual infrastructure provider）</p>
+<p>A multicloud environment aims to eliminate the reliance on any single cloud provider. There are many reasons to do so, such as cost-efficiencies, flexibility, deploy the application to the cloud closer to the user (choose clouds which in the UK instead of the US for British users), etc.</p>
+<p>多云环境旨在消除对任何单个云提供商的依赖。 原因有很多，例如成本效益，灵活性，将应用程序部署到更靠近用户的云中（对于英国用户，选择在英国而不是美国的云）。</p>
+<h4 id="云建于大规模数据中心之上"><a href="#云建于大规模数据中心之上" class="headerlink" title="云建于大规模数据中心之上"></a>云建于大规模数据中心之上</h4><p>规模的范围：从“边缘”设施到大规模（100K至1M服务器）</p>
+<p>成本比较：小型中心（1K服务器），和较大的400K服务器中心成本</p>
+<h4 id="仓库规模计算Warehouse-Scale-Computing-WSC"><a href="#仓库规模计算Warehouse-Scale-Computing-WSC" class="headerlink" title="仓库规模计算Warehouse Scale Computing (WSC)"></a>仓库规模计算Warehouse Scale Computing (WSC)</h4><p>提供互联网服务：搜索、社交网络、在线地图、视频分享、在线购物、邮件、云计算等</p>
+<p>高性能计算集群的区别：集群有更高的处理器和网络性能；集群强化线程级并行和请求级并行</p>
+<p>数据中心：将不同的机器和软件合并在同一个位置；强化虚拟机和硬件以服务不同的消费者</p>
+<h4 id="仓管规模计算的设计思想"><a href="#仓管规模计算的设计思想" class="headerlink" title="仓管规模计算的设计思想"></a>仓管规模计算的设计思想</h4><p>性价比Cost-performance；能源效率：影响配电power distribution和散热cooling；通过冗余增强可靠性；网络输入和输出；交互式和批处理工作负载；运营成本计算：功耗是设计系统时的主要限制；规模、机遇、问题</p>
+<h4 id="小规模服务器集群的结构（1000-servers）"><a href="#小规模服务器集群的结构（1000-servers）" class="headerlink" title="小规模服务器集群的结构（1000 servers）"></a>小规模服务器集群的结构（1000 servers）</h4><p>通过以太网交换机互连，并位于仓库或容器环境中</p>
+<h4 id="存储和数组交换"><a href="#存储和数组交换" class="headerlink" title="存储和数组交换"></a>存储和数组交换</h4><p>存储选项：服务器内部的磁盘；通过无线带宽技术的网络附加存储 Network Attached Storage (NAS) through Infiniband；WSC通常依赖于本地磁盘；Google文件系统（GFS）使用本地磁盘，并至少维护三个副本</p>
+<blockquote>
+<p>InfiniBand是一个用于高性能计算的计算机网络通信标准，它具有极高的吞吐量和极低的延迟，用于计算机与计算机之间的数据互连。InfiniBand也用作服务器与存储系统之间的直接或交换互连，以及存储系统之间的互连。 截至2014年，它是超级计算机最常用的互连技术。</p>
+</blockquote>
+<h4 id="数据中心的负载平衡"><a href="#数据中心的负载平衡" class="headerlink" title="数据中心的负载平衡"></a>数据中心的负载平衡</h4><p>边界border路由器 =&gt; 访问Access路由器 =&gt; 负载平衡器 =&gt; 一层交换机 =&gt; 二层交换机 =&gt; TOR (top of the rack) 交换机 =&gt; 服务器机架</p>
+<h4 id="数据中心的网络"><a href="#数据中心的网络" class="headerlink" title="数据中心的网络"></a>数据中心的网络</h4><p>交换机，机架之间的丰富互连（一层交换机与二层交换机之间）：增加机架之间的吞吐量（可能有多个路由路径）；通过冗余提高可靠性</p>
+<h4 id="异质性-Heterogeneity-的方面"><a href="#异质性-Heterogeneity-的方面" class="headerlink" title="异质性 Heterogeneity 的方面"></a>异质性 Heterogeneity 的方面</h4><p>异质性Heterogeneity是并行环境中出现的最深远和最有挑战的任务之一。</p>
+<p>层次包括：</p>
+<ul>
+<li><p>宏观层Macro level：分布式计算机的网络，由不同的节点结构组成（单核、多核），与潜在的异构网络互连</p>
+</li>
+<li><p>微观层Micro level：更深的内存层次结构（内存，高速缓存，磁盘存储，三级tertiary存储）和各种加速器体系结构（固定的，可编程的（例如GPU）和可重新配置的（例如FPGA））</p>
+</li>
+<li><p>其他：软件（操作系统）、中间件、工具</p>
+</li>
+</ul>
+<h4 id="通用处理器-General-Purpose-Processors-（GPP）"><a href="#通用处理器-General-Purpose-Processors-（GPP）" class="headerlink" title="通用处理器 General Purpose Processors （GPP）"></a>通用处理器 General Purpose Processors （GPP）</h4><ol>
+<li>通用微处理器 Microprocessors（通用电脑）：为一般的电脑设计，如PC、workstations、Laptops、notePads；执行多个程序和多个任务</li>
+<li>微控制器 Microcontrollers（<strong>嵌入式系统</strong>）：为专门的任务设计；具有面向控制的外围设备；低耗、低性能、低电量、比微处理器小；适用于对成本，功率和空间有限制的应用</li>
+</ol>
+<p>特点：</p>
+<ul>
+<li>通用处理器可为所有不同的应用程序提供良好的性能，但专用处理器可为特定任务提供更好的性能</li>
+<li>专门应用处理器方案的出现：面向高性能、低能耗、低成本</li>
+<li>专用处理器已成为我们生活的一部分，几乎可以在我们每天使用的每台设备中找到：比如电视、手机、GPS</li>
+<li>3种类型：<ol>
+<li>数字信号处理器（DSP）Digital Signal Processor</li>
+<li>专用指令集处理器（ASIP）Application Specific Instruction Set Processors</li>
+<li>专用集成电路（ASIC）Application Specific Integrated Circuit</li>
+</ol>
+</li>
+</ul>
+<h4 id="应用专业处理器"><a href="#应用专业处理器" class="headerlink" title="应用专业处理器"></a>应用专业处理器</h4><ul>
+<li>DSP 数字信号处理器：用于广泛的实时数学计算的可编程微处理器–它们支持乘法累加单元</li>
+<li>ASIP 专用指令集处理器：可编程微处理器，其中硬件和指令集是为一种特殊应用而设计的<ul>
+<li>指令集，微体系结构和/或存储系统是针对某个应用程序或一系列应用程序定制的</li>
+<li>比GPP（通用处理器）更好的性能，更低的成本和更低的功耗</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>ASIP（应用特定指令处理器）通常是在使用的SoC（片上系统）。ASIP是一种体系结构，包括两部分，它们是最小的ISA（指令集体系结构）和可配置的逻辑，您可以使用它们来设计自己的指令集。因此，与ASIC相比，它具有相对较高的灵活性，而与FPGA（现场可编程门阵列）相比，它具有更好的性能。而且，它比FPGA便宜，但比ASIC贵。</p>
+<ul>
+<li>ASIP可以帮助您建立自己的指令集以满足您的特定要求；它提供了最小的ISA，可以缩短TTM（上市时间）。</li>
+</ul>
+</blockquote>
+<ul>
+<li>ASIC 专用集成电路：算法完全在硬件中实现<ul>
+<li>为公司特定生产线设计的集成电路</li>
+<li>本质上是专有的，而不是（始终）对公众开放</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>ASIC（应用指定的集成电路）是一个定制的集成电路。通常由个人或公司使用，用途非常有限。因此，在开发它时，只有订购它的人或公司才能使用它。它不适用于其他用途，例如，为公司的特定移动电话线设计的IC ，除属于该产品线的移动电话外，没有其他产品可以使用它。</p>
+<ul>
+<li>ASIC仅为一个客户和一个客户构建；ASIC仅在一个产品系列中使用；仅批量生产一种产品的ASIC这很有意义，这意味着大批量产品的单位成本较低，否则成本效率不高；可以利用并行性来实现高性能；低功耗</li>
+</ul>
+</blockquote>
+<h4 id="加速器-协处理器-Accelerators-Coprocessors"><a href="#加速器-协处理器-Accelerators-Coprocessors" class="headerlink" title="加速器-协处理器 Accelerators - Coprocessors"></a>加速器-协处理器 <strong>Accelerators - Coprocessors</strong></h4><p><strong>加速器/协处理器</strong>用于比CPU更有效地执行某些功能：更快、低能耗、但更难编程</p>
+<p><strong>Graphics Processing Unit (GPU)</strong>：单指令多线程（SIMT）模型– CUDA代码；高效处理数据并行应用，和吞吐量密集型应用程序（该算法将要处理大量数据元素）</p>
+<p><strong>FPGA (Field Programmable Gate Array)</strong> 现场可编程门阵列是逻辑门阵列，可以进行硬件编程以完成用户指定的任务：部分应用程序可以完全在硬件中实现</p>
+<blockquote>
+<p>它是作为专用集成电路（ASIC）领域中的一种半定制电路而出现的，既解决了定制电路的不足，又克服了原有可编程器件门电路数有限的缺点。</p>
+<p>FPGA的优点是我们可以配置其可编程结构来实现所需的数字功能的任意组合。另外，我们可以大规模并行地实现算法，这意味着我们可以非常快速，高效地执行大量数据处理。</p>
+</blockquote>
+<h4 id="比较"><a href="#比较" class="headerlink" title="比较"></a>比较</h4><p>CPU：与市场无关的；可供许多程序员使用；灵活、便携</p>
+<p>FPGA：限制市场；难以编程；比SW更高效；比ASIC更贵</p>
+<p>ASIC：针对特定市场；需要更少的开发者；不灵活rIgid，可编程性差；物理上难以构建</p>
+<p><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gbmyalczj7j310a0bs47h.jpg" alt="截屏2020-02-06下午12.20.57" style="zoom: 50%;" /></p>
+<h4 id="Google-TPU-张量处理器-（tensor-processing-unit）"><a href="#Google-TPU-张量处理器-（tensor-processing-unit）" class="headerlink" title="Google TPU 张量处理器 （tensor processing unit）"></a>Google TPU 张量处理器 （tensor processing unit）</h4><blockquote>
+<p>张量处理器（英語：tensor processing unit，缩写：TPU）是Google为机器学习全定制的人工智能加速器专用集成电路，专为Google的深度学习框架TensorFlow而设计。</p>
+<p>与图形处理器（GPU）相比，TPU采用低精度（8位）计算，以降低每步操作使用的晶体管数量。降低精度对于深度学习的准确度影响很小，但却可以大幅降低功耗、加快运算速度。同时，TPU使用了脉动阵列的设计，用来优化矩阵乘法与卷积运算，减少I/O操作。此外，TPU还采用了更大的片上内存，以此减少对DRAM的访问，从而更大程度地提升性能。</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/05%20%E4%BB%8E%E6%95%B0%E6%8D%AE%E4%B8%AD%E6%8C%96%E6%8E%98%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E7%9F%A5%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/05%20%E4%BB%8E%E6%95%B0%E6%8D%AE%E4%B8%AD%E6%8C%96%E6%8E%98%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">从数据中挖掘什么样的知识</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-03T00:00:00+00:00">2020-02-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-04 19:27:26" itemprop="dateModified" datetime="2020-05-04T19:27:26+01:00">2020-05-04</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘和文本分析</span></a>
+                </span>
             </span>
 
           <br>
@@ -678,7 +1362,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.1k</span>
+              <span>2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -697,472 +1381,59 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="Virtual-Infrastructure"><a href="#Virtual-Infrastructure" class="headerlink" title="Virtual Infrastructure"></a>Virtual Infrastructure</h2><p>A virtual infrastructure is a software-based IT infrastructure being hosted on another physical infrastructure and meant to be distributed as a service as in cloud computing’s infrastructure as a service (IaaS) delivery model. It provides organizations, particularly smaller ones that cannot afford to build their own physical infrastructure, access to enterprise-grade technology such as servers and applications. The distribution is often done via the cloud, meaning over large networks such as the internet.</p>
-<p>The main purpose of a virtual infrastructure is to bring enterprise-level technology to organizations that cannot afford the large capital required to pay for the hardware, software licenses, setup and continual maintenance of an actual data center infrastructure. The technology involves virtualization, which is the utilization of physical server resources to host logical or virtual servers and networking hardware in order to optimize resources and drive costs down by hosting multiple virtual servers in a single host server.</p>
-<p>The idea is that no single server is actually taxed enough to the point that its resource limits are reached so it would be more prudent to make use of these resources by running multiple logical servers that, together, can make use of the actual capacity of the host. This lean approach allows for sharing and distributing resources, which, in turn, promotes flexibility, scalability and lower total cost of ownership.</p>
-<p>Benefits of a virtual infrastructure:</p>
+          <a id="more"></a>
+<h4 id="数据挖掘、知识发现、文本挖掘"><a href="#数据挖掘、知识发现、文本挖掘" class="headerlink" title="数据挖掘、知识发现、文本挖掘"></a>数据挖掘、知识发现、文本挖掘</h4><p>数据挖掘是关于如何发现“知识”：大数据集中的模式、关系、预测规则</p>
+<p>因此需要数据挖掘技术、算法、工具，如Weka、MatLab、R；和指导我们采集数据和发现模型的方法学框架（指导方针）：CRISP-DM</p>
+<p>数据挖掘最初是关于从数据库中学习模式，以及将数据结构化为记录，字段</p>
+<p>越来越多的非结构化数据（如文本），因此文本挖掘是新的数据挖掘的子领域，专注于从非结构化的文本数据中发现知识</p>
+<h4 id="实例-Instance"><a href="#实例-Instance" class="headerlink" title="实例 Instance"></a>实例 Instance</h4><p>每个实例是被学习或描述的概念的一个例子；实例由它自身属性的值进行描述</p>
+<p>Instance的定义取决于分类的目标：如果分类单词，那么单词是实例，如果分类句子，那么句子是实例。</p>
+<p>数据挖掘算法的输入就是一系列实例的集合</p>
+<p>实例表示为一系列的特征feature或属性attribute：通常来说，在文件中，一个实例instance就是文件中的一条记录record，一个属性attribute就是记录的一个字段field（attribute-instance，record-field）</p>
+<p>从一系列实例instances中发现模式patterns，从而形成概念concepts</p>
+<h4 id="概念-Concept"><a href="#概念-Concept" class="headerlink" title="概念 Concept"></a>概念 Concept</h4><p>Concept 的定义：</p>
 <ul>
-<li>Scalable – Allows provisioning as many or as few logical servers as required, and users only pay for what they use.</li>
-<li>Flexible – Allows for multiple server and networking configurations as compared to a hardwired physical infrastructure, which requires more capital and effort to change.</li>
-<li>Secure – Allows more security to be layered on top of whatever security is already present in the virtual infrastructure because all traffic to the virtual infrastructure goes through the actual physical infrastructure.</li>
-<li>Load balancing – Allows software-based servers to share workloads easily and distribute them properly so that no single logical server is taxed more than the others.</li>
-<li>Backup and recovery – Promotes easier backups because everything can be saved somewhere, allowing for quick recovery in other hosts if a few hosts are down. This is almost impossible with physical servers, which have to be revived before services can resume.</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/" class="post-title-link" itemprop="url">介绍大数据</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-27T00:00:00+00:00">2020-01-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-26 03:32:33" itemprop="dateModified" datetime="2020-03-26T03:32:33+00:00">2020-03-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>1.4k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>4 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>大数据指的是复杂和巨大的数据集，使得传统的<u>数据库</u>或<u>数据处理</u>的软件工具无法获取、储存、管理、处理、分析。</p>
-<p>大数据的5V： Volume Velocity Variety Veracity Value</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/01%20INTRODUCTION,%20HISTORY,%20AND%20DEFINITIONS/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/02_%20SaaS,%20PaaS,%20IaaS/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/02_%20SaaS,%20PaaS,%20IaaS/" class="post-title-link" itemprop="url">云计算/02_ SaaS, PaaS, IaaS</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-26 22:41:15" itemprop="dateCreated datePublished" datetime="2020-01-26T22:41:15+00:00">2020-01-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-28 21:39:39" itemprop="dateModified" datetime="2020-01-28T21:39:39+00:00">2020-01-28</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>12k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>34 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="SaaS-PaaS-IaaS"><a href="#SaaS-PaaS-IaaS" class="headerlink" title="SaaS, PaaS, IaaS"></a>SaaS, PaaS, IaaS</h1><h2 id="Summary-of-Key-Differences"><a href="#Summary-of-Key-Differences" class="headerlink" title="Summary of Key Differences"></a>Summary of Key Differences</h2><p><img src="https://blogs.bmc.com/wp-content/uploads/2017/09/iaas-paas-saas-comparison-1024x759.jpg" alt="Differences between SaaS, PaaS, &amp; IaaS"></p>
-<h2 id="Common-Examples-of-SaaS-PaaS-amp-IaaS"><a href="#Common-Examples-of-SaaS-PaaS-amp-IaaS" class="headerlink" title="Common Examples of SaaS, PaaS, &amp; IaaS"></a>Common Examples of SaaS, PaaS, &amp; IaaS</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th><strong>Platform Type</strong></th>
-<th><strong>Common Examples</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>SaaS</strong></td>
-<td>Google Apps, Dropbox, Salesforce, Cisco WebEx, Concur, GoToMeeting</td>
-</tr>
-<tr>
-<td><strong>PaaS</strong></td>
-<td>AWS Elastic Beanstalk, Windows Azure, Heroku, Force.com, Google App Engine, Apache Stratos, OpenShift</td>
-</tr>
-<tr>
-<td><strong>IaaS</strong></td>
-<td>DigitalOcean, Linode, Rackspace, Amazon Web Services (AWS), Cisco Metapod, Microsoft Azure, Google Compute Engine (GCE)</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="SaaS-Software-as-a-Service"><a href="#SaaS-Software-as-a-Service" class="headerlink" title="SaaS: Software as a Service"></a>SaaS: Software as a Service</h2><p>Software as a Service, also known as cloud application services, represents the most commonly utilized option for businesses in the cloud market. SaaS utilizes the internet to deliver applications, which are managed by a third-party vendor, to its users. A majority of SaaS applications run directly through your web browser, which means they do not require any downloads or installations on the client side.</p>
-<h3 id="SaaS-Delivery"><a href="#SaaS-Delivery" class="headerlink" title="SaaS Delivery"></a>SaaS Delivery</h3><p>Due to its web delivery model, SaaS eliminates the need to have IT staff download and install applications on each individual computer. With SaaS, vendors manage all potential technical issues, such as data, middleware, servers, and storage, resulting in streamlined maintenance and support for the business.</p>
-<h3 id="SaaS-Advantages"><a href="#SaaS-Advantages" class="headerlink" title="SaaS Advantages"></a>SaaS Advantages</h3><p>As a reuslt, It can greatly reducing the time and money spent on tedious tasks such as installing, managing, and upgrading software. This frees up plenty of time for technical staff to spend on more pressing matters and issues within the organization.</p>
-<h3 id="SaaS-Characteristics"><a href="#SaaS-Characteristics" class="headerlink" title="SaaS Characteristics"></a>SaaS Characteristics</h3><p>There are a few ways to help you determine when SaaS is being utilized:</p>
-<ul>
-<li>Managed from a central location</li>
-<li>Hosted on a remote server</li>
-<li>Accessible over the internet</li>
-<li>Users not responsible for hardware or software updates</li>
-</ul>
-<h3 id="When-to-Use-SaaS"><a href="#When-to-Use-SaaS" class="headerlink" title="When to Use SaaS"></a>When to Use SaaS</h3><p>SaaS may be the most beneficial option in several situations, including:</p>
-<ul>
-<li>Startups or small companies that need to launch ecommerce quickly and don’t have time for server issues or software</li>
-<li>Short-term projects that require quick, easy, and affordable collaboration</li>
-<li>Applications that aren’t needed too often, such as tax software</li>
-<li>Applications that need both web and mobile access</li>
-</ul>
-<h3 id="SaaS-Limitations-and-Concerns"><a href="#SaaS-Limitations-and-Concerns" class="headerlink" title="SaaS Limitations and Concerns"></a>SaaS Limitations and Concerns</h3><ul>
-<li><strong>Interoperability.</strong> Integration with existing apps and services can be a major concern if the SaaS app is not designed to follow open standards for integration. In this case, organizations may need to design their own integration systems or reduce dependencies with SaaS services, which may not always be possible.</li>
-<li><strong>Vendor lock-in.</strong> Vendors may make it easy to join a service and difficult to get out of it. For instance, the data may not be portable–technically or cost-effectively–across SaaS apps from other vendors without incurring significant cost or inhouse engineering rework. Not every vendor follows standard APIs, protocols, and tools, yet the features could be necessary for certain business tasks.</li>
-<li><strong>Lack of integration support.</strong> Many organizations require deep integrations with on-premise apps, data, and services. The SaaS vendor may offer limited support in this regard, forcing organizations to invest internal resources in designing and managing integrations. The complexity of integrations can further limit how the SaaS app or other dependent services can be used.</li>
-<li><strong>Data security.</strong> Large volumes of data may have to be exchanged to the backend data centers of SaaS apps in order to perform the necessary software functionality. Transferring sensitive business information to public-cloud based SaaS service may result in compromised security and compliance in addition to significant cost for migrating large data workloads.</li>
-<li><strong>Customization.</strong> SaaS apps offer minimal customization capabilities. Since a one-size-fits-all solution does not exist, users may be limited to specific functionality, performance, and integrations as offered by the vendor. In contrast, on-premise solutions that come with several software development kits (SDKs) offer a high degree of customization options.</li>
-<li><strong>Lack of control.</strong> SaaS solutions involves handing control over to the third-party service provider. These controls are not limited to the software–in terms of the version, updates, or appearance–but also the data and governance. Customers may therefore need to redefine their data security and governance models to fit the features and functionality of the SaaS service.</li>
-<li><strong>Feature limitations.</strong> Since SaaS apps often come in a standardized form, the choice of features may be a compromising tradeoff against security, cost, performance, or other organizational policies. Furthermore, vendor lock-in, cost, or security concerns may mean it’s not viable to switch vendors or services to serve new feature requirements in the future.</li>
-<li><strong>Performance and downtime.</strong> Because the vendor controls and manages the SaaS service, your customers now depend on vendors to maintain the service’s security and performance. Planned and unplanned maintenance, cyber-attacks, or network issues may impact the performance of the SaaS app despite adequate service level agreement (SLA) protections in place.</li>
-</ul>
-<h3 id="Examples-of-SaaS"><a href="#Examples-of-SaaS" class="headerlink" title="Examples of SaaS"></a>Examples of SaaS</h3><p>These are several popular examples of SaaS, including: <a href="https://gsuite.google.com/" target="_blank" rel="noopener">Google GSuite</a> (Apps), <a href="https://www.dropbox.com/" target="_blank" rel="noopener">Dropbox</a>, <a href="https://www.salesforce.com/" target="_blank" rel="noopener">Salesforce</a>, <a href="https://www.webex.com/" target="_blank" rel="noopener">Cisco WebEx</a>, <a href="https://www.concur.com/" target="_blank" rel="noopener">SAP Concur</a>, and <a href="https://www.gotomeeting.com/" target="_blank" rel="noopener">GoToMeeting</a>.</p>
-<h2 id="PaaS-Platform-as-a-Service"><a href="#PaaS-Platform-as-a-Service" class="headerlink" title="PaaS: Platform as a Service"></a>PaaS: Platform as a Service</h2><p>Cloud platform services, also known as Platform as a Service (PaaS), provide cloud components to certain software while being used mainly for applications. PaaS delivers a framework for developers that they can build upon and use to create customized applications. All servers, storage, and networking can be managed by the enterprise or a third-party provider while the developers can maintain management of the applications.</p>
-<h3 id="PaaS-Delivery"><a href="#PaaS-Delivery" class="headerlink" title="PaaS Delivery"></a>PaaS Delivery</h3><p>The delivery model of PaaS is similar to SaaS, except instead of delivering the software over the internet, PaaS provides a platform for software creation. This platform is delivered via the web, giving developers the freedom to concentrate on building the software without having to worry about operating systems, software updates, storage, or infrastructure.</p>
-<p>PaaS allows businesses to design and create applications that are built into the PaaS with special software components. These applications, sometimes called middleware, are scalable and highly available as they take on certain cloud characteristics.</p>
-<h3 id="PaaS-Advantages"><a href="#PaaS-Advantages" class="headerlink" title="PaaS Advantages"></a>PaaS Advantages</h3><p>No matter the size of your company, using PaaS offers numerous advantages, including:</p>
-<ul>
-<li>Simple, cost-effective development and deployment of apps</li>
-<li>Scalable</li>
-<li>Highly available</li>
-<li>Developers can customize apps without the headache of maintaining the software</li>
-<li>Significant reduction in the amount of coding needed</li>
-<li>Automation of business policy</li>
-<li>Easy migration to the hybrid model</li>
-</ul>
-<h3 id="PaaS-Characteristics"><a href="#PaaS-Characteristics" class="headerlink" title="PaaS Characteristics"></a>PaaS Characteristics</h3><p>PaaS has many characteristics that define it as a cloud service, including:</p>
-<ul>
-<li>Builds on virtualization technology, so resources can easily be scaled up or down as your business changes</li>
-<li>Provides a variety of services to assist with the development, testing, and deployment of apps</li>
-<li>Accessible to numerous users via the same development application</li>
-<li>Integrates web services and databases</li>
-</ul>
-<h3 id="When-to-Use-PaaS"><a href="#When-to-Use-PaaS" class="headerlink" title="When to Use PaaS"></a>When to Use PaaS</h3><p>Utilizing PaaS is beneficial, sometimes even necessary, in several situations. For example, PaaS can streamline workflows when multiple developers are working on the same development project. If other vendors must be included, PaaS can provide great speed and flexibility to the entire process. PaaS is particularly beneficial if you need to create customized applications. This cloud service also can greatly reduce costs and it can simplify some challenges that come up if you are rapidly developing or deploying an app.</p>
-<h3 id="PaaS-Limitations-and-Concerns"><a href="#PaaS-Limitations-and-Concerns" class="headerlink" title="PaaS Limitations and Concerns"></a>PaaS Limitations and Concerns</h3><ul>
-<li><strong>Data security.</strong> Organizations can run their own apps and services using PaaS solutions, but the data residing in third-party, vendor-controlled cloud servers poses security risks and concerns. Your security options may be limited as customers may not be able to deploy services with specific hosting policies.</li>
-<li><strong>Integrations.</strong> The complexity of connecting the data stored within an onsite data center or off-premise cloud is increased, which may affect which apps and services can be adopted with the PaaS offering. Particularly when not every component of a legacy IT system is built for the cloud, integration with existing services and infrastructure may be a challenge.</li>
-<li><strong>Vendor lock-in.</strong> Business and technical requirements that drive decisions for a specific PaaS solution may not apply in the future. If the vendor has not provisioned convenient migration policies, switching to alternative PaaS options may not be possible without affecting the business.</li>
-<li><strong>Customization of legacy systems.</strong> PaaS may not be a plug-and-play solution for existing legacy apps and services. Instead, several customizations and configuration changes may be necessary for legacy systems to work with the PaaS service. The resulting customization can result in a complex IT system that may limit the value of the PaaS investment altogether.</li>
-<li><strong>Runtime issues.</strong> In addition to limitations associated with specific apps and services, PaaS solutions may not be optimized for the language and frameworks of your choice. Specific framework versions may not be available or perform optimally with the PaaS service. Customers may not be able to develop custom dependencies with the platform.</li>
-<li><strong>Operational limitation.</strong> Customized cloud operations with management automation workflows may not apply to PaaS solutions, as the platform tends to limit operational capabilities for end users. Although this is intended to reduce the operational burden on end users, the loss of operational control may affect how PaaS solutions are managed, provisioned, and operated.</li>
-</ul>
-<h3 id="Examples-of-PaaS"><a href="#Examples-of-PaaS" class="headerlink" title="Examples of PaaS"></a>Examples of PaaS</h3><p>Popular examples of PaaS include <a href="https://aws.amazon.com/elasticbeanstalk/" target="_blank" rel="noopener">AWS Elastic Beanstalk</a>, <a href="https://azure.microsoft.com/en-us/free/windows-server-on-azure/" target="_blank" rel="noopener">Windows Azure</a>, <a href="https://www.heroku.com/" target="_blank" rel="noopener">Heroku</a>, <a href="https://developer.salesforce.com/platform/force.com" target="_blank" rel="noopener">Force.com</a>, <a href="https://cloud.google.com/appengine/" target="_blank" rel="noopener">Google App Engine</a>, and <a href="https://www.openshift.com/" target="_blank" rel="noopener">OpenShift</a>.</p>
-<h2 id="IaaS-Infrastructure-as-a-Service"><a href="#IaaS-Infrastructure-as-a-Service" class="headerlink" title="IaaS: Infrastructure as a Service"></a>IaaS: Infrastructure as a Service</h2><p>Cloud infrastructure services, known as Infrastructure as a Service (IaaS), are made of highly scalable and automated compute resources. IaaS is fully <a href="https://www.bmc.com/blogs/self-service-thrives-clouds/" target="_blank" rel="noopener">self-service</a> for accessing and monitoring computers, networking, storage, and other services. IaaS allows businesses to purchase resources on-demand and as-needed instead of having to buy hardware outright.</p>
-<h3 id="IaaS-Delivery"><a href="#IaaS-Delivery" class="headerlink" title="IaaS Delivery"></a>IaaS Delivery</h3><p>IaaS delivers cloud computing infrastructure, including servers, network, operating systems, and storage, through virtualization technology. These cloud servers are typically provided to the organization through a dashboard or an API, giving IaaS clients complete control over the entire infrastructure. IaaS provides the same technologies and capabilities as a traditional data center without having to physically maintain or manage all of it. IaaS clients can still access their servers and storage directly, but it is all outsourced through a “virtual data center” in the cloud.</p>
-<p>As opposed to SaaS or PaaS, IaaS clients are responsible for managing aspects such as applications, runtime, OSes, middleware, and data. However, providers of the IaaS manage the servers, hard drives, networking, virtualization, and storage. Some providers even offer more services beyond the virtualization layer, such as databases or message queuing.</p>
-<h3 id="IaaS-Advantages"><a href="#IaaS-Advantages" class="headerlink" title="IaaS Advantages"></a>IaaS Advantages</h3><p>IaaS offers many advantages, including:</p>
-<ul>
-<li>The most flexible cloud computing model</li>
-<li>Easy to automate deployment of storage, networking, servers, and processing power</li>
-<li>Hardware purchases can be based on consumption</li>
-<li>Clients retain complete control of their infrastructure</li>
-<li>Resources can be purchased as-needed</li>
-<li>Highly scalable</li>
-</ul>
-<h3 id="IaaS-Characteristics"><a href="#IaaS-Characteristics" class="headerlink" title="IaaS Characteristics"></a>IaaS Characteristics</h3><p>Characteristics that define IaaS include:</p>
-<ul>
-<li>Resources are available as a service</li>
-<li>Cost varies depending on consumption</li>
-<li>Services are highly scalable</li>
-<li>Multiple users on a single piece of hardware</li>
-<li>Organization retain complete control of the infrastructure</li>
-<li>Dynamic and flexible</li>
-</ul>
-<h3 id="When-to-Use-IaaS"><a href="#When-to-Use-IaaS" class="headerlink" title="When to Use IaaS"></a>When to Use IaaS</h3><p>Just as with SaaS and PaaS, there are specific situations when IaaS is most advantageous.</p>
-<p>Startups and small companies may prefer IaaS to avoid spending time and money on purchasing and creating hardware and software. Larger companies may prefer to retain complete control over their applications and infrastructure, but they want to purchase only what they actually consume or need. Companies experiencing rapid growth like the scalability of IaaS, and they can change out specific hardware and software easily as their needs evolve. Anytime you are unsure of a new application’s demands, IaaS offers plenty of flexibility and scalability.</p>
-<h3 id="IaaS-Limitations-and-Concerns"><a href="#IaaS-Limitations-and-Concerns" class="headerlink" title="IaaS Limitations and Concerns"></a>IaaS Limitations and Concerns</h3><p>Many limitations associated with SaaS and PaaS models – such as data security, cost overruns, vendor lock-in and customization issues – also apply to the IaaS model. Particular limitations to IaaS include:</p>
-<ul>
-<li><strong>Security.</strong> While the customer is in control of the apps, data, middleware, and the OS platform, security threats can still be sourced from the host or other virtual machines (VMs). Insider threat or system vulnerabilities may expose data communication between the host infrastructure and VMs to unauthorized entities.</li>
-<li><strong>Legacy systems operating in the cloud.</strong> While customers can run legacy apps in the cloud, the infrastructure may not be designed to deliver specific controls to secure the legacy apps. Minor enhancement to legacy apps may be required before migrating them to the cloud, possibly leading to new security issues unless adequately tested for security and performance in the IaaS systems.</li>
-<li><strong>Internal resources and training.</strong> Additional resources and training may be required for the workforce to learn how to effectively manage the infrastructure. Customers will be responsible for data security, backup, and business continuity. Due to inadequate control into the infrastructure however, monitoring and management of the resources may be difficult without adequate training and resources available inhouse.</li>
-<li><strong>Multi-tenant security.</strong> Since the hardware resources are dynamically allocated across users as made available, the vendor is required to ensure that other customers cannot access data deposited to storage assets by previous customers. Similarly, customers must rely on the vendor to ensure that VMs are adequately isolated within the multitenant cloud architecture.</li>
-</ul>
-<h3 id="Examples-of-IaaS"><a href="#Examples-of-IaaS" class="headerlink" title="Examples of IaaS"></a>Examples of IaaS</h3><p>Popular examples of IaaS include <a href="https://www.digitalocean.com/" target="_blank" rel="noopener">DigitalOcean</a>, <a href="https://www.linode.com/" target="_blank" rel="noopener">Linode</a>, <a href="https://www.rackspace.com/" target="_blank" rel="noopener">Rackspace</a>, <a href="https://aws.amazon.com/" target="_blank" rel="noopener">Amazon Web Services (AWS)</a>, <a href="https://www.cisco.com/c/en/us/products/cloud-systems-management/metacloud/index.html" target="_blank" rel="noopener">Cisco Metacloud</a>, <a href="https://azure.microsoft.com/en-us/" target="_blank" rel="noopener">Microsoft Azure</a>, and <a href="https://cloud.google.com/compute/" target="_blank" rel="noopener">Google Compute Engine (GCE)</a>.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01%20Introduction%20to%20Cloud%20Computing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01%20Introduction%20to%20Cloud%20Computing/" class="post-title-link" itemprop="url">云计算/01 Introduction to Cloud Computing</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-26 19:43:21" itemprop="dateCreated datePublished" datetime="2020-01-26T19:43:21+00:00">2020-01-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-01 22:51:44" itemprop="dateModified" datetime="2020-02-01T22:51:44+00:00">2020-02-01</time>
-              </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="01-Introduction-to-Cloud-Computing"><a href="#01-Introduction-to-Cloud-Computing" class="headerlink" title="01 Introduction to Cloud Computing"></a>01 Introduction to Cloud Computing</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>相关技术、分布式系统的演化、云计算的定义、基础架构的可视化，概念云的结构</p>
-<h4 id="分布式系统的演化"><a href="#分布式系统的演化" class="headerlink" title="分布式系统的演化"></a>分布式系统的演化</h4><p>Exponential growth 指数型增长</p>
-<p>Mainframes (打孔条，做计算，给出结果) -&gt; Clusters -&gt; Grids -&gt; Clouds</p>
-<p><strong>Cloud Computing的特点</strong>：on-demand services</p>
-<h4 id="高性能计算"><a href="#高性能计算" class="headerlink" title="高性能计算"></a>高性能计算</h4><p>作用：模拟真实世界的科学问题和工程学问题</p>
-<p><strong>Parallelisation</strong> ——好处：提供更强的计算能力和更多内存memory。——挑战：进程间的通信很慢</p>
-<h4 id="网络-network-speed、计算机速度-computer-speed、存储容量-storage-density"><a href="#网络-network-speed、计算机速度-computer-speed、存储容量-storage-density" class="headerlink" title="网络 network speed、计算机速度 computer speed、存储容量 storage density"></a>网络 network speed、计算机速度 computer speed、存储容量 storage density</h4><p>Doubles every 9 months, doubles every 18 months, doubles every 12 months</p>
-<h4 id="分布式计算的变化范例（Could-云计算和-Grid-网格计算的区别）"><a href="#分布式计算的变化范例（Could-云计算和-Grid-网格计算的区别）" class="headerlink" title="分布式计算的变化范例（Could 云计算和 Grid 网格计算的区别）"></a>分布式计算的变化范例（Could 云计算和 Grid 网格计算的区别）</h4><ol>
-<li>linked all <strong>machines 机器</strong> together：Internet, TCP/IP</li>
-<li>linked all <strong>documents 文件</strong> together：WWW, HTTP, HTML, XML</li>
-<li>linked all <strong>applications 应用</strong> together：Web services, SOAP, WSDL, UDDI, REST</li>
-<li>linker <strong>everything else 其他</strong> together：<ul>
-<li><strong>Grid：分散化的基础设施 decentralised infrasturctures</strong></li>
-<li><strong>Could：中心化的基础设施 centralised infrastructrues</strong></li>
-</ul>
+<li>数据集间的关键区别：比如某区域不同年份的销售额sales的区别</li>
+<li>簇clusters 或自然分隔partitions：根据用户的购物习惯对用户进行分类</li>
+<li><p>分类的规则：Adj+X+Verb =&gt; X=Noun</p>
 </li>
-</ol>
-<h4 id="Delivery-Network-传输网络"><a href="#Delivery-Network-传输网络" class="headerlink" title="Delivery Network 传输网络"></a>Delivery Network 传输网络</h4><p>Water Distribution Network 水网, Power Grid 电网, Gas Netwrok 煤气网, Telecom Network 电信网</p>
-<h4 id="云计算的定义"><a href="#云计算的定义" class="headerlink" title="云计算的定义"></a>云计算的定义</h4><p>是一个模型，提供对共享的计算资源的访问；访问通过网络支持，无论何地用户都可以按需访问；共享的可配置的计算资源，能够快速提供给客户，并且对管理者的工作需求减少到最低——NIST (National Institute of Standards and Technology)</p>
-<ol>
-<li><p>On-demand self-service 按需自助服务</p>
+<li><p>通用的关联：高频词一般是语法性的，而不是有含义的</p>
 </li>
-<li><p>Broad network access 广泛的网络访问</p>
-</li>
-<li><p>Resource pooling 资源池</p>
-</li>
-<li><p>Rapid elasticity or expansion 快速的弹性或扩展</p>
-</li>
-<li><p>Measured service 测试评估服务</p>
-<p>比如：用了多少资源（带宽）是可以计算的</p>
-</li>
-</ol>
-<h4 id="虚拟的基础架构："><a href="#虚拟的基础架构：" class="headerlink" title="虚拟的基础架构："></a>虚拟的基础架构：</h4><p><strong>虚拟的服务平台</strong>的特点（好处）</p>
-<ul>
-<li>服务系统的整合</li>
-<li>降低成本</li>
-<li>降低复杂性</li>
-<li>简化管理</li>
-<li>按使用付费</li>
+<li>数字的预测：找到预测数值的规则，比如根据成绩预测毕业生的工资</li>
 </ul>
-<h4 id="云的定义"><a href="#云的定义" class="headerlink" title="云的定义"></a>云的定义</h4><p><strong>Cloud infrastructure 云架构 </strong>，提供了一个框架，用于管理对应用程序的访问，该访问可扩展、可靠、并且可以按需使用</p>
-<p><strong>云</strong>，对于许多手机应用程序来说，是一个不可见的后端</p>
-<h4 id="云数据中心"><a href="#云数据中心" class="headerlink" title="云数据中心"></a>云数据中心</h4><p>1~10万个主机，紧密耦合，相互紧挨着：电子商户（Amazon），内容服务器（YouTube、Apple、Microsoft），搜索引擎、数据挖掘（Google）</p>
-<p><strong>挑战</strong>：多应用，每个应用服务于大量的客户；管理和平衡负载，处理、网络，数据管理</p>
-<h4 id="Virtualised-Infrastructure-云架构-——-Multitenancy"><a href="#Virtualised-Infrastructure-云架构-——-Multitenancy" class="headerlink" title="Virtualised Infrastructure 云架构 —— Multitenancy"></a>Virtualised Infrastructure 云架构 —— Multitenancy</h4><p>是一个新兴的计算范例，其中数据和服务在可大规模扩展(massively scalable)的数据中心，并且通过互联网，可以被任何设备在任何地方进行访问</p>
-<p>传统计算和云计算的比较</p>
+<h4 id="Kmeans"><a href="#Kmeans" class="headerlink" title="Kmeans"></a>Kmeans</h4><p>cluster centroids 聚类中心</p>
+<h4 id="聚类的例子"><a href="#聚类的例子" class="headerlink" title="聚类的例子"></a>聚类的例子</h4><p>销售数据点包含买方和购物篮的信息；我们希望对不同的用户推送不同的广告；聚类分析把用户分成不同的类别的组，每个类别有不同的特征；聚类的特征与广告的种类相关联（每个簇的用户都有不同的购买偏好）；最后对用户分类</p>
+<h4 id="输出：聚类"><a href="#输出：聚类" class="headerlink" title="输出：聚类"></a>输出：聚类</h4><p>如果不知道有多少聚类，可以先做出树状图Dendrogram</p>
 <ul>
-<li>获得：买设备/ 买服务</li>
-<li>商业： 提前购买固定的设备和管理 / 按需购买</li>
-<li>访问：通过内部网访问桌面/ 通过网络访问任何设备</li>
-<li>技术：single tenant，静态的，非共享的 / <strong>multi-tenant</strong>，可扩展的，弹性的，动态</li>
+<li>根据聚类的数量/名字，对每个实例进行分类</li>
+<li>聚类中心点</li>
+<li>用树状图Dendrogram对结果进行展示，可以根据需求对树状图进行切割，得到不同数量的簇</li>
 </ul>
-<h4 id="Multi-tenancy-model-多重租赁技术"><a href="#Multi-tenancy-model-多重租赁技术" class="headerlink" title="Multi tenancy model 多重租赁技术"></a>Multi tenancy model 多重租赁技术</h4><p>Allows a single implementation of a service to multiple customers.</p>
-<p>A tenant (software vendor) can have many users (software customer) subscribed to its application and a user can be subscribed to different tenants’ applications, paying only for the ones that he really needs.</p>
-<p>一个tenant的应用可以被许多用户订阅，一个用户可以订阅许多tenant的应用，并且只对需要的那个付费。</p>
-<p>Multi-tenant 可以用在Saas, PaaS, IaaS上</p>
-<p>影响：</p>
+<h4 id="使用案例：比较数据集"><a href="#使用案例：比较数据集" class="headerlink" title="使用案例：比较数据集"></a>使用案例：比较数据集</h4><p>寻找US vs UK专门的术语；比较这个月和上个月的数据；和几个月前的数据比较；注意新的销售增长区域；趋势：上升、下降、循环；关键的区别可能表示聚类的簇；不同的规模；</p>
+<h4 id="输出：数据集间的不同"><a href="#输出：数据集间的不同" class="headerlink" title="输出：数据集间的不同"></a>输出：数据集间的不同</h4><p>最明显不同的关键实例/属性；关键术语的划分：names；不同数据集的趋势；整体的差别度量</p>
+<h4 id="分类器的使用例子"><a href="#分类器的使用例子" class="headerlink" title="分类器的使用例子"></a>分类器的使用例子</h4><p>医疗记录中的大量症状和诊断数据集是可用的；找到规则来通过病人的症状预测疾病；</p>
+<h4 id="关于决策树"><a href="#关于决策树" class="headerlink" title="关于决策树"></a>关于决策树</h4><p>无叶子节点表示特定属性的测试；边表示测试的结果；数字属性的测试通常有二元输出；普通属性的测试，通常在领域中的每个元素都有一个结果；叶子节点表示一个分类；每条路径都表示一个“实例关联到分类”的预测</p>
+<h4 id="关于分类规则-Classification-Rules"><a href="#关于分类规则-Classification-Rules" class="headerlink" title="关于分类规则 Classification Rules"></a>关于分类规则 Classification Rules</h4><p>是决策树的替换形式：If &lt;前因antecedent&gt; then &lt;后果consequent&gt;；结果表示一个类；通常前因是条件的结合，表现在属性值上；通常我们将规则集解释为单个规则的分离</p>
+<p>评估，规则的准确性Accuracy：它正确预测的实例数的比例，和匹配该前因的实例总数之比。</p>
+<p>规则的优点：比树更容易理解；更紧凑；每个规则都表示一部分知识和对应得准确性</p>
+<h4 id="例外规则"><a href="#例外规则" class="headerlink" title="例外规则"></a>例外规则</h4><p>If A then B except if C then D；比普通规则更紧凑；心理学认为这更接近人类组织知识的方式；当新实例引入时更好扩展；</p>
+<p>对于编程的角度来说，程序会先处理异常（例外）情况，最后处理通用规则</p>
+<h4 id="输出：其他分类器"><a href="#输出：其他分类器" class="headerlink" title="输出：其他分类器"></a>输出：其他分类器</h4><p>ZeroR、JRIP、NaiveBayes、VotedPerceptron、IB1、Bagging；输出分类器可能难以可视化、一个可以分类新实例的黑盒</p>
+<h4 id="输出：关联规则"><a href="#输出：关联规则" class="headerlink" title="输出：关联规则"></a>输出：关联规则</h4><p>找出销售数据点之间的依赖关系可以帮助我们发现购物行为；学习规则的过程可能并不有趣</p>
+<h4 id="关于关联规则-Assoication-Rules"><a href="#关于关联规则-Assoication-Rules" class="headerlink" title="关于关联规则 Assoication Rules"></a>关于关联规则 Assoication Rules</h4><p>类似于分类规则，但不仅可以预测分类，还能<strong>预测属性</strong></p>
+<p>评估，规则的覆盖面Coverage：正确预测的实例的数量</p>
+<p>评估，规则的准确性Accuracy：它正确预测的实例数的比例，和匹配该前因的实例总数之比。</p>
+<h4 id="输出：数字预测"><a href="#输出：数字预测" class="headerlink" title="输出：数字预测"></a>输出：数字预测</h4><p>最适合使用公式；广泛应用于数学maths和统计学statistics</p>
+<p>例子：给出关于物理环境和作物田的数字化信息，找出帮助我们在某些新条件下预测作物田的规则</p>
+<h4 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h4><p>数据挖掘工具能够半自动化的发现数据的规则</p>
+<p>不同工具用于发现不同的概念（差异，聚类，决策树，规则，数值预测）和提供不同的输出（提供聚类中心或者树状图的聚类算法）</p>
+<p>根据业务目标选择合适的工具以用于工作：发现知识的用途是什么</p>
+<h4 id="自测"><a href="#自测" class="headerlink" title="自测"></a>自测</h4><p>我们应该：</p>
 <ul>
-<li>提高资源共享的效率(increase the efficiency of using resources - both hardware and human, achieving low priced software)，因此降低双方成本(decrease the cost)；</li>
-<li>提高实现和管理的复杂度(comlexity of implementation and management)；</li>
-<li>简化发布管理流程 (simplifies the release management process. For example, the central, single point updates that allow all customers to have the latest version)；</li>
-<li>提高发布新版本带来的风险和影响（会影响所有租客/用户）;</li>
-<li>All the code is in one place and it is much easier to maintain, update and back up,  and consequently, cheaper.</li>
+<li>确定哪些属性与给定的数据挖掘任务相关</li>
+<li>确定根据业务目标定义的给定问题的适当数据挖掘技术。</li>
+<li>确定最合适的输出形式。</li>
 </ul>
-<p>特点：Multi-user environment（多个用户使用同一个软件资源）；Multi-property（把infrastructure集中在一起提供给tenant，improve the use and efficiency of underutilized resources, e.g. computer system）；</p>
-<h4 id="云计算的好处"><a href="#云计算的好处" class="headerlink" title="云计算的好处"></a>云计算的好处</h4><p><strong>技术上</strong></p>
-<ol>
-<li>按需扩展资源</li>
-<li>对按需增长的实时反应（elasticity弹性）</li>
-<li>硬件整合，不再需要同规格homogeneity，可避免加锁</li>
-<li>简化硬件配置</li>
-<li>资源透明（自动化 / 容错：自动恢复机制）</li>
-</ol>
-<p><strong>经济上</strong></p>
-<ol>
-<li>服务供应链</li>
-<li>减低维护成本</li>
-<li>避免资金支出</li>
-<li>降低准入门槛</li>
-<li>减少电力和冷却成本</li>
-</ol>
-<h4 id="消费者和服务商的目的"><a href="#消费者和服务商的目的" class="headerlink" title="消费者和服务商的目的"></a>消费者和服务商的目的</h4><p><strong>消费者</strong>：达到服务质量，减少开支</p>
-<p><strong>云服务提供商</strong>：吸引客户，最大化利润</p>
-<h4 id="The-vision"><a href="#The-vision" class="headerlink" title="The vision"></a>The vision</h4><p><strong>Infrastructure provider</strong>：like Google、Amazon，提供设备、硬件、网络等</p>
-<p><strong>Service provider</strong>：like athe middleman between infrastructure providers and the users, who provider services/applications for users</p>
-<h4 id="云的建立基础"><a href="#云的建立基础" class="headerlink" title="云的建立基础"></a>云的建立基础</h4><p>SOA, VMs, Web 2.0 technologies</p>
-<h4 id="Could-Architecture-——-Adaptive-management"><a href="#Could-Architecture-——-Adaptive-management" class="headerlink" title="Could Architecture —— Adaptive management"></a>Could Architecture —— Adaptive management</h4><p>is a structured, iterative process of robust decision making in the face of uncertainty, with an aim to reducing uncertainty over time via system monitoring.</p>
-<p>是结构化的，当面对不确定性时，进行稳健决策的迭代过程，其目的是通过系统监控来逐步减少不确定性。</p>
-<p>因为云的环境和结构是动态且复杂的，比如能够提供各种各样的服务：SaaS、PaaS、IaaS甚至everything as a service，云的不同的层也需要不同的管理方式：比如Physical Layer、Virtualization Layer、Service Layer、User Lyaer</p>
 
       
     </div>
@@ -1181,7 +1452,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1249,20 +1520,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">85</span>
+        <span class="site-state-item-count">131</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
