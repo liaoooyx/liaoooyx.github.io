@@ -192,6 +192,239 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/08%20%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/08%20%E4%BF%A1%E6%81%AF%E9%87%87%E9%9B%86/" class="post-title-link" itemprop="url">信息采集</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-26 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-26T00:00:00+00:00">2020-02-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-24 23:05:43" itemprop="dateModified" datetime="2020-05-24T23:05:43+01:00">2020-05-24</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h4 id="信息采集不是信息检索"><a href="#信息采集不是信息检索" class="headerlink" title="信息采集不是信息检索"></a>信息采集不是信息检索</h4><p><strong>Information Retrieval</strong>信息检索，从大的本文集中（通常是网站），根据关键字或查询，获取文档documents。用于分析文档。（如搜索引擎）</p>
+<ul>
+<li>返回的文档，文档可能包含需求相关的信息（不一定）</li>
+</ul>
+<p><strong>Information Extraction</strong>信息采集，从大的文本集的内容中（语料库），获取事实facts，和结构化的信息。用于分析事实</p>
+<ul>
+<li>返回结构化的信息</li>
+</ul>
+<h4 id="通过信息采集来访问文档"><a href="#通过信息采集来访问文档" class="headerlink" title="通过信息采集来访问文档"></a>通过信息采集来访问文档</h4><p>通过传统的查询引擎来获取事实是比较困难和缓慢的，同时还要求选择合适的查询词。信息检索将返回文档，在文档中可能包含相关信息。</p>
+<p>而信息采集则可以返回结构化的信息。</p>
+<h4 id="用信息采集代替信息检索"><a href="#用信息采集代替信息检索" class="headerlink" title="用信息采集代替信息检索"></a>用信息采集代替信息检索</h4><ul>
+<li>IE比IR返回的知识层次更加深入</li>
+<li><p>通过IE构建数据库，并与文档关联，可以形成另一种形式的搜索工具。</p>
+<ul>
+<li>即使结果不够精确，人们也可以从关联的原始文档中查找。（相当于另一种形式的IR）</li>
+</ul>
+</li>
+<li><p>使用场景：</p>
+<ul>
+<li>新闻：分辨主要的关系 major relations，和事件种类 event types；</li>
+<li>科学报告：分辨关系relations和涉及的科学领域subfield</li>
+</ul>
+</li>
+<li><p>例子：HASIE、KIM、Threat tracker</p>
+<ul>
+<li><p><strong>HaSIE</strong>，IE系统，自动找出公司对健康和安全问题的报告，自动识别文档的每个部分，从中提取出关于健康和安全问题的句子，并存入数据库。</p>
+</li>
+<li><p><strong>KIM</strong>，简化的数据库查询页面</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gei4ajealfj310e0h043a.jpg" alt="截屏2020-05-05 下午7.05.52"></p>
+</li>
+<li><p><strong>Threat tracker</strong>：识别文章中出现的实体（名词）</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gei4ayzrp5j30z00kk11m.jpg" alt="截屏2020-05-05 下午7.06.17"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="如何识别命名实体-Named-Entity-NE-Recognition"><a href="#如何识别命名实体-Named-Entity-NE-Recognition" class="headerlink" title="如何识别命名实体 Named Entity (NE) Recognition"></a>如何识别命名实体 Named Entity (NE) Recognition</h4><p>识别文字中的命名实体，并将他们分类到提前定义好的类别中</p>
+<p>命名实体包括：人、组织、地点、日期、其他</p>
+<p>是构建复杂IE系统的基础；命名实体之间的关系可以用于追踪tracking、信息本体论ontological information、情景构建scenario building（<strong>NE的重要性</strong>）</p>
+<ul>
+<li>Tracking (co-reference) “Dr Head, John, he”</li>
+<li>Ontologies “Manchester, CT”</li>
+<li>Scenario “Dr Head became the new director of Shiny Rockets Corp”</li>
+</ul>
+<blockquote>
+<p>本体就是一种特殊类型的<a href="https://zh.wikipedia.org/wiki/术语集" target="_blank" rel="noopener">术语集</a>，具有结构化的特点，且更加适合于在<a href="https://zh.wikipedia.org/wiki/信息系统" target="_blank" rel="noopener">计算机系统</a>之中使用；或者说，本体实际上就是「对特定<a href="https://zh.wikipedia.org/wiki/论域" target="_blank" rel="noopener">领域</a>之中某套<a href="https://zh.wikipedia.org/wiki/概念" target="_blank" rel="noopener">概念</a>及其相互之间<a href="https://zh.wikipedia.org/wiki/关系_(数学" target="_blank" rel="noopener">关系</a>)的形式化表达（formal representation）」</p>
+</blockquote>
+<h4 id="两种途径"><a href="#两种途径" class="headerlink" title="两种途径"></a>两种途径</h4><p><strong>知识工程Knowledge Engineering</strong>：基于规则、由有经验的语言学工程师开发、采用人类的直觉、开发周期长、有些变化很难适应</p>
+<p><strong>学习系统Learning System</strong>：采用统计学或机器学习、开发者不需要语言学专业技能、需要大量的带注解的训练数据annotated training data、有些更改可能需要重新标注整个训练语料库</p>
+<h4 id="NE命名实体中的问题"><a href="#NE命名实体中的问题" class="headerlink" title="NE命名实体中的问题"></a>NE命名实体中的问题</h4><p>基础问题：</p>
+<ul>
+<li><p>实体的多样性：John Smith / Mr Smith, John</p>
+</li>
+<li><p>实体种类的不确定性：John Smith 人或公司</p>
+</li>
+<li><p>常用词的一词多义：may 可能或五月</p>
+</li>
+</ul>
+<p>更复杂的问题还有：类型、结构、域、体裁、符号、拼写、所占空间、格式</p>
+<h4 id="列表查询List-lookup-approach——最简单"><a href="#列表查询List-lookup-approach——最简单" class="headerlink" title="列表查询List lookup approach——最简单"></a>列表查询List lookup approach——最简单</h4><p>系统只识别在列表(lists / gazetteers)中所列的实体</p>
+<p>优点：简单、快速、与语言无关，易于重置（创建新的列表）</p>
+<p>缺点：需要收集实体和维护列表，无法解决名称的多样性，无法解决不确定性</p>
+<h4 id="浅层分析Shallow-Parsing-Approach（内部结构）"><a href="#浅层分析Shallow-Parsing-Approach（内部结构）" class="headerlink" title="浅层分析Shallow Parsing Approach（内部结构）"></a>浅层分析Shallow Parsing Approach（内部结构）</h4><p>先分析句子的各个组成部分（e.g. 名词、动词）然后连接成具有不同意义的整体（e.g. 词组、俗语）如：</p>
+<p>Cap. Word + {City, Forest, Center, River}<br>e.g. Sherwood Forest</p>
+<blockquote>
+<p>Is an analysis of a <a href="https://en.wikipedia.org/wiki/Sentence_(linguistics" target="_blank" rel="noopener">sentence</a>) which first identifies constituent parts of sentences (nouns, verbs, adjectives, etc.) and then links them to higher order units that have discrete grammatical meanings (<a href="https://en.wikipedia.org/wiki/Noun" target="_blank" rel="noopener">noun</a> groups or <a href="https://en.wikipedia.org/wiki/Noun_phrase" target="_blank" rel="noopener">phrases</a>, verb groups, etc.).</p>
+<p>It is a technique widely used in <a href="https://en.wikipedia.org/wiki/Natural_language_processing" target="_blank" rel="noopener">natural language processing</a>. It is similar to the concept of <a href="https://en.wikipedia.org/wiki/Lexical_analysis" target="_blank" rel="noopener">lexical analysis</a> for computer languages. Under the name, “shallow structure hypothesis”, it is also used as an explanation for why <a href="https://en.wikipedia.org/wiki/Second_language" target="_blank" rel="noopener">second language</a> learners often fail to parse complex sentences correctly.</p>
+</blockquote>
+<p><strong>问题：</strong></p>
+<p>单词首字母大写带来的不确定性（英文句子首字母大写）：[All American Bank] vs. All [State Police]</p>
+<p>语义的不确定性：John F. Kennedy（机场/地点），Philip Morris（组织）</p>
+<p>结构的不确定性：[Center for Computational Linguistics]（计算语言学中心） vs. message from [City Hospital] for [John Smith] ；[Cable and Wireless] vs. [Microsoft] and [Dell]。一个词组和两个词的区别</p>
+<p><strong>解决方式：基于语境的模式</strong></p>
+<p>比如【David Walton】和【Goldman Sachs】是难以区分的，但在句子【David Walton of Goldman Sachs】，使用【[Person] of [Organization]】则可以正确识别2个实体</p>
+<h4 id="语境信息的识别"><a href="#语境信息的识别" class="headerlink" title="语境信息的识别"></a>语境信息的识别</h4><p>使用关键字索引 (Key Word in Context, KWIC)和concordancer查找实体附近的上下文（语境）窗口</p>
+<p>查询字符串、实体的重复语境的模式</p>
+<p>手动创建新的模式或规则</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gei5kz4jx3j30po0ikgot.jpg" alt="截屏2020-05-05 下午7.50.32" style="zoom:33%;" /></p>
+<blockquote>
+<p>A <strong>concordancer</strong> is a <a href="https://en.wikipedia.org/wiki/Computer_program" target="_blank" rel="noopener">computer program</a> that automatically constructs a <a href="https://en.wikipedia.org/wiki/Concordance_(publishing" target="_blank" rel="noopener">concordance</a>). </p>
+</blockquote>
+<h4 id="语境模式"><a href="#语境模式" class="headerlink" title="语境模式"></a>语境模式</h4><ol>
+<li>自动采集带有具体特征的语境词，比如采集人名之前出现的所有动词</li>
+<li>按词频对动词列表排序，可以排除低频词（可选）</li>
+<li>这些动词可以用来查找新的人名</li>
+<li>对于新识别出的人名，重复1-3步骤</li>
+</ol>
+<h4 id="多源实体识别-MUSE-–-MUlti-Source-Entity-Recognition"><a href="#多源实体识别-MUSE-–-MUlti-Source-Entity-Recognition" class="headerlink" title="多源实体识别 MUSE – MUlti-Source Entity Recognition"></a>多源实体识别 MUSE – MUlti-Source Entity Recognition</h4><ul>
+<li><p>在<a href="https://gate.ac.uk/" target="_blank" rel="noopener">GATE</a>内部开发的信息采集系统</p>
+</li>
+<li><p>对不同的文本类型和体裁，支持命名实体和coreference（共指）</p>
+<blockquote>
+<p>Determine if word A refers to the same real world entity as word B，比如John和he</p>
+</blockquote>
+</li>
+<li><p>使用手动制定规则的知识工程方法</p>
+</li>
+<li><p>性能可与机器学习方法媲美</p>
+</li>
+<li><p>适应性强</p>
+</li>
+</ul>
+<h4 id="MUSE模型"><a href="#MUSE模型" class="headerlink" title="MUSE模型"></a>MUSE模型</h4><ul>
+<li><p>文档格式和体裁分析</p>
+</li>
+<li><p>词令化（将句子差分为单词列表）（Tokenisation）</p>
+</li>
+<li><p>句子拆分（Sentence splitting）</p>
+</li>
+<li><p>词性标记/语法标记（Part-Of-Speech tagging, POS）</p>
+<blockquote>
+<p>在<a href="https://en.wikipedia.org/wiki/Corpus_linguistics" target="_blank" rel="noopener">语料库语言学中</a>，<strong>词性标记</strong>（<strong>POS标记</strong>或<strong>PoS标记</strong>或<strong>POST</strong>），也称为<strong><a href="https://en.wikipedia.org/wiki/Grammar" target="_blank" rel="noopener">语法</a>标记</strong>或<strong><a href="https://en.wikipedia.org/wiki/Lexical_category" target="_blank" rel="noopener">单词类别</a>歧义消除</strong>，是将文本（语料库）中的单词标记为与特定<a href="https://en.wikipedia.org/wiki/Parts_of_speech" target="_blank" rel="noopener">部分</a>相对应的过程<a href="https://en.wikipedia.org/wiki/Parts_of_speech" target="_blank" rel="noopener">语音的</a>，<a href="https://en.wikipedia.org/wiki/Part-of-speech_tagging#cite_note-1" target="_blank" rel="noopener">[1]</a>同时基于其定义和其<a href="https://en.wikipedia.org/wiki/Context_(language_use" target="_blank" rel="noopener">上下文</a>) -即，其<a href="https://en.wikipedia.org/wiki/Lexicography" target="_blank" rel="noopener">与相邻的和相关词语关系</a>在一个<a href="https://en.wikipedia.org/wiki/Phrase" target="_blank" rel="noopener">短语</a>，<a href="https://en.wikipedia.org/wiki/Sentence_(linguistics" target="_blank" rel="noopener">句子</a>)，或<a href="https://en.wikipedia.org/wiki/Paragraph" target="_blank" rel="noopener">段落</a>。通常将这种简化形式教给学龄儿童，将单词识别为<a href="https://en.wikipedia.org/wiki/Noun" target="_blank" rel="noopener">名词</a>，<a href="https://en.wikipedia.org/wiki/Verb" target="_blank" rel="noopener">动词</a>，<a href="https://en.wikipedia.org/wiki/Adjective" target="_blank" rel="noopener">形容词</a>，<a href="https://en.wikipedia.org/wiki/Adverb" target="_blank" rel="noopener">副词</a>等。</p>
+</blockquote>
+</li>
+<li><p>名词查询（Gazetteer lookup）</p>
+</li>
+<li><p>语义语法</p>
+</li>
+<li><p>拼写 coreference </p>
+</li>
+<li><p>名词和代词 coreference（如John和he）</p>
+</li>
+</ul>
+<h4 id="MUSE多语言适应"><a href="#MUSE多语言适应" class="headerlink" title="MUSE多语言适应"></a>MUSE多语言适应</h4><p>MUSE有多个模块，可以处理多种语言：英语、法语、德语、罗马尼亚语Romanian，保加利亚语Bulgarian，俄语，宿务语Cebuano（菲律宾），印地语Hindi，中文，阿拉伯语</p>
+<h4 id="多语言实体需要什么"><a href="#多语言实体需要什么" class="headerlink" title="多语言实体需要什么"></a>多语言实体需要什么</h4><ul>
+<li>广泛支持非拉丁脚本和文本编码，包括转换实用程序<ul>
+<li>自动识别编码</li>
+<li>占用TIDES印地语努力的2/3</li>
+</ul>
+</li>
+<li>双语词典</li>
+<li>带注释的语料库，用于评估</li>
+<li>提供名词列表（gazetteer list ）的互联网资源（例如，电话簿，黄页，双语页）</li>
+</ul>
+<h4 id="信息采集IE的未来"><a href="#信息采集IE的未来" class="headerlink" title="信息采集IE的未来"></a>信息采集IE的未来</h4><ul>
+<li>用于语义网的工具</li>
+<li>分层命名实体的识别</li>
+<li>在生物信息和医学领域</li>
+<li>混合使用IE和IR，比如问题回答</li>
+<li>在IE和计算属于之间的合作</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/05%20%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,7 +456,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-22 01:39:22" itemprop="dateModified" datetime="2020-05-22T01:39:22+01:00">2020-05-22</time>
+                <time title="修改时间：2020-05-24 22:57:48" itemprop="dateModified" datetime="2020-05-24T22:57:48+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,6 +465,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -324,7 +561,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-04 10:21:17" itemprop="dateModified" datetime="2020-05-04T10:21:17+01:00">2020-05-04</time>
+                <time title="修改时间：2020-05-24 23:01:55" itemprop="dateModified" datetime="2020-05-24T23:01:55+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -333,6 +570,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -420,7 +661,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-07 17:06:18" itemprop="dateModified" datetime="2020-05-07T17:06:18+01:00">2020-05-07</time>
+                <time title="修改时间：2020-05-24 23:05:57" itemprop="dateModified" datetime="2020-05-24T23:05:57+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -429,6 +670,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -516,7 +761,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-26 03:38:00" itemprop="dateModified" datetime="2020-03-26T03:38:00+00:00">2020-03-26</time>
+                <time title="修改时间：2020-05-24 23:01:47" itemprop="dateModified" datetime="2020-05-24T23:01:47+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -525,6 +770,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -612,7 +861,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-26 03:38:44" itemprop="dateModified" datetime="2020-03-26T03:38:44+00:00">2020-03-26</time>
+                <time title="修改时间：2020-05-24 23:01:51" itemprop="dateModified" datetime="2020-05-24T23:01:51+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -621,6 +870,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -709,7 +962,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-24 04:19:06" itemprop="dateModified" datetime="2020-05-24T04:19:06+01:00">2020-05-24</time>
+                <time title="修改时间：2020-05-24 22:57:36" itemprop="dateModified" datetime="2020-05-24T22:57:36+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -722,6 +975,14 @@
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -894,7 +1155,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-07 13:26:46" itemprop="dateModified" datetime="2020-05-07T13:26:46+01:00">2020-05-07</time>
+                <time title="修改时间：2020-05-24 23:05:50" itemprop="dateModified" datetime="2020-05-24T23:05:50+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -903,6 +1164,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -992,7 +1257,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-18 11:50:00" itemprop="dateModified" datetime="2020-05-18T11:50:00+01:00">2020-05-18</time>
+                <time title="修改时间：2020-05-24 23:06:11" itemprop="dateModified" datetime="2020-05-24T23:06:11+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -1001,6 +1266,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -1056,106 +1325,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Introduction%20to%20Mobile%20Device%20Virtualization/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Introduction%20to%20Mobile%20Device%20Virtualization/" class="post-title-link" itemprop="url">移动设备虚拟化</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-17T00:00:00+00:00">2020-02-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-26 03:36:30" itemprop="dateModified" datetime="2020-03-26T03:36:30+00:00">2020-03-26</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>8 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>大规模的物联网设备及其数据需要有效利用云资源，但随之而来的是隐私和性能问题</p>
-<p>解决方案：物联网设备的虚拟化</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/02/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/07%20Introduction%20to%20Mobile%20Device%20Virtualization/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1223,14 +1396,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

@@ -192,6 +192,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/04_%20hosted%20and%20bare-metal%20virtualization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/04_%20hosted%20and%20bare-metal%20virtualization/" class="post-title-link" itemprop="url">云计算/04_ hosted and bare-metal virtualization</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-08 14:01:23 / 修改时间：14:02:09" itemprop="dateCreated datePublished" datetime="2020-02-08T14:01:23+00:00">2020-02-08</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="hosted-and-bare-metal-virtualization"><a href="#hosted-and-bare-metal-virtualization" class="headerlink" title="hosted and bare-metal virtualization"></a>hosted and bare-metal virtualization</h2><p>When choosing a <a href="https://searchservervirtualization.techtarget.com/definition/hypervisor" target="_blank" rel="noopener">virtualization hypervisor</a>, you have to consider both <a href="https://searchservervirtualization.techtarget.com/tip/Virtualization-hypervisor-comparison-Type-1-vs-Type-2-hypervisors" target="_blank" rel="noopener">hypervisor types</a>.</p>
+<p>A virtualization hypervisor comes in one of two forms: a bare-metal hypervisor, also known as Type 1; or a hosted hypervisor, also known as Type 2. There are important differences between a hosted and bare-metal virtualization hypervisor, and each has pretty specific use cases.</p>
+<p><strong>Bare-metal virtualization hypervisors</strong></p>
+<p>A bare-metal virtualization hypervisor does not require admins to install a server operating system first. Bare-metal virtualization means the hypervisor has direct access to hardware resources, which results in better performance, scalability and stability. One disadvantage of a bare-metal virtualization hypervisor, however, is that hardware support is typically more limited, because the hypervisor usually has limited device drivers built into it.</p>
+<p>Bare-metal virtualization  is well suited for enterprise data centers, because it usually comes with advanced features for resource management, high availability and security. Admins can centrally manage this kind of virtualization hypervisor, which is critical when you have many hosts in your virtual infrastructure. The most popular bare-metal virtualization hypervisors are:</p>
+<ul>
+<li>VMware ESX and ESXi</li>
+<li><a href="https://searchservervirtualization.techtarget.com/tip/How-the-Hyper-V-architecture-differs-from-VMware-ESXi" target="_blank" rel="noopener">Microsoft Hyper-V</a></li>
+<li>Citrix Systems XenServer</li>
+</ul>
+<h3 id="Hosted-virtualization-hypervisors"><a href="#Hosted-virtualization-hypervisors" class="headerlink" title="Hosted virtualization hypervisors"></a><strong>Hosted virtualization hypervisors</strong></h3><p>Unlike the bare-metal virtualization hypervisor, a hosted hypervisor requires you to first install an OS. These hypervisors are basically like applications that install on a guest OS. This approach provides better hardware compatibility than bare-metal virtualization, because the OS is responsible for the hardware drivers instead of the hypervisor.</p>
+<p>But, as with the bare-metal hypervisor, there are disadvantages. A hosted virtualization hypervisor does not have direct access to hardware and must go through the OS, which increases resource overhead and can degrade virtual machine (VM) performance. Also, because there are typically many services and applications running on the <a href="https://searchvmware.techtarget.com/definition/host-operating-system" target="_blank" rel="noopener">host OS</a>, the hypervisor often steals resources from the VMs running on it.</p>
+<p>Hosted hypervisors are common for desktops, because they allow you to run multiple OSes. These virtualization hypervisor types are also popular for developers, to maintain application compatibility on modern OSes. The most popular hosted virtualization hypervisors are:</p>
+<ul>
+<li>VMware Workstation, Server, Player and Fusion</li>
+<li>Oracle VM VirtualBox</li>
+<li>Microsoft Virtual PC</li>
+<li>Parallels Desktop</li>
+</ul>
+<p>Once you understand the differences between a hosted and bare-metal virtualization hypervisor — and the best use cases for each — it’s time to consider hypervisor vendors, cost and features.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/06%E7%9B%91%E7%9D%A3%E5%AD%A6%E4%B9%A0%E5%88%86%E7%B1%BB%E5%99%A8%EF%BC%9A%E5%86%B3%E7%AD%96%E6%A0%91%E5%92%8C%E5%88%86%E7%B1%BB%E8%A7%84%E5%88%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -223,7 +315,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-18 14:22:07" itemprop="dateModified" datetime="2020-05-18T14:22:07+01:00">2020-05-18</time>
+                <time title="修改时间：2020-05-24 23:05:34" itemprop="dateModified" datetime="2020-05-24T23:05:34+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,7 +323,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘和文本分析</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -453,7 +549,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-04 19:25:18" itemprop="dateModified" datetime="2020-05-04T19:25:18+01:00">2020-05-04</time>
+                <time title="修改时间：2020-05-24 23:05:27" itemprop="dateModified" datetime="2020-05-24T23:05:27+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -461,7 +557,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘和文本分析</span></a>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘与文本分析</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E4%B8%8E%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -548,7 +648,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-27 09:25:14" itemprop="dateModified" datetime="2020-04-27T09:25:14+01:00">2020-04-27</time>
+                <time title="修改时间：2020-05-24 23:01:29" itemprop="dateModified" datetime="2020-05-24T23:01:29+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -557,6 +657,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index"><span itemprop="name">大数据</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -643,7 +747,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-20 10:00:27" itemprop="dateModified" datetime="2020-05-20T10:00:27+01:00">2020-05-20</time>
+                <time title="修改时间：2020-05-24 22:56:46" itemprop="dateModified" datetime="2020-05-24T22:56:46+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -652,6 +756,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -739,7 +847,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-24 05:52:22" itemprop="dateModified" datetime="2020-05-24T05:52:22+01:00">2020-05-24</time>
+                <time title="修改时间：2020-05-24 22:57:15" itemprop="dateModified" datetime="2020-05-24T22:57:15+01:00">2020-05-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -748,6 +856,10 @@
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
                 </span>
             </span>
 
@@ -1309,150 +1421,10 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/05%20%E4%BB%8E%E6%95%B0%E6%8D%AE%E4%B8%AD%E6%8C%96%E6%8E%98%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E7%9F%A5%E8%AF%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/header.jpg">
-      <meta itemprop="name" content="liaoooyx">
-      <meta itemprop="description" content="坐标英国利兹">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="米达的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/05%20%E4%BB%8E%E6%95%B0%E6%8D%AE%E4%B8%AD%E6%8C%96%E6%8E%98%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E7%9F%A5%E8%AF%86/" class="post-title-link" itemprop="url">从数据中挖掘什么样的知识</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-03T00:00:00+00:00">2020-02-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-04 19:27:26" itemprop="dateModified" datetime="2020-05-04T19:27:26+01:00">2020-05-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">数据挖掘和文本分析</span></a>
-                </span>
-            </span>
-
-          <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>6 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <a id="more"></a>
-<h4 id="数据挖掘、知识发现、文本挖掘"><a href="#数据挖掘、知识发现、文本挖掘" class="headerlink" title="数据挖掘、知识发现、文本挖掘"></a>数据挖掘、知识发现、文本挖掘</h4><p>数据挖掘是关于如何发现“知识”：大数据集中的模式、关系、预测规则</p>
-<p>因此需要数据挖掘技术、算法、工具，如Weka、MatLab、R；和指导我们采集数据和发现模型的方法学框架（指导方针）：CRISP-DM</p>
-<p>数据挖掘最初是关于从数据库中学习模式，以及将数据结构化为记录，字段</p>
-<p>越来越多的非结构化数据（如文本），因此文本挖掘是新的数据挖掘的子领域，专注于从非结构化的文本数据中发现知识</p>
-<h4 id="实例-Instance"><a href="#实例-Instance" class="headerlink" title="实例 Instance"></a>实例 Instance</h4><p>每个实例是被学习或描述的概念的一个例子；实例由它自身属性的值进行描述</p>
-<p>Instance的定义取决于分类的目标：如果分类单词，那么单词是实例，如果分类句子，那么句子是实例。</p>
-<p>数据挖掘算法的输入就是一系列实例的集合</p>
-<p>实例表示为一系列的特征feature或属性attribute：通常来说，在文件中，一个实例instance就是文件中的一条记录record，一个属性attribute就是记录的一个字段field（attribute-instance，record-field）</p>
-<p>从一系列实例instances中发现模式patterns，从而形成概念concepts</p>
-<h4 id="概念-Concept"><a href="#概念-Concept" class="headerlink" title="概念 Concept"></a>概念 Concept</h4><p>Concept 的定义：</p>
-<ul>
-<li>数据集间的关键区别：比如某区域不同年份的销售额sales的区别</li>
-<li>簇clusters 或自然分隔partitions：根据用户的购物习惯对用户进行分类</li>
-<li><p>分类的规则：Adj+X+Verb =&gt; X=Noun</p>
-</li>
-<li><p>通用的关联：高频词一般是语法性的，而不是有含义的</p>
-</li>
-<li>数字的预测：找到预测数值的规则，比如根据成绩预测毕业生的工资</li>
-</ul>
-<h4 id="Kmeans"><a href="#Kmeans" class="headerlink" title="Kmeans"></a>Kmeans</h4><p>cluster centroids 聚类中心</p>
-<h4 id="聚类的例子"><a href="#聚类的例子" class="headerlink" title="聚类的例子"></a>聚类的例子</h4><p>销售数据点包含买方和购物篮的信息；我们希望对不同的用户推送不同的广告；聚类分析把用户分成不同的类别的组，每个类别有不同的特征；聚类的特征与广告的种类相关联（每个簇的用户都有不同的购买偏好）；最后对用户分类</p>
-<h4 id="输出：聚类"><a href="#输出：聚类" class="headerlink" title="输出：聚类"></a>输出：聚类</h4><p>如果不知道有多少聚类，可以先做出树状图Dendrogram</p>
-<ul>
-<li>根据聚类的数量/名字，对每个实例进行分类</li>
-<li>聚类中心点</li>
-<li>用树状图Dendrogram对结果进行展示，可以根据需求对树状图进行切割，得到不同数量的簇</li>
-</ul>
-<h4 id="使用案例：比较数据集"><a href="#使用案例：比较数据集" class="headerlink" title="使用案例：比较数据集"></a>使用案例：比较数据集</h4><p>寻找US vs UK专门的术语；比较这个月和上个月的数据；和几个月前的数据比较；注意新的销售增长区域；趋势：上升、下降、循环；关键的区别可能表示聚类的簇；不同的规模；</p>
-<h4 id="输出：数据集间的不同"><a href="#输出：数据集间的不同" class="headerlink" title="输出：数据集间的不同"></a>输出：数据集间的不同</h4><p>最明显不同的关键实例/属性；关键术语的划分：names；不同数据集的趋势；整体的差别度量</p>
-<h4 id="分类器的使用例子"><a href="#分类器的使用例子" class="headerlink" title="分类器的使用例子"></a>分类器的使用例子</h4><p>医疗记录中的大量症状和诊断数据集是可用的；找到规则来通过病人的症状预测疾病；</p>
-<h4 id="关于决策树"><a href="#关于决策树" class="headerlink" title="关于决策树"></a>关于决策树</h4><p>无叶子节点表示特定属性的测试；边表示测试的结果；数字属性的测试通常有二元输出；普通属性的测试，通常在领域中的每个元素都有一个结果；叶子节点表示一个分类；每条路径都表示一个“实例关联到分类”的预测</p>
-<h4 id="关于分类规则-Classification-Rules"><a href="#关于分类规则-Classification-Rules" class="headerlink" title="关于分类规则 Classification Rules"></a>关于分类规则 Classification Rules</h4><p>是决策树的替换形式：If &lt;前因antecedent&gt; then &lt;后果consequent&gt;；结果表示一个类；通常前因是条件的结合，表现在属性值上；通常我们将规则集解释为单个规则的分离</p>
-<p>评估，规则的准确性Accuracy：它正确预测的实例数的比例，和匹配该前因的实例总数之比。</p>
-<p>规则的优点：比树更容易理解；更紧凑；每个规则都表示一部分知识和对应得准确性</p>
-<h4 id="例外规则"><a href="#例外规则" class="headerlink" title="例外规则"></a>例外规则</h4><p>If A then B except if C then D；比普通规则更紧凑；心理学认为这更接近人类组织知识的方式；当新实例引入时更好扩展；</p>
-<p>对于编程的角度来说，程序会先处理异常（例外）情况，最后处理通用规则</p>
-<h4 id="输出：其他分类器"><a href="#输出：其他分类器" class="headerlink" title="输出：其他分类器"></a>输出：其他分类器</h4><p>ZeroR、JRIP、NaiveBayes、VotedPerceptron、IB1、Bagging；输出分类器可能难以可视化、一个可以分类新实例的黑盒</p>
-<h4 id="输出：关联规则"><a href="#输出：关联规则" class="headerlink" title="输出：关联规则"></a>输出：关联规则</h4><p>找出销售数据点之间的依赖关系可以帮助我们发现购物行为；学习规则的过程可能并不有趣</p>
-<h4 id="关于关联规则-Assoication-Rules"><a href="#关于关联规则-Assoication-Rules" class="headerlink" title="关于关联规则 Assoication Rules"></a>关于关联规则 Assoication Rules</h4><p>类似于分类规则，但不仅可以预测分类，还能<strong>预测属性</strong></p>
-<p>评估，规则的覆盖面Coverage：正确预测的实例的数量</p>
-<p>评估，规则的准确性Accuracy：它正确预测的实例数的比例，和匹配该前因的实例总数之比。</p>
-<h4 id="输出：数字预测"><a href="#输出：数字预测" class="headerlink" title="输出：数字预测"></a>输出：数字预测</h4><p>最适合使用公式；广泛应用于数学maths和统计学statistics</p>
-<p>例子：给出关于物理环境和作物田的数字化信息，找出帮助我们在某些新条件下预测作物田的规则</p>
-<h4 id="重点"><a href="#重点" class="headerlink" title="重点"></a>重点</h4><p>数据挖掘工具能够半自动化的发现数据的规则</p>
-<p>不同工具用于发现不同的概念（差异，聚类，决策树，规则，数值预测）和提供不同的输出（提供聚类中心或者树状图的聚类算法）</p>
-<p>根据业务目标选择合适的工具以用于工作：发现知识的用途是什么</p>
-<h4 id="自测"><a href="#自测" class="headerlink" title="自测"></a>自测</h4><p>我们应该：</p>
-<ul>
-<li>确定哪些属性与给定的数据挖掘任务相关</li>
-<li>确定根据业务目标定义的给定问题的适当数据挖掘技术。</li>
-<li>确定最合适的输出形式。</li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1520,14 +1492,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">81</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
