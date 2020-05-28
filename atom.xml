@@ -480,27 +480,30 @@
     <title>云计算大纲</title>
     <link href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/00%20%E4%BA%91%E8%AE%A1%E7%AE%97%E5%A4%A7%E7%BA%B2/"/>
     <id>https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/00%20%E4%BA%91%E8%AE%A1%E7%AE%97%E5%A4%A7%E7%BA%B2/</id>
-    <published>2020-03-27T00:00:00.000Z</published>
-    <updated>2020-04-17T12:36:14.148Z</updated>
+    <published>2020-03-27T16:24:27.457Z</published>
+    <updated>2020-05-25T07:52:37.701Z</updated>
     
-    <content type="html"><![CDATA[<ol><li>分布式系统模型和支持技术</li><li>云计算–体系结构，服务，模型，用例</li><li>公共云和私有云。 资源管理</li><li>集群和数据中心的虚拟机和虚拟化</li><li>虚拟基础架构管理：OpenNebula和Openstack</li><li>云调度</li><li>容器化和Kubernetes</li><li>云编程和软件环境</li><li>云中间件和配置管理</li><li>大数据。 Mapreduce和Hadoop</li><li>服务水平协议</li><li>云经济</li><li>能源效率</li><li>安全与信任</li><li>无处不在的云和物联网</li><li>云支持：边缘计算，虚拟化/单核，工业4.0，无服务器架构</li></ol>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><ol><li>分布式系统模型和支持技术</li><li>云计算–体系结构，服务，模型，用例</li><li>公共云、私有云、联合云</li><li>集群和数据中心的虚拟化，容器、独核</li><li>虚拟基础架构管理：OpenNebula和Openstack</li><li>资源管理和Kubernetes</li><li>云编程和软件环境</li><li>无服务器架构</li><li>云中间件和配置管理</li><li>大数据。 Mapreduce和Hadoop</li><li>服务水平协议</li><li>云经济</li><li>能源效率</li><li>安全与信任</li><li>无处不在的云和物联网</li><li>边缘计算</li></ol>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;ol&gt;
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;ol&gt;
 &lt;li&gt;分布式系统模型和支持技术&lt;/li&gt;
 &lt;li&gt;云计算–体系结构，服务，模型，用例&lt;/li&gt;
-&lt;li&gt;公共云和私有云。 资源管理&lt;/li&gt;
-&lt;li&gt;集群和数据中心的虚拟机和虚拟化&lt;/li&gt;
-&lt;li&gt;虚拟基础架构管理：OpenNebula和Openstack&lt;/li&gt;
+&lt;li&gt;公共云、私有云、联合云&lt;/li&gt;
+&lt;li&gt;集群和数据中心的虚拟化，容器、独核&lt;/li&gt;
+&lt;li&gt;虚拟基础架构管理：OpenNeb
       
     
     </summary>
     
     
       <category term="云计算" scheme="https://liaoooyx.com/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/"/>
+    
+      <category term="课件" scheme="https://liaoooyx.com/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/%E8%AF%BE%E4%BB%B6/"/>
     
     
   </entry>

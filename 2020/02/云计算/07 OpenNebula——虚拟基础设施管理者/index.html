@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/recyclable.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/recyclable32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/recyclable16.png">
+  <link rel="mask-icon" href="/images/recyclable.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-material.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="需要虚拟基础设施管理者的原因 我们需要知道虚拟机放置的位置——调度和监控 我们需要如何提供一个新的集群节点——克隆和上下文配置 我们需要知道哪些MAC地址可用——网络  对资源池进行统一管理 虚拟机的生命周期管理和监控 整合镜像、网络和虚拟化 将虚拟化的优势扩展到集群中在物理资源池上，动态部署和重新放置虚拟机 将固定的【分布式物理基础设施】转化为灵活、敏捷的【虚拟基础设施】 虚拟机管理模型【分布">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenNebula——虚拟基础设施管理者">
+<meta property="og:url" content="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/07%20OpenNebula%E2%80%94%E2%80%94%E8%99%9A%E6%8B%9F%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%AE%A1%E7%90%86%E8%80%85/index.html">
+<meta property="og:site_name" content="米达的博客">
+<meta property="og:description" content="需要虚拟基础设施管理者的原因 我们需要知道虚拟机放置的位置——调度和监控 我们需要如何提供一个新的集群节点——克隆和上下文配置 我们需要知道哪些MAC地址可用——网络  对资源池进行统一管理 虚拟机的生命周期管理和监控 整合镜像、网络和虚拟化 将虚拟化的优势扩展到集群中在物理资源池上，动态部署和重新放置虚拟机 将固定的【分布式物理基础设施】转化为灵活、敏捷的【虚拟基础设施】 虚拟机管理模型【分布">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6hqdvt0ej31240kwaex.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6hr3xz6bj30xu0kktc3.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6kag1to1j30r60hogr6.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6l1l7e2kj310a0ksjxd.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6ltiv2wnj310a0jstga.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6ltwlfx7j30ug0u01kx.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6mislutuj30u00udk3a.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6ml2slfmj30og0hqk0c.jpg">
+<meta property="article:published_time" content="2020-02-17T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-05-26T22:52:52.459Z">
+<meta property="article:author" content="liaoooyx">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6hqdvt0ej31240kwaex.jpg">
+
+<link rel="canonical" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/07%20OpenNebula%E2%80%94%E2%80%94%E8%99%9A%E6%8B%9F%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%AE%A1%E7%90%86%E8%80%85/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>OpenNebula——虚拟基础设施管理者 | 米达的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="米达的博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">米达的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">好好学习</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+
+  <a href="https://github.com/liaoooyx" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/07%20OpenNebula%E2%80%94%E2%80%94%E8%99%9A%E6%8B%9F%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%AE%A1%E7%90%86%E8%80%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          OpenNebula——虚拟基础设施管理者
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-17 00:00:00" itemprop="dateCreated datePublished" datetime="2020-02-17T00:00:00+00:00">2020-02-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-26 23:52:52" itemprop="dateModified" datetime="2020-05-26T23:52:52+01:00">2020-05-26</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <a id="more"></a>
+<h4 id="需要虚拟基础设施管理者的原因"><a href="#需要虚拟基础设施管理者的原因" class="headerlink" title="需要虚拟基础设施管理者的原因"></a>需要虚拟基础设施管理者的原因</h4><ul>
+<li>我们需要知道虚拟机放置的位置——调度和监控</li>
+<li>我们需要如何提供一个新的集群节点——克隆和上下文配置</li>
+<li>我们需要知道哪些MAC地址可用——网络</li>
+</ul>
+<p>对资源池进行统一管理</p>
+<p>虚拟机的生命周期管理和监控</p>
+<p>整合镜像、网络和虚拟化</p>
+<h4 id="将虚拟化的优势扩展到集群中"><a href="#将虚拟化的优势扩展到集群中" class="headerlink" title="将虚拟化的优势扩展到集群中"></a>将虚拟化的优势扩展到集群中</h4><p>在物理资源池上，动态部署和重新放置虚拟机</p>
+<p>将固定的【分布式物理基础设施】转化为灵活、敏捷的【虚拟基础设施】</p>
+<h4 id="虚拟机管理模型"><a href="#虚拟机管理模型" class="headerlink" title="虚拟机管理模型"></a>虚拟机管理模型</h4><p>【分布式虚拟机管理系统】的三大支柱：网络、镜像管理、虚拟化</p>
+<p>服务被放置在虚拟机上，虚拟机之间通过网络关联，客户端通过网络获取服务</p>
+<h4 id="OpenNebula的作用"><a href="#OpenNebula的作用" class="headerlink" title="OpenNebula的作用"></a>OpenNebula的作用</h4><p>对于私有云：简化和优化内部操作</p>
+<p>对于混合云：补充私有云的容量</p>
+<p>对于公有云：提供接口给外部用户访问“内部资源”</p>
+<h4 id="OpenNebula的好处"><a href="#OpenNebula的好处" class="headerlink" title="OpenNebula的好处"></a>OpenNebula的好处</h4><p>对于基础设施管理者</p>
+<ul>
+<li>对虚拟机工作负载和分布式的基础实施，进行【中心化的管理】</li>
+<li>支持【虚拟机安置策略】：工作负载平衡、服务器整合等</li>
+<li>动态调整基础设施的大小</li>
+<li>动态分隔和隔离集群</li>
+<li>私有基础设施的动态扩展，以满足需求波动</li>
+<li>组合本地和远程云资源，带来更低的基础设施花费，</li>
+</ul>
+<p>对于基础设施使用者：</p>
+<ul>
+<li>对于服务来说，更快的交付和扩展性</li>
+<li>支持【异质的】执行环境</li>
+<li>虚拟化服务管理的生命周期的完全控制</li>
+</ul>
+<p>在云消费者和云供应商的角度：支持内部可交互性 interoperability</p>
+<h5 id="对系统整合商的好处"><a href="#对系统整合商的好处" class="headerlink" title="对系统整合商的好处"></a>对系统整合商的好处</h5><ul>
+<li>由于其开放、灵活、可扩展的界面、体系结构和组件，OpenNebula可适用于任何现存的数据中心</li>
+<li>构建任何类型的云部署</li>
+<li>开源软件、Apache开源许可</li>
+<li>与云生态中的任何产品和服务，与数据中心的管理工具，都能无缝整合，比如<ul>
+<li>云供应商、虚拟机管理者、虚拟镜像管理者、服务管理者、管理工具、调度器</li>
+</ul>
+</li>
+</ul>
+<h4 id="OpenNebula的主要特征"><a href="#OpenNebula的主要特征" class="headerlink" title="OpenNebula的主要特征"></a>OpenNebula的主要特征</h4><p>内部接口、调度（任务、负载）、虚拟化管理、镜像管理、网络管理、服务管理和语境化、安全、容错、可扩展性Scalability、安装、灵活且可扩展Extensibility</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6hqdvt0ej31240kwaex.jpg" alt="截屏2020-05-26 下午9.04.25"></p>
+<h4 id="OpenNebula结构"><a href="#OpenNebula结构" class="headerlink" title="OpenNebula结构"></a>OpenNebula结构</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6hr3xz6bj30xu0kktc3.jpg" alt="截屏2020-05-26 下午9.05.05" style="zoom: 33%;" /></p>
+<h5 id="核心层"><a href="#核心层" class="headerlink" title="核心层"></a>核心层</h5><ul>
+<li>请求管理：提供XML-RPC接口，用于管理和获取实体信息</li>
+<li>SQL池：储存实体信息</li>
+<li>虚拟机管理者：负责虚拟机生命周期</li>
+<li>主机管理者：持有关于主机的控制信息</li>
+<li>虚拟网络（VN）管理者：负责生成虚拟的MAC和IP地址</li>
+</ul>
+<h5 id="工具层"><a href="#工具层" class="headerlink" title="工具层"></a>工具层</h5><ul>
+<li><p>调度器：查询物理主机，并将新的虚拟机部署在物理主机上</p>
+</li>
+<li><p>命令行接口：管理OpenNebula的命令</p>
+</li>
+</ul>
+<h5 id="驱动层"><a href="#驱动层" class="headerlink" title="驱动层"></a>驱动层</h5><p>转换驱动：负责镜像的管理，如克隆、删除、创建swap交换镜像</p>
+<p>虚拟机驱动：管理虚拟机的生命周期，如部署、关闭、迁移等</p>
+<p>信息驱动：：在物理主机上执行脚本，来获取主机的信息：比如内存、cpu的使用情况</p>
+<h4 id="进程拆分"><a href="#进程拆分" class="headerlink" title="进程拆分"></a>进程拆分</h4><p>【调度器】和【命令行接口CLI】是分离的任务进程；</p>
+<p>【驱动】也是分离的进程，它们使用简单的文件传输协议以OpenNebula的核心进程进行通信</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6kag1to1j30r60hogr6.jpg" alt="截屏2020-05-26 下午10.32.56" style="zoom: 50%;" /></p>
+<h4 id="构造私有云"><a href="#构造私有云" class="headerlink" title="构造私有云"></a>构造私有云</h4><h5 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h5><p>虚拟机和虚拟机镜像以文件的储存</p>
+<p>镜像仓库：用于存放虚拟机镜像的任何储存媒介</p>
+<ul>
+<li>OpenNebula支持多个后端，并由前端展示，之间通过网络连接</li>
+</ul>
+<p>虚拟机目录：集群节点中的虚拟机主页</p>
+<ul>
+<li>储存检查点、描述文件和虚拟机磁盘</li>
+<li>在虚拟机目录上的实际的操作取决于存储媒介</li>
+<li>应该相互共享，以支持【实时迁移】</li>
+</ul>
+<blockquote>
+<p>例子 A 64 core cluster will typically <strong>run around 80VMs</strong>, each VM will require an average of 10GB of <strong>disk space</strong>. So you will need ~800GB for /srv/cloud/one, you will also want to <strong>store 10-15 master images</strong> so ~200GB for /srv/cloud/images. A 1TB /srv/cloud will be enough for this example setup.</p>
+<p>The master image is the final operating system image that contains all of the software, configuration settings and other customizations requested by the solution provider.</p>
+</blockquote>
+<h5 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h5><p>使用SSH连接各个节点</p>
+<p>镜像传输可能需要移动大量文件（虚拟机镜像，检查点），解决方案之一是：专用的存储链接</p>
+<p>使用多个NICs（Network Interface Cards）来支持虚拟机通信</p>
+<p>为每个虚拟机定义单独的MAC和IP地址空间，每个虚拟网络都通过网桥与物理网络关联</p>
+<ul>
+<li>OpenNebula中的虚拟网络，由<u>onevnet</u>组件管理</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6l1l7e2kj310a0ksjxd.jpg" alt="截屏2020-05-26 下午10.59.02"></p>
+<h4 id="OpenNebula的生命周期"><a href="#OpenNebula的生命周期" class="headerlink" title="OpenNebula的生命周期"></a>OpenNebula的生命周期</h4><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6ltiv2wnj310a0jstga.jpg" alt="截屏2020-05-26 下午11.25.54" style="zoom: 50%;" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6ltwlfx7j30ug0u01kx.jpg" alt="OpenNebula_lifecycle"></p>
+<h4 id="混合云"><a href="#混合云" class="headerlink" title="混合云"></a>混合云</h4><p>虚拟机可以放置在本地或远程。</p>
+<p>对于本地云来说，外部云就相当于一个主机。</p>
+<p>虚拟机之间通过VPN连接</p>
+<h5 id="用例"><a href="#用例" class="headerlink" title="用例"></a>用例</h5><p>计算集群的按需扩展：当工作节点达到上限时，通过Amazon EC2，动态的扩展工作节点数量来满足需求</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6mislutuj30u00udk3a.jpg" alt="截屏2020-05-26 下午11.50.06" style="zoom: 50%;" /></p>
+<p>网络服务器的按需扩展：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf6ml2slfmj30og0hqk0c.jpg" alt="截屏2020-05-26 下午11.52.22" style="zoom:50%;" /></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/%E4%BA%91%E8%AE%A1%E7%AE%97/06%20%E4%BA%91%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86%E5%92%8C%E8%B0%83%E5%BA%A6/" rel="prev" title="云资源管理和调度">
+      <i class="fa fa-chevron-left"></i> 云资源管理和调度
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%92%8C%E6%96%87%E6%9C%AC%E5%88%86%E6%9E%90/09%20%E6%96%87%E6%A1%A3%E5%88%86%E7%B1%BB/" rel="next" title="文档分类">
+      文档分类 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#需要虚拟基础设施管理者的原因"><span class="nav-text">需要虚拟基础设施管理者的原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将虚拟化的优势扩展到集群中"><span class="nav-text">将虚拟化的优势扩展到集群中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟机管理模型"><span class="nav-text">虚拟机管理模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenNebula的作用"><span class="nav-text">OpenNebula的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenNebula的好处"><span class="nav-text">OpenNebula的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#对系统整合商的好处"><span class="nav-text">对系统整合商的好处</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenNebula的主要特征"><span class="nav-text">OpenNebula的主要特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenNebula结构"><span class="nav-text">OpenNebula结构</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#核心层"><span class="nav-text">核心层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工具层"><span class="nav-text">工具层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#驱动层"><span class="nav-text">驱动层</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进程拆分"><span class="nav-text">进程拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构造私有云"><span class="nav-text">构造私有云</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#存储"><span class="nav-text">存储</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#网络"><span class="nav-text">网络</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#OpenNebula的生命周期"><span class="nav-text">OpenNebula的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合云"><span class="nav-text">混合云</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#用例"><span class="nav-text">用例</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="liaoooyx"
+      src="/images/header.jpg">
+  <p class="site-author-name" itemprop="name">liaoooyx</p>
+  <div class="site-description" itemprop="description">坐标英国利兹</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">145</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="motion-element">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=52 src="//music.163.com/outchain/player?type=2&id=34383149&auto=0&height=32"></iframe>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/liaoooyx" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;liaoooyx" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://blog.csdn.net/u011848397" title="CSDN → https:&#x2F;&#x2F;blog.csdn.net&#x2F;u011848397" rel="noopener" target="_blank"><i class="book fa-fw"></i>CSDN</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="rss fa-fw"></i>RSS</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:727687719@gmail.com" title="E-Mail → mailto:727687719@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liaoooyx</span>
+  
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+<script>
+document.querySelectorAll('.pdfobject-container').forEach(element => {
+  let url = element.dataset.target;
+  let pdfOpenParams = {
+    navpanes : 0,
+    toolbar  : 0,
+    statusbar: 0,
+    pagemode : 'thumbs',
+    view     : 'FitH'
+  };
+  let pdfOpenFragment = '#' + Object.entries(pdfOpenParams).map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+  let fullURL = `/lib/pdf/web/viewer?file=${encodeURIComponent(url)}${pdfOpenFragment}`;
+
+  if (NexT.utils.supportsPDFs()) {
+    element.innerHTML = `<embed class="pdfobject" src="${url + pdfOpenFragment}" type="application/pdf" style="height: ${element.dataset.height};">`;
+  } else {
+    element.innerHTML = `<iframe src="${fullURL}" style="height: ${element.dataset.height};" frameborder="0"></iframe>`;
+  }
+});
+</script>
+
+
+
+
+
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+  <script async src="/js/cursor/text.js"></script>
+
+
+
+
+
+  <script src="/js/wobblewindow.js"></script>
+  <script>
+    //只在桌面版网页启用特效
+    if( window.innerWidth > 768  ){
+      $(document).ready(function () {
+        
+          $('.header').wobbleWindow({
+          	movementTop: false,
+            movementLeft: false,
+            movementRight: false,
+          	radius: 50,
+          	wobbleFactor: 0.93, //震荡持续时间
+     		wobbleSpeed: 0.03 //震荡速度
+          });
+        
+
+       //  
+       //    $('.sidebar').wobbleWindow({
+       //    	position: 'fixed',
+       //      radius: 10,
+       //    	wobbleFactor: 0.99, //震荡持续时间
+     		// wobbleSpeed: 0.01 //震荡速度
+       //    });
+       //  
+
+      });
+    }
+  </script>
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+  
+
+
+</body>
+</html>

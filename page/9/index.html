@@ -192,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01%20Introduction%20to%20Cloud%20Computing/">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01_%20%E5%A4%9A%E9%87%8D%E7%A7%9F%E8%B5%81%E6%8A%80%E6%9C%AF%20Multitenancy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -206,7 +206,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01%20Introduction%20to%20Cloud%20Computing/" class="post-title-link" itemprop="url">云计算/01 Introduction to Cloud Computing</a>
+            <a href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01_%20%E5%A4%9A%E9%87%8D%E7%A7%9F%E8%B5%81%E6%8A%80%E6%9C%AF%20Multitenancy/" class="post-title-link" itemprop="url">多重租赁技术 Multitenancy</a>
         </h2>
 
         <div class="post-meta">
@@ -216,15 +216,28 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-01-26 19:43:21" itemprop="dateCreated datePublished" datetime="2020-01-26T19:43:21+00:00">2020-01-26</time>
+              <time title="创建时间：2020-01-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-27T00:00:00+00:00">2020-01-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-01 22:51:44" itemprop="dateModified" datetime="2020-02-01T22:51:44+00:00">2020-02-01</time>
+                <time title="修改时间：2020-05-25 09:42:07" itemprop="dateModified" datetime="2020-05-25T09:42:07+01:00">2020-05-25</time>
               </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+                </span>
+            </span>
 
           <br>
             <span class="post-meta-item" title="本文字数">
@@ -232,14 +245,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>5.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>9 分钟</span>
+              <span>16 分钟</span>
             </span>
 
         </div>
@@ -251,19 +264,133 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="01-Introduction-to-Cloud-Computing"><a href="#01-Introduction-to-Cloud-Computing" class="headerlink" title="01 Introduction to Cloud Computing"></a>01 Introduction to Cloud Computing</h2><h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>相关技术、分布式系统的演化、云计算的定义、基础架构的可视化，概念云的结构</p>
-<h4 id="分布式系统的演化"><a href="#分布式系统的演化" class="headerlink" title="分布式系统的演化"></a>分布式系统的演化</h4><p>Exponential growth 指数型增长</p>
-<p>Mainframes (打孔条，做计算，给出结果) -&gt; Clusters -&gt; Grids -&gt; Clouds</p>
-<p><strong>Cloud Computing的特点</strong>：on-demand services</p>
+          <p>Allows a single implementation of a service to multiple customers.</p>
+<p>A tenant (software vendor) can have many users (software customer) subscribed to its application and a user can be subscribed to different tenants’ applications, paying only for the ones that he really needs.</p>
+<p>一个tenant的应用可以被许多用户订阅，一个用户可以订阅许多tenant的应用，并且只对需要的那个付费。</p>
+<p>Multi-tenant 可以用在Saas, PaaS, IaaS上</p>
+<p>影响：</p>
+<ul>
+<li>提高资源共享的效率(increase the efficiency of using resources - both hardware and human, achieving low priced software)，因此降低双方成本(decrease the cost)；</li>
+<li>提高实现和管理的复杂度(comlexity of implementation and management)；</li>
+<li>简化发布管理流程 (simplifies the release management process. For example, the central, single point updates that allow all customers to have the latest version)；</li>
+<li>提高发布新版本带来的风险和影响（会影响所有租客/用户）;</li>
+<li>All the code is in one place and it is much easier to maintain, update and back up,  and consequently, cheaper.</li>
+</ul>
+<p>特点：Multi-user environment（多个用户使用同一个软件资源）；Multi-property（把infrastructure集中在一起提供给tenant，improve the use and efficiency of underutilized resources, e.g. computer system）；</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01_%20%E5%A4%9A%E9%87%8D%E7%A7%9F%E8%B5%81%E6%8A%80%E6%9C%AF%20Multitenancy/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01%20%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E8%83%8C%E6%99%AF%E5%92%8C%E5%AE%9A%E4%B9%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/01%20%E4%BA%91%E8%AE%A1%E7%AE%97%E7%9A%84%E8%83%8C%E6%99%AF%E5%92%8C%E5%AE%9A%E4%B9%89/" class="post-title-link" itemprop="url">云计算的背景和定义</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-27T00:00:00+00:00">2020-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-25 21:19:14" itemprop="dateModified" datetime="2020-05-25T21:19:14+01:00">2020-05-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>相关技术、分布式系统的演化、云计算的定义、基础设施的可视化，概念云的结构</p>
+<h4 id="分布式系统的演化"><a href="#分布式系统的演化" class="headerlink" title="分布式系统的演化"></a>分布式系统的演化</h4><p>Mainframes (打孔条，做计算，给出结果) -&gt; Clusters -&gt; Grids -&gt; Clouds</p>
+<p>演化的方向为：面向服务的经济</p>
+<p>云计算的特点：按需服务 on-demand services（需要新的范例paradigm的支持）</p>
 <h4 id="高性能计算"><a href="#高性能计算" class="headerlink" title="高性能计算"></a>高性能计算</h4><p>作用：模拟真实世界的科学问题和工程学问题</p>
-<p><strong>Parallelisation</strong> ——好处：提供更强的计算能力和更多内存memory。——挑战：进程间的通信很慢</p>
-<h4 id="网络-network-speed、计算机速度-computer-speed、存储容量-storage-density"><a href="#网络-network-speed、计算机速度-computer-speed、存储容量-storage-density" class="headerlink" title="网络 network speed、计算机速度 computer speed、存储容量 storage density"></a>网络 network speed、计算机速度 computer speed、存储容量 storage density</h4><p>Doubles every 9 months, doubles every 18 months, doubles every 12 months</p>
+<p>【并行化 Parallelisation】的好处是提供更强的计算能力和更多内存memory。但也带来了挑战：进程间的通信相对而言比较慢</p>
+<h4 id="发展速度"><a href="#发展速度" class="headerlink" title="发展速度"></a>发展速度</h4><p>网络速度network speed：Doubles every 9 months</p>
+<p>计算速度computer speed：doubles every 18 months</p>
+<p>存储容量storage density：doubles every 12 months</p>
 <h4 id="分布式计算的变化范例（Could-云计算和-Grid-网格计算的区别）"><a href="#分布式计算的变化范例（Could-云计算和-Grid-网格计算的区别）" class="headerlink" title="分布式计算的变化范例（Could 云计算和 Grid 网格计算的区别）"></a>分布式计算的变化范例（Could 云计算和 Grid 网格计算的区别）</h4><ol>
 <li>linked all <strong>machines 机器</strong> together：Internet, TCP/IP</li>
 <li>linked all <strong>documents 文件</strong> together：WWW, HTTP, HTML, XML</li>
 <li>linked all <strong>applications 应用</strong> together：Web services, SOAP, WSDL, UDDI, REST</li>
 <li>linker <strong>everything else 其他</strong> together：<ul>
-<li><strong>Grid：分散化的基础设施 decentralised infrasturctures</strong></li>
+<li><strong>Grid：去中心化的的基础设施 decentralised infrasturctures</strong></li>
 <li><strong>Could：中心化的基础设施 centralised infrastructrues</strong></li>
 </ul>
 </li>
@@ -279,11 +406,11 @@
 </li>
 <li><p>Rapid elasticity or expansion 快速的弹性或扩展</p>
 </li>
-<li><p>Measured service 测试评估服务</p>
+<li><p>Measured service 量化服务</p>
 <p>比如：用了多少资源（带宽）是可以计算的</p>
 </li>
 </ol>
-<h4 id="虚拟的基础架构："><a href="#虚拟的基础架构：" class="headerlink" title="虚拟的基础架构："></a>虚拟的基础架构：</h4><p><strong>虚拟的服务平台</strong>的特点（好处）</p>
+<h4 id="虚拟的基础设施："><a href="#虚拟的基础设施：" class="headerlink" title="虚拟的基础设施："></a>虚拟的基础设施：</h4><p>【虚拟的服务平台】的特点（好处）</p>
 <ul>
 <li>服务系统的整合</li>
 <li>降低成本</li>
@@ -291,11 +418,11 @@
 <li>简化管理</li>
 <li>按使用付费</li>
 </ul>
-<h4 id="云的定义"><a href="#云的定义" class="headerlink" title="云的定义"></a>云的定义</h4><p><strong>Cloud infrastructure 云架构 </strong>，提供了一个框架，用于管理对应用程序的访问，该访问可扩展、可靠、并且可以按需使用</p>
+<h4 id="云的定义"><a href="#云的定义" class="headerlink" title="云的定义"></a>云的定义</h4><p><strong>Cloud infrastructure 云基础设施 </strong>，提供了一个框架，用于管理对应用程序的访问，该访问可扩展、可靠、并且可以按需使用</p>
 <p><strong>云</strong>，对于许多手机应用程序来说，是一个不可见的后端</p>
 <h4 id="云数据中心"><a href="#云数据中心" class="headerlink" title="云数据中心"></a>云数据中心</h4><p>1~10万个主机，紧密耦合，相互紧挨着：电子商户（Amazon），内容服务器（YouTube、Apple、Microsoft），搜索引擎、数据挖掘（Google）</p>
 <p><strong>挑战</strong>：多应用，每个应用服务于大量的客户；管理和平衡负载，处理、网络，数据管理</p>
-<h4 id="Virtualised-Infrastructure-云架构-——-Multitenancy"><a href="#Virtualised-Infrastructure-云架构-——-Multitenancy" class="headerlink" title="Virtualised Infrastructure 云架构 —— Multitenancy"></a>Virtualised Infrastructure 云架构 —— Multitenancy</h4><p>是一个新兴的计算范例，其中数据和服务在可大规模扩展(massively scalable)的数据中心，并且通过互联网，可以被任何设备在任何地方进行访问</p>
+<h4 id="Virtualised-Infrastructure-虚拟化的基础设施-——-Multitenancy"><a href="#Virtualised-Infrastructure-虚拟化的基础设施-——-Multitenancy" class="headerlink" title="Virtualised Infrastructure 虚拟化的基础设施 —— Multitenancy"></a>Virtualised Infrastructure 虚拟化的基础设施 —— Multitenancy</h4><p>是一个新兴的计算范例，其中数据和服务在可大规模扩展(massively scalable)的数据中心，并且通过互联网，可以被任何设备在任何地方进行访问</p>
 <p>传统计算和云计算的比较</p>
 <ul>
 <li>获得：买设备/ 买服务</li>
@@ -320,7 +447,7 @@
 <ol>
 <li>按需扩展资源</li>
 <li>对按需增长的实时反应（elasticity弹性）</li>
-<li>硬件整合，不再需要同规格homogeneity，可避免加锁</li>
+<li>硬件整合（不再需要硬件同规格homogeneity；可避免加锁）</li>
 <li>简化硬件配置</li>
 <li>资源透明（自动化 / 容错：自动恢复机制）</li>
 </ol>
@@ -334,12 +461,209 @@
 </ol>
 <h4 id="消费者和服务商的目的"><a href="#消费者和服务商的目的" class="headerlink" title="消费者和服务商的目的"></a>消费者和服务商的目的</h4><p><strong>消费者</strong>：达到服务质量，减少开支</p>
 <p><strong>云服务提供商</strong>：吸引客户，最大化利润</p>
-<h4 id="The-vision"><a href="#The-vision" class="headerlink" title="The vision"></a>The vision</h4><p><strong>Infrastructure provider</strong>：like Google、Amazon，提供设备、硬件、网络等</p>
-<p><strong>Service provider</strong>：like athe middleman between infrastructure providers and the users, who provider services/applications for users</p>
+<h4 id="The-vision"><a href="#The-vision" class="headerlink" title="The vision"></a>The vision</h4><p>基础设施提供商：比如Google、Amazon，提供设备、硬件、网络等</p>
+<p>服务提供商：使用基础设施提供商提供的资源，为消费者提供服务、应用等</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf4sqoyxf5j30ye0huaf1.jpg" alt="截屏2020-05-25 上午9.54.09" style="zoom:67%;" /></p>
 <h4 id="云的建立基础"><a href="#云的建立基础" class="headerlink" title="云的建立基础"></a>云的建立基础</h4><p>SOA, VMs, Web 2.0 technologies</p>
-<h4 id="Could-Architecture-——-Adaptive-management"><a href="#Could-Architecture-——-Adaptive-management" class="headerlink" title="Could Architecture —— Adaptive management"></a>Could Architecture —— Adaptive management</h4><p>is a structured, iterative process of robust decision making in the face of uncertainty, with an aim to reducing uncertainty over time via system monitoring.</p>
-<p>是结构化的，当面对不确定性时，进行稳健决策的迭代过程，其目的是通过系统监控来逐步减少不确定性。</p>
+<h4 id="Could-Architecture-——-Adaptive-management"><a href="#Could-Architecture-——-Adaptive-management" class="headerlink" title="Could Architecture —— Adaptive management"></a>Could Architecture —— Adaptive management</h4><p>云的架构是结构化的，当面对不确定性时，进行稳健决策的迭代过程，其目的是通过系统监控来逐步减少不确定性。</p>
 <p>因为云的环境和结构是动态且复杂的，比如能够提供各种各样的服务：SaaS、PaaS、IaaS甚至everything as a service，云的不同的层也需要不同的管理方式：比如Physical Layer、Virtualization Layer、Service Layer、User Lyaer</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf4svbp409j30yo0ksgt3.jpg" alt="截屏2020-05-25 上午9.58.41" style="zoom:67%;" /></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/02%20%E4%BB%8B%E7%BB%8D%E4%BA%91%E8%AE%A1%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/header.jpg">
+      <meta itemprop="name" content="liaoooyx">
+      <meta itemprop="description" content="坐标英国利兹">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="米达的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/%E4%BA%91%E8%AE%A1%E7%AE%97/02%20%E4%BB%8B%E7%BB%8D%E4%BA%91%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">介绍云计算</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-27 00:00:00" itemprop="dateCreated datePublished" datetime="2020-01-27T00:00:00+00:00">2020-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-05-25 21:47:23" itemprop="dateModified" datetime="2020-05-25T21:47:23+01:00">2020-05-25</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
+                </span>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>4.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>11 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <a id="more"></a>
+<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>云系统的分类、可视的基础架构管理者、云用例、云计算—开放问题</p>
+<h4 id="云计算"><a href="#云计算" class="headerlink" title="云计算"></a>云计算</h4><p>“云”是一些可以自我维护和管理的虚拟计算资源，通常为一些大型服务器集群，包括计算服务器、存储服务器、宽带资源等等。云计算将所有的计算资源集中起来，并由软件实现自动管理，无需人为参与。</p>
+<p>基本原理是将计算任务分布在云端的大量的分布式计算机上、数据也存储在云端，使得企业将有限的资源切换到需要的应用上，降低企业运行的成本。这样带来的结果是中小企业不需要购置专门的计算机系统去满足某一应用需求，只需要想云计算中心支付服务费即可获得响应服务，而云计算中心则大规模的云，以向用户提供服务。总的来说云计算具有如下的特点：<strong>超大规模云计算集群、虚拟化、高可靠性、通用性、按需服务、极其廉价。</strong></p>
+<h4 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h4><p>分布式计算是一门计算机科学，它研究如何把一个需要非常巨大的计算能力才能解决的问题分成许多小的部分，然后把这些部分分配给许多计算机进行处理，最后把这些计算结果综合起来得到最终的结果。分布式计算是利用互联网上的计算机的 CPU 的闲置处理能力来解决大型计算问题的一种计算科学。</p>
+<p>一个分布式系统（Distributed System）是一组逻辑和物理上互联的处理单元的集合。其实质就是<strong>对资源的系统范围的分散控制，以达到应用程序的协同执行</strong>。这种系统不要求单台计算机的功能十分强大，故能降低成本。分布式系统具有快速访问、多用户使用的优点。系统中的每台计算机可以方便快捷的访问其他内部节点的信息文件，它既可以为本地用户的特殊要求服务，也可以为网络中其他用户服务，实现不同计算机之间的通信与协同工作。</p>
+<h4 id="并行计算和分布式计算"><a href="#并行计算和分布式计算" class="headerlink" title="并行计算和分布式计算"></a>并行计算和分布式计算</h4><p>并行计算与分布式计算都是运用并行来获得更高性能，化大任务为小任务。<strong>简单说来，如果处理单元共享内存，就称为并行计算，反之就是分布式计算。</strong></p>
+<p>但是分布式的任务包互相之间有独立性，上一个任务包的结果未返回或者是结果处理错误，对下一个任务包的处理几乎没有什么影响。因此，分布式的实时性要求不高，而且允许存在计算错误（因为每个计算任务给好几个参与者计算，上传结果到服务器后要比较结果，然后对结果差异大的进行验证。</p>
+<h4 id="云系统的分类"><a href="#云系统的分类" class="headerlink" title="云系统的分类"></a>云系统的分类</h4><p>云的结构由3个服务层组成，服务可以在任何一层提供，更低的层对用户端隐藏</p>
+<ol>
+<li>Software as a Service：远程运行应用代替本地运行。比如通过浏览器运行应用程序，而不用下载安装。用户不需要管理任何东西。比如：Google Apps, Dropbox，Office365</li>
+<li>Platform as a Service：Software stack软件堆栈促进应用程序的部署。比如提供一个平台（比如Apache）让开发者部署Web Application，开发者只需要管理和维护自己的应用(WebApp代码)和数据，运行状态、操作系统、网络等工作由平台自动管理和监控。比如：AWS Elastic Beanstalk</li>
+<li>Infrastructure as a Service：由高度可扩展的自动化计算资源组成。 IaaS是完全自助服务，用于访问和监视计算机，网络，存储和其他服务。 IaaS允许企业按需和按需购买资源，而不必直接购买硬件。比如租一个Linux系统。用户需要管理自己的操作系统、中间件、运行状态、数据、应用。比如：Microsoft Azure</li>
+</ol>
+<p>Database、Function、Hardware、Sensor、Network … *  as a Service</p>
+<h4 id="资源虚拟化"><a href="#资源虚拟化" class="headerlink" title="资源虚拟化"></a>资源虚拟化</h4><p>同一台机器上的不同的虚拟机可以运行不同的操作系统和多个应用</p>
+<p>主要的虚拟化技术是：Hypervisor 虚拟机监控程序</p>
+<ul>
+<li><p>Virtual Machine Manager (VMM) 虚拟机管理者用户，通过仿真和硬件辅助虚拟化，透明地分割物理服务器主机</p>
+</li>
+<li><p>提供了一个全仿真的硬件环境：虚拟机、宾客操作系统</p>
+</li>
+</ul>
+<p>Virtualization layer 虚拟层是一个中间层，位于硬件和系统的虚拟机之间</p>
+<h4 id="云的结构"><a href="#云的结构" class="headerlink" title="云的结构"></a>云的结构</h4><ol>
+<li><p>Distributed Application 分布式应用（SaaS）：被设计为 ”运行在多个机器上以执行一个特定的任务“ 的软件</p>
+</li>
+<li><p>Virtual Machine Cluster 虚拟机集群（PaaS）：一组包含内嵌程序的虚拟机，作为应用程序的中间层</p>
+</li>
+<li><p>Virtual Infrastructure Manager 虚拟基础架构管理者（IaaS）：把虚拟机分隔成组，管理上千的虚拟机</p>
+</li>
+<li><p>Hypervisor 虚拟机监控程序（IaaS）：在同一个机器上创建多个虚拟机的实例</p>
+<p>如：VMware、ESX、Xen、KVM</p>
+</li>
+</ol>
+<p>物理机器 -&gt; Hypervisor创建虚拟机镜像 -&gt; Virtual Infrastructure Manager管理上千的虚拟机镜像 -&gt; Virtual Machine Cluster 虚拟机镜像被上者分成不用的集群 -&gt; Distributed Application 应用分布在集群中，最后提供给用户 -&gt; User</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gf5cuwb3i0j310w0mmdpi.jpg" alt="截屏2020-05-25 下午9.30.13" style="zoom:50%;" /></p>
+<h4 id="Virtual-Infrastructure-Manager-虚拟基础架构管理者"><a href="#Virtual-Infrastructure-Manager-虚拟基础架构管理者" class="headerlink" title="Virtual Infrastructure Manager 虚拟基础架构管理者"></a>Virtual Infrastructure Manager 虚拟基础架构管理者</h4><p>代表终端用户配置虚拟资源的供应。如Open Nebula </p>
+<p>主要功能：</p>
+<ul>
+<li>虚拟资源调度<ul>
+<li>镜像分段、创建、迁移、外包、终止</li>
+</ul>
+</li>
+<li>虚拟和物理资源监控</li>
+<li>用户访问控制</li>
+</ul>
+<h4 id="Virtual-Infrastructure-Manager和Hyperviosr的关系"><a href="#Virtual-Infrastructure-Manager和Hyperviosr的关系" class="headerlink" title="Virtual Infrastructure Manager和Hyperviosr的关系"></a>Virtual Infrastructure Manager和Hyperviosr的关系</h4><ul>
+<li><strong>终端用户</strong>通过<strong>公开的云接口</strong>访问<strong><u>虚拟基础架构管理者</u></strong></li>
+<li><p><strong>本地用户</strong>直接访问<strong><u>虚拟基础架构管理者</u></strong></p>
+</li>
+<li><p><strong><u>虚拟基础架构管理者</u></strong>通过本地的<strong><u>Hypervisor虚拟机监控程序</u></strong>访问<strong>私有本地物理资源（私有云）</strong></p>
+</li>
+<li><p><strong><u>虚拟基础架构管理者</u></strong>通过<strong>外包接口</strong>访问<strong>共有远程物理资源（公有云）</strong></p>
+</li>
+</ul>
+<center><img src="https://tva1.sinaimg.cn/large/006tNbRwgy1gbbw4v6twoj30hw0hiac7.jpg" alt="截屏2020-01-27下午10.48.44" style="zoom:50%"/>
+</center>
+
+<h4 id="云结构各部分的关系"><a href="#云结构各部分的关系" class="headerlink" title="云结构各部分的关系"></a>云结构各部分的关系</h4><ol>
+<li><u><strong>分布式应用</strong></u>部署在虚拟机集群中</li>
+<li><strong>虚拟机集群资源</strong>由<strong>虚拟基础设施管理者</strong>统一管理</li>
+<li><strong><u>基础设施管理者</u></strong>通过使用<u><strong>基础设施监控程序</strong></u>提供和管理物理资源</li>
+</ol>
+<p>物理机器 -&gt; Hypervisor创建虚拟机镜像 -&gt; Virtual Infrastructure Manager管理上千的虚拟机镜像 -&gt; Virtual Machine Cluster 虚拟机镜像被上者分成不用的集群 -&gt; Distributed Application 应用分布在集群中，最后提供给用户 -&gt; User</p>
+<h4 id="Virtual-Infrastructure-Manager"><a href="#Virtual-Infrastructure-Manager" class="headerlink" title="Virtual Infrastructure Manager"></a>Virtual Infrastructure Manager</h4><p><strong>Open Nebula</strong></p>
+<p>特点：通过云插件进行多站点资源池、Hypervisor监控程序诊断、广泛采用云接口、简单的用户管理、灵活的模块化设计、成熟</p>
+<p><strong>Openstack</strong></p>
+<p>特点：高效地分配资源、通过服务门户授权管理员和用户、开发者通过API授权使应用具有”云感知“的能力、使”云“能够联合(cloud federation)</p>
+<h4 id="企业-云-企业"><a href="#企业-云-企业" class="headerlink" title="企业-云-企业"></a>企业-云-企业</h4><p>重点是将资源托管在云中，以便企业间的应用程序可以相互操作</p>
+<h4 id="混合云"><a href="#混合云" class="headerlink" title="混合云"></a>混合云</h4><p>”混合云“可以由”federated cloud provider联合云提供商”交付，将其自身的资源与其他提供商的资源相结合</p>
+<h4 id="Cloud-federation"><a href="#Cloud-federation" class="headerlink" title="Cloud federation"></a>Cloud federation</h4><p>different clouds can share resources：</p>
+<ul>
+<li><p>如果其中一个云的负载满了，那么cloud1的虚拟机可以迁移到cloud2</p>
+</li>
+<li><p>用户与broker（代理人/经纪人）交互，broker决定是与cloud1或2或3进行交互，但对于用户来说，cloud1 2 3是透明的。</p>
+</li>
+</ul>
+<h3 id="Worksheet-1-问题"><a href="#Worksheet-1-问题" class="headerlink" title="Worksheet 1 问题"></a>Worksheet 1 问题</h3><ol>
+<li><p><strong>Make a list of activities that you do every day in which cloud computing is used. How would your life be altered if cloud services were suddenly switched off?</strong></p>
+<p>Office 365，Outlook，Google Cloud Platform；</p>
+<p>云计算能够为企业提供廉价的按需付费的服务，这样企业可以专注于自己的商业目标，减少了购买和维护额外计算机资源的花费（比如租用云服务器而不是购买硬件），进而降低了成本。如果没有了云计算，那么企业的成本会增加，也会导致产品定价上涨，因此消费者需要花更多的钱的购买产品</p>
+<p>Cloud can help companies to focus on whatever their business domain is. The total cost will decrease by the form of cloud amortization</p>
+</li>
+<li><p>What is meant by ”cloud” in cloud computing?</p>
+<p>“云”是一些可以自我维护和管理的虚拟计算资源，通常为一些大型服务器集群，包括计算服务器、存储服务器、宽带资源等等。云计算将所有的计算资源集中起来，并由软件实现自动管理，无需人为参与。</p>
+</li>
+<li><p>Where do the clouds reside?</p>
+<p>cloud center / data center</p>
+</li>
+<li><p>Which of the following is an advantage of the cloud computing approach:</p>
+<ul>
+<li>it is ubiquitous</li>
+<li>enabled by pay-for-usage model </li>
+<li>responsiveness</li>
+<li><strong>all of these</strong></li>
+</ul>
+</li>
+<li><p>What is the main advantage of utility computing (公用计算) as compared to traditional computing?</p>
+<p><strong>Utility computing</strong> is a service provisioning model in which a service provider makes computing resources and infrastructure management available to the customer as needed. Utility computing support a pay-per-use service while traditional computing is flat rate.</p>
+</li>
+<li><p>Check the Amazon Web Services (AWS) cloud Web site. How would you plan a real computing application using EC2 or S3? You must specify the resources requested and figure out the costs charged by Amazon.</p>
+<p>系统、CPU、内存、硬盘大小、带宽、数据中心位置</p>
+</li>
+</ol>
 
       
     </div>
@@ -426,20 +750,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">131</span>
+        <span class="site-state-item-count">145</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
