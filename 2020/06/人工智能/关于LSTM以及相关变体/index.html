@@ -22,24 +22,19 @@
     var CONFIG = {"hostname":"liaoooyx.com","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="云编程的前景 在云中的执行应用程序和服务的框架 云服务生命周期 常用的编程框架和模型：MPI、MapReduce &#x2F; Hadoop 、亚马逊、微软 Azure">
+  <meta name="description" content="关于LSTM以及相关变体，以及各个逻辑门对LSTM的影响——链接">
 <meta property="og:type" content="article">
-<meta property="og:title" content="云编程的现状">
-<meta property="og:url" content="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/index.html">
+<meta property="og:title" content="Convolutional LSTM Network">
+<meta property="og:url" content="https://liaoooyx.com/2020/06/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%85%B3%E4%BA%8ELSTM%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8F%98%E4%BD%93/index.html">
 <meta property="og:site_name" content="米达的博客">
-<meta property="og:description" content="云编程的前景 在云中的执行应用程序和服务的框架 云服务生命周期 常用的编程框架和模型：MPI、MapReduce &#x2F; Hadoop 、亚马逊、微软 Azure">
+<meta property="og:description" content="关于LSTM以及相关变体，以及各个逻辑门对LSTM的影响——链接">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd04xhtyu7j30ys0i8tbv.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd04om93dyj30ou0lw418.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd04u6rjjuj30yg0aodgp.jpg">
-<meta property="og:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd0503wa9hj30xu0nen3p.jpg">
-<meta property="article:published_time" content="2020-03-20T00:00:00.000Z">
-<meta property="article:modified_time" content="2020-05-28T00:52:15.559Z">
+<meta property="article:published_time" content="2020-06-01T23:13:42.777Z">
+<meta property="article:modified_time" content="2020-06-01T23:16:13.544Z">
 <meta property="article:author" content="liaoooyx">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/00831rSTgy1gd04xhtyu7j30ys0i8tbv.jpg">
 
-<link rel="canonical" href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/">
+<link rel="canonical" href="https://liaoooyx.com/2020/06/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%85%B3%E4%BA%8ELSTM%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8F%98%E4%BD%93/">
 
 
 <script id="page-configurations">
@@ -52,7 +47,7 @@
   };
 </script>
 
-  <title>云编程的现状 | 米达的博客</title>
+  <title>Convolutional LSTM Network | 米达的博客</title>
   
 
 
@@ -200,7 +195,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/03/%E4%BA%91%E8%AE%A1%E7%AE%97/11%20Cloud%20Programming%20Landscape%20%E4%BA%91%E7%BC%96%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="https://liaoooyx.com/2020/06/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E5%85%B3%E4%BA%8ELSTM%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E5%8F%98%E4%BD%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/header.jpg">
@@ -213,7 +208,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          云编程的现状
+          Convolutional LSTM Network
         </h1>
 
         <div class="post-meta">
@@ -222,27 +217,21 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2020-03-20 00:00:00" itemprop="dateCreated datePublished" datetime="2020-03-20T00:00:00+00:00">2020-03-20</time>
+              <time title="创建时间：2020-06-02 00:13:42 / 修改时间：00:16:13" itemprop="dateCreated datePublished" datetime="2020-06-02T00:13:42+01:00">2020-06-02</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-05-28 01:52:15" itemprop="dateModified" datetime="2020-05-28T01:52:15+01:00">2020-05-28</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">云计算</span></a>
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" itemprop="url" rel="index"><span itemprop="name">人工智能</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%91%E8%AE%A1%E7%AE%97/%E8%AF%BE%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">课件</span></a>
+                  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
                 </span>
             </span>
 
@@ -252,14 +241,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2k</span>
+              <span>32</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>5 分钟</span>
+              <span>1 分钟</span>
             </span>
 
         </div>
@@ -271,131 +260,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>云编程的前景</p>
-<p>在云中的执行应用程序和服务的框架</p>
-<p>云服务生命周期</p>
-<p>常用的编程框架和模型：MPI、MapReduce / Hadoop 、亚马逊、微软 Azure</p>
-<a id="more"></a>
-<h4 id="云产品的现状"><a href="#云产品的现状" class="headerlink" title="云产品的现状"></a>云产品的现状</h4><p>云产品可应用于以下领域：科学/技术（无人驾驶汽车）、商务（电商、消费者关系管理CRM、会计、企业资源规划ERP）、消费者/社交（FB、Gmail、Twitter）</p>
-<h3 id="产品和服务的编程"><a href="#产品和服务的编程" class="headerlink" title="产品和服务的编程"></a>产品和服务的编程</h3><p>现有的框架支持对应用程序和服务进行编程，并在云中执行：</p>
-<ol>
-<li>新的接口用以开发程序：比如Azure、Google App Engine</li>
-<li>基于服务的工作流程的图形（Web服务业务流程执行语言）</li>
-<li>高性能计算：MPI，OpenMP</li>
-<li>非通用编程模型：MapReduce，Aneka（用于在云上开发分布式应用的平台和框架）</li>
-</ol>
-<h3 id="云服务的生命周期"><a href="#云服务的生命周期" class="headerlink" title="云服务的生命周期"></a>云服务的生命周期</h3><p>编程模型/构造服务：</p>
-<ul>
-<li>编程模型——用于开发产品</li>
-<li>应用包装器——用于创建服务清单</li>
-<li>虚拟机镜像构造器——用于产生镜像</li>
-</ul>
-<p>部署服务</p>
-<ul>
-<li>产品管理器——经服务部署到云基础设施上</li>
-<li>虚拟机上下文工具contextualiser——将服务的软件依赖嵌入到虚拟机镜像中，并支持运行时配置</li>
-<li>产品监控器——在操作是监控服务</li>
-</ul>
-<p>操作服务：</p>
-<ul>
-<li>虚拟机管理器——将虚拟机部署到物理节点</li>
-<li>虚拟机基础设施管理器——管理虚拟机</li>
-<li>基础设施监控器——监控云资源 </li>
-</ul>
-<h3 id="构造云服务"><a href="#构造云服务" class="headerlink" title="构造云服务"></a>构造云服务</h3><p>云服务是专门为了在云基础设施上部署而开发、策划和配置的</p>
-<p>需执行的活动有：</p>
-<ol>
-<li>服务开发：开发应用程序，为用户提供功能服务<ul>
-<li>使用编程模型简化服务开发：MapReduce、MPI、COMP Superscalar</li>
-</ul>
-</li>
-<li>准备好虚拟机，等服务开发完成后，将服务部署在虚拟机上</li>
-<li><p>指定和配置服务需求，描述参数（功能性和非功能性）</p>
-<ul>
-<li>容量需求、位置限制、能源效率限制</li>
-</ul>
-<p>针对云量身定制的编程语言：GO——针对云项目Docker的编程语言，提供并发操作</p>
-</li>
-</ol>
-<h4 id="例1：消息传递接口MPI"><a href="#例1：消息传递接口MPI" class="headerlink" title="例1：消息传递接口MPI"></a>例1：消息传递接口MPI</h4><p>高性能多重计算机的出现；需要面向消息的<u>原语Primitives</u>以轻松编写高效的应用程序</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd04xhtyu7j30ys0i8tbv.jpg" alt="截屏2020-03-20上午1.27.08" style="zoom: 33%;" /></p>
-<p>问题：大多数内部交互网络和高性能多重计算机都自带专有的通信库——需要硬件独立的通信库</p>
-<p>解决方案：MPI</p>
-<ul>
-<li>为并行产品设计</li>
-<li>使用底层网络</li>
-<li>假设通信发生在已知的进程组</li>
-</ul>
-<h5 id="消息传递模型"><a href="#消息传递模型" class="headerlink" title="消息传递模型"></a>消息传递模型</h5><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd04om93dyj30ou0lw418.jpg" alt="截屏2020-03-20上午1.18.52" style="zoom:33%;" /></p>
-<p>消息同步传输：</p>
-<ul>
-<li><p>需要发送者与接受者配合，但“配合”并不总是反映在代码上。</p>
-</li>
-<li><p>比较一对一通信和集体通信</p>
-</li>
-</ul>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd04u6rjjuj30yg0aodgp.jpg" alt="截屏2020-03-20上午1.24.17"></p>
-<h5 id="进程执行：裸机与虚拟环境的对比"><a href="#进程执行：裸机与虚拟环境的对比" class="headerlink" title="进程执行：裸机与虚拟环境的对比"></a>进程执行：裸机与虚拟环境的对比</h5><p>对消息传递的方式对进程来说没有区别，区别在于进程是位于裸机中还是虚拟机中</p>
-<p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd0503wa9hj30xu0nen3p.jpg" alt="截屏2020-03-20上午1.29.58" style="zoom:33%;" /></p>
-<h4 id="例2：MapReduce——在大型集群上的可扩展数据处理"><a href="#例2：MapReduce——在大型集群上的可扩展数据处理" class="headerlink" title="例2：MapReduce——在大型集群上的可扩展数据处理"></a>例2：MapReduce——在大型集群上的可扩展数据处理</h4><ul>
-<li>用于快速处理大规模数据集的编程模型</li>
-<li>适用于网络规模的搜索和云计算产品</li>
-<li>用户编写的<ul>
-<li>map函数用于生成中间操作的键值对</li>
-<li>reduce函数将键值对按键合并</li>
-</ul>
-</li>
-</ul>
-<h4 id="Hadoop"><a href="#Hadoop" class="headerlink" title="Hadoop"></a>Hadoop</h4><p>由雅虎开发的软件平台，让用户编写和运行基于大规模分布式数据的产品</p>
-<p>特点：</p>
-<ul>
-<li>可扩展：可以轻松的在网络空间上扩展，存储和处理PB级的数据</li>
-<li>经济的：开源框架，能够最小化过量的任务滋生和大规模数据通信</li>
-<li>高效的：通过大量的简单节点，进行高度并行的数据处理</li>
-<li>可靠的：自动维护多个数据备份，当发送故障时能够重新部署计算任务</li>
-</ul>
-<h3 id="部署云服务"><a href="#部署云服务" class="headerlink" title="部署云服务"></a>部署云服务</h3><p>成果：服务能够在云基础设施资源上运行</p>
-<p>执行的活动有：</p>
-<ul>
-<li>选择最合适的基础设施来部署服务</li>
-<li>当服务被部署后，确保服务按照其约束进行<ul>
-<li>约束指的是在性能、成本、能耗等方面达成一致</li>
-</ul>
-</li>
-<li>上下文（配置）信息的传递，当服务被部署后，上下文信息用于初始化服务</li>
-</ul>
-<h3 id="操作云服务"><a href="#操作云服务" class="headerlink" title="操作云服务"></a>操作云服务</h3><p>服务运行在云基础设之上</p>
-<p>执行的活动有：</p>
-<ul>
-<li>满足服务需求的管理操作（比如服务质量）</li>
-<li>资源分配机制（包括数据放置）</li>
-<li>（被虚拟机、容器使用的）基础设施用量的监控机制</li>
-<li>根据基础设备用量、历史模式、预测未来用量的变化的报告机制</li>
-</ul>
-<h3 id="在AWS上的并行编程"><a href="#在AWS上的并行编程" class="headerlink" title="在AWS上的并行编程"></a>在AWS上的并行编程</h3><p>部分亚马逊平台上提供的服务</p>
-<ul>
-<li><p>EC2 亚马逊弹性云服务：提供可重新调整计算能力的Web服务，为开发者设计，简化网络规模的云计算</p>
-</li>
-<li><p>S3 简单存储服务：为用户提供安全、可容忍、可高度扩展的对象存储，通过简单的网络服务接口，从网络的任何地方，对任何数量的数据进行存储和获取</p>
-</li>
-<li><p>EBS 弹性块存储：基于EC2实例，支持<u>块级别</u>存储大小的持久化</p>
-</li>
-<li><p>SimpleDB：高度可用和灵活的非关系数据存储，减少开发者对数据库管理的工作。开发者只要通过网络服务请求对数据进行查询和存储，SimpleDB负责其余的工作</p>
-</li>
-</ul>
-<h4 id="EC2——AMI-亚马逊虚拟机镜像"><a href="#EC2——AMI-亚马逊虚拟机镜像" class="headerlink" title="EC2——AMI 亚马逊虚拟机镜像"></a>EC2——AMI 亚马逊虚拟机镜像</h4><p>AMI是虚拟机实例的模板，AMI是预装了软件Linux系统，部署在EC2上。</p>
-<p>AMI的类型包括私有（个人创建和使用），公开（由用户创建，并在AWS社区发布，任何人都能使用），付费（由个人创建，其他用户可以付费使用）</p>
-<h4 id="S3"><a href="#S3" class="headerlink" title="S3"></a>S3</h4><p>特点：</p>
-<ul>
-<li><p>基于对象的存储服务，对象是最基础的数据单元，每个对象的大小为1Byte-5GB</p>
-<ul>
-<li>使用Bucket来存储对象，用Key来获取数据对象</li>
-<li>对象包括：键、值、元数据、访问控制</li>
-</ul>
-</li>
-<li><p>通过地理分散实现冗余，99.99%的可用性目标，共有或私有，每个对象都有专门的URL，支持比特流BitTorrent</p>
-</li>
-</ul>
+        <a id="more"></a>
+<p>关于LSTM以及相关变体，以及各个逻辑门对LSTM的影响——<a href="https://blog.csdn.net/micsf/article/details/80899302" target="_blank" rel="noopener">链接</a></p>
 
     </div>
 
@@ -411,13 +277,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/03/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/10%20%E6%B3%9B%E5%8C%96%E6%A8%A1%E5%9E%8B/" rel="prev" title="生成模型 Generative model">
-      <i class="fa fa-chevron-left"></i> 生成模型 Generative model
+    <a href="/2020/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%A2%AF%E5%BA%A6%E6%B6%88%E5%A4%B1%E5%92%8C%E6%A2%AF%E5%BA%A6%E7%88%86%E7%82%B8%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="梯度消失和梯度爆炸问题解决方案">
+      <i class="fa fa-chevron-left"></i> 梯度消失和梯度爆炸问题解决方案
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%B3%BB%E7%BB%9F/13%20%E5%9B%BE%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%BA%93-Neo4J/" rel="next" title="图形数据库 Neo4J">
-      图形数据库 Neo4J <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -476,7 +339,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#云产品的现状"><span class="nav-text">云产品的现状</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#产品和服务的编程"><span class="nav-text">产品和服务的编程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#云服务的生命周期"><span class="nav-text">云服务的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构造云服务"><span class="nav-text">构造云服务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例1：消息传递接口MPI"><span class="nav-text">例1：消息传递接口MPI</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#消息传递模型"><span class="nav-text">消息传递模型</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#进程执行：裸机与虚拟环境的对比"><span class="nav-text">进程执行：裸机与虚拟环境的对比</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例2：MapReduce——在大型集群上的可扩展数据处理"><span class="nav-text">例2：MapReduce——在大型集群上的可扩展数据处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hadoop"><span class="nav-text">Hadoop</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部署云服务"><span class="nav-text">部署云服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作云服务"><span class="nav-text">操作云服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在AWS上的并行编程"><span class="nav-text">在AWS上的并行编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EC2——AMI-亚马逊虚拟机镜像"><span class="nav-text">EC2——AMI 亚马逊虚拟机镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#S3"><span class="nav-text">S3</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -492,7 +354,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">83</span>
+          <span class="site-state-item-count">88</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -505,7 +367,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">145</span>
+        <span class="site-state-item-count">158</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
